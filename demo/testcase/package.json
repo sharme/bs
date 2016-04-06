@@ -8,11 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sharme/testcase"
+    "url": "git+https://github.com/sharme/testcase.git"
   },
   "keywords": [
     "testcase"
   ],
   "author": "miwang yao",
-  "license": "ISC"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sharme/testcase/issues"
+  },
+  "homepage": "https://github.com/sharme/testcase#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "multer": "^1.1.0"
+  },
+  "devDependencies": {}
 }

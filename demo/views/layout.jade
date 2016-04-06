@@ -3,5 +3,18 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    block header
+      #header.header
+        a(class='button', href='google.com') BuyBS
+        li
+          a(class="homepage", id="homepage", href="http://127.0.0.1:8081/") 主页
+        #login_out
+           a(class='login_btn', id='login_btn', href='http://127.0.0.1:8081/login') 登陆 |
+           a(class='register_btn', id='register_btn', href='http://127.0.0.1:8081/index/register') 注册
   body
     block content
+    #foot
+      联系我: yaomiwang@qq.com | @2016 |
+
+
+

@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  #search
+    #search_bg
+    //p Welcome to #{title}
+    #search_box
+      a(id='search_box-logo' class='search_box-logo', href='google.com') BuyBS
+      a(id='search_box-city')上海 [切换城市]
+      input(type='text' id='search_box-text' name='search_box-text')
+      input(type='submit' id='search_box-submit')
+  block register

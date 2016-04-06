@@ -1,0 +1,1 @@
+NODE JS will read this file and print out on the terminal.
