@@ -7,6 +7,7 @@ body {
 a {
   color: gray;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #header {
@@ -15,6 +16,49 @@ a {
   background-color: whitesmoke;
   width: 100%;
 }
+
+#login_popup {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  background-color: whitesmoke;
+  z-index: 2;
+  margin: 200px 30%;
+  border-radius: 30px;
+  display: none;
+}
+
+#login_form {
+  margin: 40px 40px 40px 60px;
+}
+
+#login_popup-header {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  line-height: 3;
+  border-bottom: solid gray 2px;
+  font-size: 18px;
+}
+
+#login_form-phoneNumber, #login_form-password {
+  padding: 10px;
+  width: 200px;
+  margin: 10px 0px 0px 10px;
+}
+
+#login_form-password {
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+#login_invalid {
+  color: red;
+  padding: 10px;
+  font-size: 12px;
+  display: none;
+}
+
 
 #foot {
   height: 60px;
@@ -156,7 +200,7 @@ li {
 
 }
 
-#register_form-submit, #register_shop-add-btn {
+#register_form-submit, #register_shop-add-btn, #register_shop-submit {
   margin: 0px 0px 0px 5px;
   width: 260px;
   padding: 10px;
@@ -190,15 +234,18 @@ li {
   border-color: black;
   border: solid 1px;
   margin: 20px 60px 20px 60px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#register_shop-shopPrice {
+#register_shop-shopPrice-1 {
   width: 20%;
   margin: 0px 0px 10px 10px;
 }
 
-#register_shop-shopDescription {
+#register_shop-shopDescription-1 {
   margin: 0px 0px 0px 10px;
 }
+
 
 

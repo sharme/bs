@@ -3,58 +3,63 @@ extends index
 block register
     #register
          p#register_owner 注册成为店主
-         p#register_step1 第一步
 
-         if succeed
-             #register_welcome
-                 注册成功
-         else
-             #register_form
-                 form(name='register_form-div', action='/users/register_submit', method='post')
-                    手机号
-                    input(type='text', name='phoneNumber', id='register_form-phoneNumber', value='')
-                    br
-                    用户名
-                    input(type='text', name='username', id='register_form-phoneNumber', value='')
-                    br
-                    密码
-                    input(type='password', id='register_form-password', name='password', value='')
-                    br
-                    验证码
-                    input(type='text', name='scCode', id='register_form-scCode')
-                    input(type='button' value='获取验证码', id='register_form-scCode-btn')
-                    br
-                    //input(type='checkbox')接受并同意<<宝石网协议>>
-                    input(type='submit' id='register_form-submit', value='注册')
-         p#register_step2 第二部
-             #register_shop
-                 form(name='register_shop-div', action='/users/register_shop_submit', method='post')
-                    店铺名称
-                    input(type='text', name='shopName', id='register_shop-shopName', value='')
-                    br
-                    店铺类型
-                    input(type='text', name='shopType', id='register_shop-shopType', value='')
-                    br
-                    店铺地址
-                    input(type='text', name='shopAddress', id='register_shop-shopAddress', value='')
-                    br
-                    主营
-                    input(type='text', name='sells', id='register_shop-sells', value='')
-                    br
-                    br
-                    input(type='button' value='添加产品', id='register_shop-add-btn')
-                 #register_shop-warning
-                    ! 最多可添加9个产品, 所有产品信息将显示在店铺信息产品展示详细页面，价格，图片和描述可能会直接影响用户的感受哦
-                 p 第一张
-                 #register_shop-product
-                     #register_shop-product-image
-                         图片
-                     价格
-                     input(type='text', name='shopPrice-1', id='register_shop-shopPrice', value='')
-                     br
-                     描述
-                     textarea(id="register_shop-shopDescription", name="shopDescription", cols="45", rows="5")
 
+         if step == 3
+             p#register_step1 第三步
+                 #register_welcome
+                     | 注册成功
+         else if step == 1
+             p#register_step1 第一步
+                 #register_form
+                     form(name='register_form-div', action='/users/register_user', method='post')
+                        | 手机号
+                        input(type='text', name='phoneNumber', id='register_form-phoneNumber', value='')
+                        br
+                        | 用户名
+                        input(type='text', name='username', id='register_form-phoneNumber', value='')
+                        br
+                        | 密码
+                        input(type='password', id='register_form-password', name='password', value='')
+                        br
+                        | 验证码
+                        input(type='text', name='scCode', id='register_form-scCode')
+                        input(type='button' value='获取验证码', id='register_form-scCode-btn')
+                        br
+                        //input(type='checkbox')接受并同意<<宝石网协议>>
+                        input(type='submit' id='register_form-submit', value='注册')
+         else if step == 2
+             p#register_step2 第二部
+                 #register_shop
+                     form(name='register_shop-div', action='/users/register_shop', method='post')
+                        | 店铺名称
+                        input(type='text', name='shopName', id='register_shop-shopName', value='')
+                        br
+                        | 店铺类型
+                        input(type='text', name='shopType', id='register_shop-shopType', value='')
+                        br
+                        | 店铺地址
+                        input(type='text', name='shopAddress', id='register_shop-shopAddress', value='')
+                        br
+                        | 主营
+                        input(type='text', name='sells', id='register_shop-sells', value='')
+                        br
+                        br
+                        input(type='button' value='添加产品', id='register_shop-add-btn')
+                        #register_shop-warning
+                        | ! 最多可添加9个产品, 所有产品信息将显示在店铺信息产品展示详细页面，价格，图片和描述可能会直接影响用户的感受哦
+                        p 第一张
+                        #register_shop-product
+                         #register_shop-product-image
+                             input(type="file", id="imageName-btn" name="imageName")
+                             input(type="hidden", name="imageName1", id="register_shop-shopImage-1")
+                         | 价格
+                         input(type='text', name='imagePrice1', id='register_shop-shopPrice-1', value='')
+                         br
+                         | 描述
+                         textarea(id="register_shop-shopDescription-1", name="shopDescription1", cols="45", rows="5")
+                         //form(id="uploadForm", enctype="multipart/form-data", action="/api/photos", method="post")
+                        input(type='submit' id='register_form-submit', value='注册')
 
 
 

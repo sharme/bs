@@ -3,18 +3,33 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/javascripts/jquery-1.12.3.min.js")
+    script(src="/javascripts/jquery.form.js")
+    script(src="/javascripts/utils.js")
     block header
       #header.header
         a(class='button', href='google.com') BuyBS
         li
-          a(class="homepage", id="homepage", href="http://127.0.0.1:8081/") 主页
+          a(class="homepage", id="homepage", href="/") 主页
         #login_out
-           a(class='login_btn', id='login_btn', href='http://127.0.0.1:8081/login') 登陆 |
-           a(class='register_btn', id='register_btn', href='http://127.0.0.1:8081/index/register') 注册
+           a(class='login_btn', id='login_btn') 登陆 |
+           a(class='register_btn', id='register_btn', href='/index/register') 注册
   body
+    #login_popup
+      div#login_popup-header 登陆
+      #login_form
+          | 手机号
+          input(type='text', name='phoneNumber', id='login_form-phoneNumber', value='')
+          br
+          | 密码
+          input(type='password', id='login_form-password', name='password', value='')
+          br
+          div#login_invalid
+            |提示: 手机号码或密码不正确, 请从新尝试.
+          input(type='submit' id='register_form-submit', value='登陆')
     block content
     #foot
-      联系我: yaomiwang@qq.com | @2016 |
+      | 联系我: yaomiwang@qq.com | Version 2016@V-0.0.1 |
 
 
 
