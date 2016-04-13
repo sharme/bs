@@ -11,10 +11,22 @@ html
         a(class='button', href='google.com') BuyBS
         li
           a(class="homepage", id="homepage", href="/") 主页
-        #login_out
-           a(class='login_btn', id='login_btn') 登陆 |
-           a(class='register_btn', id='register_btn', href='/index/register') 注册
+        if user_name
+            #logged_in
+                | #{user_name}
+        else
+            #login_out
+               a(class='login_btn', id='login_btn') 登陆 |
+               a(class='register_btn', id='register_btn', href='/index/register') 注册
   body
+        #search
+            #search_bg
+            //p Welcome to #{title}
+            #search_box
+                a(id='search_box-logo' class='search_box-logo', href='google.com') BuyBS
+                a(id='search_box-city')上海 [切换城市]
+                input(type='text' id='search_box-text' name='search_box-text')
+                input(type='submit' id='search_box-submit')
     #login_popup
       div#login_popup-header 登陆
       #login_form
@@ -27,6 +39,8 @@ html
           div#login_invalid
             |提示: 手机号码或密码不正确, 请从新尝试.
           input(type='submit' id='register_form-submit', value='登陆')
+    block register
+    block homepage
     block content
     #foot
       | 联系我: yaomiwang@qq.com | Version 2016@V-0.0.1 |

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var redis = require('redis');
+var client = redis.createClient();
 
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
@@ -42,17 +44,23 @@ router.post('/login', urlencodeParser, function(req, res, next) {
             console.log("Total matches: " + count);
             if( count > 0) {
               results = true;
-              // console.log("render to index");
-              // res.render("register", null);
-              res.send(results);
+              cursor.toArray(function(err, document){
 
+                client.set('user_name', document[0].username);
+                client.expire('user_name', 30 * 60);  // expiration time of 30 * 60 seconds.
+                console.log("mongodb data: " + document[0].username);
+
+                db.close();
+                res.send(results);
+              });
             }
             else {
               results = false;
               res.send(results);
+              db.close();
             }
             // close database right after everything is completed.
-            db.close();
+
           });
         });
       });

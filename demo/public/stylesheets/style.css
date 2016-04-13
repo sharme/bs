@@ -17,6 +17,12 @@ a {
   width: 100%;
 }
 
+#logged_in {
+  width: 100%;
+  text-align: right;
+}
+
+
 #login_popup {
   width: 400px;
   height: 300px;
@@ -245,6 +251,20 @@ li {
 
 #register_shop-shopDescription-1 {
   margin: 0px 0px 0px 10px;
+}
+
+#buybs_shop-div {
+  height: 250px;
+  float: left;
+  margin: 40px;
+  border: solid 1px;
+  margin-bottom: 120px;
+}
+
+#buybs_shop-div-content {
+  margin: 30px;
+  width: 300px;
+  text-align: center;
 }
 
 

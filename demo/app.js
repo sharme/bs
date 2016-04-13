@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// redis
+var redis = require('redis');
+var client = redis.createClient();
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require("./routes/api");
@@ -29,6 +33,11 @@ app.use('/users', users);
 app.use("/api", api);
 
 
+
+// redis client
+client.on('connect', function () {
+  console.log('Redis server is connected, port: 6379');
+});
 
 
 // catch 404 and forward to error handler
