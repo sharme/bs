@@ -15,6 +15,7 @@ var MongoClient = require('mongodb').MongoClient
 
 /* GET users listing. */
 router.get('/index', function(req, res) {
+  console.log("users/index");
   res.render("index");
 });
 

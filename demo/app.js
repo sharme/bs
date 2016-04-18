@@ -12,6 +12,8 @@ var client = redis.createClient();
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require("./routes/api");
+var shopService = require('./routes/services/shopService');
+var userService = require('./routes/services/userService');
 
 var app = express();
 
@@ -31,6 +33,8 @@ app.use('/', routes);
 app.use('/index', routes);
 app.use('/users', users);
 app.use("/api", api);
+app.use('/services/shopService', shopService);
+app.use('/services/userService', userService);
 
 
 
