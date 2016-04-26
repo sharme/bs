@@ -9,17 +9,15 @@ var bodyParser = require('body-parser');
 var redis = require('redis');
 var client = redis.createClient();
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var api = require("./routes/api");
-var shopService = require('./routes/services/shopService');
-var userService = require('./routes/services/userService');
 
+// get expression
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -27,14 +25,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/index', routes);
-app.use('/users', users);
-app.use("/api", api);
-app.use('/services/shopService', shopService);
-app.use('/services/userService', userService);
+// use middleware
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'bower_components')));
+
+
+// routes definition
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
+app.use("/api", require("./routes/services/api"));
+app.use('/api/shopService', require('./routes/services/shopService'));
+app.use('/api/userService', require('./routes/services/userService'));
 
 
 
@@ -65,6 +67,7 @@ if (app.get('env') === 'development') {
   });
 }
 
+
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -75,13 +78,14 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var server = app.listen(8081, function() {
 
+
+/* Listen and start server  */
+var server = app.listen(8081, function() {
   var host = server.address().address;
   var port = server.address().port;
 
   console.log('Listening at http://%s:%s', host, port);
-
 });
 
 

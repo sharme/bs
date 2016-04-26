@@ -72,7 +72,7 @@ router.post('/login', urlencodeParser, function(req, res, next) {
 
 
 
-// /* Step 1: create a user */
+/* Step 1: create an account */
 router.post('/register_user', urlencodeParser, function(req, res, next) {
 
   console.log('registration step 2');
@@ -112,7 +112,7 @@ router.post('/register_user', urlencodeParser, function(req, res, next) {
 
 });
 
-// Step 2: collection shop info and product images
+/* Step 2: collection shop info and product images */
 router.post('/register_shop', urlencodeParser, function(req, res, next){
 
   /**
@@ -169,6 +169,7 @@ router.post('/register_shop', urlencodeParser, function(req, res, next){
   console.log('Registration step 3' + "data: " + JSON.stringify(data));
   //render registration step 3
   res.render('register', { step: '3'});
+  
 });
 
 

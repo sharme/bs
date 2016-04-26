@@ -13,7 +13,7 @@ $(document).ready(function() {
         // alert("change");
 
         $.ajax({
-            url: "/api/photos",
+            url: "/api/uploadPhotos",
             // dataType: "multipart/form-data",
             contentType: false,
             data: form_data,

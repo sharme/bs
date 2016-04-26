@@ -6,17 +6,24 @@ var client = redis.createClient();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  console.log("routes/index");
-  var user_name = "";
+  console.log("Server path: routes/index/");
+
   client.get('user_name', function(err, reply){
-    user_name = reply;
+    var user_name = reply;
     console.log("redis results: " + user_name);
-    res.render('homepage', {title: 'Express', user_name: user_name});
+    res.render('homepage', {title: 'Buybs', user_name: user_name});
   });
 });
 
+/* Step 1: register an account  */
 router.get('/register', function (req, res) {
   res.render('register', {step: '1'});
+});
+
+
+router.get('/shops/:shop_name', function (req, res) {
+  console.log('shop detail');
+  res.render('shopDetail');
 });
 
 

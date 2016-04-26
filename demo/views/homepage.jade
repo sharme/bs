@@ -2,7 +2,7 @@ extends layout
 
 block homepage
     div(ng-controller='shopListCtrl')
-        li(ng-repeat='result in shops | filter: searchKeyword')
+        li( id="shop-list" ng-repeat='result in shops | filter: searchKeyword')
             #buybs_shop-div
                 #buybs_shop-div-content
                     #buybs_shop-div-name
@@ -18,4 +18,4 @@ block homepage
                         | 主营: {{result.sells}}
                     br
                     br
-                    a(class="show_product" id="show_product") 产品展示
+                    a(href="shopInfo/{{result.shop_name}}" class="show_product" id="show_product") 产品展示

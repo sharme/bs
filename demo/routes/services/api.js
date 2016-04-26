@@ -9,7 +9,7 @@ var busboy = require('connect-busboy');
 router.use(busboy());
 
 // Upload file and response back.
-router.post('/photos', function(req, res) {
+router.post('/uploadPhotos', function(req, res) {
     var fstream;
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
