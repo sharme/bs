@@ -1,0 +1,17 @@
+<div ng-controller="ShopListCtrl">
+    <li id="shop-list" ng-repeat="result in shops | filter: searchKeyword">
+        <div id="buybs_shop-div">
+            <div id="buybs_shop-div-content">
+                <div id="buybs_shop-div-name">{{result.shop_name}}</div>
+                <br/>
+                <div id="buybs_shop-div-type">{{result.shop_type}}</div>
+                <br/>
+                <div id="buybs_shop-div-Address">{{result.shop_address}}</div>
+                <br/>
+                <div id="buybs_shop-div-sells">主营: {{result.sells}}</div>
+                <br/><br/>
+                <a href="#/shops/{{result._id}}" id="show_product" class="show_product">产品展示</a>
+            </div>
+        </div>
+    </li>
+</div>
