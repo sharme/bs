@@ -1,6 +1,3 @@
-extends layout
-
-block homepage
     div(ng-controller='shopListCtrl')
         li( id="shop-list" ng-repeat='result in shops | filter: searchKeyword')
             #buybs_shop-div
@@ -18,4 +15,4 @@ block homepage
                         | 主营: {{result.sells}}
                     br
                     br
-                    a(href="shopInfo/{{result.shop_name}}" class="show_product" id="show_product") 产品展示
+                    a(href="#/shops/{{result._id}}" class="show_product" id="show_product") 产品展示

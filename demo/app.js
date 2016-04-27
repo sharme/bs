@@ -31,9 +31,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
 
-// routes definition
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
+app.use(function(req, res, next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
+/* routes definition  */
+
+// app.use('/', require('./routes/index'));
+// app.use('/partial', require('./routes/users'));
+
+
+/* API  */
+
 app.use("/api", require("./routes/services/api"));
 app.use('/api/shopService', require('./routes/services/shopService'));
 app.use('/api/userService', require('./routes/services/userService'));
