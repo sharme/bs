@@ -1,4 +1,4 @@
-<div ng-controller="ShopListCtrl">
+<div>
     <li id="shop-list" ng-repeat="result in shops | filter: searchKeyword">
         <div id="buybs_shop-div">
             <div id="buybs_shop-div-content">
@@ -10,7 +10,7 @@
                 <br/>
                 <div id="buybs_shop-div-sells">主营: {{result.sells}}</div>
                 <br/><br/>
-                <a href="#/shops/{{result._id}}" id="show_product" class="show_product">产品展示</a>
+                <a href="#/shops/{{result.shop_name}}" id="show_product" class="show_product">产品展示</a>
             </div>
         </div>
     </li>

@@ -1,8 +1,17 @@
-<div id="shopDetail">
-    <div id="sho_info">
-        店铺名称: {{shop.shop_name}}
-        <br>店铺类型:
-        <br>店铺地址:
-        <br>主营:
+<div id="shop-detail">
+
+    <div id="shop_info-title">
+        <span id="shop_detail-back"><a href="#/shops">返回</a></span>
+        店铺名称: {{result[0].shop_name}}
+        <br><br>店铺类型:{{result[0].shop_type}}
+        <br><br>店铺地址:{{result[0].shop_address}}
+        <br><br>主营:{{result[0].sells}}
+    </div>
+    <hr>
+    <div id="register_shop-product">
+        <div id="register_shop-product-image" style="background-image: url(http://127.0.0.1:8081/images/test1.jpg)">
+            <span id="shop_image-price">{{result[0].images.image1.price}}</span>
+        </div>
+        <div>{{result[0].images.image1.desc}}</div>
     </div>
 </div>

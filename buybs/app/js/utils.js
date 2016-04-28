@@ -3,39 +3,67 @@
  */
 
 
+function upload(){
+    // alert('first');
+    var file_data = $("#imageName-btn").prop('files')[0];
+    var form_data = new FormData();
+    form_data.append("file", file_data);
+
+    $.ajax({
+        url: "http://127.0.0.1:8081/api/uploadPhotos",
+        // dataType: "multipart/form-data",
+        contentType: false,
+        data: form_data,
+        processData: false,
+        cache: false,
+        type: "POST",
+        success: function (res) {
+            // alert(res);
+            $("#register_shop-product-image").css("background-image", 'url(' + res + ')');
+            $("#register_shop-shopImage-1").val(res);
+            $("#imageName-btn").css("display", "none");
+        }
+    });
+}
+
+
 $(document).ready(function() {
     
-    // alert('jquery');
-    $("#imageName-btn").change(function(){
-
-        alert('first');
-        var file_data = $("#imageName-btn").prop('files')[0];
-        var form_data = new FormData();
-        form_data.append("file", file_data);
-        alert("change");
-
-        $.ajax({
-            url: "http://127.0.0.1:8081/api/uploadPhotos",
-            // dataType: "multipart/form-data",
-            contentType: false,
-            data: form_data,
-            processData: false,
-            cache: false,
-            type: "POST",
-            success: function (res) {
-                // alert(res);
-                $("#register_shop-product-image").css("background-image", 'url(' + res + ')');
-                $("#register_shop-shopImage-1").val(res);
-                $("#imageName-btn").css("display", "none");
-            }
-        });
-
-
-    });
+    // // alert('jquery');
+    // $(".imageName-btn").change(function(){
+    //
+    //     alert('first');
+    //     var file_data = $("#imageName-btn").prop('files')[0];
+    //     var form_data = new FormData();
+    //     form_data.append("file", file_data);
+    //     alert("change");
+    //
+    //     $.ajax({
+    //         url: "http://127.0.0.1:8081/api/uploadPhotos",
+    //         // dataType: "multipart/form-data",
+    //         contentType: false,
+    //         data: form_data,
+    //         processData: false,
+    //         cache: false,
+    //         type: "POST",
+    //         success: function (res) {
+    //             // alert(res);
+    //             $("#register_shop-product-image").css("background-image", 'url(' + res + ')');
+    //             $("#register_shop-shopImage-1").val(res);
+    //             $("#imageName-btn").css("display", "none");
+    //         }
+    //     });
+    //
+    //
+    // });
 
 
     $("#login_btn").click(function(){
         $("#login_popup").css("display", "block");
+    });
+
+    $('#login_popup-header-del').click(function(){
+        $("#login_popup").css("display", "none");
     });
 
 

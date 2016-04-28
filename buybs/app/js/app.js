@@ -16,6 +16,10 @@ buybs.config(['$routeProvider',
         templateUrl: 'partials/homepage.html',
         controller: 'ShopListCtrl'
       }).
+        when('/shops/:shopId',{
+        templateUrl: 'partials/shopDetail.html',
+        controller: 'ShopDetailCtrl'
+    }).
         when('/signUpCompleted', {
         templateUrl: 'partials/register/step3.html'
     }).
@@ -25,10 +29,6 @@ buybs.config(['$routeProvider',
         when('/register', {
         templateUrl: 'partials/register/step1.html'
     }).
-      when('/shops/:shopId', {
-        templateUrl: 'partials/phone-detail.html',
-        controller: 'ShopDetailCtrl'
-      }).
       otherwise({
         redirectTo: '/shops'
       });

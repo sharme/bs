@@ -19,17 +19,35 @@ var buybsControllers = angular.module('buybsControllers', []);
 
 
 
-/* define an asynchronous controller function "shopListCtrl" */
+/* Get shop list */
 buybsControllers.controller('ShopListCtrl', ['$scope', '$http', function ($scope, $http) {
 
   $http({method: 'GET', url: 'http://127.0.0.1:8081/api/shopService/GetShops'})
       .success(function(data){
         console.log("server address: public/javascripts/modules/app.js/shopListCtrl");
+        console.log('data: ' + JSON.stringify(data));
         $scope.shops = data;
       }, function(error){
         $scope.error = error;
       });
 }]);
+
+
+/* get shop detail by shop id */
+buybsControllers.controller('ShopDetailCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+
+  $http({method: 'GET', url: 'http://127.0.0.1:8081/api/shopService/GetShops/' + $routeParams.shopId})
+      .success(function(data){
+        console.log("server address: public/javascripts/modules/app.js/shopDetailCtrl");
+        console.log('data: ' + JSON.stringify(data[0].shop_name));
+        $scope.result = data;
+        $scope.test = [{"id": "lets try it out!"}];
+      }, function(error){
+        $scope.error = error;
+      });
+}]);
+
+
 
 
 /* Call web service to add a user account info into MONGODB */

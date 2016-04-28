@@ -30,9 +30,10 @@ router.get('/getShops', function(req, res){
     });
 });
 
-router.get('/getShops/:shop_Id', function(req, res){
+router.get('/getShops/:shopId', function(req, res){
     
-    var data = {"_id": req.params.shop_Id};
+    // var data = {"_id": req.params.shopId};
+    var data = {"shop_name": req.params.shopId};
     console.log('getShops/shopId/data:' + JSON.stringify(data));
     MongoClient.connect('mongodb://127.0.0.1:27017/buybs', function (err, db) {
         if (err) {

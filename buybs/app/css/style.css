@@ -9,7 +9,7 @@ body {
 }
 
 a {
-  color: gray;
+  color: black;
   text-decoration: none;
   cursor: pointer;
 }
@@ -49,6 +49,12 @@ a {
   line-height: 3;
   border-bottom: solid gray 2px;
   font-size: 18px;
+}
+
+#login_popup-header-del{
+  position: absolute;
+  margin-left: 40%;
+  cursor: pointer;
 }
 
 #login_form-phoneNumber, #login_form-password {
@@ -260,9 +266,8 @@ li {
 #buybs_shop-div {
   height: 250px;
   float: left;
-  margin: 40px;
   border: solid 1px;
-  margin-bottom: 120px;
+  margin: 10% 20px 10%;
 }
 
 #buybs_shop-div-content {
@@ -276,4 +281,28 @@ li {
   padding: 0px;
 }
 
+#shop_detail-back{
+  position: absolute;
+  margin-left: 85%;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  background-color: gray;
+  line-height: 2;
+  cursor: pointer;
+}
+
+
+#shop_info-title {
+  padding: 320px 0px 0px 30px;
+}
+
+
+#shop_image-price {
+  position: initial;
+  margin-left: 70%;
+  line-height: 260px;
+  background: orange;
+  width: 30px;
+}
 

@@ -5,10 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// redis
-var redis = require('redis');
-var client = redis.createClient();
-
 
 // get expression
 var app = express();
@@ -39,23 +35,15 @@ app.use(function(req, res, next){
 });
 
 /* routes definition  */
-
 // app.use('/', require('./routes/index'));
 // app.use('/partial', require('./routes/users'));
 
 
 /* API  */
-
 app.use("/api", require("./routes/services/api"));
 app.use('/api/shopService', require('./routes/services/shopService'));
 app.use('/api/userService', require('./routes/services/userService'));
 
-
-
-// redis client
-client.on('connect', function () {
-  console.log('Redis server is connected, port: 6379');
-});
 
 
 // catch 404 and forward to error handler
