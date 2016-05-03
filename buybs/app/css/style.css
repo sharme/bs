@@ -261,6 +261,11 @@ li {
 
 #register_shop-shopDescription-1 {
   margin: 0px 0px 0px 10px;
+  width: 250px;
+}
+
+#register_shop-url{
+  margin-bottom: 10px;
 }
 
 #buybs_shop-div {

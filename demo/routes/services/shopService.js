@@ -2,13 +2,11 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
-
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
 //create a MONGO CLIENT INSTANCE
 var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
-
 
 
 router.get('/getShops', function(req, res){
@@ -53,9 +51,6 @@ router.get('/getShops/:shopId', function(req, res){
     });
 });
 
-
-
-/* Create shop and save into MONGODB */
 router.post('/create', urlencodeParser, function(req, res, next){
 
     /**
@@ -71,6 +66,9 @@ router.post('/create', urlencodeParser, function(req, res, next){
    *  })
      * @type {{}}
      */
+
+    console.log("data: " + JSON.stringify(req.body));
+    
     var data = {
         shop_name: req.body.shopName,
         shop_type: req.body.shopType,
@@ -108,9 +106,6 @@ router.post('/create', urlencodeParser, function(req, res, next){
     });
 
 });
-
-
-
 
 
 module.exports = router;

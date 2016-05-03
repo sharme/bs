@@ -24,7 +24,8 @@ buybs.config(['$routeProvider',
         templateUrl: 'partials/register/step3.html'
     }).
         when('/collectShopInfo', {
-        templateUrl: 'partials/register/step2.html'
+        templateUrl: 'partials/register/step2.html',
+        controller: 'ShopController'
     }).
         when('/register', {
         templateUrl: 'partials/register/step1.html'

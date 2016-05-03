@@ -1,25 +1,28 @@
 <p id="register_step2">第二部
     <div id="register_shop">
         <form name="register_shop-div" ng-submit="submit()"  ng-controller="ShopController" method="post">
-            店铺名称<input type="text" ng-model="shop.shopName" name="shopName" id="register_shop-shopName" value=""/>
+            店铺名称<input type="text" ng-model="shop.shop_name" name="shopName" id="register_shop-shopName" value=""/>
             <br/>
-            店铺类型<input type="text" ng-model="shop.shopType" name="shopType" id="register_shop-shopType" value=""/>
+            店铺类型<input type="text" ng-model="shop.shop_type" name="shopType" id="register_shop-shopType" value=""/>
             <br/>
-            店铺地址<input type="text" ng-model="shop.shopAddress" name="shopAddress" id="register_shop-shopAddress" value=""/>
+            店铺地址<input type="text" ng-model="shop.shop_address" name="shopAddress" id="register_shop-shopAddress" value=""/>
             <br/>
             主营<input type="text" ng-model="shop.sells" name="sells" id="register_shop-sells" value=""/>
             <br/><br/>
-            <input type="button" value="添加产品" id="register_shop-add-btn"/>
+            <input type="button" ng-click="addImage()" value="添加产品" id="register_shop-add-btn"/>
             <div id="register_shop-warning">! 最多可添加9个产品, 所有产品信息将显示在店铺信息产品展示详细页面，价格，图片和描述可能会直接影响用户的感受哦</div>
             <p>第一张</p>
-            <div id="register_shop-product">
-            <div id="register_shop-product-image">
-                <input type="file" class="imageName-btn" onchange="upload()" id="imageName-btn" name="imageName"/>
-                <input type="hidden" ng-model="shop.images.image1.url" name="imageName1" id="register_shop-shopImage-1"/>
-            </div>价格<input type="text" ng-model="shop.images.image1.price" name="imagePrice1" id="register_shop-shopPrice-1" value=""/>
-            <br/>
-            描述<textarea id="register_shop-shopDescription-1" data-ng-model="shop.images.image1.desc" name="shopDescription1" cols="45" rows="5"></textarea>
-            <!--form(id="uploadForm", enctype="multipart/form-data", action="/api/photos", method="post")-->
+            <div id="register_shop-product" ng-repeat="image in images">
+                <div id="register_shop-product-image">
+                    <!--<input type="hidden" ng-model="image.url"/>-->
+                    <input type="file" class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
+                </div>
+                <br/>
+                图片地址<input type="text" ng-model="image.url" name="imagePrice1" id="register_shop-url" value=""/>
+                <br/>
+                价格<input type="text" ng-model="image.price" name="imagePrice1" id="register_shop-shopPrice-1" value=""/>
+                <br/>
+                描述<textarea id="register_shop-shopDescription-1" data-ng-model="image.desc" name="shopDescription1" cols="45" rows="5"></textarea>
             </div>
             <input type="submit" id="register_form-submit" value="注册"/>
         </form>

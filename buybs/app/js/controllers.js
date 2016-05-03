@@ -5,20 +5,6 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 
-
-// buybsControllers.controller('ShopListCtrl', ['$scope', 'Shop',
-//   function($scope, Shop) {
-//     console.log('coming!');
-//     $scope.shops = Shop.query();
-//   }]);
-
-// buybsControllers.controller('ShopDetailCtrl', ['$scope', '$routeParams', 'Shop',
-//   function($scope, $routeParams, Shop) {
-//     $scope.shop = Shop.get({shopId: $routeParams.shopId};)
-//   }]);
-
-
-
 /* Get shop list */
 buybsControllers.controller('ShopListCtrl', ['$scope', '$http', function ($scope, $http) {
 
@@ -39,15 +25,13 @@ buybsControllers.controller('ShopDetailCtrl', ['$scope', '$routeParams', '$http'
   $http({method: 'GET', url: 'http://127.0.0.1:8081/api/shopService/GetShops/' + $routeParams.shopId})
       .success(function(data){
         console.log("server address: public/javascripts/modules/app.js/shopDetailCtrl");
-        console.log('data: ' + JSON.stringify(data[0].shop_name));
+        console.log('data: ' + JSON.stringify(data));
         $scope.result = data;
         $scope.test = [{"id": "lets try it out!"}];
       }, function(error){
         $scope.error = error;
       });
 }]);
-
-
 
 
 /* Call web service to add a user account info into MONGODB */
@@ -88,34 +72,103 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
 }]);
 
 
-/* Call Web service to add a shop info into MONGODB */
-
-buybsControllers.controller('ShopController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+/* Call web service to add a user account info into MONGODB */
+buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
 
   $scope.data = {
-    shop_name: '',
-    shop_type: '',
-    shop_address: '',
-    sells: '',
-    images:{
-      image1: {
-        url: '',
-        price: '',
-        desc: ''
-      }
-    }
+    phoneNumber: '',
+    password: ''
   };
 
   $scope.submit = function(){
+    var req = {
+      method: 'POST',
+      url: 'http://127.0.0.1:8081/api/userService/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.user)
+    };
+    console.log("login : " + JSON.stringify($scope.user));
+
+    $http(req).success(function(result){
+      if(result) {
+        console.log('login result:' + result );
+        $("#login_username").text(result);
+        $cookies.put('username', result);
+        $("#login_register").css("display", "none");
+        $("#login_popup").css("display", "none");
+      }else {
+        $("#login_popup").css("display", "block");
+        $scope.user = angular.copy($scope.data);
+      }
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+  $scope.user = angular.copy($scope.data);
+
+}]);
+
+
+
+/* Call Web service to add a shop info into MONGODB */
+buybsControllers.controller('ShopController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+
+  var imagesData = [{
+    url: '',
+    price: '',
+    desc: ''
+  }];
+
+  $scope.images = angular.copy(imagesData);
+
+  var data = {
+    shop_name: '',
+    shop_type: '',
+    shop_address: '',
+    sells: ''
+  };
+
+  $scope.shop = angular.copy(data);
+
+  // $scope.hrefUpdate = function(href) {
+  //   // href.val(href);
+  //   console.log("value is changed");
+  // };
+
+  $scope.addImage = function() {
+    var image = {
+      url: '',
+      price: '',
+      desc: ''
+    };
+    
+    console.log('add image! data: ' + JSON.stringify($scope.images));
+    $scope.images.push(angular.copy(image));
+  };
+
+  $scope.submit = function(){
+
+    var shopData = {
+      shop_name: $scope.shop.shop_name,
+      shop_type: $scope.shop.shop_type,
+      shop_address: $scope.shop.shop_address,
+      sells: $scope.shop.sells,
+      images: $scope.images
+    };
+
+    console.log("shopData: " + JSON.stringify(shopData));
+
     var req = {
       method: 'POST',
       url: 'http://127.0.0.1:8081/api/shopService/create',
       headers: {
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify($scope.shop)
+      data: JSON.stringify(shopData)
     };
-    console.log("sign up: " + JSON.stringify($scope.shop));
 
     $http(req).success(function(result){
       console.log('sign up:' + result);
@@ -124,11 +177,33 @@ buybsControllers.controller('ShopController', ['$scope', '$http', '$window', fun
     }, function(error){
       console.log(error);
     });
-    $scope.shop = angular.copy($scope.data);
+
   };
 
+  $scope.uploadFile = function(file){
+    console.log('upload file');
+    var file_data = $(file).prop('files')[0];
+    var form_data = new FormData();
+    form_data.append("file", file_data);
 
-  $scope.shop = angular.copy($scope.data);
+    $.ajax({
+      url: "http://127.0.0.1:8081/api/uploadPhotos",
+      contentType: false,
+      data: form_data,
+      processData: false,
+      cache: false,
+      type: "POST",
+      success: function (res) {
+        console.log('uploaded, URL: ' + res);
+        $(file).parent().css("background-image", 'url(' + res + ')');
+        // $(file).prev().val(res);
+        // $(file).prev().change();
+        $(file).parent().nextAll("#register_shop-href").val(res);
+        $(file).parent().nextAll("#register_shop-href").change();
+        $(file).css("display", "none");
+      }
+    });
+  };
 
 }]);
 
