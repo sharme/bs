@@ -8,10 +8,10 @@ var buybsControllers = angular.module('buybsControllers', []);
 /* Get shop list */
 buybsControllers.controller('ShopListCtrl', ['$scope', '$http', function ($scope, $http) {
 
-  $http({method: 'GET', url: 'http://127.0.0.1:8081/api/shopService/GetShops'})
+  $http({method: 'GET', url: 'http://localhost:8081/api/shopService/GetShops'})
       .success(function(data){
         console.log("server address: public/javascripts/modules/app.js/shopListCtrl");
-        console.log('data: ' + JSON.stringify(data));
+        console.log('data: ' + JSON.stringify(data).length);
         $scope.shops = data;
       }, function(error){
         $scope.error = error;
@@ -22,7 +22,7 @@ buybsControllers.controller('ShopListCtrl', ['$scope', '$http', function ($scope
 /* get shop detail by shop id */
 buybsControllers.controller('ShopDetailCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
 
-  $http({method: 'GET', url: 'http://127.0.0.1:8081/api/shopService/GetShops/' + $routeParams.shopId})
+  $http({method: 'GET', url: 'http://localhost:8081/api/shopService/GetShops/' + $routeParams.shopId})
       .success(function(data){
         console.log("server address: public/javascripts/modules/app.js/shopDetailCtrl");
         console.log('data: ' + JSON.stringify(data));
@@ -71,9 +71,29 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
 
 }]);
 
+/* logout */
+buybsControllers.controller('logoutController', ['$scope', '$cookies', function($scope, $cookies){
+  console.log("remove cookies");
+  $cookies.remove('username');
+  
+}]);
+
 
 /* Call web service to add a user account info into MONGODB */
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
+
+  var cookieUser = $cookies.get("username");
+
+  if(cookieUser) {
+    $("#login_username").text(cookieUser);
+    $("#logout-nav").css("display", "block");
+    $("#login-nav").css("display", "none");
+  } else {
+    $("#logout-nav").css("display", "none");
+    $("#login-nav").css("display", "block");
+  }
+
+  console.log("cookieUser: " + cookieUser);
 
   $scope.data = {
     phoneNumber: '',
@@ -96,7 +116,8 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         console.log('login result:' + result );
         $("#login_username").text(result);
         $cookies.put('username', result);
-        $("#login_register").css("display", "none");
+        $("#logout-nav").css("display", "block");
+        $("#login-nav").css("display", "none");
         $("#login_popup").css("display", "none");
       }else {
         $("#login_popup").css("display", "block");

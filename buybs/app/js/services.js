@@ -6,8 +6,8 @@ var buybsServices = angular.module('buybsServices', ['ngResource']);
 
 buybsServices.factory('Shop', ['$resource',
   function($resource){
-    return $resource('http://127.0.0.1:8081/api/shopService/GetShops', {}, {
-      query: {method:'GET', params: {}, }
+    return $resource('http://localhost:8081/api/shopService/GetShops', {}, {
+      query: {method:'GET', params: {}}
     });
   }]);
 

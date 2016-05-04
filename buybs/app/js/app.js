@@ -5,7 +5,8 @@
 var buybs = angular.module('buybs', [
   'ngRoute',
   'buybsControllers',
-  'buybsFilters'
+  'buybsFilters',
+    'ngCookies'
 ]);
 
 buybs.config(['$routeProvider',
@@ -29,6 +30,10 @@ buybs.config(['$routeProvider',
     }).
         when('/register', {
         templateUrl: 'partials/register/step1.html'
+    }).
+        when('/logout', {
+        controller: 'logoutController',
+        templateUrl: 'partials/homepage.html'
     }).
       otherwise({
         redirectTo: '/shops'

@@ -1,17 +1,22 @@
-<div>
-    <li id="shop-list" ng-repeat="result in shops | filter: searchKeyword">
-        <div id="buybs_shop-div">
+<div id="shop-list-div">
+    <!--<div id="shop-list" ng-repeat="result in shops | filter: searchKeyword">-->
+        <div id="buybs_shop-div" ng-repeat="result in shops | filter: searchKeyword">
             <div id="buybs_shop-div-content">
-                <div id="buybs_shop-div-name">{{result.shop_name}}</div>
+                <div id="buybs_shop-div-name"><span class="span_text-left">铺名: &nbsp;&nbsp;</span><span>{{result.shop_name?result.shop_name:"暂时为空"}}</span></div>
                 <br/>
-                <div id="buybs_shop-div-type">{{result.shop_type}}</div>
+                <div id="buybs_shop-div-type"><span class="span_text-left">店铺: &nbsp;&nbsp;</span><span>{{result.shop_type?result.shop_type:"暂时为空"}}</span></div>
                 <br/>
-                <div id="buybs_shop-div-Address">{{result.shop_address}}</div>
+                <div id="buybs_shop-div-Address"><span class="span_text-left">地址: &nbsp;&nbsp;</span>{{result.shop_address?result.shop_address:"暂时为空"}}</div>
                 <br/>
-                <div id="buybs_shop-div-sells">主营: {{result.sells}}</div>
+                <div id="buybs_shop-div-sells"><span class="span_text-left">主营: &nbsp;&nbsp;</span>{{result.sells?result.sells:"暂时为空"}}</div>
                 <br/><br/>
-                <a href="#/shops/{{result.shop_name}}" id="show_product" class="show_product">产品展示</a>
+                <a href="#/shops/{{result.shop_name}}" id="show_product" class="show_product">查看产品</a><br>
+                <div>
+                    <span class="span_text-left"><i class="star-rating stars-4">4 Star Hotel</i></span>
+                    <span style="float: right">访问: 12</span>
+                </div>
             </div>
-        </div>
-    </li>
+        <!--</div>-->
+    </div>
+    <div id="bottom-div"></div>
 </div>
