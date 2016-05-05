@@ -8,6 +8,13 @@ body {
   padding-bottom: 200px;
 }
 
+.buybs_shop-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 a {
   color: black;
   text-decoration: none;
@@ -261,8 +268,10 @@ li {
 }
 
 #register_shop-product {
-  width: 400px;
-  margin: 30px;
+  width: 350px;
+  margin: 20px;
+  margin-bottom: 200px;
+  float: left;
   border: solid 1px lightgrey;
   padding: 10px;
 }
@@ -279,14 +288,15 @@ li {
 
 #register_shop-product-image {
   width: 240px;
-  height: 150px;
+  height: 250px;
   text-align: center;
-  line-height: 10;
+  line-height: 33;
   border-color: black;
   border: solid 1px;
-  margin: 20px 60px 20px 60px;
+  margin: 10px 0px 0px 60px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 }
 
 #register_shop-shopPrice-1 {

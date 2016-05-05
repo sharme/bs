@@ -70,9 +70,9 @@ router.post('/create', urlencodeParser, function(req, res, next){
     console.log("data: " + JSON.stringify(req.body));
     
     var data = {
-        shop_name: req.body.shopName,
-        shop_type: req.body.shopType,
-        shop_address: req.body.shopAddress,
+        shop_name: req.body.shop_name,
+        shop_type: req.body.shop_type,
+        shop_address: req.body.shop_address,
         sells: req.body.sells,
         images:{
             image1: {
@@ -91,7 +91,7 @@ router.post('/create', urlencodeParser, function(req, res, next){
             //authenticate database manage account with pwd
             db.authenticate("buybsOwner", "123456", function(err, result){
                 var collection = db.collection('shops');
-                collection.insert(data, function(err, docs){
+                collection.insert(req.body, function(err, docs){
                     console.log("Error: " + err);
                     collection.count(function (err, count) {
                         console.log(format("shop count = %s", count));

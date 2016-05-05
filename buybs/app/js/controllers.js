@@ -25,9 +25,9 @@ buybsControllers.controller('ShopDetailCtrl', ['$scope', '$routeParams', '$http'
   $http({method: 'GET', url: 'http://localhost:8081/api/shopService/GetShops/' + $routeParams.shopId})
       .success(function(data){
         console.log("server address: public/javascripts/modules/app.js/shopDetailCtrl");
-        console.log('data: ' + JSON.stringify(data));
+        console.log('data: ' + (JSON.stringify(data)) + ", images: " + data);
         $scope.result = data;
-        $scope.test = [{"id": "lets try it out!"}];
+        $scope.test = JSON.stringify(data);
       }, function(error){
         $scope.error = error;
       });
@@ -72,9 +72,10 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
 }]);
 
 /* logout */
-buybsControllers.controller('logoutController', ['$scope', '$cookies', function($scope, $cookies){
+buybsControllers.controller('logoutController', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
   console.log("remove cookies");
   $cookies.remove('username');
+  $window.location = '#/shops';
   
 }]);
 
@@ -153,11 +154,7 @@ buybsControllers.controller('ShopController', ['$scope', '$http', '$window', fun
   };
 
   $scope.shop = angular.copy(data);
-
-  // $scope.hrefUpdate = function(href) {
-  //   // href.val(href);
-  //   console.log("value is changed");
-  // };
+  
 
   $scope.addImage = function() {
     var image = {
@@ -166,18 +163,23 @@ buybsControllers.controller('ShopController', ['$scope', '$http', '$window', fun
       desc: ''
     };
     
-    console.log('add image! data: ' + JSON.stringify($scope.images));
+    console.log('add image! data: ' + angular.toJson($scope.images));
     $scope.images.push(angular.copy(image));
   };
 
+
+
+
   $scope.submit = function(){
+
+    // imagesData = angular.toJson($scope.images);
 
     var shopData = {
       shop_name: $scope.shop.shop_name,
       shop_type: $scope.shop.shop_type,
       shop_address: $scope.shop.shop_address,
       sells: $scope.shop.sells,
-      images: $scope.images
+      images: JSON.parse(angular.toJson($scope.images))
     };
 
     console.log("shopData: " + JSON.stringify(shopData));
