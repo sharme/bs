@@ -152,7 +152,6 @@ buybsControllers.controller('logoutController', ['$scope', '$cookies', '$window'
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
 
   var cookieUser = $cookies.get("username");
-
   if(cookieUser) {
     // $("#login_username").text(cookieUser);
     $("#login_username").html("<a href='#/profile'><div class='user-icon'></a></div><div class='user-icon-hover'>欢迎迹客: "+ cookieUser +"</div>");
@@ -164,7 +163,6 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   }
 
   $scope.showUName = function(){alert("1")};
-
   console.log("cookieUser: " + cookieUser);
 
   $scope.data = {
