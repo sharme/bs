@@ -37,6 +37,8 @@ $(document).ready(function() {
         $("#login_popup").css("display", "none");
     });
 
+    function showUName(){alert("1");}
+
 
     //
     // $("#register_form-submit").click(function(){
@@ -75,10 +77,15 @@ $(document).ready(function() {
         //     $("#imageName-btn").css("display", "none");
         // });
     // }
-
-        $("#login_popup").css("display", "none");
+    //
+    //
+    $("#login_popup").css("display", "none");
 
 });
+
+
+
+
 
 
 

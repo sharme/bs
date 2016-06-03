@@ -12,16 +12,15 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
 
-
   <script src="js/app.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/services.js"></script>
-  <script src="js/utils.js"></script>
+
 </head>
 <body>
 <div id="header" class="header" ng-controller="LoginController">
-  <a href="www.google.com" class="button">找店</a>
+  <a href="www.google.com" class="button">迹客</a>
   <li><a id="homepage" href="#/shops" class="homepage">主页</a></li>
   <div id="login_logout-nav">
     <div id="logout-nav">
@@ -36,16 +35,16 @@
   </div>
 </div>
 
-<div id="search">
-  <div id="search_bg"></div>
-  <!--p Welcome to #{title}-->
-  <div id="search_box">
-    <a id="search_box-logo" href="google.com" class="search_box-logo">找店</a>
-    <a id="search_box-city">上海 [切换城市]</a>
-    <input type="text" placeholder="🔍搜索" id="search_box-text" ng-model="searchKeyword" name="search_box-text">
-    <!--<input type="submit" value="搜索" id="search_box-submit">-->
-  </div>
-</div>
+  <!--<div id="search">-->
+    <!--<div id="search_bg"></div>-->
+    <!--&lt;!&ndash;p Welcome to #{title}&ndash;&gt;-->
+    <!--<div id="search_box">-->
+      <!--<a id="search_box-logo" href="google.com" class="search_box-logo">找店</a>-->
+      <!--<a id="search_box-city">上海 [切换城市]</a>-->
+      <!--<input type="text" placeholder="🔍搜索" id="search_box-text" ng-model="searchKeyword" name="search_box-text">-->
+      <!--&lt;!&ndash;<input type="submit" value="搜索" id="search_box-submit">&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
 </body>
 <div id="login_popup">
   <form ng-controller="LoginController" ng-submit="submit()" method="POST">
@@ -62,5 +61,6 @@
 <div class="view-container">
   <div ng-view class="view-frame"></div>
 </div>
-<div id="foot">联系我: yaomiwang@qq.com | Version 2016@V-0.0.1 |</div>
+<script src="js/utils.js"></script>
+<div id="foot">联系我: yaomiwang@qq.com | 微信: shawnhenry123-yao</div>
 </html>

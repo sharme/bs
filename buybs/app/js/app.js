@@ -15,7 +15,7 @@ buybs.config(['$routeProvider',
     $routeProvider.
       when('/shops', {
         templateUrl: 'partials/homepage.html',
-        controller: 'ShopListCtrl'
+        controller: 'FootstepsListCtrl'
       }).
         when('/shops/:shopId',{
         templateUrl: 'partials/shopDetail.html',
@@ -30,6 +30,9 @@ buybs.config(['$routeProvider',
     }).
         when('/register', {
         templateUrl: 'partials/register/step1.html'
+    }).
+        when('/profile',{
+        templateUrl: 'partials/profile.html'
     }).
         when('/logout', {
         controller: 'logoutController',

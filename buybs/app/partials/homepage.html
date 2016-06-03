@@ -1,22 +1,31 @@
-<div id="shop-list-div">
-    <!--<div id="shop-list" ng-repeat="result in shops | filter: searchKeyword">-->
-        <div id="buybs_shop-div" ng-repeat="result in shops | filter: searchKeyword">
-            <div id="buybs_shop-div-content">
-                <div class="buybs_shop-text" id="buybs_shop-div-name"><span class="span_text-left">铺名: &nbsp;&nbsp;</span><span>{{result.shop_name?result.shop_name:"暂时为空"}}</span></div>
-                <br/>
-                <div class="buybs_shop-text" id="buybs_shop-div-type"><span class="span_text-left">店铺: &nbsp;&nbsp;</span><span>{{result.shop_type?result.shop_type:"暂时为空"}}</span></div>
-                <br/>
-                <div class="buybs_shop-text" id="buybs_shop-div-Address"><span class="span_text-left">地址: &nbsp;&nbsp;</span>{{result.shop_address?result.shop_address:"暂时为空"}}</div>
-                <br/>
-                <div class="buybs_shop-text" id="buybs_shop-div-sells"><span class="span_text-left">主营: &nbsp;&nbsp;</span>{{result.sells?result.sells:"暂时为空"}}</div>
-                <br/><br/>
-                <a href="#/shops/{{result.shop_name}}" id="show_product" class="show_product">查看产品</a><br>
+<div id="search">
+    <button class="search_country" ng-repeat="country in countries">
+        <a ng-click="countryFilter(this,country.c_name)">{{country.c_name}}</a></button>
+</div>
+<div id="footstep_list-div">
+        <div id="footstep_div" ng-repeat="result in footsteps" >
+            <div class="footstep_div-pic">
+                <img src="{{result.fs_pic}}">
+            </div>
+            <div class="footstep_div-des">
                 <div>
-                    <span class="span_text-left"><i class="star-rating stars-4">4 Star Hotel</i></span>
-                    <span style="float: right">访问: 12</span>
+                    <p>{{result.fs_des}}</p>
+                    <p>{{result.fs_from}}</p>
+                    <div>
+                        <button class="stick_footstep">踩一脚</button>&nbsp;&nbsp;{{result.sticks}}
+                        <button class="like_footstep">喜欢</button>&nbsp;&nbsp;{{result.likes}}
+                    </div>
                 </div>
             </div>
-        <!--</div>-->
+            <div class="footstep_div-comment">
+                    <div class="footstep_div-comment-avatar">
+                        <img src="{{result.u_avatar}}">
+                    </div>
+                    <div>
+                    <div>{{result.u_name}}</div>
+                    <div>{{result.cm_content}}</div>
+                    </div>
+            </div>
     </div>
     <div id="bottom-div"></div>
 </div>

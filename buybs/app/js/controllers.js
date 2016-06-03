@@ -5,18 +5,87 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 
-/* Get shop list */
-buybsControllers.controller('ShopListCtrl', ['$scope', '$http', function ($scope, $http) {
+/* Get footsteps list */
+buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', function ($scope, $http) {
 
-  $http({method: 'GET', url: 'http://localhost:8081/api/shopService/GetShops'})
+  $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootsteps'})
       .success(function(data){
-        console.log("server address: public/javascripts/modules/app.js/shopListCtrl");
-        console.log('data: ' + JSON.stringify(data).length);
-        $scope.shops = data;
+        $scope.footsteps = data;
       }, function(error){
         $scope.error = error;
       });
+
+  $http({method: 'GET', url: 'http://localhost:3000/countries/getCountries'})
+      .success(function(data){
+        console.log('countries: ' + data);
+        $scope.countries = data;
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.countryFilter = function(element, fs_from){
+    $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootsteps', params:{fs_from: fs_from}})
+        .success(function(data){
+          $scope.footsteps = data;
+        }, function(error){
+          $scope.error = error;
+        });
+
+      preview = setInterval(timePage, 500);
+  };
+
+
+  var preview = setInterval(timePage, 500);
+
+  function timePage(){
+    if($("#footstep_list-div").children("#footstep_div").size() > 0){
+      clearInterval(preview);
+      var i = 0;
+      var count = 0;
+      var trigger = 0;
+      var topPxs = [
+        {"topPx":125, "leftPx":"0%"},
+        {"topPx":125, "leftPx":"20%"},
+        {"topPx":125,"leftPx": "40%"},
+        {"topPx":125, "leftPx":"60%"},
+        {"topPx":125,"leftPx": "80%"}
+      ];
+
+      $("#footstep_list-div").children("#footstep_div").each(function(index, element){
+        // alert(i);
+
+        $(element).css({
+          "position":"absolute",
+          "top": topPxs[i].topPx + "px",
+          "left": topPxs[i].leftPx + ""
+        });
+
+        topPxs[i].topPx = topPxs[i].topPx + $(element).height() +10;
+
+        if((index+1)%5 == 0){
+          // alert("第一" + topPxs[0].topPx);
+          i = 0;
+          count++;
+          // alert($(element).height());
+        } else {
+
+          i++;
+
+          if((count * 5) + 5 > $("#footstep_list-div").children("#footstep_div").size() && trigger == 0 ){
+            // i = 0;
+            trigger++;
+            // alert("test");
+          }
+        }
+      });
+    }
+  }
+
+
+
 }]);
+
+
 
 
 /* get shop detail by shop id */
@@ -48,7 +117,7 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
   $scope.submit = function(){
     var req = {
       method: 'POST',
-      url: 'http://127.0.0.1:8081/api/userService/create',
+      url: 'http://localhost:3000/users/create',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -59,13 +128,12 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
     $http(req).success(function(result){
       console.log('sign up:' + result);
       $scope.result = result;
-      $window.location.href = '#/collectShopInfo';
+      $window.location.href = '#/signUpCompleted';
     }, function(error){
       console.log(error);
     });
     $scope.user = angular.copy($scope.data);
   };
-
 
   $scope.user = angular.copy($scope.data);
 
@@ -86,13 +154,16 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   var cookieUser = $cookies.get("username");
 
   if(cookieUser) {
-    $("#login_username").text(cookieUser);
+    // $("#login_username").text(cookieUser);
+    $("#login_username").html("<a href='#/profile'><div class='user-icon'></a></div><div class='user-icon-hover'>欢迎迹客: "+ cookieUser +"</div>");
     $("#logout-nav").css("display", "block");
     $("#login-nav").css("display", "none");
   } else {
     $("#logout-nav").css("display", "none");
     $("#login-nav").css("display", "block");
   }
+
+  $scope.showUName = function(){alert("1")};
 
   console.log("cookieUser: " + cookieUser);
 
@@ -104,7 +175,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   $scope.submit = function(){
     var req = {
       method: 'POST',
-      url: 'http://127.0.0.1:8081/api/userService/login',
+      url: 'http://localhost:3000/users/login',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -114,9 +185,12 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
     $http(req).success(function(result){
       if(result) {
-        console.log('login result:' + result );
-        $("#login_username").text(result);
-        $cookies.put('username', result);
+
+        console.log('login result:' + JSON.stringify(result));
+        // $("#login_username").text(result[0].u_name);
+        $("#login_username").html("<a href='#/profile'><div class='user-icon'></div></a><div class='user-icon-hover'>欢迎迹客: "+ result[0].u_name +"</div>");
+        $cookies.put('username', result[0].u_name);
+        $cookies.put('u_id', result[0].u_id);
         $("#logout-nav").css("display", "block");
         $("#login-nav").css("display", "none");
         $("#login_popup").css("display", "none");
@@ -219,8 +293,6 @@ buybsControllers.controller('ShopController', ['$scope', '$http', '$window', fun
       success: function (res) {
         console.log('uploaded, URL: ' + res);
         $(file).parent().css("background-image", 'url(' + res + ')');
-        // $(file).prev().val(res);
-        // $(file).prev().change();
         $(file).parent().nextAll("#register_shop-href").val(res);
         $(file).parent().nextAll("#register_shop-href").change();
         $(file).css("display", "none");
@@ -229,10 +301,6 @@ buybsControllers.controller('ShopController', ['$scope', '$http', '$window', fun
   };
 
 }]);
-
-
-
-
 
 
 
