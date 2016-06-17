@@ -30,7 +30,7 @@ router.get('/getUsers', function(req, res, next) {
 router.get('/getUserDetail', function(req, res, next) {
   console.log(req.param('u_id'));
   
-  var criteriaSQL = mysql.format("select" +
+  var criteriaSQL = mysql.format("select u_id," +
       " u_name,(select count(*) from jk_footsteps as jkf where jkf.u_id = jku.u_id) as footsteps," +
       "(select count(*) from jk_sticks as jks where jks.u_id = jku.u_id) as sticks," +
       "(select count(*) from jk_followers as jkf where jkf.fl_fl_id = jku.u_id) as follows," +

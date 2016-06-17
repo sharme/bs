@@ -19,12 +19,13 @@
 
 </head>
 <body>
-<div id="header" class="header" ng-controller="LoginController">
+<div id="header" class="header" ng-controller="headerController">
   <a href="www.google.com" class="button">迹客</a>
-  <li><a id="homepage" href="#/shops" class="homepage">主页</a></li>
-  <div id="login_logout-nav">
+
+  <li><a ng-click="homepageBtn()" id="homepage" href="javascript: void(0);" class="homepage">主页</a></li>
+  <div id="login_logout-nav" ng-controller="LoginController">
     <div id="logout-nav">
-    <span id="login_username"></span><span>| <a href="#/logout">logout</a></span>
+    <span id="login_username"></span><span>| <a ng-click="logout()" href="javascript: void(0);">logout</a></span>
     </div>
     <div id="login-nav">
     <span id="login_register">
@@ -46,6 +47,7 @@
     <!--</div>-->
   <!--</div>-->
 </body>
+<!--<div id="login_popup" class="login_popup">-->
 <div id="login_popup">
   <form ng-controller="LoginController" ng-submit="submit()" method="POST">
     <div id="login_popup-header">登陆<span id="login_popup-header-del">X</span></div>
@@ -56,6 +58,8 @@
       <input type="submit" id="register_form-submit" value="登陆">
     </div>
   </form>
+<!--</div>-->
+
 </div>
 
 <div class="view-container">

@@ -22,7 +22,8 @@ router.get('/getFootsteps', function(req, res, next) {
         "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
         "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_avatar," +
         "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_name," +
-        "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content" +
+        "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
+        "fs_create_time " +
         " from jk_footsteps as jkf";
 
     console.log(req.param('fs_from'));
@@ -82,7 +83,7 @@ router.get('/getSticksByUID', function(req, res, next) {
 });
 
 router.post('/create', function(req, res, next) {
-    var createSQL = mysql.format("insert into jk_footsteps(fs_pic,fs_des,fs_from,u_id,fs_create_time,fs_update_time) values(?,?,?,?,default,default)", [req.body.picture, req.body.description,req.body.from,req.body.u_id]);
+    var createSQL = mysql.format("insert into jk_footsteps(fs_pic,fs_des,fs_from,u_id,fs_create_time,fs_update_time) values(?,?,?,?,default,default)", [req.body.fs_pic, req.body.fs_desc,req.body.fs_from,req.body.u_id]);
 
     connection.query(createSQL, function (err, result) {
         if(err) {

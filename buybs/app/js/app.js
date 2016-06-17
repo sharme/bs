@@ -32,7 +32,8 @@ buybs.config(['$routeProvider',
         templateUrl: 'partials/register/step1.html'
     }).
         when('/profile',{
-        templateUrl: 'partials/profile.html'
+        templateUrl: 'partials/profile.html',
+        controller: 'ProfileController'
     }).
         when('/logout', {
         controller: 'logoutController',

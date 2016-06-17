@@ -27,6 +27,19 @@ router.post('/add', function(req, res, next) {
     })
 });
 
+router.get('/search', function(req, res, next) {
+   var searchSQL = mysql.format("select * from jk_likes where fs_id = ? and u_id = ?;", [req.param('fs_id'), req.param('u_id')]);
+
+    connection.query(searchSQL, function (err, result) {
+      if(err) {
+          res.send("Error: " + err);
+      } else {
+          res.send(result);
+      }
+    })
+
+});
+
 
 
 
