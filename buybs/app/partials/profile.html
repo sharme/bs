@@ -1,29 +1,81 @@
 <div>
-<div class="profile_top">
-    <div class="profile_top-info">
-        <span class="profile_top-info-name">{{userProfile[0].u_name}}</span><span class="profile_top-info-edit">编辑</span>
+    <div class="profile_top">
+        <div class="profile_top-info">
+            <span class="profile_top-info-name">{{userProfile[0].u_name}}</span><span class="profile_top-info-edit"><a ng-click="editProfileBtn()">编辑</a></span>
+        </div>
     </div>
-</div>
-<div class="profile_middle">
-    <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
-        {{userProfile[0].footsteps}}<br>足迹</div>
-    <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
-        {{userProfile[0].sticks}}<br>
-        收藏
-    </div>
-    <div class="profile_middle-point">
-        {{userProfile[0].follows}}<br>
-        关注
-    </div>
-    <div class="profile_middle-point">
-        {{userProfile[0].fans}}<br>
-        粉丝
-    </div>
-</div>
-<div>
-    <div class="profile_down-create" ng-click="createBtn()">创建足迹</div>
 
-</div>
+    <div class="profile_top-edit">
+        <form ng-submit="updateSubmit()" method="POST">
+            <div id="profile_top-edit-header">修改个人信息<span id="profile_top-edit-del" ng-click="closeBtn(this)">X</span></div>
+            <div id="profile_top-edit_info">
+                <div>
+                    <div>
+                        <span class="profile_top_info-username">用户名</span>
+                        <span class="profile_top_info-username-val">
+                            <input type="text" class="text_input" value="{{user.u_name}}">
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile_top_info-avatar-div">
+                    <div>
+                        <span class="profile_top_info-avatar">个人图像</span>
+                        <span class="profile_top_info-avatar-img" style="background-image: url({{user.u_avatar}})">
+                        </span>
+                        <input type="file" onchange="angular.element(this).scope().uploadAvatar(this)" id="avatarImg-btn" class="profile_top_info-avatar-val" name="imageName"/>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <div>
+                        <span class="profile_top_info-address">迹客地址</span>
+                        <span class="profile_top_info-address-val">
+                            <input type="text" class="text_input" value="{{user.u_link}}">
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile_top_info-slogan-div">
+                    <div>
+                        <span class="profile_top_info-slogan">签名</span>
+                        <span class="profile_top_info-slogan-val">
+                            <textarea rows="4" cols="32">{{user.u_slogan}}</textarea>
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="submit" class="profile_top-edit-submit" value="修改" style="width: 100%;">
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+
+
+    <div class="profile_middle">
+        <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
+            {{userProfile[0].footsteps}}<br>足迹</div>
+        <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
+            {{userProfile[0].sticks}}<br>
+            收藏
+        </div>
+        <div class="profile_middle-point">
+            {{userProfile[0].follows}}<br>
+            关注
+        </div>
+        <div class="profile_middle-point">
+            {{userProfile[0].fans}}<br>
+            粉丝
+        </div>
+    </div>
+    <div>
+        <div class="profile_down-create" ng-click="createBtn()">创建足迹</div>
+
+    </div>
 
 <div style="min-height: 600px;">
 
@@ -67,7 +119,6 @@
         <div id="login_popup-header">创建足迹<span id="login_popup-header-del" ng-click="closeBtn()">X</span></div>
         <div id="register_shop-product-image">
             <input type="file" class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
-
         </div>
 
         <hr>

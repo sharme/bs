@@ -13,13 +13,13 @@ buybs.config(['$routeProvider',
   function($routeProvider) {
     
     $routeProvider.
-      when('/shops', {
+      when('/foot', {
         templateUrl: 'partials/homepage.html',
         controller: 'FootstepsListCtrl'
       }).
-        when('/shops/:shopId',{
-        templateUrl: 'partials/shopDetail.html',
-        controller: 'ShopDetailCtrl'
+        when('/foot/:footId',{
+        templateUrl: 'partials/footDetail.html',
+        controller: 'FootDetailCtrl'
     }).
         when('/signUpCompleted', {
         templateUrl: 'partials/register/step3.html'
@@ -40,6 +40,6 @@ buybs.config(['$routeProvider',
         templateUrl: 'partials/homepage.html'
     }).
       otherwise({
-        redirectTo: '/shops'
+        redirectTo: '/foot'
       });
   }]);

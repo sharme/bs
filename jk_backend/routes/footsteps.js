@@ -20,8 +20,8 @@ router.get('/getFootsteps', function(req, res, next) {
     var criteriaSQL = "select fs_id,u_id,fs_pic,fs_des,fs_from," +
         "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
         "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
-        "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_avatar," +
-        "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_name," +
+        "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_avatar," +
+        "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_name," +
         "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
         "fs_create_time " +
         " from jk_footsteps as jkf";
@@ -99,6 +99,7 @@ router.get('/getFootstepsDetail', function (req, res, next) {
    var criteriaSQL = mysql.format("select fs_id,fs_des,fs_pic," +
        "(select count(*) from jk_comments as jkc where jkc.fs_id = jkf.fs_id) as comments," +
        "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
+       "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
        "(select u_name from jk_users as jku where jku.u_id = jkf.u_id) as u_name," +
        "(select u_slogan from jk_users as jku where jku.u_id = jkf.u_id) as u_slogan from jk_footsteps as jkf where jkf.fs_id = ?", [req.param('fs_id')]);
 

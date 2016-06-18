@@ -6,7 +6,7 @@
         <div id="footstep_div" ng-repeat="result in footsteps" >
             <div class="footstep_div-pic">
             <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->
-                <img src="{{result.fs_pic}}" style="width: 100%; height: 100%;">
+                <a href="#/foot/{{result.fs_id}}"><img src="{{result.fs_pic}}" style="width: 100%; height: 100%; cursor: zoom-in;"></a>
             </div>
             <span class="footstep_div_createTime">{{result.fs_create_time}}</span>
             <!--<hr>-->
@@ -23,7 +23,7 @@
 
             <div class="footstep_div-comment" ng-if="result.cm_content">
                     <div class="footstep_div-comment-avatar">
-                        <img src="{{result.u_avatar}}">
+                        <img src="{{result.u_avatar}}" class="footstep_div-comment-avatar-img">
                     </div>
                     <div>
                     <div>{{result.u_name}}</div>

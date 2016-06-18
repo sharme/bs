@@ -27,6 +27,21 @@ router.get('/getUsers', function(req, res, next) {
   });
 });
 
+
+router.get('/getUserById', function(req, res, next) {
+  var criteriaSQL = mysql.format('select * from jk_users where u_id = ?', req.param('u_id'));
+  connection.query(criteriaSQL, function (err, rows, fields) {
+    if(err) {
+      res.send('Error: ' + err);
+    } else {
+      console.log('Username is: ' + rows[0].u_name);
+      // connection.end();
+      res.send(rows);
+    }
+  });
+});
+
+
 router.get('/getUserDetail', function(req, res, next) {
   console.log(req.param('u_id'));
   
@@ -72,7 +87,7 @@ router.post('/login', urlencodeParser, function(req,res, next) {
 });
 
 router.post('/update', urlencodeParser, function(req, res, next) {
-  var updateSQL = mysql.format("update jk_users set u_name = ?, u_avatar = ?, u_link = ?, u_slogan = ? where u_id = ?",[req.body.username, req.body.avatar, req.body.link, req.body.slogan, req.body.u_id]);
+  var updateSQL = mysql.format("update jk_users set u_name = ?, u_avatar = ?, u_link = ?, u_slogan = ? where u_id = ?",[req.body.u_name, req.body.u_avatar, req.body.u_link, req.body.u_slogan, req.body.u_id]);
 
   connection.query(updateSQL, function (err, result) {
     if(err) {

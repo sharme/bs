@@ -168,17 +168,122 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
 
 /* get shop detail by shop id */
-buybsControllers.controller('ShopDetailCtrl', ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window', function ($scope, $routeParams, $http, $cookies, $window) {
 
-  $http({method: 'GET', url: 'http://localhost:8081/api/shopService/GetShops/' + $routeParams.shopId})
+  $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
-        console.log("server address: public/javascripts/modules/app.js/shopDetailCtrl");
-        console.log('data: ' + (JSON.stringify(data)) + ", images: " + data);
-        $scope.result = data;
-        $scope.test = JSON.stringify(data);
+        console.log('data: ' + (JSON.stringify(data)));
+        $scope.foot = data[0];
       }, function(error){
         $scope.error = error;
       });
+
+  $http({method: 'GET', url: 'http://localhost:3000/comments/getCommentsByFSID', params:{fs_id:$routeParams.footId}})
+      .success(function(data){
+        console.log('data: ' + (JSON.stringify(data)));
+        $scope.comments = data;
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.stickBtn = function(id){
+
+
+    $http({method: 'GET', url: 'http://localhost:3000/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+        .success(function(data){
+          if(data.length > 0 ) {
+            alert("已经收藏成功");
+          } else {
+            var req = {
+              method: 'POST',
+              url: 'http://localhost:3000/sticks/add',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+
+            $http(req).success(function(result){
+              console.log('stick');
+            }, function(error){
+              console.log(error);
+            });
+          }
+        }, function(error){
+          console.log(error);
+        });
+
+  };
+
+  $scope.likeBtn = function(id){
+
+    $http({method: 'GET', url: 'http://localhost:3000/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+        .success(function(data){
+          console.log(data);
+          if(data.length > 0) {
+            alert('每个人只能喜欢一次哦');
+          } else {
+            var req = {
+              method: 'POST',
+              url: 'http://localhost:3000/likes/add',
+              header: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+
+            $http(req).success(function(result){
+              console.log('liked');
+            }, function(error){
+              console.log(error);
+            })
+          }
+
+
+        }, function(error){
+          $scope.error = error;
+        });
+
+  };
+
+
+  $scope.addComment = {
+    cm_content: '',
+    fs_id: '',
+    u_id: $cookies.get('u_id')
+  };
+
+  $scope.submit = function(){
+
+    $scope.addComment.fs_id = $scope.foot.fs_id;
+
+    var req = {
+      method: 'POST',
+      url: 'http://localhost:3000/comments/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.addComment)
+    };
+
+    console.log("add comment: " + JSON.stringify($scope.addComment));
+
+    $http(req).success(function(result){
+      console.log('added comment:' + result);
+      $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+  
+  
 }]);
 
 
@@ -223,14 +328,15 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
 buybsControllers.controller('headerController', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
   
   $scope.homepageBtn = function() {
-    $window.location = '#/shops';
+    $window.location = '#/foot';
     $window.location.reload();
   };
   
   $scope.logout = function(){
     console.log("remove cookies");
     $cookies.remove('username');
-    $window.location.href = '#/shops';
+    $cookies.remove('u_id');
+    $window.location.href = '#/foot';
     $window.location.reload();
   }
 
@@ -309,6 +415,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   
   $scope.closeBtn = function(){
     $('.create_footstep').css('display','none');
+    $('.profile_top-edit').css('display', 'none');
   };
   
   
@@ -317,6 +424,14 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
 
+  $scope.editProfileBtn = function(){
+    $('.profile_top-edit').css("display","block");
+    if($scope.user.u_avatar) {
+      $('#avatarImg-btn').css("display", "none");
+    }
+  };
+  
+  
   $http({method: 'GET', url: 'http://localhost:3000/countries/getCountries'})
       .success(function(data){
         console.log('countries: ' + data);
@@ -324,8 +439,6 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       }, function(error){
         $scope.error = error;
       });
-  
-  
 
   $scope.submit = function(){
 
@@ -356,6 +469,36 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
   };
 
+  $scope.updateSubmit = function(){
+
+    console.log("userData: " + JSON.stringify($scope.user));
+
+    var reqData = {
+      u_name: $scope.user.u_name,
+      u_avatar: $scope.user.u_avatar,
+      u_link: $scope.user.u_link,
+      u_slogan: $scope.user.u_slogan,
+      u_id: $scope.user.u_id
+    };
+
+    var req = {
+      method: 'POST',
+      url: 'http://localhost:3000/users/update',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(reqData)
+    };
+
+    $http(req).success(function(result){
+      console.log("添加成功");
+      $('.profile_top-edit').css("display","none");
+    }, function(error){
+      console.log(error);
+    });
+
+  };
+
   $scope.uploadFile = function(file){
     console.log('upload file');
     var file_data = $(file).prop('files')[0];
@@ -380,6 +523,40 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     });
   };
 
+
+  $http({method: 'GET', url: 'http://localhost:3000/users/getUserById', params:{u_id:$cookies.get('u_id')}})
+      .success(function(data){
+        console.log('user: ' + data);
+        $scope.user = data[0];
+      }, function(error){
+        $scope.error = error;
+      });
+
+
+  $scope.uploadAvatar = function(file){
+    console.log('upload file');
+    var file_data = $(file).prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('u_id', $cookies.get('u_id'));
+    form_data.append("file", file_data);
+
+    $.ajax({
+      url: "http://localhost:3000/api/uploadPhotos",
+      contentType: false,
+      data: form_data,
+      processData: false,
+      cache: false,
+      type: "POST",
+      success: function (res) {
+        console.log('uploaded, URL: ' + res);
+        $(file).prev().css("background-image", 'url(' + res + ')');
+        $scope.user.u_avatar = res;
+        // $(file).parent().nextAll("#profile_top-edit-avatar").val(res);
+        // $(file).parent().nextAll("#profile_top-edit-avatar").change();
+        $(file).css("display", "none");
+      }
+    });
+  };
 
   $http({method: 'GET', url: 'http://localhost:3000/users/getUserDetail', params:{u_id: $routeParams.u_id}})
       .success(function(data){
