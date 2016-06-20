@@ -16,7 +16,7 @@
         <div class="foot_wrapper-main_profile">
             <p>迹客: {{foot.u_name}}</p>
             <div class="foot_wrapper-main_profile-slogan">
-                {{foot.u_slogan}} <button class="foot_wrapper-main_follow">关注</button>
+                {{foot.u_slogan}} <button class="foot_wrapper-main_follow" ng-click="followUpBtn(foot.u_id)">关注</button>
             </div>
             <hr>
         </div>
@@ -45,14 +45,10 @@
             <hr>
             <div class="foot_wrapper-main_follower">
                 踩客<hr>
-                <div class="foot_wrapper-main_follower-img">
-                    <img>图片
-                </div>
-                <div class="foot_wrapper-main_follower-img">
-                    <img>图片
-                </div>
-                <div class="foot_wrapper-main_follower-img">
-                    <img>图片
+                <div class="foot_wrapper-main_follower-img" ng-repeat="stick in sticks">
+                    <div class="foot_wrapper-main_comment-avatar">
+                        <img src="{{stick.u_avatar}}" class="footstep_div-comment-avatar">
+                    </div>
                 </div>
             </div>
 

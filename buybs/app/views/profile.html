@@ -55,7 +55,7 @@
     </div>
 
 
-
+    <div>
     <div class="profile_middle">
         <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
             {{userProfile[0].footsteps}}<br>足迹</div>
@@ -65,21 +65,17 @@
         </div>
         <div class="profile_middle-point">
             {{userProfile[0].follows}}<br>
-            关注
+            我的关注
         </div>
         <div class="profile_middle-point">
             {{userProfile[0].fans}}<br>
             粉丝
         </div>
     </div>
-    <div>
         <div class="profile_down-create" ng-click="createBtn()">创建足迹</div>
-
     </div>
 
-<div style="min-height: 600px;">
-
-
+<div style="min-height: 400px;">
     <div id="footstep_list-div">
         <div id="footstep_div" ng-repeat="result in footsteps" >
             <div class="footstep_div-pic">
@@ -101,7 +97,7 @@
 
             <div class="footstep_div-comment" ng-if="result.cm_content">
                 <div class="footstep_div-comment-avatar">
-                    <img src="{{result.u_avatar}}">
+                    <img src="{{result.u_avatar}}" class="footstep_div-comment-avatar-img">
                 </div>
                 <div>
                     <div>{{result.u_name}}</div>
@@ -111,40 +107,41 @@
         </div>
     </div>
 
+    <div class="create_footstep">
+        <div class="create_footstep-info">
+            <form ng-controller="ProfileController" ng-submit="submit()" method="POST">
+                <div id="login_popup-header">创建足迹<span id="login_popup-header-del" ng-click="closeBtn()">X</span></div>
+                <div id="register_shop-product-image">
+                    <input type="file" class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
+                </div>
 
+                <hr>
+                <!--<div class="create_footstep-info-div">-->
+                    <!--<span class="create_footstep-info-span">地址</span><input class="create_footstep-info-pic" type="text" ng-model="footstep.fs_pic" name="imagePrice1" id="register_shop-href" value=""/>-->
+                <!--</div>-->
+                <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_pic" id="register_shop-href">
+                <div  class="create_footstep-info-div">
+                <span class="create_footstep-info-span">描述</span>
+                    <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40"></textarea>
+                    <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
+                </div>
 
-<div class="create_footstep">
-<div class="create_footstep-info">
-    <form ng-controller="ProfileController" ng-submit="submit()" method="POST">
-        <div id="login_popup-header">创建足迹<span id="login_popup-header-del" ng-click="closeBtn()">X</span></div>
-        <div id="register_shop-product-image">
-            <input type="file" class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
+                <br/>
+                <div>
+                    <span class="create_footstep-info-span">来自</span>
+                    <select class="create_footstep-info-from" ng-model="footstep.fs_from">
+                        <option ng-repeat="country in countries">{{country.c_name}}</option>
+                        <!--<option ng-model="footstep.fs_from">印度</option>-->
+                    </select>
+                </div>
+                <br/>
+                <input type="submit" id="footstep_form-submit" value="轰轰">
+            </form>
         </div>
-
-        <hr>
-        <!--<div class="create_footstep-info-div">-->
-            <!--<span class="create_footstep-info-span">地址</span><input class="create_footstep-info-pic" type="text" ng-model="footstep.fs_pic" name="imagePrice1" id="register_shop-href" value=""/>-->
-        <!--</div>-->
-        <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_pic" id="register_shop-href">
-        <div  class="create_footstep-info-div">
-        <span class="create_footstep-info-span">描述</span>
-            <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40"></textarea>
-            <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
-        </div>
-
-        <br/>
-        <div>
-            <span class="create_footstep-info-span">来自</span>
-            <select class="create_footstep-info-from" ng-model="footstep.fs_from">
-                <option ng-repeat="country in countries">{{country.c_name}}</option>
-                <!--<option ng-model="footstep.fs_from">印度</option>-->
-            </select>
-        </div>
-        <br/>
-        <input type="submit" id="footstep_form-submit" value="轰轰">
-    </form>
-</div>
+    </div>
 </div>
 
-</div>
+    <div></div>
+
+
 </div>

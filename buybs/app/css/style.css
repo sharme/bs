@@ -539,6 +539,11 @@ li {
   margin: 10px;
 }
 
+.profile_top_info-avatar-val{
+  width: 250px;
+  /*content: '更新上传'*/
+}
+
 .profile_top_info-slogan-div, .profile_top_info-avatar-div {
   height: 120px;
 }
@@ -568,9 +573,6 @@ li {
 
 .profile_middle{
   height: 100px;
-  /* background-color: lightslategray; */
-  /* left: 20%; */
-
   border-bottom: solid 1px lightgrey;
   padding-left: 20%;
   padding-top: 20px;
@@ -601,15 +603,14 @@ li {
 }
 
 .profile_down-create{
-  height: 80px;
-  width: 100%;
-  /*margin-left: 20px;*/
-  margin-top: 5px;
-  background-color: lightgrey;
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
   text-align: center;
-  line-height: 6;
-  /*position: absolute;*/
-  margin-bottom: 20px;
+  background-color: gray;
+  line-height: 2;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 

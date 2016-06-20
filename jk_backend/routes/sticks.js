@@ -29,7 +29,7 @@ router.post('/add', function(req, res, next) {
 
 
 router.get('/getSticksByFSID', function(req, res, next) {
-   var criteriaSQL = mysql.format("select (select u_avatar from jk_users as jku where jku.u_id = jks.u_id) as u_vatar from jk_sticks as jks where jks.fs_id = ?",[req.param('fs_id')]);
+   var criteriaSQL = mysql.format("select (select u_avatar from jk_users as jku where jku.u_id = jks.u_id) as u_avatar from jk_sticks as jks where jks.fs_id = ?",[req.param('fs_id')]);
 
     connection.query(criteriaSQL, function (err, result) {
         if(err) {

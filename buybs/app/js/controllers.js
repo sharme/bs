@@ -180,14 +180,21 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   $http({method: 'GET', url: 'http://localhost:3000/comments/getCommentsByFSID', params:{fs_id:$routeParams.footId}})
       .success(function(data){
-        console.log('data: ' + (JSON.stringify(data)));
+        console.log('comments data: ' + (JSON.stringify(data)));
         $scope.comments = data;
       }, function(error){
         $scope.error = error;
       });
 
-  $scope.stickBtn = function(id){
+  $http({method: 'GET', url: 'http://localhost:3000/sticks/getSticksByFSID', params:{fs_id:$routeParams.footId}})
+      .success(function(data){
+        console.log('sticks data: ' + (JSON.stringify(data)));
+        $scope.sticks = data;
+      }, function(error){
+        $scope.error = error;
+      });
 
+  $scope.stickBtn = function(id){
 
     $http({method: 'GET', url: 'http://localhost:3000/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
@@ -252,6 +259,29 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   };
 
+  $scope.followUpBtn = function(id) {
+    var reqData = {
+      u_id: id,
+      fl_fl_id: $cookies.get('u_id')
+    };
+    var req = {
+      method: 'POST',
+      url: 'http://localhost:3000/followers/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: reqData
+    };
+
+    console.log("follow up: " + JSON.stringify(reqData));
+
+    $http(req).success(function(result){
+      console.log('added:' + result);
+      $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+  };
 
   $scope.addComment = {
     cm_content: '',
@@ -349,7 +379,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   var cookieUser = $cookies.get("username");
   if(cookieUser) {
     // $("#login_username").text(cookieUser);
-    $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-icon'></a></div><div class='user-icon-hover'>欢迎迹客: "+ cookieUser +"</div>");
+    $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-icon'></div></a><div class='user-icon-hover'>欢迎迹客: "+ cookieUser +"</div>");
     $("#logout-nav").css("display", "block");
     $("#login-nav").css("display", "none");
   } else {
@@ -427,7 +457,8 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   $scope.editProfileBtn = function(){
     $('.profile_top-edit').css("display","block");
     if($scope.user.u_avatar) {
-      $('#avatarImg-btn').css("display", "none");
+       // $('#avatarImg-btn').css("display", "none");
+      // $('#avatarImg-btn')
     }
   };
   
@@ -463,6 +494,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $http(req).success(function(result){
       // alert("添加成功");
       $('.create_footstep').css("display","none");
+      $window.location.reload();
     }, function(error){
       console.log(error);
     });
@@ -562,6 +594,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       .success(function(data){
         console.log(JSON.stringify(data));
         $scope.userProfile = data;
+
       }, function(error){
         $scope.error = error;
       });
@@ -599,11 +632,11 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       var count = 0;
       var trigger = 0;
       var topPxs = [
-        {"topPx":380, "leftPx":"0%"},
-        {"topPx":380, "leftPx":"20%"},
-        {"topPx":380,"leftPx": "40%"},
-        {"topPx":380, "leftPx":"60%"},
-        {"topPx":380,"leftPx": "80%"}
+        {"topPx":320, "leftPx":"0%"},
+        {"topPx":320, "leftPx":"20%"},
+        {"topPx":320,"leftPx": "40%"},
+        {"topPx":320, "leftPx":"60%"},
+        {"topPx":320,"leftPx": "80%"}
       ];
 
       $("#footstep_list-div").children("#footstep_div").each(function(index, element){

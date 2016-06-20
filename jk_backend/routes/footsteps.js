@@ -96,7 +96,7 @@ router.post('/create', function(req, res, next) {
 
 
 router.get('/getFootstepsDetail', function (req, res, next) {
-   var criteriaSQL = mysql.format("select fs_id,fs_des,fs_pic," +
+   var criteriaSQL = mysql.format("select fs_id,u_id,fs_des,fs_pic," +
        "(select count(*) from jk_comments as jkc where jkc.fs_id = jkf.fs_id) as comments," +
        "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
        "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +

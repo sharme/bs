@@ -14,30 +14,26 @@ buybs.config(['$routeProvider',
     
     $routeProvider.
       when('/foot', {
-        templateUrl: 'partials/homepage.html',
+        templateUrl: 'views/homepage.html',
         controller: 'FootstepsListCtrl'
       }).
         when('/foot/:footId',{
-        templateUrl: 'partials/footDetail.html',
+        templateUrl: 'views/footDetail.html',
         controller: 'FootDetailCtrl'
     }).
         when('/signUpCompleted', {
-        templateUrl: 'partials/register/step3.html'
-    }).
-        when('/collectShopInfo', {
-        templateUrl: 'partials/register/step2.html',
-        controller: 'ShopController'
+        templateUrl: 'views/register/complete.html'
     }).
         when('/register', {
-        templateUrl: 'partials/register/step1.html'
+        templateUrl: 'views/register/register.html'
     }).
         when('/profile',{
-        templateUrl: 'partials/profile.html',
+        templateUrl: 'views/profile.html',
         controller: 'ProfileController'
     }).
         when('/logout', {
         controller: 'logoutController',
-        templateUrl: 'partials/homepage.html'
+        templateUrl: 'views/homepage.html'
     }).
       otherwise({
         redirectTo: '/foot'
