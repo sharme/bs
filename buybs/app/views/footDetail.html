@@ -25,8 +25,8 @@
             <hr>
 
             <div class="foot_wrapper-main_comment" ng-repeat="comment in comments">
-                <div class="foot_wrapper-main_comment-avatar">
-                    <img src="{{comment.u_avatar}}" class="footstep_div-comment-avatar">
+                <div class="footstep-list-div-comment-avatar">
+                    <img src="{{comment.u_avatar}}" class="footstep-list-div-comment-avatar-img">
                 </div>
                 <div class="foot_wrapper-main_comment-content">
                     <div class="foot_wrapper-main_comment-from">来自: {{comment.u_name}}</div>
@@ -46,8 +46,8 @@
             <div class="foot_wrapper-main_follower">
                 踩客<hr>
                 <div class="foot_wrapper-main_follower-img" ng-repeat="stick in sticks">
-                    <div class="foot_wrapper-main_comment-avatar">
-                        <img src="{{stick.u_avatar}}" class="footstep_div-comment-avatar">
+                    <div class="footstep-list-div-comment-avatar">
+                        <img src="{{stick.u_avatar}}" class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">
                     </div>
                 </div>
             </div>

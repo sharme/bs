@@ -2,7 +2,7 @@
   "version": "0.0.0",
   "private": true,
   "name": "buybs",
-  "description": "A tutorial application for AngularJS",
+  "description": "Creating the best picture traveling website",
   "repository": "https://github.com/sharme/bs/tree/master/buybs",
   "license": "MIT",
   "devDependencies": {
