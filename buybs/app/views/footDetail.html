@@ -8,7 +8,7 @@
                 <button class="like_footstep" ng-click="likeBtn(foot.fs_id)">喜欢</button>&nbsp;&nbsp;{{foot.likes}}
             </div>
             <hr>
-            <p>{{foot.fs_desc}}</p>
+            <p>{{foot.fs_des}}</p>
         </div>
         <div class="footstep_div-pic">
             <img src="{{foot.fs_pic}}" style="width: 100%; height: 100%; cursor: zoom-in;">
@@ -44,7 +44,7 @@
             </div>
             <hr>
             <div class="foot_wrapper-main_follower">
-                踩客<hr>
+                收藏<hr>
                 <div class="foot_wrapper-main_follower-img" ng-repeat="stick in sticks">
                     <div class="footstep-list-div-comment-avatar">
                         <img src="{{stick.u_avatar}}" class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">

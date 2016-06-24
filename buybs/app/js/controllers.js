@@ -4,19 +4,20 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
+var ipAddress = 'http://10.86.7.6:3000';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
 
-  $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootsteps'})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps'})
       .success(function(data){
         $scope.footsteps = data;
-        preview = setInterval(timePage, 500);
+        preview = setInterval(timePage, 1000);
       },function(error){
         $scope.error = error;
       });
 
-  $http({method: 'GET', url: 'http://localhost:3000/countries/getCountries'})
+  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         console.log('countries: ' + data);
         $scope.countries = data;
@@ -25,7 +26,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       });
 
   $scope.countryFilter = function(element, fs_from){
-    $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootsteps', params:{fs_from: fs_from}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from}})
         .success(function(data){
           $scope.footsteps = data;
         }, function(error){
@@ -37,14 +38,14 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   $scope.stickBtn = function(id){
 
 
-    $http({method: 'GET', url: 'http://localhost:3000/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+    $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           if(data.length > 0 ) {
             alert("已经收藏成功");
           } else {
             var req = {
               method: 'POST',
-              url: 'http://localhost:3000/sticks/add',
+              url: ipAddress + '/sticks/add',
               headers: {
                 'Content-Type': 'application/json'
               },
@@ -68,7 +69,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   $scope.likeBtn = function(id){
 
-    $http({method: 'GET', url: 'http://localhost:3000/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+    $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           console.log(data);
           if(data.length > 0) {
@@ -76,7 +77,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           } else {
             var req = {
               method: 'POST',
-              url: 'http://localhost:3000/likes/add',
+              url: ipAddress + '/likes/add',
               header: {
                 'Content-Type': 'application/json'
               },
@@ -153,7 +154,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 /* get shop detail by shop id */
 buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window', function ($scope, $routeParams, $http, $cookies, $window) {
 
-  $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
         console.log('data: ' + (JSON.stringify(data)));
         $scope.foot = data[0];
@@ -161,7 +162,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
         $scope.error = error;
       });
 
-  $http({method: 'GET', url: 'http://localhost:3000/comments/getCommentsByFSID', params:{fs_id:$routeParams.footId}})
+  $http({method: 'GET', url: ipAddress + '/comments/getCommentsByFSID', params:{fs_id:$routeParams.footId}})
       .success(function(data){
         console.log('comments data: ' + (JSON.stringify(data)));
         $scope.comments = data;
@@ -169,7 +170,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
         $scope.error = error;
       });
 
-  $http({method: 'GET', url: 'http://localhost:3000/sticks/getSticksByFSID', params:{fs_id:$routeParams.footId}})
+  $http({method: 'GET', url: ipAddress + '/sticks/getSticksByFSID', params:{fs_id:$routeParams.footId}})
       .success(function(data){
         console.log('sticks data: ' + (JSON.stringify(data)));
         $scope.sticks = data;
@@ -179,7 +180,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   $scope.stickBtn = function(id){
 
-    $http({method: 'GET', url: 'http://localhost:3000/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+    $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           if(data.length > 0 ) {
             alert("已经收藏成功");
@@ -210,7 +211,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   $scope.likeBtn = function(id){
 
-    $http({method: 'GET', url: 'http://localhost:3000/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+    $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           console.log(data);
           if(data.length > 0) {
@@ -218,7 +219,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
           } else {
             var req = {
               method: 'POST',
-              url: 'http://localhost:3000/likes/add',
+              url: ipAddress + '/likes/add',
               header: {
                 'Content-Type': 'application/json'
               },
@@ -245,17 +246,17 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   $scope.followUpBtn = function(id) {
 
 
-    $http({method: 'GET', url: 'http://localhost:3000/followers/getFollowCheck', params:{u_id:id, fl_fl_id:$cookies.get('u_id')}})
+    $http({method: 'GET', url: ipAddress + '/followers/getFollowCheck', params:{u_id:id, fl_fl_id:$cookies.get('u_id')}})
         .success(function(data){
-          console.log('follower check data: ' + (JSON.stringify(data)));
-          if(!data){
+          console.log('follower check data: ' + (JSON.stringify(data.length)));
+          if(data.length == 0){
             var reqData = {
               u_id: id,
               fl_fl_id: $cookies.get('u_id')
             };
             var req = {
               method: 'POST',
-              url: 'http://localhost:3000/followers/add',
+              url: ipAddress + '/followers/add',
               headers: {
                 'Content-Type': 'application/json'
               },
@@ -278,7 +279,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
           $scope.error = error;
         });
     
-    
+
   };
 
   $scope.addComment = {
@@ -293,7 +294,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
     var req = {
       method: 'POST',
-      url: 'http://localhost:3000/comments/add',
+      url: ipAddress + '/comments/add',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -329,7 +330,7 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
   $scope.submit = function(){
     var req = {
       method: 'POST',
-      url: 'http://localhost:3000/users/create',
+      url: ipAddress + '/users/create',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -400,7 +401,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   $scope.submit = function(){
     var req = {
       method: 'POST',
-      url: 'http://localhost:3000/users/login',
+      url: ipAddress + '/users/login',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -473,7 +474,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   
-  $http({method: 'GET', url: 'http://localhost:3000/countries/getCountries'})
+  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         console.log('countries: ' + data);
         $scope.countries = data;
@@ -481,7 +482,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
   
-  $http({method: 'GET', url: 'http://localhost:3000/users/getUserById', params:{u_id:$cookies.get('u_id')}})
+  $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id')}})
       .success(function(data){
         console.log('user: ' + data);
         $scope.user = data[0];
@@ -489,7 +490,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
   
-  $http({method: 'GET', url: 'http://localhost:3000/users/getUserDetail', params:{u_id: $routeParams.u_id}})
+  $http({method: 'GET', url: ipAddress + '/users/getUserDetail', params:{u_id: $routeParams.u_id}})
       .success(function(data){
         console.log(JSON.stringify(data));
         $scope.userProfile = data;
@@ -511,7 +512,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
     var req = {
       method: 'POST',
-      url: 'http://localhost:3000/footsteps/create',
+      url: ipAddress + '/footsteps/create',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -543,7 +544,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
     var req = {
       method: 'POST',
-      url: 'http://localhost:3000/users/update',
+      url: ipAddress + '/users/update',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -567,7 +568,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     form_data.append("file", file_data);
 
     $.ajax({
-      url: "http://localhost:3000/api/uploadPhotos",
+      url: ipAddress + "/api/uploadPhotos",
       contentType: false,
       data: form_data,
       processData: false,
@@ -583,6 +584,11 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $(file).css("display", "none");
       }
     });
+
+    
+
+
+
   };
   
   $scope.uploadAvatar = function(file) {
@@ -593,7 +599,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     form_data.append("file", file_data);
 
     $.ajax({
-      url: "http://localhost:3000/api/uploadPhotos",
+      url:  ipAddress + "/api/uploadPhotos",
       contentType: false,
       data: form_data,
       processData: false,
@@ -611,7 +617,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileFootsteps = function(u_id) {
-    $http({method: 'GET', url: 'http://localhost:3000/footsteps/getFootstepsByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
@@ -625,7 +631,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileSticks = function(u_id) {
-    $http({method: 'GET', url: 'http://localhost:3000/footsteps/getSticksByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getSticksByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
@@ -638,7 +644,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
 
   $scope.profileFollows = function(u_id) {
-    $http({method: 'GET', url: 'http://localhost:3000/followers/getFollowsByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/followers/getFollowsByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.results = data;
           $("#footstep-list").css("display", "none");
@@ -648,7 +654,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
 
   $scope.profileFans = function(u_id) {
-    $http({method: 'GET', url: 'http://localhost:3000/followers/getFansByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/followers/getFansByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.results = data;
           $("#footstep-list").css("display", "none");
@@ -704,6 +710,42 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   }
 
 }]);
+
+
+
+/* logout */
+buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+
+  $scope.message = {
+    u_id: $cookies.get('u_id'),
+    m_content: ''
+  };
+
+  $scope.submit = function(){
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/messages/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.message)
+    };
+
+    console.log("message to Station house : " + JSON.stringify($scope.message));
+
+    $http(req).success(function(result){
+      console.log('message sent:' + result);
+      alert("留言发送成功.");
+      $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+  };
+  
+
+}]);
+
 
 
 
