@@ -27,9 +27,18 @@
 </head>
 <body>
 
+<div class="login-cover">
+  <div class="login-cover-title">
+    <span>世界很大很美, 很多美丽的地方, 很多美味的食物, 很多美丽的瞬间...</span>
+    <span> 我们用各种形式纪录着哪些美丽, 让我一起来分享哪些属于我们的时刻吧</span>
+  </div>
+</div>
+
+
 <div id="header" class="header" ng-controller="headerController">
   <a href="www.google.com" class="header-site">迹客</a>
   <a ng-click="homepageBtn()" href="javascript: void(0);" class="header-homepage">主页</a>
+  <a href="#/community/index" class="header-homepage">社区</a>
   <div class="header-right" ng-controller="LoginController">
     <div class="header-right-logout">
     <span id="login_username"></span><span style="line-height: 2;">| <a ng-click="logout()" href="javascript: void(0);">登出</a></span>
@@ -54,6 +63,7 @@
       <input type="submit" id="register-form-submit" value="登陆">
     </div>
   </form>
+  <div class="login-popup-register"> <a href="#/register">注册</a></div>
 </div>
 
 

@@ -39,6 +39,9 @@ buybs.config(['$routeProvider',
         controller: 'logoutController',
         templateUrl: 'views/homepage.html'
     }).
+        when('/community/index', {
+        templateUrl: 'views/community/index.html'
+    }).
       otherwise({
         redirectTo: '/foot'
       });

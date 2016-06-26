@@ -4,12 +4,12 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://10.86.7.6:3000';
+var ipAddress = 'http://localhost:3000';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps'})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 15}})
       .success(function(data){
         $scope.footsteps = data;
         preview = setInterval(timePage, 1000);
@@ -35,8 +35,42 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     preview = setInterval(timePage, 100);
   };
 
+
+  var range = 1;
+  var totalHeight = 0;
+  var number = 0;
+  $(window).scroll(function(){
+    var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
+
+    console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+    console.log("页面的文档高度 ："+$(document).height());
+    console.log('浏览器的高度：'+$(window).height());
+
+    totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
+    if(($(document).height() - range) <= totalHeight) {
+
+      $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 15 + (number*15)}})
+          .success(function(data){
+            $scope.footsteps = data;
+            preview = setInterval(timePage, 1000);
+          },function(error){
+            $scope.error = error;
+          });
+
+      number++;
+    }
+  });
+
+
   $scope.stickBtn = function(id){
 
+    console.log("User: " + $cookies.get('u_id'));
+
+    if($cookies.get('u_id') == undefined){
+      $("#login-popup").css("display", "block");
+      $(".login-cover").css("display", "block");
+      return;
+    }
 
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
@@ -67,7 +101,24 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   };
 
+  $scope.loginCheck = function(fs_id) {
+    if($cookies.get('u_id') == undefined){
+      $("#login-popup").css("display", "block");
+      $(".login-cover").css("display", "block");
+      return;
+    } else {
+      $window.location.href = "#/foot/" + fs_id;
+    }
+
+  };
+
   $scope.likeBtn = function(id){
+
+    if($cookies.get('u_id') == undefined){
+      $("#login-popup").css("display", "block");
+      $(".login-cover").css("display", "block");
+      return;
+    }
 
     $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
@@ -153,6 +204,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
 /* get shop detail by shop id */
 buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window', function ($scope, $routeParams, $http, $cookies, $window) {
+
 
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
@@ -425,6 +477,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         $(".header-right-logout").css("display", "block");
         $(".header-right-login").css("display", "none");
         $("#login-popup").css("display", "none");
+        $(".login-cover").css("display", "none");
       }else {
         $(".login-popup-form-invalid").css("display", "block");
         $scope.user = angular.copy($scope.data);
@@ -585,7 +638,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       }
     });
 
-    
+
 
 
 

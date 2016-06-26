@@ -32,6 +32,11 @@ router.get('/getFootsteps', function(req, res, next) {
         criteriaSQL += " where jkf.fs_from='" + req.param('fs_from') + "'";
     }
 
+    if(req.param('index_start') && req.param('index_end')) {
+        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('index_end');
+    }
+
+
     console.log(criteriaSQL);
 
 
