@@ -424,6 +424,17 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 }]);
 
 
+
+
+/* logout */
+buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
+
+
+
+}]);
+
+
+
 /* Call web service to add a user account info into MONGODB */
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
 
@@ -478,6 +489,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         $(".header-right-login").css("display", "none");
         $("#login-popup").css("display", "none");
         $(".login-cover").css("display", "none");
+        $window.location.href="#/foot";
       }else {
         $(".login-popup-form-invalid").css("display", "block");
         $scope.user = angular.copy($scope.data);

@@ -13,6 +13,10 @@ buybs.config(['$routeProvider',
   function($routeProvider) {
     
     $routeProvider.
+    when('/', {
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl'
+    }).
       when('/foot', {
         templateUrl: 'views/homepage.html',
         controller: 'FootstepsListCtrl'
