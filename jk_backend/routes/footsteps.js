@@ -69,6 +69,20 @@ router.get('/getFootstepsByUID', function(req, res, next) {
     })
 });
 
+
+router.get('/getFootstepsNumber', function(req, res, next) {
+    var criteriaSQL = "select count(*) as number from jk_footsteps;";
+
+    connection.query(criteriaSQL, function(err, result) {
+        if(err) {
+            res.send("Error: " + err);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
+
 router.get('/getSticksByUID', function(req, res, next) {
     var criteriaSQL = mysql.format("select fs_id,u_id,fs_pic,fs_des," +
         "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +

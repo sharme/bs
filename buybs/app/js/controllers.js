@@ -9,7 +9,7 @@ var ipAddress = 'http://localhost:3000';
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 15}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 30}})
       .success(function(data){
         $scope.footsteps = data;
         preview = setInterval(timePage, 1000);
@@ -36,28 +36,36 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
 
-  var range = 1;
+  var range = 500;
   var totalHeight = 0;
   var number = 0;
   $(window).scroll(function(){
-    var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
 
-    console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
-    console.log("页面的文档高度 ："+$(document).height());
-    console.log('浏览器的高度：'+$(window).height());
+    if(document.location.href == "http://localhost:8000/app/#/foot") {
 
-    totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
-    if(($(document).height() - range) <= totalHeight) {
+      var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
 
-      $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 15 + (number*15)}})
-          .success(function(data){
-            $scope.footsteps = data;
-            preview = setInterval(timePage, 1000);
-          },function(error){
-            $scope.error = error;
-          });
+      console.log("滚动条到顶部的垂直高度: " + $(document).scrollTop());
+      console.log("页面的文档高度 ：" + $(document).height());
+      console.log('浏览器的高度：' + $(window).height());
 
-      number++;
+      totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
+      if (($(document).height() - range) <= totalHeight) {
+
+        $http({
+          method: 'GET',
+          url: ipAddress + '/footsteps/getFootsteps',
+          params: {index_start: 0, index_end: 15 + (number * 15)}
+        })
+            .success(function (data) {
+              $scope.footsteps = data;
+              preview = setInterval(timePage, 1000);
+            }, function (error) {
+              $scope.error = error;
+            });
+
+        number++;
+      }
     }
   });
 
@@ -434,6 +442,16 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window', fun
 }]);
 
 
+/* logout */
+buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
+
+  $("#login-popup").css("display", "none");
+  $(".login-cover").css("display", "none");
+  $("body").css("overflow","auto");
+
+}]);
+
+
 
 /* Call web service to add a user account info into MONGODB */
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
@@ -489,6 +507,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         $(".header-right-login").css("display", "none");
         $("#login-popup").css("display", "none");
         $(".login-cover").css("display", "none");
+        $("body").css("overflow","auto");
         $window.location.href="#/foot";
       }else {
         $(".login-popup-form-invalid").css("display", "block");

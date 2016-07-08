@@ -29,7 +29,8 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/register/complete.html'
     }).
         when('/register', {
-        templateUrl: 'views/register/register.html'
+        templateUrl: 'views/register/register.html',
+        controller: 'RegisterCtrl'
     }).
         when('/profile',{
         templateUrl: 'views/profile.html',

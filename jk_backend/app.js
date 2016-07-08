@@ -15,6 +15,10 @@ var comments = require('./routes/comments');
 var followers = require('./routes/followers');
 var api = require('./routes/api');
 var messages = require('./routes/messages');
+var topics = require('./routes/topics');
+var topicLikes = require('./routes/topicLikes');
+var topicComments = require('./routes/topicComments');
+var topicClicks = require('./routes/topicClicks');
 
 var app = express();
 
@@ -49,6 +53,10 @@ app.use('/comments', comments);
 app.use('/followers', followers);
 app.use('/api', api);
 app.use('/messages', messages);
+app.use('/topics', topics);
+app.use('/topicLikes', topicLikes);
+app.use('/topicComments', topicComments);
+app.use('/topicClicks', topicClicks);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
