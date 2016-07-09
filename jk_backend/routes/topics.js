@@ -17,7 +17,7 @@ connection.connect();
 
 router.get('/getTopics', function(req, res, next) {
 
-    var criteriaSQL = "select tp_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name,(select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_img, tp_update_time from jk_topics as jkt;";
+    var criteriaSQL = "select tp_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name,(select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_about, tp_img, tp_update_time from jk_topics as jkt";
 
     console.log(req.param('fs_about'));
 
@@ -71,8 +71,8 @@ router.post('/create', function(req, res, next) {
 });
 
 
-router.get('/getFootstepsDetail', function (req, res, next) {
-    var criteriaSQL = mysql.format("select tp_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name,(select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_img, tp_update_time from jk_topics as jkt where jkt.tp_id=?;", [req.param('tp_id')]);
+router.get('/getTopicsByTPID', function (req, res, next) {
+    var criteriaSQL = mysql.format("select tp_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name,(select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_about, tp_img, tp_update_time from jk_topics as jkt where jkt.tp_id=?", [req.param('tp_id')]);
 
     connection.query(criteriaSQL, function (err, result) {
         if(err) {

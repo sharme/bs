@@ -45,7 +45,12 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/homepage.html'
     }).
         when('/community/index', {
+        controller: 'CommunityCtrl',
         templateUrl: 'views/community/index.html'
+    }).
+        when('/topics/:tp_id',{
+        templateUrl: 'views/community/topic.html',
+        controller: 'TopicCtrl'
     }).
       otherwise({
         redirectTo: '/foot'

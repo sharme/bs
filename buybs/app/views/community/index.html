@@ -1,5 +1,56 @@
-<div style="margin: 20px;">
 
-    我们正在努力开发中... 请小伙伴们耐心等待. 谢谢
+<div class="community">
+    <div>
+        话题&nbsp;&nbsp;
+        <button>发表话题</button>
+    </div>
+    <hr>
+    <div class="community_topic" ng-controller="CommunityCtrl">
+        <div class="community_topic_main" ng-repeat="topic in topics">
+            <div class="community_topic_main_title">
+                <div>
+                    <span style="width: 40px;">
+                        <img style="width: 40px;height: 40px;" src="{{topic.u_avatar}}">
+                    </span>
+                    &nbsp;&nbsp;{{topic.u_name}} &nbsp;&nbsp;关于&nbsp;&nbsp;
+                    <span style="color:lightgray;">{{topic.tp_about}}</span>
+                    &nbsp;&nbsp;发布的话题&nbsp;&nbsp;
+                    <span><img style="height: 20px;width: 20px;"></span>
+                    &nbsp;&nbsp;{{topic.likes}}人喜欢
+                    <div class="community_topic_main_title_time">
+                        <span style="padding-left: 50px;">
+                            <img style="height: 20px; width: 20px;">
+                        </span>
+                        最后回复于
+                        <span style="color: lightgray;">{{topic.tp_update_time | date: 'yyyy-MM-dd HH:mm'}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="community_topic_content">
+                <div class="community_topic_content_description">
+                        <div class="community_topic_content_description_title" ng-click="topicLoginCheck(topic.tp_id)">{{topic.tp_title}}</div>
+                        <div>
+                            {{topic.tp_content}}
+                        </div>
+                </div>
+                <img src="{{topic.tp_img}}" style="width: 30%; height: 120px;">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="community_promo">
+        <div class="community_promo_active">
+                <span>最活跃自由人</span>
+                <hr>
+                <span ng-repeat="user in topUsers">
+                    <img style="height: 40px; width: 40px;" src="{{user.u_avatar}}"> {{user.u_name}}
+                    <hr>
+                </span>
+
+        </div>
+    </div>
+
+
 
 </div>

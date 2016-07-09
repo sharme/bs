@@ -208,9 +208,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
 }]);
 
-
-
-/* get shop detail by shop id */
+/* get footstep detail by foot id */
 buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window', function ($scope, $routeParams, $http, $cookies, $window) {
 
 
@@ -375,8 +373,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   
 }]);
 
-
-/* Call web service to add a user account info into MONGODB */
+/* sign up */
 buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
   $scope.data = {
@@ -412,8 +409,7 @@ buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', f
 
 }]);
 
-
-/* logout */
+/* header */
 buybsControllers.controller('headerController', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
   
   $scope.homepageBtn = function() {
@@ -431,18 +427,12 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 
 }]);
 
-
-
-
-/* logout */
+/* welcome */
 buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
-
-
 
 }]);
 
-
-/* logout */
+/* Register */
 buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
 
   $("#login-popup").css("display", "none");
@@ -451,9 +441,7 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window', fu
 
 }]);
 
-
-
-/* Call web service to add a user account info into MONGODB */
+/* Login */
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
 
   var cookieUser = $cookies.get("username");
@@ -522,9 +510,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
 }]);
 
-
-
-/* Call Web service to add a shop info into MONGODB */
+/* mange user's info */
 buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','$cookies','$routeParams', function($scope, $http, $window, $cookies, $routeParams) {
 
   var data = {
@@ -795,9 +781,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
 }]);
 
-
-
-/* logout */
+/* Message to site owner */
 buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
   $scope.message = {
@@ -830,6 +814,58 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 
 }]);
 
+/* community */
+buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+
+  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, index_end: 30}})
+      .success(function(data){
+        $scope.topics = data;
+      },function(error){
+        $scope.error = error;
+      });
+
+  $http({method: 'GET', url: ipAddress + '/topicClicks/topUsers'})
+      .success(function(data){
+        $scope.topUsers = data;
+      },function(error){
+        $scope.error = error;
+      });  
+
+
+
+  $scope.topicLoginCheck = function(tp_id) {
+    if($cookies.get('u_id') == undefined){
+      $("#login-popup").css("display", "block");
+      $(".login-cover").css("display", "block");
+      return;
+    } else {
+      $window.location.href = "#/topics/" + tp_id;
+    }
+  };
+
+
+}]);
+
+
+buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams', function($scope, $cookies, $window, $http, $routeParams){
+
+  $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
+      .success(function(data){
+        $scope.topic = data[0];
+        console.log($scope.topic)
+      },function(error){
+        $scope.error = error;
+      });
+
+  $http({method: 'GET', url: ipAddress + '/topicComments/getCommentsByTPID', params:{tp_id: $routeParams.tp_id}})
+      .success(function(data){
+        $scope.comments = data;
+        console.log($scope.topic)
+      },function(error){
+        $scope.error = error;
+      });
+
+}]);
 
 
 
