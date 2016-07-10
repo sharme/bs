@@ -843,6 +843,16 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
     }
   };
 
+  $scope.addLoginCheck = function() {
+    if($cookies.get('u_id') == undefined){
+      $("#login-popup").css("display", "block");
+      $(".login-cover").css("display", "block");
+      return;
+    } else {
+      $window.location.href = "#/topics/addTopic";
+    }
+  };
+
 
 }]);
 
@@ -888,6 +898,60 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
     $http(req).success(function(result){
       $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
+
+}]);
+
+
+buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams', function($scope, $cookies, $window, $http, $routeParams){
+
+
+  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
+      .success(function(data){
+        console.log('countries: ' + data);
+        $scope.countries = data;
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.topic = {
+    u_id: '',
+    tp_about: '',
+    tp_content: '从这里开始输入内容...',
+    tp_img: '',
+    tp_title: ''
+  };
+
+
+  $scope.submit = function(){
+
+    var replayData = {
+      u_id: $cookies.get('u_id'),
+      tp_about: $scope.topic.tp_about,
+      tp_content: CKEDITOR.instances.editor1.getData(),
+      tp_img: '',
+      tp_title: $scope.topic.tp_title
+    };
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/topics/create',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(replayData)
+    };
+
+    console.log("topic comments replied : " + JSON.stringify(replayData));
+
+    $http(req).success(function(result){
+      alert("发布成功");
+      $window.location.href= '#/community/topics';
     }, function(error){
       console.log(error);
     });

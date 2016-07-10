@@ -2,7 +2,7 @@
 <div class="community">
     <div>
         话题&nbsp;&nbsp;
-        <button>发表话题</button>
+        <button ng-click="addLoginCheck()">发表话题</button>
     </div>
     <hr>
     <div class="community_topic" ng-controller="CommunityCtrl">
@@ -30,7 +30,7 @@
                 <div class="community_topic_content_description">
                         <div class="community_topic_content_description_title" ng-click="topicLoginCheck(topic.tp_id)">{{topic.tp_title}}</div>
                         <div>
-                            {{topic.tp_content}}
+                           <p ng-bind-html="topic.tp_content"></p>
                         </div>
                 </div>
                 <img src="{{topic.tp_img}}" style="width: 30%; height: 120px;">
