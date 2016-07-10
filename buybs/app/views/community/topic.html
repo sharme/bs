@@ -36,7 +36,7 @@
                         <img style="width: 40px; height: 40px;" src="{{comment.u_avatar}}"><br> {{comment.u_name}}
                     </div>
                     <div class="topic_content_comment_right">
-                        {{comment.tp_cm_content}}
+                        <p ng-bind-html="comment.tp_cm_content"></p>
                     </div>
                 </div>
                 <hr>
@@ -49,9 +49,19 @@
             </div>
         </div>
 
+        <div class="topic_content_reply" style="margin-top: 10px;">
 
+            <form  ng-controller="TopicCtrl" method="POST" ng-submit="submit()" >
+                <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                <button class="topic_content_reply_btn" type="submit">回复</button>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'editor1' );
+                </script>
 
-
+            </form>
+        </div>
 
 
 

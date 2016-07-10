@@ -6,7 +6,8 @@ var buybs = angular.module('buybs', [
   'ngRoute',
   'buybsControllers',
   'buybsFilters',
-    'ngCookies'
+    'ngCookies',
+    'ngSanitize'
 ]);
 
 buybs.config(['$routeProvider',
@@ -51,8 +52,5 @@ buybs.config(['$routeProvider',
         when('/topics/:tp_id',{
         templateUrl: 'views/community/topic.html',
         controller: 'TopicCtrl'
-    }).
-      otherwise({
-        redirectTo: '/foot'
-      });
+    });
   }]);

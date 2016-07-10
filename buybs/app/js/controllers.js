@@ -852,7 +852,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
         $scope.topic = data[0];
-        console.log($scope.topic)
       },function(error){
         $scope.error = error;
       });
@@ -860,10 +859,41 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   $http({method: 'GET', url: ipAddress + '/topicComments/getCommentsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
         $scope.comments = data;
-        console.log($scope.topic)
       },function(error){
         $scope.error = error;
       });
+
+  $scope.replay = {m_content: '从这里开始输入内容...'};
+
+
+  $scope.submit = function(){
+
+    var replayData = {
+      tp_id: $scope.topic.tp_id,
+      u_id: $cookies.get('u_id'),
+      tp_cm_to: 0,
+      tp_cm_content: CKEDITOR.instances.editor1.getData()
+    };
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/topicComments/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(replayData)
+    };
+
+    console.log("topic comments replied : " + JSON.stringify(replayData));
+
+    $http(req).success(function(result){
+      $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
 
 }]);
 
