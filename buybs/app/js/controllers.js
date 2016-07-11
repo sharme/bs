@@ -29,6 +29,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from}})
         .success(function(data){
           $scope.footsteps = data;
+          $scope.number = data.length;
         }, function(error){
           $scope.error = error;
         });
@@ -36,38 +37,49 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
 
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsNumber'})
+      .success(function(data){
+        $scope.number = data[0].number;
+      },function(error){
+        $scope.error = error;
+      });
+
+
   var range = 500;
   var totalHeight = 0;
-  var number = 0;
-  $(window).scroll(function(){
+  var count = 0;
 
-    if(document.location.href == "http://localhost:8000/app/#/foot") {
+    $(window).scroll(function () {
+      if (document.location.href == "http://localhost:8000/app/#/foot") {
+        if($scope.number > (30 + (count*15))) {
 
-      var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
+          var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
 
-      console.log("滚动条到顶部的垂直高度: " + $(document).scrollTop());
-      console.log("页面的文档高度 ：" + $(document).height());
-      console.log('浏览器的高度：' + $(window).height());
+          // console.log("滚动条到顶部的垂直高度: " + $(document).scrollTop());
+          // console.log("页面的文档高度 ：" + $(document).height());
+          // console.log('浏览器的高度：' + $(window).height());
 
-      totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
-      if (($(document).height() - range) <= totalHeight) {
+          totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
+          if (($(document).height() - range) <= totalHeight) {
 
-        $http({
-          method: 'GET',
-          url: ipAddress + '/footsteps/getFootsteps',
-          params: {index_start: 0, index_end: 15 + (number * 15)}
-        })
-            .success(function (data) {
-              $scope.footsteps = data;
-              preview = setInterval(timePage, 1000);
-            }, function (error) {
-              $scope.error = error;
-            });
+            $http({
+              method: 'GET',
+              url: ipAddress + '/footsteps/getFootsteps',
+              params: {index_start: 0, index_end: 30 + (count * 15)}
+            })
+                .success(function (data) {
+                  $scope.footsteps = data;
+                  preview = setInterval(timePage, 1000);
+                }, function (error) {
+                  $scope.error = error;
+                });
 
-        number++;
+            count++;
+          }
+        }
       }
-    }
-  });
+    });
+
 
 
   $scope.stickBtn = function(id){
@@ -176,6 +188,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         {"topPx":125,"leftPx": "80%"}
       ];
 
+      var maxVal = 30;
       $("#footstep-list").children("#footstep-list-div").each(function(index, element){
 
         $(element).css({
@@ -195,13 +208,26 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
           i++;
 
+          for (var j = 0; j < 5; j++) {
+            maxVal = topPxs[j];
+            if(maxVal < topPxs[j+1] && j < 4) {
+              maxVal = topPxs[j+1];
+            }
+          }
+          console.log("maxVal= "  + JSON.stringify(maxVal));
+
           if((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0 ){
             // i = 0;
             trigger++;
             // alert("test");
           }
         }
+
       });
+      
+
+      $('.footstep-list_end').css('top', maxVal.topPx + 500);
+      
     }
   }
   
@@ -697,7 +723,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           $scope.error = error;
         });
 
-    preview = setInterval(timePage, 10);
+    preview = setInterval(timePage, 100);
   };
   
   $scope.profileSticks = function(u_id) {

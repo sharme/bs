@@ -2,6 +2,7 @@
     <button class="navigation-country" ng-repeat="country in countries">
         <a ng-click="countryFilter(this,country.c_name)">{{country.c_name}}</a></button>
 </div>
+<div class="footstep-count">{{number}}足迹</div>
 <div id="footstep-list">
         <div id="footstep-list-div" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic" ng-click="loginCheck(result.fs_id)">
@@ -32,5 +33,6 @@
                     </div>
             </div>
     </div>
+    <div class="footstep-list_end">没有了</div>
 </div>
 <div id="bottom-div"></div>

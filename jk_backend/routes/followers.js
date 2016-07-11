@@ -22,6 +22,10 @@ router.post('/add', function(req, res, next) {
         if(err) {
             res.send("Error: " + err);
         } else {
+
+            var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,default)",[req.body.u_id, 'follow']);
+            connection.query(addEvent);
+            
             res.send(result);
         }
     })
