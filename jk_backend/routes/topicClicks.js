@@ -16,7 +16,7 @@ connection.connect();
 
 
 router.post('/add', function(req, res, next) {
-    var addSQL = mysql.format("insert into jk_topics_clicks(tp_id,tp_ck_create_time) values (?,default)",[req.body.tp_id]);
+    var addSQL = mysql.format("insert into jk_topics_clicks(tp_id,u_id,tp_ck_create_time) values (?,?,default)",[req.body.tp_id, req.body.u_id]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {

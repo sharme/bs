@@ -2,19 +2,26 @@
 .community, .topic, .topic_add {
   margin: 50px 12%;
   .community_topic {
-    margin: 0px 25% 0px 0px;
+    margin: 0px 25% 100px 0px;
     float: left;
-    .community_topic_main_title_time {
-      width: auto;
-      float: right;
-      line-height: 2.5;
+    .community_topic_main {
+      height: 165px;
+      .community_topic_main_title_time {
+        width: auto;
+        float: right;
+        line-height: 2.5;
+      }
+    }
+    .community_topic_end {
+      text-align: center;
+      color: lightgray;
     }
 
     .community_topic_content_description{
       //margin: 10px 35% 0px 0px;
       float: left;
       height: 120px;
-      width: 70%;
+      width: 90%;
       .community_topic_content_description_title {
         padding: 10px 0px 10px 0px;
         font-size: 18px;
@@ -49,14 +56,10 @@
   }
 
 
-
 }
 
 
 .topic {
-
-  padding-top: 20px;
-
   .closeTopic {
     float: right;
     font-size: 20px;
@@ -101,6 +104,7 @@
         text-align: center;
         line-height: 3;
         background-color: gray;
+        cursor: pointer;
       }
     }
   }
@@ -211,4 +215,19 @@
     color: white;
     cursor: pointer;
   }
+
+  .closeTopic {
+    float: right;
+    font-size: 20px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 1.5;
+    background-color: gray;
+    cursor: pointer;
+    border: solid 1px;
+    border-radius: 15px;
+  }
+
 }

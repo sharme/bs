@@ -839,7 +839,27 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
       $(".login-cover").css("display", "block");
       return;
     } else {
-      $window.location.href = "#/topics/" + tp_id;
+      var click = {
+        tp_id: tp_id,
+        u_id: $cookies.get('u_id')
+      };
+
+      var req = {
+        method: 'POST',
+        url: ipAddress + '/topicClicks/add',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(click)
+      };
+      console.log(click);
+
+      $http(req).success(function(result){
+        $window.location.href = "#/community/topics/" + tp_id;
+      }, function(error){
+        console.log(error);
+      });
+
     }
   };
 
@@ -849,7 +869,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
       $(".login-cover").css("display", "block");
       return;
     } else {
-      $window.location.href = "#/topics/addTopic";
+      $window.location.href = "#/community/topics/addTopic";
     }
   };
 
@@ -869,12 +889,47 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   $http({method: 'GET', url: ipAddress + '/topicComments/getCommentsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
         $scope.comments = data;
+        $scope.commentNum = data.length;
       },function(error){
         $scope.error = error;
       });
 
+  $http({method: 'GET', url: ipAddress + '/topicClicks/search', params:{tp_id: $routeParams.tp_id}})
+      .success(function(data){
+        $scope.clicks = data;
+      },function(error){
+        $scope.error = error;
+      });
+  
+
+  
+
   $scope.replay = {m_content: '从这里开始输入内容...'};
 
+  $scope.likeBtn = function(tp_id){
+
+    var like = {
+      tp_id: tp_id,
+      u_id: $cookies.get('u_id')
+    };
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/topicLikes/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(like)
+    };
+
+    $http(req).success(function(result){
+      $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+
+
+  };
 
   $scope.submit = function(){
 
@@ -904,6 +959,11 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   };
 
 
+  $scope.closeTopic = function() {
+    $window.location.href = '#/community/index';
+  }
+
+
 
 }]);
 
@@ -919,6 +979,10 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
         $scope.error = error;
       });
 
+  $scope.closeTopic = function() {
+    $window.location.href = '#/community/index';
+  }
+
   $scope.topic = {
     u_id: '',
     tp_about: '',
@@ -927,6 +991,12 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
     tp_title: ''
   };
 
+  $scope.checkVal = function() {
+    if($scope.topic.tp_about == ''){
+      alert('关于不能为空!');
+    }
+
+  };
 
   $scope.submit = function(){
 
@@ -937,6 +1007,12 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       tp_img: '',
       tp_title: $scope.topic.tp_title
     };
+
+    if($scope.topic.tp_about == ''){
+      alert('关于不能为空!');
+      $window.location.reload();
+    }
+
 
     var req = {
       method: 'POST',
@@ -951,7 +1027,7 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
 
     $http(req).success(function(result){
       alert("发布成功");
-      $window.location.href= '#/community/topics';
+      $window.location.href= '#/community/index';
     }, function(error){
       console.log(error);
     });

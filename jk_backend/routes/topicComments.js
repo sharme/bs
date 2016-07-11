@@ -40,6 +40,18 @@ router.get('/getCommentsByTPID', function (req, res, next) {
     })
 });
 
+router.get('/search', function (req, res, next) {
+    var criteriaSQL = mysql.format("select count(*) as comments from jk_topics_comments as jktc where jktc.tp_id = ?", [req.param('tp_id')]);
+
+    connection.query(criteriaSQL, function (err, result) {
+        if(err) {
+            res.send("Error: " + err);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
 
 
 

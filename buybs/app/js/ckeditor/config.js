@@ -29,8 +29,8 @@ CKEDITOR.editorConfig = function( config ) {
     config.toolbarCanCollapse = true;
 
     config.toolbar = [
-        { name: 'document', items: [ 'Source','Preview'] },
-        { name: 'insert', items: [ 'Image', 'Smiley'] },
+        // { name: 'document', items: [ 'Source','Preview'] },
+        { name: 'insert', items: [ 'Smiley'] },
         { name: 'colors', items: [ 'TextColor'] }
     ];
 
