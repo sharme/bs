@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://localhost:3000';
+var ipAddress = 'http://127.0.0.1:3000';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
