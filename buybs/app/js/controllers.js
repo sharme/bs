@@ -5,6 +5,7 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 var ipAddress = 'http://127.0.0.1:3000';
+var localAddress = 'http://180.76.152.112:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -50,7 +51,9 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   var count = 0;
 
     $(window).scroll(function () {
-      if (document.location.href == "http://localhost:8000/app/#/foot") {
+
+
+      if (document.location.href == localAddress + '/app/#/foot') {
         if($scope.number > (30 + (count*15))) {
 
           var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
@@ -200,14 +203,10 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         topPxs[i].topPx = topPxs[i].topPx + $(element).height() +10;
 
         if((index+1)%5 == 0){
-          // alert("第一" + topPxs[0].topPx);
           i = 0;
           count++;
-          // alert($(element).height());
         } else {
-
           i++;
-
           for (var j = 0; j < 5; j++) {
             maxVal = topPxs[j];
             if(maxVal < topPxs[j+1] && j < 4) {
@@ -217,9 +216,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           console.log("maxVal= "  + JSON.stringify(maxVal));
 
           if((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0 ){
-            // i = 0;
             trigger++;
-            // alert("test");
           }
         }
 
