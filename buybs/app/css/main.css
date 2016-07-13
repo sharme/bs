@@ -120,7 +120,7 @@ a {
   display: none;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(/app/img/bgCover.jpg);
+  background-image: url(http://o99spo2ev.bkt.clouddn.com/bgCover.jpg);
 }
 .login-cover .login-cover-title {
   margin: 10px 10%;
