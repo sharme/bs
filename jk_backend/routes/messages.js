@@ -14,9 +14,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var date = new Date();
 
 router.post('/add', function(req, res, next) {
-    var addSQL = mysql.format("insert into jk_messages(u_id,m_content,m_create_time) values (?,?,default)",[ req.body.u_id,req.body.m_content]);
+    var addSQL = mysql.format("insert into jk_messages(u_id,m_content,m_create_time) values (?,?,?)",[ req.body.u_id,req.body.m_content,date]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {

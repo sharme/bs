@@ -221,10 +221,11 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         }
 
       });
-      
+     
 
       $('.footstep-list_end').css('top', maxVal.topPx + 500);
-      
+   } else {
+	$('.footstep-list_end').css('display','none');   
     }
   }
   

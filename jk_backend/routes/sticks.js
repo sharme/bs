@@ -14,16 +14,17 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var date = new Date();
 
 router.post('/add', function(req, res, next) {
-   var addSQL = mysql.format("insert into jk_sticks(fs_id,u_id,st_create_time) values (?,?,default)",[req.body.fs_id, req.body.u_id]);
+   var addSQL = mysql.format("insert into jk_sticks(fs_id,u_id,st_create_time) values (?,?,?)",[req.body.fs_id, req.body.u_id,date]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {
             res.send("Error: " + err);
         } else {
 
-            var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,default)",[req.body.u_id, 'stick']);
+            var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,?)",[req.body.u_id, 'stick',date]);
             connection.query(addEvent);
 
             res.send(result);

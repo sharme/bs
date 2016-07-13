@@ -12,11 +12,13 @@ var connection = mysql.createConnection({
     database: 'jk'
 });
 
+var date = new Date();
+
 connection.connect();
 
 
 router.post('/add', function(req, res, next) {
-    var addSQL = mysql.format("insert into jk_topics_comments(tp_id,u_id,tp_cm_to,tp_cm_content,tp_cm_create_time) values (?,?,?,?,default)",[req.body.tp_id, req.body.u_id,req.body.tp_cm_to,req.body.tp_cm_content]);
+    var addSQL = mysql.format("insert into jk_topics_comments(tp_id,u_id,tp_cm_to,tp_cm_content,tp_cm_create_time) values (?,?,?,?,?)",[req.body.tp_id, req.body.u_id,req.body.tp_cm_to,req.body.tp_cm_content,date]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {

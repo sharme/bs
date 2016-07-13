@@ -14,9 +14,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var date = new Date();
 
 router.post('/add', function(req, res, next) {
-    var addSQL = mysql.format("insert into jk_topics_likes(tp_id,u_id,tp_lk_create_time) values (?,?,default)",[req.body.tp_id, req.body.u_id]);
+    var addSQL = mysql.format("insert into jk_topics_likes(tp_id,u_id,tp_lk_create_time) values (?,?,?)",[req.body.tp_id, req.body.u_id,date]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {

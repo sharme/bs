@@ -14,6 +14,8 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var date = new Date();
+
 /* GET users listing. */
 router.get('/getUsers', function(req, res, next) {
   connection.query('select * from jk_users', function (err, rows, fields) {
@@ -61,8 +63,8 @@ router.get('/getUserDetail', function(req, res, next) {
 });
 
 router.post('/create', urlencodeParser, function(req, res, next) {
-  var createSQL = "insert into jk_users(u_phone_num,u_pwd,u_name,u_status,u_link,u_create_time) values (?,?,?,1,?,default)";
-  var inserts = [req.body.phoneNumber, req.body.password, req.body.username,"www.buybs.com/"+ req.body.username];
+  var createSQL = "insert into jk_users(u_phone_num,u_pwd,u_name,u_status,u_link,u_create_time) values (?,?,?,1,?,?)";
+  var inserts = [req.body.phoneNumber, req.body.password, req.body.username,"www.buybs.com/"+ req.body.username,date];
   createSQL = mysql.format(createSQL, inserts);
 
   connection.query(createSQL, function (err, result) {

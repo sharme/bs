@@ -33,6 +33,7 @@
   float: left;
   height: 120px;
   width: 90%;
+  overflow: hidden;
 }
 .community .community_topic .community_topic_content_description .community_topic_content_description_title,
 .topic .community_topic .community_topic_content_description .community_topic_content_description_title,

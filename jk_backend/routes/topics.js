@@ -14,6 +14,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var date = new Date();
 
 router.get('/getTopics', function(req, res, next) {
 
@@ -59,7 +60,7 @@ router.get('/getTopicsNumber', function(req, res, next) {
 
 
 router.post('/create', function(req, res, next) {
-    var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time) values(?,?,?,?,?,default,default)", [req.body.u_id, req.body.tp_about,req.body.tp_content,req.body.tp_img,req.body.tp_title]);
+    var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time) values(?,?,?,?,?,?,?)", [req.body.u_id, req.body.tp_about,req.body.tp_content,req.body.tp_img,req.body.tp_title,date,date]);
 
     connection.query(createSQL, function (err, result) {
         if(err) {

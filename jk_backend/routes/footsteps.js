@@ -14,6 +14,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var date = new Date();
 
 router.get('/getFootsteps', function(req, res, next) {
 
@@ -102,7 +103,7 @@ router.get('/getSticksByUID', function(req, res, next) {
 });
 
 router.post('/create', function(req, res, next) {
-    var createSQL = mysql.format("insert into jk_footsteps(fs_pic,fs_des,fs_from,u_id,fs_create_time,fs_update_time) values(?,?,?,?,default,default)", [req.body.fs_pic, req.body.fs_desc,req.body.fs_from,req.body.u_id]);
+    var createSQL = mysql.format("insert into jk_footsteps(fs_pic,fs_des,fs_from,u_id,fs_create_time,fs_update_time) values(?,?,?,?,?,?)", [req.body.fs_pic, req.body.fs_desc,req.body.fs_from,req.body.u_id,date,date]);
 
     connection.query(createSQL, function (err, result) {
         if(err) {
