@@ -4,8 +4,8 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://localhost:3000';
-var localAddress = 'http://localhost:8080';
+var ipAddress = 'http://180.76.152.112:3000';
+var localAddress = 'http://180.76.152.112:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -1024,12 +1024,23 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
 
   $scope.submit = function(){
 
+    var tp_subject = "";
+
+    if(CKEDITOR.instances.editor1.getData().length > 150){
+      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, CKEDITOR.instances.editor1.getData().indexOf('</p>')+4);
+    }else{
+      tp_subject = CKEDITOR.instances.editor1.getData();
+    }
+
+
+
     var replayData = {
       u_id: $cookies.get('u_id'),
       tp_about: $scope.topic.tp_about,
       tp_content: CKEDITOR.instances.editor1.getData(),
       tp_img: '',
-      tp_title: $scope.topic.tp_title
+      tp_title: $scope.topic.tp_title,
+      tp_subject: tp_subject
     };
 
     if($scope.topic.tp_about == ''){

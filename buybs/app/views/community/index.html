@@ -18,7 +18,7 @@
                     <span style="font-size: 13px;"><img src="img/heart.png" style="height: 15px;width: 15px;">&nbsp;{{topic.likes}}人喜欢</span>
 
                     <div class="community_topic_main_title_time">
-                        <span style="padding-left: 50px;">
+                        <span>
                             <img style="height: 18px; width: 18px;">
                         </span>
                         最后回复于
@@ -29,8 +29,8 @@
             <div class="community_topic_content">
                 <div class="community_topic_content_description">
                         <div class="community_topic_content_description_title" ng-click="topicLoginCheck(topic.tp_id)">{{topic.tp_title}}</div>
-                        <div>
-                           <p ng-bind-html="topic.tp_content"></p>
+                        <div ng-bind-html="topic.tp_subject">
+
                         </div>
                 </div>
                 <!--<img ng-if="topic.tp_img != '' " src="{{topic.tp_img}}" style="width: 30%; height: 120px;">-->
