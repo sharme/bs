@@ -114,15 +114,13 @@ a {
   bottom: 0px;
   left: 0px;
   display: none;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url(/app/img/bgCover.jpg);
+  background-color: lightgrey;
 }
 .login-cover .login-cover-title {
-  margin: 10px 10%;
+  margin: 60px 20%;
   height: 100px;
   font-size: 22px;
-  font-family: cursive;
+  font-family: fantasy;
   padding: 20px;
   color: cadetblue;
 }
