@@ -33,11 +33,15 @@ a {
   background-size: contain;
   color: white;
 }
+.welcome hr {
+  height: 2px;
+  background-color: #eeeeee;
+}
 .welcome .welcome_footer {
   height: 400px;
   padding: 100px;
   font-size: 18px;
-  color: black;
+  color: grey;
 }
 .welcome .welcome_register {
   height: 400px;

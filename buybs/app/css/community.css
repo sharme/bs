@@ -117,7 +117,6 @@
   cursor: pointer;
 }
 .topic .topic_info .topic_info_img {
-  margin: 0px 30% 0px 0px;
   float: left;
   height: 80px;
   color: grey;
@@ -126,7 +125,6 @@
   width: 60%;
   margin-left: 40%;
   height: 80px;
-  padding-left: 230px;
 }
 .topic .topic_info .topic_info_elements .topic_info_elements_data {
   width: 50px;
