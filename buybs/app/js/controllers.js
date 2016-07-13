@@ -4,8 +4,8 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112:3000';
-var localAddress = 'http://180.76.152.112:8080';
+var ipAddress = 'http://localhost:3000';
+var localAddress = 'http://localhost:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
