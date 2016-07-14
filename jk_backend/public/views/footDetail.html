@@ -1,4 +1,4 @@
-<div class="foot_wrapper" ng-controller="FootDetailCtrl">
+<div class="foot_wrapper">
     <div class="foot_wrapper-back">
         <a href="#/foot">
         <span class="foot_wrapper-back_close">X</span>
@@ -39,7 +39,7 @@
             </div>
             <hr>
             <div>
-                <form ng-submit="submit()" ng-controller="FootDetailCtrl" method="POST">
+                <form ng-submit="submit()" method="POST">
                     <!--<input type="text" id="fsIdComment" ng-model="addComment.fs_id" ng-init="addComment.fs_id=foot.fs_id"/>-->
                     <textarea cols="75" style="width: 100%;" ng-model="addComment.cm_content"></textarea>
 
