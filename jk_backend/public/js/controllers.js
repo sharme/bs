@@ -4,8 +4,8 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112:3000';
-var localAddress = 'http://180.76.152.112:8080';
+var ipAddress = 'http://180.76.152.112:8080';
+// var localAddress = 'http://180.76.152.112:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -53,7 +53,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $(window).scroll(function () {
 
 
-      if (document.location.href == localAddress + '/app/#/foot') {
+      if (document.location.href == ipAddress + '/app/#/foot') {
         if($scope.number > (30 + (count*15))) {
 
           var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
