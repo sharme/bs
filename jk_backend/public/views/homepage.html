@@ -1,0 +1,38 @@
+<div id="navigation">
+    <button class="navigation-country" ng-repeat="country in countries">
+        <a ng-click="countryFilter(this,country.c_name)">{{country.c_name}}</a></button>
+</div>
+<div class="footstep-count">{{number}}足迹</div>
+<div id="footstep-list">
+        <div id="footstep-list-div" ng-repeat="result in footsteps" >
+            <div class="footstep-list-div-pic" ng-click="loginCheck(result.fs_id)">
+                <!--<a href="#/foot/{{result.fs_id}}">-->
+                    <img src="{{result.fs_pic}}" style="width: 100%; height: 100%; cursor: zoom-in;">
+                <!--</a>-->
+            </div>
+            <span class="footstep-list-div-createTime">{{result.fs_create_time | date: 'yyyy-MM-dd HH:mm'}}</span>
+            <!--<hr>-->
+            <div class="footstep-list-div-desc">
+                <div>
+                    <p>{{result.fs_des}}</p>
+                    <p style="color: grey;">{{result.fs_from}}</p>
+                    <div>
+                        <button class="stick-footstep" ng-click="stickBtn(result.fs_id)">收藏</button>&nbsp;&nbsp;{{result.sticks}}
+                        <button class="like-footstep" ng-click="likeBtn(result.fs_id)">喜欢</button>&nbsp;&nbsp;{{result.likes}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="footstep-list-div-comment" ng-if="result.cm_content">
+                    <div class="footstep-list-div-comment-avatar">
+                        <img src="{{result.u_avatar}}" class="footstep-list-div-comment-avatar-img">
+                    </div>
+                    <div>
+                    <div>{{result.u_name}}</div>
+                    <div>{{result.cm_content}}</div>
+                    </div>
+            </div>
+    </div>
+    <div class="footstep-list_end">没有了</div>
+</div>
+<div id="bottom-div"></div>

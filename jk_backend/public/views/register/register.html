@@ -1,0 +1,16 @@
+<p id="register-step1">注册
+<div id="register-form">
+    <form name="register_form-div" ng-submit="submit()" ng-controller="SignUpController" method="POST">
+        手机号<input type="text" name="phoneNumber" ng-model="user.phoneNumber" id="register-form-phoneNumber" value=""/>
+        <br/>
+        用户名<input type="text" name="username" ng-model="user.username" id="register-form-username" value=""/>
+        <br/>
+        密码<input type="password" ng-model="user.password" id="register-form-password" name="password" value=""/>
+        <br/>
+        验证码<input type="text" ng-model="user.scCode" name="scCode" id="register-form-scCode"/>
+        <input type="button" value="获取验证码" id="register_form-scCode-btn"/>
+        <br/><!--input(type='checkbox')接受并同意<<宝石网协议>>-->
+        <input type="submit" id="register-form-submit" value="注册"/>
+    </form>
+</div>
+</p>

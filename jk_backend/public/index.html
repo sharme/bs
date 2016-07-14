@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="jk_backend">
+<head>
+  <title></title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/community.css">
+  <!--<script>-->
+    <!--less = {-->
+      <!--env: "production"-->
+    <!--};-->
+  <!--</script>-->
+  <!--<script src="js/common/less.min.js"></script>-->
+  <!--<script>less.watch();</script>-->
+  <script src="../js/common/jquery.min.js"></script>
+  <script src="../js/common/angular.min.js"></script>
+  <script src="../js/common/angular-cookies.min.js"></script>
+  <!--<script src="js/common/angular-animate.js"></script>-->
+  <script src="../js/common/angular-route.min.js"></script>
+  <script src="../js/common/angular-resource.min.js"></script>
+  <script src="../js/common/jquery.form.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/controllers.js"></script>
+  <script src="../js/filters/filters.js"></script>
+  <script src="../js/ckeditor/ckeditor.js"></script>
+  <script src="../js/common/angular-sanitize.js"></script>
+
+</head>
+<body>
+
+<div class="login-cover">
+  <div class="login-cover-title">
+    <span>世界很大很美, 很多美丽的地方, 很多美味的食物, 很多美丽的瞬间...</span>
+    <span> 我们用各种形式纪录着哪些美丽, 让我一起来分享哪些属于我们的时刻吧</span>
+  </div>
+</div>
+
+
+<div id="header" class="header" ng-controller="headerController">
+  <a href="#/" class="header-site"><img src="img/youtu.png" style="width: 40px;height: 40px;"></a>
+  <a ng-click="homepageBtn()" href="javascript: void(0);" class="header-homepage">主页</a>
+  <a href="#/community/index" class="header-homepage">社区</a>
+  <div class="header-right" ng-controller="LoginController">
+    <div class="header-right-logout">
+    <span id="login_username"></span><span style="line-height: 2;">| <a ng-click="logout()" href="javascript: void(0);">登出</a></span>
+    </div>
+    <div class="header-right-login">
+    <span id="header-right-login-span">
+    <a id="login_btn">登陆 |</a>
+    <a href="#/register">注册</a>
+    </span>
+    </div>
+  </div>
+</div>
+
+
+<div id="login-popup">
+  <form ng-controller="LoginController" ng-submit="submit()" method="POST">
+    <div class="login-popup-header">登陆<span class="login-popup-header-del">X</span></div>
+    <div class="login-popup-form">手机号<input type="text" name="phoneNumber" ng-model="user.phoneNumber" class="login-popup-form-phoneNumber" value="">
+      <br>密码<input type="password" class="login-popup-form-password" ng-model="user.password" name="password" value="">
+      <br>
+      <div class="login-popup-form-invalid">提示: 手机号码或密码不正确, 请从新尝试.</div>
+      <input type="submit" id="register-form-submit" value="登陆">
+    </div>
+  </form>
+  <div class="login-popup-register"> <a href="#/register">注册</a></div>
+</div>
+
+
+
+<div class="view-container">
+  <div ng-view class="view-frame"></div>
+</div>
+<script src="../js/common/utils.js"></script>
+<div id="footer">联系我: yaomiwang@qq.com | <a href="#/message">给我留言</a></div>
+
+
+
+</body>
+
+</html>

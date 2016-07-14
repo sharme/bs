@@ -1,0 +1,159 @@
+<div>
+    <div class="profile_top-edit">
+        <div class="profile_top-edit-info">
+            <p><span class="profile_top-edit-info-name">{{userProfile[0].u_name}}</span></p>
+            <button ng-click="editProfileBtn()">编辑</button>
+        </div>
+    </div>
+
+    <div class="profile_top">
+        <form ng-submit="updateSubmit()" method="POST">
+            <div id="profile_top-header">修改个人信息<span id="profile_top-edit-del" ng-click="closeBtn(this)">X</span></div>
+            <div id="profile_top-info">
+                <div>
+                    <div>
+                        <span class="profile_top_info-username">用户名</span>
+                        <span class="profile_top_info-username-val">
+                            <input type="text" class="text_input" ng-model="user.u_name" value="{{user.u_name}}">
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile_top_info-avatar-div">
+                    <div>
+                        <span class="profile_top_info-avatar">个人图像</span>
+                        <span class="profile_top_info-avatar-img" style="background-image: url({{user.u_avatar}})">
+                        </span>
+                        <input type="file" onchange="angular.element(this).scope().uploadAvatar(this)" id="avatarImg-btn" class="profile_top_info-avatar-val" name="imageName"/>
+
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <span class="profile_top_info-address">迹客地址</span>
+                        <span class="profile_top_info-address-val">
+                            <input type="text" class="text_input" ng-model="user.u_link" value="{{user.u_link}}">
+                        </span>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile_top_info-slogan-div">
+                    <div>
+                        <span class="profile_top_info-slogan">签名</span>
+                        <span class="profile_top_info-slogan-val">
+                            <textarea rows="4" cols="29" ng-model="user.u_slogan">{{user.u_slogan}}</textarea>
+                        </span>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="submit" class="profile_top-edit-submit" value="修改">
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div>
+    <div class="profile_middle">
+        <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
+            {{userProfile[0].footsteps}}<br>足迹</div>
+        <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
+            {{userProfile[0].sticks}}<br>
+            收藏
+        </div>
+        <div class="profile_middle-point" ng-click="profileFollows(userProfile[0].u_id)">
+            {{userProfile[0].follows}}<br>
+            我的关注
+        </div>
+        <div class="profile_middle-point" ng-click="profileFans(userProfile[0].u_id)">
+            {{userProfile[0].fans}}<br>
+            粉丝
+        </div>
+    </div>
+
+    </div>
+
+<div style="min-height: 400px;">
+
+    <div id="footstep-list">
+        <div class="profile_down-create" ng-click="createBtn()">创建足迹</div>
+        <div id="footstep-list-div" ng-repeat="result in footsteps" >
+            <div class="footstep-list-div-pic">
+                <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->
+                <img src="{{result.fs_pic}}" style="width: 100%; height: 100%;">
+            </div>
+            <span class="footstep-list-div-createTime">{{result.fs_create_time}}</span>
+            <!--<hr>-->
+            <div class="footstep-list-div-desc">
+                <div>
+                    <p>{{result.fs_des}}</p>
+                    <p style="color: grey;">{{result.fs_from}}</p>
+                    <div>
+                        <button class="stick-footstep" ng-click="stickBtn(result.fs_id)">收藏</button>&nbsp;&nbsp;{{result.sticks}}
+                        <button class="like-footstep" ng-click="likeBtn(result.fs_id)">喜欢</button>&nbsp;&nbsp;{{result.likes}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="footstep-list-div-comment" ng-if="result.cm_content">
+                <div class="footstep-list-div-comment-avatar">
+                    <img src="{{result.u_avatar}}" class="footstep-list-div-comment-avatar-img">
+                </div>
+                <div>
+                    <div>{{result.u_name}}</div>
+                    <div>{{result.cm_content}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="follow-list">
+        <div ng-repeat="result in results">
+            <div class="follow-list-div-comment-avatar">
+                <img src="{{result.u_avatar}}" class="follow-list-div-comment-avatar-img" title="{{result.u_name}}">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="create_footstep">
+        <div class="create_footstep-info">
+            <form ng-controller="ProfileController" ng-submit="submit()" method="POST">
+                <div id="create_footstep-info-header">创建足迹<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
+                <!--<img id="create_footstep-info-image" ng-src="{{uploadUrl}}">-->
+                <div id="create_footstep-info-image">
+                    <input type="file" class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
+                </div>
+
+                <hr>
+                <!--<div class="create_footstep-info-div">-->
+                    <!--<span class="create_footstep-info-span">地址</span><input class="create_footstep-info-pic" type="text" ng-model="footstep.fs_pic" name="imagePrice1" id="register_shop-href" value=""/>-->
+                <!--</div>-->
+                <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_pic" id="register_shop-href">
+                <div  class="create_footstep-info-div">
+                <span class="create_footstep-info-span">描述</span>
+                    <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40"></textarea>
+                    <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
+                </div>
+
+                <br/>
+                <div>
+                    <span class="create_footstep-info-span">来自</span>
+                    <select class="create_footstep-info-from" ng-model="footstep.fs_from">
+                        <option ng-repeat="country in countries">{{country.c_name}}</option>
+                        <!--<option ng-model="footstep.fs_from">印度</option>-->
+                    </select>
+                </div>
+                <br/>
+                <input type="submit" id="footstep_form-submit" value="轰轰">
+            </form>
+        </div>
+    </div>
+</div>
+
+    <div></div>
+
+
+</div>
