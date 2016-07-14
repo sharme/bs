@@ -109,9 +109,10 @@
 }
 .topic .topic_top .topic_top_like .topic_top_like_btn {
   margin: 0px 30%;
-  height: 40px;
+  height: 35px;
   text-align: center;
-  background-color: gray;
+  background-color: #eee;
+  border-radius: 6px;
   cursor: pointer;
   padding-top: 10px;
 }
@@ -166,10 +167,8 @@
   float: right;
   text-align: center;
   margin: 20px;
-  line-height: 2;
-  background-color: gray;
+  border-color: #eee;
   font-size: 16px;
-  color: white;
   cursor: pointer;
 }
 .topic .topic_content .topic_content_comment_btn {
@@ -209,10 +208,8 @@
   float: right;
   text-align: center;
   margin: 20px;
-  line-height: 2;
-  background-color: gray;
+  border-color: #eee;
   font-size: 16px;
-  color: white;
   cursor: pointer;
 }
 .topic_add .closeTopic {

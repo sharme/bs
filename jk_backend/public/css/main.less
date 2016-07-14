@@ -2,7 +2,7 @@
 @white-smoke: whitesmoke;
 @gray: gray;
 @light-grey: lightgrey;
-
+@btn_color: #eee;
 
 
 a {
@@ -19,7 +19,7 @@ a {
     height: 600px;
     padding: 200px;
     color: white;
-    background-image: url(img/wel-header.jpg);
+    background-image: url(../img/wel-header.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: -120px;
@@ -74,6 +74,13 @@ a {
     }
   }
 
+}
+
+
+button {
+  border-radius: 6px;
+  background-color: @btn_color;
+  border: none;
 }
 
 
@@ -302,8 +309,9 @@ a {
     width: 100%;
     height: 800px;
     padding: 0px 20% 0px 20%;
-    .foot_wrapper-main_follow, .foot_wrapper-main_comment-add {
+    .foot_wrapper-main_follow {
       float: right;
+      margin: 20px;
     }
     .foot_wrapper-main_profile {
       margin-top: 10px;
@@ -315,6 +323,12 @@ a {
       height: 70px;
       margin: 10px;
       line-height: 2;
+    }
+    .foot_wrapper-main_comment-add {
+      margin: 10px 80px 10px 80%;
+      width: 80px;
+      border-radius: 6px;
+      background-color: @btn_color;
     }
     .foot_wrapper-main_comment-from {
       margin: 6px;
@@ -372,7 +386,7 @@ a {
   position: absolute;
   margin: 10px 30%;
   z-index: 2;
-  background: #f8f8f8;
+  background: #eee;
   display: none;
   border-radius: 20px;
 
@@ -427,24 +441,28 @@ a {
     margin: 10px;
   }
   .profile_top_info-avatar-val{
-    width: 250px;
+    width: 180px;
     /*content: '更新上传'*/
   }
   .profile_top_info-slogan-div, .profile_top_info-avatar-div {
     height: 120px;
   }
   .profile_top_info-avatar-img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
+    margin-left: 20px;
   }
 
   .profile_top-edit-submit {
     width: 100px;
     float: right;
     margin: 0px 20px;
+    border-radius: 6px;
+    border: none;
+    height: 30px;
   }
 
 
@@ -481,7 +499,7 @@ a {
   height: 30px;
   margin-left: 10px;
   text-align: center;
-  background-color: gray;
+  background-color: darkgray;
   line-height: 2;
   border-radius: 5px;
   margin-top: 10px;
@@ -492,18 +510,17 @@ a {
 .create_footstep{
   display: inherit;
   width: 100%;
-  padding: 0px 25% 0px 30%;
+  padding: 0px 25% 0px 25%;
   position: absolute;
   display: none;
 
   .create_footstep-info{
     opacity: 1;
-    background: @light-grey;
+    background-color: #eeeeee;
     border-radius: 6px;
     display: inline-block;
     position: relative;
     text-align: left;
-    //width: 45%;
     min-height: 560px;
     max-height: 850px;
 
@@ -543,8 +560,11 @@ a {
       float: right;
       padding: 10px;
       margin-top: 10px;
+      margin-bottom: 20px;
       width: 120px;
       border-radius: 5px;
+      background-color: darkgray;
+      border:none;
     }
 
     .create_footstep-info-span{

@@ -8,14 +8,14 @@
     <div class="foot_wrapper-main">
         <div>
             <div>
-                <button class="stick_footstep" ng-click="stickBtn(foot.fs_id)">收藏</button>&nbsp;&nbsp;{{foot.sticks}}
-                <button class="like_footstep" ng-click="likeBtn(foot.fs_id)">喜欢</button>&nbsp;&nbsp;{{foot.likes}}
+                <button class="stick_footstep" style="cursor: not-allowed;" ng-click="stickBtn(foot.fs_id)">收藏</button>&nbsp;&nbsp;{{foot.sticks}}
+                <button class="like_footstep" style="cursor: not-allowed;" ng-click="likeBtn(foot.fs_id)">喜欢</button>&nbsp;&nbsp;{{foot.likes}}
             </div>
             <hr>
             <p>{{foot.fs_des}}</p>
         </div>
         <div class="footstep_div-pic">
-            <img src="{{foot.fs_pic}}" style="width: 100%; height: 100%; cursor: zoom-in;">
+            <img ng-src="{{foot.fs_pic}}" style="width: 100%; height: 100%; cursor: zoom-in;">
         </div>
         <div class="foot_wrapper-main_profile">
             <p>迹客: {{foot.u_name}}</p>
@@ -30,7 +30,7 @@
 
             <div class="foot_wrapper-main_comment" ng-repeat="comment in comments">
                 <div class="footstep-list-div-comment-avatar">
-                    <img src="{{comment.u_avatar}}" class="footstep-list-div-comment-avatar-img">
+                    <img ng-src="{{comment.u_avatar}}" class="footstep-list-div-comment-avatar-img">
                 </div>
                 <div class="foot_wrapper-main_comment-content">
                     <div class="foot_wrapper-main_comment-from">来自: {{comment.u_name}}</div>
@@ -48,10 +48,10 @@
             </div>
             <hr>
             <div class="foot_wrapper-main_follower">
-                收藏<hr>
+                都有谁收藏<hr>
                 <div class="foot_wrapper-main_follower-img" ng-repeat="stick in sticks">
                     <div class="footstep-list-div-comment-avatar">
-                        <img src="{{stick.u_avatar}}" class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">
+                        <img ng-src="{{stick.u_avatar}}" class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">
                     </div>
                 </div>
             </div>

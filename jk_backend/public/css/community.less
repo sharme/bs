@@ -1,4 +1,6 @@
 
+@btn_color: #eee;
+
 .community, .topic, .topic_add {
   margin: 50px 12%;
   .community_topic {
@@ -102,13 +104,13 @@
       width: 30%;
       margin-left: 70%;
       height: 100px;
-      //padding-top: 20px;
       .topic_top_like_btn {
         margin: 0px 30%;
-        height: 40px;
+        height: 35px;
         text-align: center;
         //line-height: 3;
-        background-color: gray;
+        background-color: @btn_color;
+        border-radius: 6px;
         cursor: pointer;
         padding-top: 10px;
       }
@@ -174,10 +176,8 @@
         float: right;
         text-align: center;
         margin: 20px;
-        line-height: 2;
-        background-color: gray;
+        border-color: @btn_color;
         font-size: 16px;
-        color: white;
         cursor: pointer;
       }
     }
@@ -215,10 +215,8 @@
     float: right;
     text-align: center;
     margin: 20px;
-    line-height: 2;
-    background-color: gray;
+    border-color: @btn_color;
     font-size: 16px;
-    color: white;
     cursor: pointer;
   }
 

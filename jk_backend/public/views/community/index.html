@@ -10,7 +10,7 @@
             <div class="community_topic_main_title">
                 <div>
                     <span style="width: 40px;">
-                        <img style="width: 40px;height: 40px;" src="{{topic.u_avatar}}">
+                        <img style="width: 40px;height: 40px;" ng-src="{{topic.u_avatar}}">
                     </span>
                     &nbsp;&nbsp;{{topic.u_name}} &nbsp;&nbsp;关于&nbsp;&nbsp;
                     <span style="color:lightgray;">{{topic.tp_about}}</span>
@@ -45,7 +45,7 @@
                 <span>最活跃自由人</span>
                 <hr>
                 <span ng-repeat="user in topUsers">
-                    <img style="height: 40px; width: 40px;" src="{{user.u_avatar}}"> {{user.u_name}}
+                    <img style="height: 40px; width: 40px;" ng-src="{{user.u_avatar}}"> {{user.u_name}}
                     <hr>
                 </span>
 

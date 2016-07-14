@@ -56,6 +56,11 @@ a {
 .welcome .welcome_register a {
   color: white;
 }
+button {
+  border-radius: 6px;
+  background-color: #eee;
+  border: none;
+}
 #header {
   height: 60px;
   padding: 15px 0px 0px 20px;
@@ -253,9 +258,9 @@ a {
   height: 800px;
   padding: 0px 20% 0px 20%;
 }
-.foot_wrapper .foot_wrapper-main .foot_wrapper-main_follow,
-.foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-add {
+.foot_wrapper .foot_wrapper-main .foot_wrapper-main_follow {
   float: right;
+  margin: 20px;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_profile {
   margin-top: 10px;
@@ -267,6 +272,12 @@ a {
   height: 70px;
   margin: 10px;
   line-height: 2;
+}
+.foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-add {
+  margin: 10px 80px 10px 80%;
+  width: 80px;
+  border-radius: 6px;
+  background-color: #eee;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-from {
   margin: 6px;
@@ -313,7 +324,7 @@ a {
   position: absolute;
   margin: 10px 30%;
   z-index: 2;
-  background: #f8f8f8;
+  background: #eee;
   display: none;
   border-radius: 20px;
 }
@@ -367,7 +378,7 @@ a {
   margin: 10px;
 }
 .profile_top_info-avatar-val {
-  width: 250px;
+  width: 180px;
   /*content: '更新上传'*/
 }
 .profile_top_info-slogan-div,
@@ -375,16 +386,20 @@ a {
   height: 120px;
 }
 .profile_top_info-avatar-img {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
+  margin-left: 20px;
 }
 .profile_top-edit-submit {
   width: 100px;
   float: right;
   margin: 0px 20px;
+  border-radius: 6px;
+  border: none;
+  height: 30px;
 }
 .text_input {
   width: 100%;
@@ -412,7 +427,7 @@ a {
   height: 30px;
   margin-left: 10px;
   text-align: center;
-  background-color: gray;
+  background-color: darkgray;
   line-height: 2;
   border-radius: 5px;
   margin-top: 10px;
@@ -421,13 +436,13 @@ a {
 .create_footstep {
   display: inherit;
   width: 100%;
-  padding: 0px 25% 0px 30%;
+  padding: 0px 25% 0px 25%;
   position: absolute;
   display: none;
 }
 .create_footstep .create_footstep-info {
   opacity: 1;
-  background: lightgrey;
+  background-color: #eeeeee;
   border-radius: 6px;
   display: inline-block;
   position: relative;
@@ -468,8 +483,11 @@ a {
   float: right;
   padding: 10px;
   margin-top: 10px;
+  margin-bottom: 20px;
   width: 120px;
   border-radius: 5px;
+  background-color: darkgray;
+  border: none;
 }
 .create_footstep .create_footstep-info .create_footstep-info-span {
   padding-left: 20px;
