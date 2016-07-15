@@ -180,6 +180,15 @@ button {
   font-size: 12px;
   display: none;
 }
+.footstep_list_home {
+  min-height: 600px;
+  padding: 0px 20% 0px 20%;
+}
+.footstep_list_profile {
+  width: 100%;
+  float: left;
+  min-height: 600px;
+}
 #navigation {
   float: left;
   width: 100%;
@@ -192,19 +201,14 @@ button {
   position: absolute;
   margin: 50px 0% 0px 95%;
 }
-#footstep-list {
-  width: 100%;
-  float: left;
-  min-height: 600px;
-}
 #footstep-list .footstep-list_end {
-  width: 100%;
+  padding-right: 60%;
   height: 100px;
   position: absolute;
   background-color: white;
   bottom: 0;
   text-align: center;
-  line-height: 2;
+  line-height: 3;
   font-size: 18px;
 }
 #footstep-list #footstep-list-div {
@@ -212,7 +216,7 @@ button {
   border: solid 1px lightgrey;
   border-radius: 6px;
   margin: 8px 0px 0px 20px;
-  width: 18%;
+  width: 30%;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;
