@@ -9,7 +9,7 @@ var ipAddress = 'http://180.76.152.112:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
-
+  
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 30}})
       .success(function(data){
         $scope.footsteps = data;
@@ -82,7 +82,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         }
       }
     });
-
 
 
   $scope.stickBtn = function(id){
@@ -176,7 +175,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
   var preview;
-
+  
+  
   function timePage(){
     if($("#footstep-list").children("#footstep-list-div").size() > 5){
       clearInterval(preview);
@@ -259,6 +259,11 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       }, function(error){
         $scope.error = error;
       });
+
+
+  $scope.backHome = function () {
+    window.history.back();
+  };
 
   $scope.stickBtn = function(id){
 
@@ -540,10 +545,11 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   var data = {
     fs_desc: '',
     fs_from: '',
-    fs_pic: ''
+    fs_pic: '',
+    fs_bigImg: '',
+    fs_smallImg:''
   };
   $scope.footstep = angular.copy(data);
-
   
   $scope.closeBtn = function(){
     $('.create_footstep').css('display','none');
@@ -598,8 +604,10 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     var footstepData = {
       fs_desc: $scope.footstep.fs_desc,
       fs_from: $scope.footstep.fs_from,
-      fs_pic: $scope.footstep.fs_pic,
-      u_id: $cookies.get('u_id')
+      fs_pic: $scope.footstep.fs_smallImg,
+      u_id: $cookies.get('u_id'),
+      fs_bigImg: $scope.footstep.fs_bigImg,
+      fs_smallImg: $scope.footstep.fs_smallImg
     };
 
     console.log("shopData: " + JSON.stringify(footstepData));
@@ -669,12 +677,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       cache: false,
       type: "POST",
       success: function (res) {
-        console.log('uploaded, URL: ' + res);
-        $(file).parent().css("background-image", 'url(' + res + ')');
-        // $(file).prev().src(res);
-        // $scope.uploadUrl = res;
-        $(file).parent().nextAll("#register_shop-href").val(res);
-        $(file).parent().nextAll("#register_shop-href").change();
+        console.log('successfully uploaded, URL: ' + res);
+        $(file).parent().css("background-image", 'url(' + res.bigImg + ')');
+        $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
+        $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
+        $(file).parent().nextAll("#upload_smallImg-href").change();
+        $(file).parent().nextAll("#upload_bigImg-href").change();
         $(file).css("display", "none");
       }
     });
@@ -693,7 +701,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     form_data.append("file", file_data);
 
     $.ajax({
-      url:  ipAddress + "/api/uploadPhotos",
+      url:  ipAddress + "/api/uploadAvatar",
       contentType: false,
       data: form_data,
       processData: false,
@@ -703,8 +711,6 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         console.log('uploaded, URL: ' + res);
         $(file).prev().css("background-image", 'url(' + res + ')');
         $scope.user.u_avatar = res;
-        // $(file).parent().nextAll("#profile_top-edit-avatar").val(res);
-        // $(file).parent().nextAll("#profile_top-edit-avatar").change();
         $(file).css("display", "none");
       }
     });
@@ -725,7 +731,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileSticks = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getSticksByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");

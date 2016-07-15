@@ -81,7 +81,7 @@
         <div id="footstep-list-div" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic">
                 <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->
-               <a href="#/foot/{{result.fs_id}}"> <img ng-src="{{result.fs_pic}}" style="width: 100%; height: 100%; cursor: zoom-in;"></a>
+               <a href="#/foot/{{result.fs_id}}"> <img ng-src="{{result.fs_smallImg}}" style="width: 100%; height: 100%; cursor: zoom-in;"></a>
             </div>
             <span class="footstep-list-div-createTime">{{result.fs_create_time}}</span>
             <!--<hr>-->
@@ -131,7 +131,8 @@
                 <!--<div class="create_footstep-info-div">-->
                     <!--<span class="create_footstep-info-span">地址</span><input class="create_footstep-info-pic" type="text" ng-model="footstep.fs_pic" name="imagePrice1" id="register_shop-href" value=""/>-->
                 <!--</div>-->
-                <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_pic" id="register_shop-href">
+                <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_smallImg" id="upload_smallImg-href">
+                <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_bigImg" id="upload_bigImg-href">
                 <div  class="create_footstep-info-div">
                 <span class="create_footstep-info-span">描述</span>
                     <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40"></textarea>
