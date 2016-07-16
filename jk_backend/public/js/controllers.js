@@ -4,12 +4,14 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112';
-// var localAddress = 'http://localhost:8080';
+var ipAddress = 'http://180.76.152.112:8080';
+var localAddress = 'http://localhost:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
-  
+
+  console.log("Browser width: " + $(window).width());
+
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 15}})
       .success(function(data){
         $scope.footsteps = data;
@@ -53,7 +55,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
     $(window).scroll(function () {
 
-      if (document.location.href == ipAddress + '/#/foot') {
+      if (document.location.href == localAddress + '/#/foot') {
         if($scope.number > (15 + (count*9))) {
 
           var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
@@ -64,20 +66,20 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
           totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
           if (($(document).height() - range) <= totalHeight) {
+
+            // console.log("$(document).height() - range " + ($(document).height() - range) + " <= " + "totalHeight");
+
             count++;
             $http({
               method: 'GET',
               url: ipAddress + '/footsteps/getFootsteps',
-              params: {index_start: 0, index_end: 15 + (count * 9)}
-            })
-                .success(function (data) {
-                  $scope.footsteps = data;
+              params: {index_start: 15 + ((count-1)*9), index_end: 15 + (count * 9)}
+            }).success(function (data) {
+                  angular.extend($scope.footsteps, data);
                   preview = setInterval(timePage, 1000);
                 }, function (error) {
                   $scope.error = error;
                 });
-
-
           }
         }
       }
@@ -178,56 +180,67 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   
   
   function timePage(){
-    if($(".footstep_list_home").children("#footstep-list-div").size() > 3){
-      clearInterval(preview);
-      var i = 0;
-      var count = 0;
-      var trigger = 0;
-      var topPxs = [
-        {"topPx":155, "leftPx":"20%"},
-        {"topPx":155,"leftPx": "40%"},
-        {"topPx":155, "leftPx":"60%"}
-      ];
 
-      var maxVal = 30;
-      $("#footstep-list").children("#footstep-list-div").each(function(index, element){
+    if($(document).width() < 500) {
+      $('.footstep_list_home').css("padding", "0px 5%");
+      $('.footstep-list-div').css('width', '95%');
+      $('.footstep-list_end').css('position', 'relative');
+      $('.footstep-list_end').css('float', 'left');
+      $('.footstep-list_end').css('padding', '10px 30% 0px 20%');
+      $('.footstep-count').css({"position": "relative", "float": "left", "margin": "10px 0px 0px 5%"});
+    } else {
 
-        $(element).css({
-          "position":"absolute",
-          "width": '18%',
-          "top": topPxs[i].topPx + "px",
-          "left": topPxs[i].leftPx + ""
-        });
+      if ($(".footstep_list_home").children("#footstep-list-div").size() > 3) {
+        clearInterval(preview);
+        var i = 0;
+        var count = 0;
+        var trigger = 0;
+        var topPxs = [
+          {"topPx": 155, "leftPx": "20%"},
+          {"topPx": 155, "leftPx": "40%"},
+          {"topPx": 155, "leftPx": "60%"}
+        ];
 
-        topPxs[i].topPx = topPxs[i].topPx + $(element).height() +10;
+        var maxVal = 30;
+        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
 
-        if((index+1)%3 == 0){
-          i = 0;
-          count++;
-        } else {
-          i++;
-          for (var j = 0; j < 3; j++) {
-            maxVal = topPxs[j];
-            if(maxVal < topPxs[j+1] && j < 2) {
-              maxVal = topPxs[j+1];
+          $(element).css({
+            "position": "absolute",
+            "width": '18%',
+            "top": topPxs[i].topPx + "px",
+            "left": topPxs[i].leftPx + ""
+          });
+
+          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
+
+          if ((index + 1) % 3 == 0) {
+            i = 0;
+            count++;
+          } else {
+            i++;
+            for (var j = 0; j < 3; j++) {
+              maxVal = topPxs[j];
+              if (maxVal < topPxs[j + 1] && j < 2) {
+                maxVal = topPxs[j + 1];
+              }
+            }
+            console.log("maxVal= " + JSON.stringify(maxVal));
+
+            if ((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
+              trigger++;
             }
           }
-          console.log("maxVal= "  + JSON.stringify(maxVal));
 
-          if((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0 ){
-            trigger++;
-          }
-        }
+        });
 
-      });
+        $('.footstep-list_end').css('top', maxVal.topPx + 500);
 
-      $('.footstep-list_end').css('top', maxVal.topPx + 500);
-
-    } else {
-	$('.footstep-list_end').css('display','none');   
+      } else {
+        $('.footstep-list_end').css('display', 'none');
+      }
     }
   }
-  
+
 
 }]);
 
@@ -561,6 +574,10 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $('.create_footstep').css('display','inherit');
     $("#create_footstep-info-image").css("background-image", '');
 
+    if ($(document).width() < 500) {
+      $('.create_footstep').css("padding", "0px 3%");
+    }
+
   };
   
 
@@ -570,6 +587,11 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
        // $('#avatarImg-btn').css("display", "none");
       // $('#avatarImg-btn')
     }
+
+    if ($(document).width() < 500) {
+      $('.profile_top').css({"margin":"100px 3%", "width": "95%"});
+    }
+
   };
   
   
@@ -764,56 +786,69 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   
   var preview = setInterval(timePage, 10);
 
-  function timePage(){
+  function timePage() {
 
-    if($(".footstep_list_profile").children("#footstep-list-div").size() > 4){
-      clearInterval(preview);
-      var i = 0;
-      var count = 0;
-      var trigger = 0;
-      var topPxs = [
-        {"topPx":320, "leftPx":"0%"},
-        {"topPx":320, "leftPx":"20%"},
-        {"topPx":320,"leftPx": "40%"},
-        {"topPx":320, "leftPx":"60%"},
-        {"topPx":320,"leftPx": "80%"}
-      ];
 
-      var maxVal = 30;
-      $("#footstep-list").children("#footstep-list-div").each(function(index, element){
+    if ($(document).width() < 500) {
+      $('.footstep_list_profile').css("padding", "0px 5%");
+      $('.footstep-list-div').css('width', '95%');
+      $('.profile_middle').css("margin", "0px ");
+      $('.profile_top-edit-info').css("margin", "0px 35%");
+      $('.profile_top-edit-info').css("left", "0px");
+      $('.footstep-list_profile_end').css('position', 'relative');
+      $('.footstep-list_profile_end').css('float', 'left');
+    } else {
 
-        $(element).css({
-          "position":"absolute",
-          "width": '18%',
-          "top": topPxs[i].topPx + "px",
-          "left": topPxs[i].leftPx + ""
-        });
 
-        topPxs[i].topPx = topPxs[i].topPx + $(element).height() +10;
+      if ($(".footstep_list_profile").children("#footstep-list-div").size() > 4) {
+        clearInterval(preview);
+        var i = 0;
+        var count = 0;
+        var trigger = 0;
+        var topPxs = [
+          {"topPx": 320, "leftPx": "0%"},
+          {"topPx": 320, "leftPx": "20%"},
+          {"topPx": 320, "leftPx": "40%"},
+          {"topPx": 320, "leftPx": "60%"},
+          {"topPx": 320, "leftPx": "80%"}
+        ];
 
-        if((index+1)%5 == 0){
-          i = 0;
-          count++;
-        } else {
+        var maxVal = 30;
+        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
 
-          i++;
+          $(element).css({
+            "position": "absolute",
+            "width": '18%',
+            "top": topPxs[i].topPx + "px",
+            "left": topPxs[i].leftPx + ""
+          });
 
-          for (var j = 0; j < 3; j++) {
-            maxVal = topPxs[j];
-            if(maxVal < topPxs[j+1] && j < 2) {
-              maxVal = topPxs[j+1];
+          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
+
+          if ((index + 1) % 5 == 0) {
+            i = 0;
+            count++;
+          } else {
+
+            i++;
+
+            for (var j = 0; j < 3; j++) {
+              maxVal = topPxs[j];
+              if (maxVal < topPxs[j + 1] && j < 2) {
+                maxVal = topPxs[j + 1];
+              }
+            }
+
+            if ((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
+              // i = 0;
+              trigger++;
+              // alert("test");
             }
           }
+        });
+        $('.footstep-list_profile_end').css('top', maxVal.topPx + 500);
 
-          if((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0 ){
-            // i = 0;
-            trigger++;
-            // alert("test");
-          }
-        }
-      });
-      $('.footstep-list_profile_end').css('top', maxVal.topPx + 500);
-
+      }
     }
   }
 
@@ -920,6 +955,14 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
         $scope.topic = data[0];
+
+        if ($(document).width() < 500) {
+          $('.topic_content').css("float", "left");
+          $('.topic_info_elements').css({'margin-left':'0px', "float": "left", "width": "100%"});
+          $('.topic_info_img').css("width", "100% ");
+          $('.closeTopic').css("float", "left");
+        }
+
       },function(error){
         $scope.error = error;
       });
@@ -938,7 +981,9 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       },function(error){
         $scope.error = error;
       });
-  
+
+
+
 
   
 

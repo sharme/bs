@@ -17,7 +17,7 @@ a {
   margin: 50px 10%;
   .welcome_header {
     height: 600px;
-    padding: 200px;
+    padding: 10%;
     color: white;
     background-image: url(../img/wel-header.jpg);
     background-size: cover;
@@ -48,7 +48,7 @@ a {
   }
   .welcome_footer {
     height: 400px;
-    padding: 100px;
+    padding: 10%;
     font-size: 18px;
     //background-image: url(/app/img/wel-footer.jpg);
     //background-size: cover;
@@ -262,7 +262,7 @@ button {
       float: left;
       border: solid 1px @light-grey;
       border-radius: 6px;
-      margin: 8px 0px 0px 12px;
+      margin: 8px 0px 0px 0px;
       width: 30%;
     }
 
@@ -390,11 +390,11 @@ button {
 
 
 .profile_top {
-  width: 420px;
-  height: 500px;
+  //width: 100%;
+  height: 520px;
   position: absolute;
-  margin: 10px 30%;
-  z-index: 2;
+  margin: 100px 25%;
+  //z-index: 2;
   background: #eee;
   display: none;
   border-radius: 20px;
@@ -441,16 +441,19 @@ button {
 }
 
   .profile_top_info-username, .profile_top_info-address, .profile_top_info-slogan, .profile_top_info-avatar{
-    margin: 10px 28px;
+    margin: 10px 3%;
     line-height: 3;
   }
   .profile_top_info-username-val, .profile_top_info-address-val, .profile_top_info-slogan-val, .profile_top_info-avatar-val{
     float: right;
-    width: 280px;
-    margin: 10px;
+    width: 70%;
+    margin: 10px 2%;
+    textarea {
+      width: 100%;
+    }
   }
   .profile_top_info-avatar-val{
-    width: 180px;
+    //width: 180px;
     /*content: '更新上传'*/
   }
   .profile_top_info-slogan-div, .profile_top_info-avatar-div {
@@ -462,7 +465,7 @@ button {
     position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-left: 20px;
+    margin: 50px 0px 0px 30px;
   }
 
   .profile_top-edit-submit {

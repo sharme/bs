@@ -8,7 +8,7 @@ a {
 }
 .welcome .welcome_header {
   height: 600px;
-  padding: 200px;
+  padding: 10%;
   color: white;
   background-image: url(../img/wel-header.jpg);
   background-size: cover;
@@ -39,7 +39,7 @@ a {
 }
 .welcome .welcome_footer {
   height: 400px;
-  padding: 100px;
+  padding: 10%;
   font-size: 18px;
   color: grey;
 }
@@ -201,21 +201,23 @@ button {
   position: absolute;
   margin: 50px 0% 0px 95%;
 }
-#footstep-list .footstep-list_end {
-  padding-right: 60%;
+#footstep-list .footstep-list_end,
+#footstep-list .footstep-list_profile_end {
+  padding-right: 40%;
   height: 100px;
   position: absolute;
-  background-color: white;
+  color: grey;
   bottom: 0;
   text-align: center;
   line-height: 3;
-  font-size: 18px;
+  font-size: 14px;
+  width: 100%;
 }
 #footstep-list #footstep-list-div {
   float: left;
   border: solid 1px lightgrey;
   border-radius: 6px;
-  margin: 8px 0px 0px 20px;
+  margin: 8px 0px 0px 0px;
   width: 30%;
 }
 #footstep-list .footstep-list-div-pic {
@@ -323,11 +325,9 @@ button {
   text-align: center;
 }
 .profile_top {
-  width: 420px;
-  height: 500px;
+  height: 520px;
   position: absolute;
-  margin: 10px 30%;
-  z-index: 2;
+  margin: 100px 25%;
   background: #eee;
   display: none;
   border-radius: 20px;
@@ -370,7 +370,7 @@ button {
 .profile_top_info-address,
 .profile_top_info-slogan,
 .profile_top_info-avatar {
-  margin: 10px 28px;
+  margin: 10px 3%;
   line-height: 3;
 }
 .profile_top_info-username-val,
@@ -378,11 +378,16 @@ button {
 .profile_top_info-slogan-val,
 .profile_top_info-avatar-val {
   float: right;
-  width: 280px;
-  margin: 10px;
+  width: 70%;
+  margin: 10px 2%;
+}
+.profile_top_info-username-val textarea,
+.profile_top_info-address-val textarea,
+.profile_top_info-slogan-val textarea,
+.profile_top_info-avatar-val textarea {
+  width: 100%;
 }
 .profile_top_info-avatar-val {
-  width: 180px;
   /*content: '更新上传'*/
 }
 .profile_top_info-slogan-div,
@@ -395,7 +400,7 @@ button {
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
-  margin-left: 20px;
+  margin: 50px 0px 0px 30px;
 }
 .profile_top-edit-submit {
   width: 100px;
