@@ -1,14 +1,13 @@
 
 <div class="topic">
     <span class="closeTopic" ng-click="closeTopic()">X</span>
-
+    <div class="topic_top_like">
+        <div class="topic_top_like_btn" ng-click="likeBtn(topic.tp_id)">喜欢</div>
+    </div>
     <div class="topic_top">
         <div class="topic_top_title">
             <div class="topic_top_title_about">关于: {{topic.tp_about}}</div>
             <div class="topic_top_title_description">{{topic.tp_title}}</div>
-        </div>
-        <div class="topic_top_like">
-            <div class="topic_top_like_btn" ng-click="likeBtn(topic.tp_id)">喜欢</div>
         </div>
     </div>
     <hr>

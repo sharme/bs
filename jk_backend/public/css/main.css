@@ -134,12 +134,11 @@ button {
   color: cadetblue;
 }
 #login-popup {
-  width: 400px;
   height: 320px;
   position: absolute;
   background-color: whitesmoke;
   z-index: 2;
-  margin: 200px 35%;
+  margin: 300px 25%;
   border-radius: 30px;
   display: none;
 }
@@ -240,7 +239,7 @@ button {
   font-family: cursive;
 }
 .foot_wrapper {
-  margin-top: 50px;
+  margin: 50px 5%;
 }
 .foot_wrapper .foot_wrapper-back {
   padding: 0px 20% 0px 20%;

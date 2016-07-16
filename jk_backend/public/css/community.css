@@ -90,7 +90,6 @@
   margin-bottom: 10px;
 }
 .topic .topic_top .topic_top_title {
-  margin: 0px 30% 0px 0px;
   float: left;
 }
 .topic .topic_top .topic_top_title .topic_top_title_about {
@@ -102,13 +101,11 @@
   color: seagreen;
   padding: 10px;
 }
-.topic .topic_top .topic_top_like {
-  width: 30%;
-  margin-left: 70%;
-  height: 100px;
+.topic .topic_top_like {
+  width: 20%;
+  height: 50px;
 }
-.topic .topic_top .topic_top_like .topic_top_like_btn {
-  margin: 0px 30%;
+.topic .topic_top_like .topic_top_like_btn {
   height: 35px;
   text-align: center;
   background-color: #eee;

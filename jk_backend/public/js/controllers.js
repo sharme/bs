@@ -5,7 +5,7 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 var ipAddress = 'http://180.76.152.112:8080';
-var localAddress = 'http://localhost:8080';
+// var localAddress = 'http://localhost:8080';
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -37,7 +37,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         }, function(error){
           $scope.error = error;
         });
-    preview = setInterval(timePage, 100);
+    // preview = setInterval(timePage, 100);
   };
 
 
@@ -52,10 +52,11 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   var range = 500;
   var totalHeight = 0;
   var count = 0;
-
+  var scrollPosition;
+  var invoke = false;
     $(window).scroll(function () {
 
-      if (document.location.href == localAddress + '/#/foot') {
+      if (document.location.href == ipAddress + '/#/foot') {
         if($scope.number > (15 + (count*9))) {
 
           var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
@@ -69,18 +70,25 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
             // console.log("$(document).height() - range " + ($(document).height() - range) + " <= " + "totalHeight");
 
-            count++;
             $http({
               method: 'GET',
               url: ipAddress + '/footsteps/getFootsteps',
-              params: {index_start: 15 + ((count-1)*9), index_end: 15 + (count * 9)}
+              params: {index_start: 15 + ((count)*9), index_end: 15 + (count+1 * 9)}
             }).success(function (data) {
-                  angular.extend($scope.footsteps, data);
-                  preview = setInterval(timePage, 1000);
-                }, function (error) {
+              count++;
+              invoke = true;
+              angular.extend($scope.footsteps, data);
+
+            }, function (error) {
                   $scope.error = error;
-                });
+            });
           }
+        } else {
+          if(invoke) {
+            preview = setInterval(timePage, 1000);
+            invoke = false;
+          }
+
         }
       }
     });
@@ -180,8 +188,10 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   
   
   function timePage(){
+    window.clearInterval(preview);
+    console.log("here!!!! " + $(window).width());
 
-    if($(document).width() < 500) {
+    if($(window).width() < 500) {
       $('.footstep_list_home').css("padding", "0px 5%");
       $('.footstep-list-div').css('width', '95%');
       $('.footstep-list_end').css('position', 'relative');
@@ -191,7 +201,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     } else {
 
       if ($(".footstep_list_home").children("#footstep-list-div").size() > 3) {
-        clearInterval(preview);
         var i = 0;
         var count = 0;
         var trigger = 0;
@@ -252,6 +261,12 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       .success(function(data){
         console.log('data: ' + (JSON.stringify(data)));
         $scope.foot = data[0];
+
+        if($(window).width() < 500){
+          $('.foot_wrapper-back').css("padding", "0px 5% 0px 5%");
+          $('.foot_wrapper-main').css("padding", "0px 5% 0px 5%");
+        }
+
       }, function(error){
         $scope.error = error;
       });
@@ -574,7 +589,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $('.create_footstep').css('display','inherit');
     $("#create_footstep-info-image").css("background-image", '');
 
-    if ($(document).width() < 500) {
+    if ($(window).width() < 500) {
       $('.create_footstep').css("padding", "0px 3%");
     }
 
@@ -588,7 +603,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       // $('#avatarImg-btn')
     }
 
-    if ($(document).width() < 500) {
+    if ($(window).width() < 500) {
       $('.profile_top').css({"margin":"100px 3%", "width": "95%"});
     }
 
@@ -787,9 +802,9 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   var preview = setInterval(timePage, 10);
 
   function timePage() {
+    clearInterval(preview);
 
-
-    if ($(document).width() < 500) {
+    if ($(window).width() < 500) {
       $('.footstep_list_profile').css("padding", "0px 5%");
       $('.footstep-list-div').css('width', '95%');
       $('.profile_middle').css("margin", "0px ");
@@ -956,11 +971,11 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       .success(function(data){
         $scope.topic = data[0];
 
-        if ($(document).width() < 500) {
+        console.log("here!!!!!!" + $(window).width());
+        if ($(window).width() < 500) {
           $('.topic_content').css("float", "left");
           $('.topic_info_elements').css({'margin-left':'0px', "float": "left", "width": "100%"});
           $('.topic_info_img').css("width", "100% ");
-          $('.closeTopic').css("float", "left");
         }
 
       },function(error){
@@ -981,9 +996,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       },function(error){
         $scope.error = error;
       });
-
-
-
 
   
 
