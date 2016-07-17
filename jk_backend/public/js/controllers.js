@@ -4,8 +4,8 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112:8080';
-// var localAddress = 'http://localhost:8080';
+var ipAddress = 'http://180.76.152.112';
+var mobileSize = 600;
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -48,50 +48,26 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         $scope.error = error;
       });
 
+  $scope.loadMore = function() {
 
-  var range = 500;
-  var totalHeight = 0;
-  var count = 0;
-  var scrollPosition;
-  var invoke = false;
-    $(window).scroll(function () {
-
-      if (document.location.href == ipAddress + '/#/foot') {
-        if($scope.number > (15 + (count*9))) {
-
-          var scrollTop = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
-
-          // console.log("滚动条到顶部的垂直高度: " + $(document).scrollTop());
-          // console.log("页面的文档高度 ：" + $(document).height());
-          // console.log('浏览器的高度：' + $(window).height());
-
-          totalHeight = parseFloat($(window).height()) + parseFloat(scrollTop);
-          if (($(document).height() - range) <= totalHeight) {
-
-            // console.log("$(document).height() - range " + ($(document).height() - range) + " <= " + "totalHeight");
-
-            $http({
-              method: 'GET',
-              url: ipAddress + '/footsteps/getFootsteps',
-              params: {index_start: 15 + ((count)*9), index_end: 15 + (count+1 * 9)}
-            }).success(function (data) {
-              count++;
-              invoke = true;
-              angular.extend($scope.footsteps, data);
-
-            }, function (error) {
-                  $scope.error = error;
-            });
-          }
-        } else {
-          if(invoke) {
-            preview = setInterval(timePage, 1000);
-            invoke = false;
-          }
-
+    $http({
+      method: 'GET',
+      url: ipAddress + '/footsteps/getFootsteps',
+      params: {index_start: $scope.footsteps.length, index_end: $scope.footsteps.length + 6}
+    }).success(function (data) {
+      console.log(data.length);
+      if(data.length > 0) {
+        for (var i = 0; i < 6; i++) {
+          $scope.footsteps.push(data[i]);
         }
+        preview = setInterval(timePage, 1000);
       }
+
+    }, function (error) {
+      $scope.error = error;
     });
+
+  };
 
 
   $scope.stickBtn = function(id){
@@ -191,7 +167,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     window.clearInterval(preview);
     console.log("here!!!! " + $(window).width());
 
-    if($(window).width() < 500) {
+    if($(window).width() < mobileSize) {
       $('.footstep_list_home').css("padding", "0px 5%");
       $('.footstep-list-div').css('width', '95%');
       $('.footstep-list_end').css('position', 'relative');
@@ -233,7 +209,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
                 maxVal = topPxs[j + 1];
               }
             }
-            console.log("maxVal= " + JSON.stringify(maxVal));
+            // console.log("maxVal= " + JSON.stringify(maxVal));
 
             if ((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
               trigger++;
@@ -262,7 +238,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
         console.log('data: ' + (JSON.stringify(data)));
         $scope.foot = data[0];
 
-        if($(window).width() < 500){
+        if($(window).width() < mobileSize){
           $('.foot_wrapper-back').css("padding", "0px 5% 0px 5%");
           $('.foot_wrapper-main').css("padding", "0px 5% 0px 5%");
         }
@@ -504,9 +480,9 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   if(cookieUser) {
 
     if($cookies.get('u_avatar')) {
-      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a><div class='header-right-user-icon-hover'>欢迎迹客: "+ cookieUser +"</div>");
+      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a>");
     } else {
-      $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a><div class='header-right-user-icon-hover'>欢迎迹客: " + cookieUser + "</div>");
+      $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
     }
     $(".header-right-logout").css("display", "block");
     $(".header-right-login").css("display", "none");
@@ -539,10 +515,10 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
         console.log('login result:' + JSON.stringify(result));
         if(result[0].u_avatar) {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a><div class='header-right-user-icon-hover'>欢迎迹客: " + result[0].u_name + "</div>");
+          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a>");
           $cookies.put('u_avatar', result[0].u_avatar);
         } else {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a><div class='header-right-user-icon-hover'>欢迎迹客: " + result[0].u_name + "</div>");
+          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
         }
 
         $cookies.put('username', result[0].u_name);
@@ -589,7 +565,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $('.create_footstep').css('display','inherit');
     $("#create_footstep-info-image").css("background-image", '');
 
-    if ($(window).width() < 500) {
+    if ($(window).width() < mobileSize) {
       $('.create_footstep').css("padding", "0px 3%");
     }
 
@@ -603,7 +579,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       // $('#avatarImg-btn')
     }
 
-    if ($(window).width() < 500) {
+    if ($(window).width() < mobileSize) {
       $('.profile_top').css({"margin":"100px 3%", "width": "95%"});
     }
 
@@ -751,9 +727,30 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       }
     });
   };
+
+  $scope.loadMore = function() {
+
+    $http({
+      method: 'GET',
+      url: ipAddress + '/footsteps/getFootsteps',
+      params: {u_id: $cookies.get('u_id'), index_start: $scope.footsteps.length, index_end: $scope.footsteps.length + 5}
+    }).success(function (data) {
+      console.log(data.length);
+      if(data.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+          $scope.footsteps.push(data[i]);
+        }
+        preview = setInterval(timePage, 1000);
+      }
+
+    }, function (error) {
+      $scope.error = error;
+    });
+
+  };
   
   $scope.profileFootsteps = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, index_end: 9}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
@@ -804,7 +801,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   function timePage() {
     clearInterval(preview);
 
-    if ($(window).width() < 500) {
+    if ($(window).width() < mobileSize) {
       $('.footstep_list_profile').css("padding", "0px 5%");
       $('.footstep-list-div').css('width', '95%');
       $('.profile_middle').css("margin", "0px ");
@@ -905,7 +902,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 /* community */
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
-  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, index_end: 30}})
+  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, index_end: 3}})
       .success(function(data){
         $scope.topics = data;
       },function(error){
@@ -917,7 +914,29 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
         $scope.topUsers = data;
       },function(error){
         $scope.error = error;
-      });  
+      });
+
+
+  $scope.loadMore = function() {
+
+    console.log("load more!!!");
+
+    $http({
+      method: 'GET',
+      url: ipAddress + '/topics/getTopics',
+      params: {index_start: $scope.topics.length, index_end: $scope.topics.length + 3}
+    }).success(function (data) {
+      // console.log(data.length);
+      if(data.length > 0) {
+        for (var i = 0; i < 2; i++) {
+          $scope.topics.push(data[i]);
+        }
+      }
+    }, function (error) {
+      $scope.error = error;
+    });
+  };
+
 
 
 
@@ -972,7 +991,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
         $scope.topic = data[0];
 
         console.log("here!!!!!!" + $(window).width());
-        if ($(window).width() < 500) {
+        if ($(window).width() < mobileSize) {
           $('.topic_content').css("float", "left");
           $('.topic_info_elements').css({'margin-left':'0px', "float": "left", "width": "100%"});
           $('.topic_info_img').css("width", "100% ");
@@ -1098,7 +1117,8 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
     var tp_subject = "";
 
     if(CKEDITOR.instances.editor1.getData().length > 150){
-      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, CKEDITOR.instances.editor1.getData().indexOf('</p>')+4);
+      // tp_subject = CKEDITOR.instances.editor1.getData().substr(0, CKEDITOR.instances.editor1.getData().indexOf('</p>')+4);
+      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 150);
     }else{
       tp_subject = CKEDITOR.instances.editor1.getData();
     }

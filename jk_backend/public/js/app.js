@@ -7,7 +7,8 @@ var buybs = angular.module('jk_backend', [
   'buybsControllers',
   'buybsFilters',
     'ngCookies',
-    'ngSanitize'
+    'ngSanitize',
+    'infinite-scroll'
 ]);
 
 buybs.config(['$routeProvider',
