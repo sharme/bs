@@ -928,7 +928,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
     }).success(function (data) {
       // console.log(data.length);
       if(data.length > 0) {
-        for (var i = 0; i < 2; i++) {
+        for (var i = 0; i < data.length; i++) {
           $scope.topics.push(data[i]);
         }
       }
