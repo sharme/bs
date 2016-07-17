@@ -729,7 +729,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
 
   var val = 0;
-  $scope.loadMore = function(val) {
+  $scope.loadMore = function() {
 
     if(val = 1) {
 
@@ -803,7 +803,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           $scope.error = error;
         });
 
-    preview = setInterval(timePage, 10);
+    preview = setInterval(timePage, 1000);
   };
 
   $scope.profileFollows = function(u_id) {
