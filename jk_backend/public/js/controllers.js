@@ -5,7 +5,7 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 var ipAddress = 'http://180.76.152.112';
-var mobileSize = 600;
+var mobileSize = 800;
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -728,24 +728,53 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     });
   };
 
-  $scope.loadMore = function() {
+  var val = 0;
+  $scope.loadMore = function(val) {
 
-    $http({
-      method: 'GET',
-      url: ipAddress + '/footsteps/getFootsteps',
-      params: {u_id: $cookies.get('u_id'), index_start: $scope.footsteps.length, index_end: $scope.footsteps.length + 5}
-    }).success(function (data) {
-      console.log(data.length);
-      if(data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          $scope.footsteps.push(data[i]);
+    if(val = 1) {
+
+      $http({
+        method: 'GET',
+        url: ipAddress + '/footsteps/getFootsteps',
+        params: {
+          u_id: $cookies.get('u_id'),
+          index_start: $scope.footsteps.length,
+          index_end: $scope.footsteps.length + 5
         }
-        preview = setInterval(timePage, 1000);
-      }
+      }).success(function (data) {
+        console.log(data.length);
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            $scope.footsteps.push(data[i]);
+          }
+          preview = setInterval(timePage, 1000);
+        }
 
-    }, function (error) {
-      $scope.error = error;
-    });
+      }, function (error) {
+        $scope.error = error;
+      });
+    } else {
+      $http({
+        method: 'GET',
+        url: ipAddress + '/footsteps/getStickFootstepsByUID',
+        params: {
+          u_id: $cookies.get('u_id'),
+          index_start: $scope.footsteps.length,
+          index_end: $scope.footsteps.length + 5
+        }
+      }).success(function (data) {
+        console.log(data.length);
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            $scope.footsteps.push(data[i]);
+          }
+          preview = setInterval(timePage, 1000);
+        }
+
+      }, function (error) {
+        $scope.error = error;
+      });
+    }
 
   };
   
@@ -754,7 +783,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
-
+          val = 1;
           $scope.results = null;
         }, function(error){
           $scope.error = error;
@@ -764,10 +793,11 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileSticks = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, index_end: 9}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
+          val = 2;
           $scope.results = null;
         }, function(error){
           $scope.error = error;
