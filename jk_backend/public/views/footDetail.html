@@ -34,7 +34,7 @@
                 </div>
                 <div class="foot_wrapper-main_comment-content">
                     <div class="foot_wrapper-main_comment-from">来自: {{comment.u_name}}</div>
-                    <div>{{comment.cm_content}}</div>
+                    <div ng-bind-html="comment.cm_content"></div>
                 </div>
             </div>
             <hr>

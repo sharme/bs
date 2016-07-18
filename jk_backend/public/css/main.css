@@ -325,14 +325,13 @@ button {
   text-align: center;
 }
 .profile_top {
-  margin: 50px 5%;
+  margin: 50px 20% 100px 20%;
 }
 .profile_top #profile_top-header {
   width: 100%;
   text-align: center;
   height: 50px;
   line-height: 3;
-  border-bottom: solid gray 1px;
 }
 .profile_top #profile_top-header #profile_top-edit-del {
   float: right;
@@ -449,7 +448,6 @@ button {
   text-align: left;
   height: 50px;
   line-height: 3;
-  border-bottom: solid gray 1px;
   font-size: 18px;
 }
 .create_footstep .create_footstep-info #create_footstep-info-header #create_footstep-info-header-del {

@@ -60,7 +60,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         for (var i = 0; i < 6; i++) {
           $scope.footsteps.push(data[i]);
         }
-        preview = setInterval(timePage, 1000);
+        preview = setInterval(timePage, 100);
       }
 
     }, function (error) {
@@ -379,14 +379,14 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   $scope.submit = function(){
 
     $scope.addComment.fs_id = $scope.foot.fs_id;
-
+    $scope.addComment.cm_content = CKEDITOR.instances.editor1.getData();
     var req = {
       method: 'POST',
       url: ipAddress + '/comments/add',
       headers: {
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(CKEDITOR.instances.editor1.getData())
+      data: JSON.stringify($scope.addComment)
     };
 
     console.log("add comment: " + JSON.stringify(CKEDITOR.instances.editor1.getData()));
@@ -893,8 +893,6 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
 }]);
 
-
-
 /* Message to site owner */
 buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
@@ -976,8 +974,6 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
 
 }]);
 
-
-
 /* Message to site owner */
 buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
@@ -991,8 +987,8 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
         console.log('user: ' + data);
         $scope.user = data[0];
 
-        if($(window).width() > 800) {
-          $(".profile_top").css("margin", "50px 20%");
+        if($(window).width() < 800) {
+          $(".profile_top").css("margin", "50px 5% 100px 5%");
         }
 
       }, function(error){
@@ -1053,8 +1049,6 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
 
 }]);
-
-
 
 /* Message to site owner */
 buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
@@ -1285,7 +1279,7 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
 
   $scope.closeTopic = function() {
     $window.location.href = '#/community/index';
-  }
+  };
 
   $scope.topic = {
     u_id: '',
