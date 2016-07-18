@@ -34,7 +34,7 @@
 .topic .community_topic .community_topic_content_description,
 .topic_add .community_topic .community_topic_content_description {
   float: left;
-  width: 95%;
+  width: 100%;
 }
 .community .community_topic .community_topic_content_description .community_topic_content_description_title,
 .topic .community_topic .community_topic_content_description .community_topic_content_description_title,
@@ -88,6 +88,9 @@
 .topic hr {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.topic .topic_top {
+  height: 80px;
 }
 .topic .topic_top .topic_top_title {
   float: left;
