@@ -174,7 +174,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       $('.footstep-count').css({"position": "relative", "float": "left", "margin": "10px 0px 0px 5%"});
     } else {
 
-      if ($(".footstep_list_home").children("#footstep-list-div").size() > 3) {
+      if ($(".footstep_list_home").children("#footstep-list-div").size() > 1) {
         var i = 0;
         var count = 0;
         var trigger = 0;
