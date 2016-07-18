@@ -38,6 +38,14 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/profile.html',
         controller: 'ProfileController'
     }).
+        when('/profile/edit',{
+        templateUrl: 'views/profile/edit.html',
+        controller: 'ProfileEditController'
+    }).
+        when('/footsteps/add',{
+        templateUrl: 'views/footstep/add.html',
+        controller: 'FootstepAddController'
+    }).
         when('/message',{
         templateUrl: 'views/message.html',
         controller: 'MessageController'

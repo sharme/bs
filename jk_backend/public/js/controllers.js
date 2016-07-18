@@ -265,7 +265,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
 
   $scope.backHome = function () {
-    window.history.back();
+    window.history.go(-1);
   };
 
   $scope.stickBtn = function(id){
@@ -368,8 +368,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
         }, function(error){
           $scope.error = error;
         });
-    
-
   };
 
   $scope.addComment = {
@@ -388,10 +386,10 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       headers: {
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify($scope.addComment)
+      data: CKEDITOR.instances.editor1.getData()
     };
 
-    console.log("add comment: " + JSON.stringify($scope.addComment));
+    console.log("add comment: " + JSON.stringify(CKEDITOR.instances.editor1.getData()));
 
     $http(req).success(function(result){
       console.log('added comment:' + result);
@@ -554,34 +552,38 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   $scope.footstep = angular.copy(data);
   
-  $scope.closeBtn = function(){
-    $('.create_footstep').css('display','none');
-    $('.profile_top').css('display', 'none');
-    $('#create_footstep-info-image').css('background-image', null);
-  };
+  // $scope.closeBtn = function(){
+  //   $('.create_footstep').css('display','none');
+  //   $('.profile_top').css('display', 'none');
+  //   $('#create_footstep-info-image').css('background-image', null);
+  // };
   
   
   $scope.createBtn = function(){
-    $('.create_footstep').css('display','inherit');
-    $("#create_footstep-info-image").css("background-image", '');
+    // $('.create_footstep').css('display','inherit');
+    // $("#create_footstep-info-image").css("background-image", '');
+    //
+    // if ($(window).width() < mobileSize) {
+    //   $('.create_footstep').css("padding", "0px 3%");
+    // }
 
-    if ($(window).width() < mobileSize) {
-      $('.create_footstep').css("padding", "0px 3%");
-    }
+    $window.location.href = "#/footsteps/add";
 
   };
   
 
   $scope.editProfileBtn = function(){
-    $('.profile_top').css("display","block");
-    if($scope.user.u_avatar) {
-       // $('#avatarImg-btn').css("display", "none");
-      // $('#avatarImg-btn')
-    }
+    // $('.profile_top').css("display","block");
+    // if($scope.user.u_avatar) {
+    //    // $('#avatarImg-btn').css("display", "none");
+    //   // $('#avatarImg-btn')
+    // }
+    //
+    // if ($(window).width() < mobileSize) {
+    //   $('.profile_top').css({"margin":"100px 3%", "width": "95%"});
+    // }
 
-    if ($(window).width() < mobileSize) {
-      $('.profile_top').css({"margin":"100px 3%", "width": "95%"});
-    }
+    $window.location.href = "#/profile/edit";
 
   };
   
@@ -611,122 +613,117 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
 
-  $scope.submit = function() {
+  // $scope.submit = function() {
+  //
+  //   var footstepData = {
+  //     fs_desc: $scope.footstep.fs_desc,
+  //     fs_from: $scope.footstep.fs_from,
+  //     fs_pic: $scope.footstep.fs_smallImg,
+  //     u_id: $cookies.get('u_id'),
+  //     fs_bigImg: $scope.footstep.fs_bigImg,
+  //     fs_smallImg: $scope.footstep.fs_smallImg
+  //   };
+  //
+  //   console.log("shopData: " + JSON.stringify(footstepData));
+  //
+  //   var req = {
+  //     method: 'POST',
+  //     url: ipAddress + '/footsteps/create',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     data: JSON.stringify(footstepData)
+  //   };
+  //
+  //   $http(req).success(function(result){
+  //     // alert("添加成功");
+  //     $('.create_footstep').css("display","none");
+  //     $('#create_footstep-info-image').css('background-image', null);
+  //     $window.location.reload();
+  //   }, function(error){
+  //     console.log(error);
+  //   });
+  //
+  // };
 
-    var footstepData = {
-      fs_desc: $scope.footstep.fs_desc,
-      fs_from: $scope.footstep.fs_from,
-      fs_pic: $scope.footstep.fs_smallImg,
-      u_id: $cookies.get('u_id'),
-      fs_bigImg: $scope.footstep.fs_bigImg,
-      fs_smallImg: $scope.footstep.fs_smallImg
-    };
+  // $scope.updateSubmit = function() {
+  //
+  //   console.log("userData: " + JSON.stringify($scope.user));
+  //
+  //   var reqData = {
+  //     u_name: $scope.user.u_name,
+  //     u_avatar: $scope.user.u_avatar,
+  //     u_link: $scope.user.u_link,
+  //     u_slogan: $scope.user.u_slogan,
+  //     u_id: $scope.user.u_id
+  //   };
+  //
+  //   var req = {
+  //     method: 'POST',
+  //     url: ipAddress + '/users/update',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     data: JSON.stringify(reqData)
+  //   };
+  //
+  //   $http(req).success(function(result){
+  //     console.log("添加成功");
+  //     $('.profile_top').css("display","none");
+  //   }, function(error){
+  //     console.log(error);
+  //   });
+  //
+  // };
 
-    console.log("shopData: " + JSON.stringify(footstepData));
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/footsteps/create',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(footstepData)
-    };
-
-    $http(req).success(function(result){
-      // alert("添加成功");
-      $('.create_footstep').css("display","none");
-      $('#create_footstep-info-image').css('background-image', null);
-      $window.location.reload();
-    }, function(error){
-      console.log(error);
-    });
-
-  };
-
-  $scope.updateSubmit = function() {
-
-    console.log("userData: " + JSON.stringify($scope.user));
-
-    var reqData = {
-      u_name: $scope.user.u_name,
-      u_avatar: $scope.user.u_avatar,
-      u_link: $scope.user.u_link,
-      u_slogan: $scope.user.u_slogan,
-      u_id: $scope.user.u_id
-    };
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/users/update',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(reqData)
-    };
-
-    $http(req).success(function(result){
-      console.log("添加成功");
-      $('.profile_top').css("display","none");
-    }, function(error){
-      console.log(error);
-    });
-
-  };
-
-  $scope.uploadFile = function(file) {
-    console.log('upload file');
-    var file_data = $(file).prop('files')[0];
-    var form_data = new FormData();
-    form_data.append('u_id', $cookies.get('u_id'));
-    form_data.append("file", file_data);
-
-    $.ajax({
-      url: ipAddress + "/api/uploadPhotos",
-      contentType: false,
-      data: form_data,
-      processData: false,
-      cache: false,
-      type: "POST",
-      success: function (res) {
-        console.log('successfully uploaded, URL: ' + res);
-        $(file).parent().css("background-image", 'url(' + res.bigImg + ')');
-        $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
-        $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
-        $(file).parent().nextAll("#upload_smallImg-href").change();
-        $(file).parent().nextAll("#upload_bigImg-href").change();
-        $(file).css("display", "none");
-      }
-    });
-
-
-
-
-
-  };
+  // $scope.uploadFile = function(file) {
+  //   console.log('upload file');
+  //   var file_data = $(file).prop('files')[0];
+  //   var form_data = new FormData();
+  //   form_data.append('u_id', $cookies.get('u_id'));
+  //   form_data.append("file", file_data);
+  //
+  //   $.ajax({
+  //     url: ipAddress + "/api/uploadPhotos",
+  //     contentType: false,
+  //     data: form_data,
+  //     processData: false,
+  //     cache: false,
+  //     type: "POST",
+  //     success: function (res) {
+  //       console.log('successfully uploaded, URL: ' + res);
+  //       $(file).parent().css("background-image", 'url(' + res.bigImg + ')');
+  //       $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
+  //       $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
+  //       $(file).parent().nextAll("#upload_smallImg-href").change();
+  //       $(file).parent().nextAll("#upload_bigImg-href").change();
+  //       $(file).css("display", "none");
+  //     }
+  //   });
+  // };
   
-  $scope.uploadAvatar = function(file) {
-    console.log('upload file');
-    var file_data = $(file).prop('files')[0];
-    var form_data = new FormData();
-    form_data.append('u_id', $cookies.get('u_id'));
-    form_data.append("file", file_data);
-
-    $.ajax({
-      url:  ipAddress + "/api/uploadAvatar",
-      contentType: false,
-      data: form_data,
-      processData: false,
-      cache: false,
-      type: "POST",
-      success: function (res) {
-        console.log('uploaded, URL: ' + res);
-        $(file).prev().css("background-image", 'url(' + res + ')');
-        $scope.user.u_avatar = res;
-        $(file).css("display", "none");
-      }
-    });
-  };
+  // $scope.uploadAvatar = function(file) {
+  //   console.log('upload file');
+  //   var file_data = $(file).prop('files')[0];
+  //   var form_data = new FormData();
+  //   form_data.append('u_id', $cookies.get('u_id'));
+  //   form_data.append("file", file_data);
+  //
+  //   $.ajax({
+  //     url:  ipAddress + "/api/uploadAvatar",
+  //     contentType: false,
+  //     data: form_data,
+  //     processData: false,
+  //     cache: false,
+  //     type: "POST",
+  //     success: function (res) {
+  //       console.log('uploaded, URL: ' + res);
+  //       $(file).prev().css("background-image", 'url(' + res + ')');
+  //       $scope.user.u_avatar = res;
+  //       $(file).css("display", "none");
+  //     }
+  //   });
+  // };
 
   var val = 0;
   $scope.loadMore = function() {
@@ -895,6 +892,169 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   }
 
 }]);
+
+
+
+/* Message to site owner */
+buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+
+
+  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
+      .success(function(data){
+        console.log('countries: ' + data);
+        $scope.countries = data;
+        if($(window).width() > 800) {
+          $(".create_footstep").css("margin", "50px 20%");
+        }
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.closeBtn = function() {
+    $window.history.go(-1);
+  };
+
+  $scope.submit = function() {
+
+    var footstepData = {
+      fs_desc: $scope.footstep.fs_desc,
+      fs_from: $scope.footstep.fs_from,
+      fs_pic: $scope.footstep.fs_smallImg,
+      u_id: $cookies.get('u_id'),
+      fs_bigImg: $scope.footstep.fs_bigImg,
+      fs_smallImg: $scope.footstep.fs_smallImg
+    };
+
+    console.log("shopData: " + JSON.stringify(footstepData));
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/footsteps/create',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(footstepData)
+    };
+
+    $http(req).success(function(result){
+      // alert("添加成功");
+      $('.create_footstep').css("display","none");
+      $('#create_footstep-info-image').css('background-image', null);
+      $window.location.reload();
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
+  $scope.uploadFile = function(file) {
+    console.log('upload file');
+    var file_data = $(file).prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('u_id', $cookies.get('u_id'));
+    form_data.append("file", file_data);
+
+    $.ajax({
+      url: ipAddress + "/api/uploadPhotos",
+      contentType: false,
+      data: form_data,
+      processData: false,
+      cache: false,
+      type: "POST",
+      success: function (res) {
+        console.log('successfully uploaded, URL: ' + res);
+        $(file).parent().css("background-image", 'url(' + res.bigImg + ')');
+        $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
+        $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
+        $(file).parent().nextAll("#upload_smallImg-href").change();
+        $(file).parent().nextAll("#upload_bigImg-href").change();
+        $(file).css("display", "none");
+      }
+    });
+  }
+
+
+}]);
+
+
+
+/* Message to site owner */
+buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+
+
+  $scope.closeBtn = function() {
+    $window.history.go(-1);
+  };
+
+  $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id')}})
+      .success(function(data){
+        console.log('user: ' + data);
+        $scope.user = data[0];
+
+        if($(window).width() > 800) {
+          $(".profile_top").css("margin", "50px 20%");
+        }
+
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.updateSubmit = function() {
+
+    console.log("userData: " + JSON.stringify($scope.user));
+
+    var reqData = {
+      u_name: $scope.user.u_name,
+      u_avatar: $scope.user.u_avatar,
+      u_link: $scope.user.u_link,
+      u_slogan: $scope.user.u_slogan,
+      u_id: $scope.user.u_id
+    };
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/users/update',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(reqData)
+    };
+
+    $http(req).success(function(result){
+      console.log("添加成功");
+      $('.profile_top').css("display","none");
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+  $scope.uploadAvatar = function(file) {
+    console.log('upload file');
+    var file_data = $(file).prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('u_id', $cookies.get('u_id'));
+    form_data.append("file", file_data);
+
+    $.ajax({
+      url:  ipAddress + "/api/uploadAvatar",
+      contentType: false,
+      data: form_data,
+      processData: false,
+      cache: false,
+      type: "POST",
+      success: function (res) {
+        console.log('uploaded, URL: ' + res);
+        $(file).prev().css("background-image", 'url(' + res + ')');
+        $scope.user.u_avatar = res;
+        $(file).css("display", "none");
+      }
+    });
+  };
+
+
+}]);
+
+
 
 /* Message to site owner */
 buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
