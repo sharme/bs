@@ -138,7 +138,7 @@ button {
   position: absolute;
   background-color: whitesmoke;
   z-index: 2;
-  margin: 300px 25%;
+  margin: 300px 35%;
   border-radius: 30px;
   display: none;
 }
@@ -182,6 +182,7 @@ button {
 .footstep_list_home {
   min-height: 600px;
   padding: 0px 20% 0px 20%;
+  display: none;
 }
 .footstep_list_profile {
   width: 100%;
@@ -448,7 +449,7 @@ button {
   text-align: left;
   height: 50px;
   line-height: 3;
-  font-size: 18px;
+  font-size: 16px;
 }
 .create_footstep .create_footstep-info #create_footstep-info-header #create_footstep-info-header-del {
   float: right;
@@ -532,22 +533,21 @@ button {
   border-radius: 12px;
 }
 #register-step1 {
-  padding: 0px 0px 0px 50px;
   font-size: 24px;
   color: grey;
 }
 #register-welcome {
-  width: 500px;
+  width: 40%;
   height: 200px;
   background-color: lightgrey;
-  margin: 0px 0px 0px 20%;
+  margin: 50px 0px 0px 5%;
   text-align: center;
   line-height: 6;
   font-size: 28px;
   color: gray;
 }
 #register-form {
-  margin: 0px 0px 0px 20%;
+  margin: 0px 0px 0px 5%;
 }
 #register-form #register-form-phoneNumber,
 #register-form #register-form-username,

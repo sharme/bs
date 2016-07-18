@@ -12,7 +12,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   console.log("Browser width: " + $(window).width());
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, index_end: 15}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 15}})
       .success(function(data){
         $scope.footsteps = data;
         preview = setInterval(timePage, 500);
@@ -37,7 +37,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         }, function(error){
           $scope.error = error;
         });
-    // preview = setInterval(timePage, 100);
   };
 
 
@@ -53,14 +52,15 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({
       method: 'GET',
       url: ipAddress + '/footsteps/getFootsteps',
-      params: {index_start: $scope.footsteps.length, index_end: $scope.footsteps.length + 6}
+      params: {index_start: $scope.footsteps.length, index_end: 6}
     }).success(function (data) {
       console.log(data.length);
       if(data.length > 0) {
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < data.length; i++) {
           $scope.footsteps.push(data[i]);
         }
-        preview = setInterval(timePage, 100);
+        $('.footstep_list_home').css("display","none");
+        preview = setInterval(timePage, 500);
       }
 
     }, function (error) {
@@ -152,12 +152,9 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
               console.log(error);
             })
           }
-
-
         }, function(error){
           $scope.error = error;
         });
-
   };
 
   var preview;
@@ -165,6 +162,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   
   function timePage(){
     window.clearInterval(preview);
+    $('.footstep_list_home').css("display","block");
     console.log("here!!!! " + $(window).width());
 
     if($(window).width() < mobileSize) {
@@ -552,37 +550,14 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   $scope.footstep = angular.copy(data);
   
-  // $scope.closeBtn = function(){
-  //   $('.create_footstep').css('display','none');
-  //   $('.profile_top').css('display', 'none');
-  //   $('#create_footstep-info-image').css('background-image', null);
-  // };
-  
   
   $scope.createBtn = function(){
-    // $('.create_footstep').css('display','inherit');
-    // $("#create_footstep-info-image").css("background-image", '');
-    //
-    // if ($(window).width() < mobileSize) {
-    //   $('.create_footstep').css("padding", "0px 3%");
-    // }
-
     $window.location.href = "#/footsteps/add";
 
   };
   
 
   $scope.editProfileBtn = function(){
-    // $('.profile_top').css("display","block");
-    // if($scope.user.u_avatar) {
-    //    // $('#avatarImg-btn').css("display", "none");
-    //   // $('#avatarImg-btn')
-    // }
-    //
-    // if ($(window).width() < mobileSize) {
-    //   $('.profile_top').css({"margin":"100px 3%", "width": "95%"});
-    // }
-
     $window.location.href = "#/profile/edit";
 
   };
@@ -736,7 +711,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         params: {
           u_id: $cookies.get('u_id'),
           index_start: $scope.footsteps.length,
-          index_end: $scope.footsteps.length + 5
+          count: 5
         }
       }).success(function (data) {
         console.log(data.length);
@@ -757,7 +732,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         params: {
           u_id: $cookies.get('u_id'),
           index_start: $scope.footsteps.length,
-          index_end: $scope.footsteps.length + 5
+          count: 5
         }
       }).success(function (data) {
         console.log(data.length);
@@ -1086,7 +1061,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 /* community */
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
-  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, index_end: 3}})
+  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 3}})
       .success(function(data){
         $scope.topics = data;
       },function(error){
@@ -1108,7 +1083,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
     $http({
       method: 'GET',
       url: ipAddress + '/topics/getTopics',
-      params: {index_start: $scope.topics.length, index_end: $scope.topics.length + 3}
+      params: {index_start: $scope.topics.length, count: 3}
     }).success(function (data) {
       // console.log(data.length);
       if(data.length > 0) {

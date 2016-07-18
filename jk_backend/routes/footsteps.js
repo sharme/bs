@@ -33,8 +33,8 @@ router.get('/getFootsteps', function(req, res, next) {
         criteriaSQL += " where jkf.fs_from='" + req.param('fs_from') + "'";
     }
 
-    if(req.param('index_start') && req.param('index_end')) {
-        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('index_end');
+    if(req.param('index_start') && req.param('count')) {
+        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
 
 
@@ -62,8 +62,8 @@ router.get('/getFootstepsByUID', function(req, res, next) {
         " from jk_footsteps as jkf where jkf.u_id = ?",[req.param('u_id')]);
 
 
-    if(req.param('index_start') && req.param('index_end')) {
-        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('index_end');
+    if(req.param('index_start') && req.param('count')) {
+        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
 
 
@@ -99,8 +99,8 @@ router.get('/getStickFootstepsByUID', function(req, res, next) {
         "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content, fs_smallImg, fs_bigImg" +
         " from jk_footsteps as jkf where jkf.fs_id IN (select fs_id from jk_sticks as jks where jks.u_id = ?)",[req.param('u_id')]);
 
-    if(req.param('index_start') && req.param('index_end')) {
-        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('index_end');
+    if(req.param('index_start') && req.param('count')) {
+        criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
     
     connection.query(criteriaSQL, function(err, result) {

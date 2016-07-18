@@ -8,6 +8,7 @@ $(document).ready(function() {
     $("#login_btn").click(function(){
         $("#login-popup").css("display", "block");
         $(".login-cover").css("display", "block");
+        $('#login-popup').css('margin',"300px 3%");
         $("body").css("overflow","hidden");
     });
 
