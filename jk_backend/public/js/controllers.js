@@ -386,7 +386,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       headers: {
         'Content-Type': 'application/json'
       },
-      data: CKEDITOR.instances.editor1.getData()
+      data: JSON.stringify(CKEDITOR.instances.editor1.getData())
     };
 
     console.log("add comment: " + JSON.stringify(CKEDITOR.instances.editor1.getData()));

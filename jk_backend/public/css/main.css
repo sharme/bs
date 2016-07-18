@@ -279,8 +279,9 @@ button {
   line-height: 2;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-add {
-  margin: 10px 80px 10px 80%;
   width: 80px;
+  margin: 10px;
+  float: right;
   border-radius: 6px;
   background-color: #eee;
 }
@@ -324,12 +325,7 @@ button {
   text-align: center;
 }
 .profile_top {
-  height: 520px;
-  position: absolute;
-  margin: 100px 25%;
-  background: #eee;
-  display: none;
-  border-radius: 20px;
+  margin: 50px 5%;
 }
 .profile_top #profile_top-header {
   width: 100%;
@@ -442,25 +438,15 @@ button {
   cursor: pointer;
 }
 .create_footstep {
-  display: inherit;
-  width: 100%;
-  padding: 0px 25% 0px 25%;
-  position: absolute;
-  display: none;
+  margin: 50px 5%;
 }
 .create_footstep .create_footstep-info {
-  opacity: 1;
-  background-color: #eeeeee;
-  border-radius: 6px;
-  display: inline-block;
-  position: relative;
-  text-align: left;
   min-height: 560px;
   max-height: 850px;
 }
 .create_footstep .create_footstep-info #create_footstep-info-header {
   width: 100%;
-  text-align: center;
+  text-align: left;
   height: 50px;
   line-height: 3;
   border-bottom: solid gray 1px;
