@@ -7,15 +7,149 @@ var buybsControllers = angular.module('buybsControllers', []);
 var ipAddress = 'http://180.76.152.112';
 var mobileSize = 800;
 
+
+
+function displayPosition(){
+  var timer = setInterval(function(){
+
+    window.clearInterval(timer);
+
+    if($(window).width() < mobileSize) {
+      $('.footstep_list_home').css("padding", "0px 5%");
+      $('.footstep-list-div').css('width', '95%');
+      $('.footstep-list_end').css('position', 'relative');
+      $('.footstep-list_end').css('float', 'left');
+      $('.footstep-list_end').css('padding', '10px 30% 0px 20%');
+      $('.footstep-count').css({"position": "relative", "float": "left", "margin": "10px 0px 0px 5%"});
+    } else {
+
+      if ($(".footstep_list_home").children("#footstep-list-div").size() > 1) {
+        var i = 0;
+        var count = 0;
+        var trigger = 0;
+        var topPxs = [
+          {"topPx": 155, "leftPx": "20%"},
+          {"topPx": 155, "leftPx": "40%"},
+          {"topPx": 155, "leftPx": "60%"}
+        ];
+
+        var maxVal = 30;
+        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
+
+          $(element).css({
+            "position": "absolute",
+            "width": '18%',
+            "top": topPxs[i].topPx + "px",
+            "left": topPxs[i].leftPx + ""
+          });
+
+          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
+
+          if ((index + 1) % 3 == 0) {
+            i = 0;
+            count++;
+          } else {
+            i++;
+            for (var j = 0; j < 3; j++) {
+              maxVal = topPxs[j];
+              if (maxVal < topPxs[j + 1] && j < 2) {
+                maxVal = topPxs[j + 1];
+              }
+            }
+            // console.log("maxVal= " + JSON.stringify(maxVal));
+
+            if ((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
+              trigger++;
+            }
+          }
+
+        });
+
+        $('.footstep-list_end').css('top', maxVal.topPx + 500);
+      } else {
+        $('.footstep-list_end').css('display', 'none');
+      }
+    }
+
+  },500);
+}
+
+function displayProfilePosition(){
+  var timer = setInterval(function(){
+    clearInterval(timer);
+
+    if ($(window).width() < mobileSize) {
+      $('.footstep_list_profile').css("padding", "0px 5%");
+      $('.footstep-list-div').css('width', '95%');
+      $('.profile_middle').css("margin", "0px ");
+      $('.profile_top-edit-info').css("margin", "0px 35%");
+      $('.profile_top-edit-info').css("left", "0px");
+      $('.footstep-list_profile_end').css('position', 'relative');
+      $('.footstep-list_profile_end').css('float', 'left');
+    } else {
+
+      if ($(".footstep_list_profile").children("#footstep-list-div").size() > 4) {
+        var i = 0;
+        var count = 0;
+        var trigger = 0;
+        var topPxs = [
+          {"topPx": 320, "leftPx": "0%"},
+          {"topPx": 320, "leftPx": "20%"},
+          {"topPx": 320, "leftPx": "40%"},
+          {"topPx": 320, "leftPx": "60%"},
+          {"topPx": 320, "leftPx": "80%"}
+        ];
+
+        var maxVal = 30;
+        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
+
+          $(element).css({
+            "position": "absolute",
+            "width": '18%',
+            "top": topPxs[i].topPx + "px",
+            "left": topPxs[i].leftPx + ""
+          });
+
+          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
+
+          if ((index + 1) % 5 == 0) {
+            i = 0;
+            count++;
+          } else {
+
+            i++;
+
+            for (var j = 0; j < 3; j++) {
+              maxVal = topPxs[j];
+              if (maxVal < topPxs[j + 1] && j < 2) {
+                maxVal = topPxs[j + 1];
+              }
+            }
+
+            if ((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
+              // i = 0;
+              trigger++;
+              // alert("test");
+            }
+          }
+        });
+        $('.footstep-list_profile_end').css('top', maxVal.topPx + 500);
+
+      }
+    }
+  },500);
+}
+
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
 
   console.log("Browser width: " + $(window).width());
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 15}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 9}})
       .success(function(data){
         $scope.footsteps = data;
-        preview = setInterval(timePage, 500);
+        $('.footstep_list_home').css("display","block");
+        displayPosition();
       },function(error){
         $scope.error = error;
       });
@@ -32,7 +166,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from}})
         .success(function(data){
           $scope.footsteps = data;
-          preview = setInterval(timePage, 500);
+          displayPosition();
           $scope.number = data.length;
         }, function(error){
           $scope.error = error;
@@ -47,26 +181,31 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         $scope.error = error;
       });
 
+
+  $scope.isbusy = false;
   $scope.loadMore = function() {
 
-    $http({
-      method: 'GET',
-      url: ipAddress + '/footsteps/getFootsteps',
-      params: {index_start: $scope.footsteps.length, index_end: 6}
-    }).success(function (data) {
-      console.log(data.length);
-      if(data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          $scope.footsteps.push(data[i]);
+    console.log("Community load more!!! Topics: " + $scope.footsteps.length);
+    if($scope.number > $scope.footsteps.length) {
+      $scope.isbusy = true;
+      $http({
+        method: 'GET',
+        url: ipAddress + '/footsteps/getFootsteps',
+        params: {index_start: $scope.footsteps.length, count: 3}
+      }).success(function (data) {
+        console.log("data length: " + data.length);
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            $scope.footsteps.push(data[i]);
+          }
+          $scope.isbusy = false;
+          displayPosition();
+
         }
-        $('.footstep_list_home').css("display","none");
-        preview = setInterval(timePage, 500);
-      }
-
-    }, function (error) {
-      $scope.error = error;
-    });
-
+      }, function (error) {
+        $scope.error = error;
+      });
+    }
   };
 
 
@@ -156,73 +295,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           $scope.error = error;
         });
   };
-
-  var preview;
-  
-  
-  function timePage(){
-    window.clearInterval(preview);
-    $('.footstep_list_home').css("display","block");
-    console.log("here!!!! " + $(window).width());
-
-    if($(window).width() < mobileSize) {
-      $('.footstep_list_home').css("padding", "0px 5%");
-      $('.footstep-list-div').css('width', '95%');
-      $('.footstep-list_end').css('position', 'relative');
-      $('.footstep-list_end').css('float', 'left');
-      $('.footstep-list_end').css('padding', '10px 30% 0px 20%');
-      $('.footstep-count').css({"position": "relative", "float": "left", "margin": "10px 0px 0px 5%"});
-    } else {
-
-      if ($(".footstep_list_home").children("#footstep-list-div").size() > 1) {
-        var i = 0;
-        var count = 0;
-        var trigger = 0;
-        var topPxs = [
-          {"topPx": 155, "leftPx": "20%"},
-          {"topPx": 155, "leftPx": "40%"},
-          {"topPx": 155, "leftPx": "60%"}
-        ];
-
-        var maxVal = 30;
-        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
-
-          $(element).css({
-            "position": "absolute",
-            "width": '18%',
-            "top": topPxs[i].topPx + "px",
-            "left": topPxs[i].leftPx + ""
-          });
-
-          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
-
-          if ((index + 1) % 3 == 0) {
-            i = 0;
-            count++;
-          } else {
-            i++;
-            for (var j = 0; j < 3; j++) {
-              maxVal = topPxs[j];
-              if (maxVal < topPxs[j + 1] && j < 2) {
-                maxVal = topPxs[j + 1];
-              }
-            }
-            // console.log("maxVal= " + JSON.stringify(maxVal));
-
-            if ((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
-              trigger++;
-            }
-          }
-
-        });
-
-        $('.footstep-list_end').css('top', maxVal.topPx + 500);
-
-      } else {
-        $('.footstep-list_end').css('display', 'none');
-      }
-    }
-  }
 
 
 }]);
@@ -549,20 +621,15 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     fs_smallImg:''
   };
   $scope.footstep = angular.copy(data);
-  
-  
+
   $scope.createBtn = function(){
     $window.location.href = "#/footsteps/add";
-
   };
-  
 
   $scope.editProfileBtn = function(){
     $window.location.href = "#/profile/edit";
-
   };
-  
-  
+
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         console.log('countries: ' + data);
@@ -588,123 +655,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
 
-  // $scope.submit = function() {
-  //
-  //   var footstepData = {
-  //     fs_desc: $scope.footstep.fs_desc,
-  //     fs_from: $scope.footstep.fs_from,
-  //     fs_pic: $scope.footstep.fs_smallImg,
-  //     u_id: $cookies.get('u_id'),
-  //     fs_bigImg: $scope.footstep.fs_bigImg,
-  //     fs_smallImg: $scope.footstep.fs_smallImg
-  //   };
-  //
-  //   console.log("shopData: " + JSON.stringify(footstepData));
-  //
-  //   var req = {
-  //     method: 'POST',
-  //     url: ipAddress + '/footsteps/create',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     data: JSON.stringify(footstepData)
-  //   };
-  //
-  //   $http(req).success(function(result){
-  //     // alert("添加成功");
-  //     $('.create_footstep').css("display","none");
-  //     $('#create_footstep-info-image').css('background-image', null);
-  //     $window.location.reload();
-  //   }, function(error){
-  //     console.log(error);
-  //   });
-  //
-  // };
-
-  // $scope.updateSubmit = function() {
-  //
-  //   console.log("userData: " + JSON.stringify($scope.user));
-  //
-  //   var reqData = {
-  //     u_name: $scope.user.u_name,
-  //     u_avatar: $scope.user.u_avatar,
-  //     u_link: $scope.user.u_link,
-  //     u_slogan: $scope.user.u_slogan,
-  //     u_id: $scope.user.u_id
-  //   };
-  //
-  //   var req = {
-  //     method: 'POST',
-  //     url: ipAddress + '/users/update',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     data: JSON.stringify(reqData)
-  //   };
-  //
-  //   $http(req).success(function(result){
-  //     console.log("添加成功");
-  //     $('.profile_top').css("display","none");
-  //   }, function(error){
-  //     console.log(error);
-  //   });
-  //
-  // };
-
-  // $scope.uploadFile = function(file) {
-  //   console.log('upload file');
-  //   var file_data = $(file).prop('files')[0];
-  //   var form_data = new FormData();
-  //   form_data.append('u_id', $cookies.get('u_id'));
-  //   form_data.append("file", file_data);
-  //
-  //   $.ajax({
-  //     url: ipAddress + "/api/uploadPhotos",
-  //     contentType: false,
-  //     data: form_data,
-  //     processData: false,
-  //     cache: false,
-  //     type: "POST",
-  //     success: function (res) {
-  //       console.log('successfully uploaded, URL: ' + res);
-  //       $(file).parent().css("background-image", 'url(' + res.bigImg + ')');
-  //       $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
-  //       $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
-  //       $(file).parent().nextAll("#upload_smallImg-href").change();
-  //       $(file).parent().nextAll("#upload_bigImg-href").change();
-  //       $(file).css("display", "none");
-  //     }
-  //   });
-  // };
-  
-  // $scope.uploadAvatar = function(file) {
-  //   console.log('upload file');
-  //   var file_data = $(file).prop('files')[0];
-  //   var form_data = new FormData();
-  //   form_data.append('u_id', $cookies.get('u_id'));
-  //   form_data.append("file", file_data);
-  //
-  //   $.ajax({
-  //     url:  ipAddress + "/api/uploadAvatar",
-  //     contentType: false,
-  //     data: form_data,
-  //     processData: false,
-  //     cache: false,
-  //     type: "POST",
-  //     success: function (res) {
-  //       console.log('uploaded, URL: ' + res);
-  //       $(file).prev().css("background-image", 'url(' + res + ')');
-  //       $scope.user.u_avatar = res;
-  //       $(file).css("display", "none");
-  //     }
-  //   });
-  // };
-
   var val = 0;
+  $scope.isbusy = false;
   $scope.loadMore = function() {
 
     if(val = 1) {
-
+      $scope.isbusy = true;
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getFootsteps',
@@ -719,13 +675,15 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
           }
-          preview = setInterval(timePage, 1000);
+          $scope.isbusy = false;
+          displayProfilePosition();
         }
 
       }, function (error) {
         $scope.error = error;
       });
     } else {
+      $scope.isbusy = true;
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getStickFootstepsByUID',
@@ -740,7 +698,8 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
           }
-          preview = setInterval(timePage, 1000);
+          $scope.isbusy = false;
+         displayProfilePosition();
         }
 
       }, function (error) {
@@ -751,7 +710,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileFootsteps = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, index_end: 9}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
@@ -760,12 +719,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         }, function(error){
           $scope.error = error;
         });
-
-    preview = setInterval(timePage, 1000);
+    displayProfilePosition();
+    // preview = setInterval(timePage, 1000);
   };
   
   $scope.profileSticks = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, index_end: 9}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
         .success(function(data){
           $scope.footsteps = data;
           $("#footstep-list").css("display", "block");
@@ -774,8 +733,8 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         }, function(error){
           $scope.error = error;
         });
-
-    preview = setInterval(timePage, 1000);
+    displayProfilePosition();
+    // preview = setInterval(timePage, 1000);
   };
 
   $scope.profileFollows = function(u_id) {
@@ -797,74 +756,6 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           $scope.error = error;
         });
   };
-  
-  var preview = setInterval(timePage, 10);
-
-  function timePage() {
-    clearInterval(preview);
-
-    if ($(window).width() < mobileSize) {
-      $('.footstep_list_profile').css("padding", "0px 5%");
-      $('.footstep-list-div').css('width', '95%');
-      $('.profile_middle').css("margin", "0px ");
-      $('.profile_top-edit-info').css("margin", "0px 35%");
-      $('.profile_top-edit-info').css("left", "0px");
-      $('.footstep-list_profile_end').css('position', 'relative');
-      $('.footstep-list_profile_end').css('float', 'left');
-    } else {
-
-
-      if ($(".footstep_list_profile").children("#footstep-list-div").size() > 4) {
-        clearInterval(preview);
-        var i = 0;
-        var count = 0;
-        var trigger = 0;
-        var topPxs = [
-          {"topPx": 320, "leftPx": "0%"},
-          {"topPx": 320, "leftPx": "20%"},
-          {"topPx": 320, "leftPx": "40%"},
-          {"topPx": 320, "leftPx": "60%"},
-          {"topPx": 320, "leftPx": "80%"}
-        ];
-
-        var maxVal = 30;
-        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
-
-          $(element).css({
-            "position": "absolute",
-            "width": '18%',
-            "top": topPxs[i].topPx + "px",
-            "left": topPxs[i].leftPx + ""
-          });
-
-          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
-
-          if ((index + 1) % 5 == 0) {
-            i = 0;
-            count++;
-          } else {
-
-            i++;
-
-            for (var j = 0; j < 3; j++) {
-              maxVal = topPxs[j];
-              if (maxVal < topPxs[j + 1] && j < 2) {
-                maxVal = topPxs[j + 1];
-              }
-            }
-
-            if ((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
-              // i = 0;
-              trigger++;
-              // alert("test");
-            }
-          }
-        });
-        $('.footstep-list_profile_end').css('top', maxVal.topPx + 500);
-
-      }
-    }
-  }
 
 }]);
 
@@ -1061,7 +952,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 /* community */
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
-  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 3}})
+  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12}})
       .success(function(data){
         $scope.topics = data;
       },function(error){
@@ -1075,25 +966,37 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
         $scope.error = error;
       });
 
+  $http({method: 'GET', url: ipAddress + '/topics/getTopicsNumber'})
+      .success(function(data){
+        $scope.number = data[0].number;
+      },function(error){
+        $scope.error = error;
+      });
 
+
+  $scope.isbusy = false;
   $scope.loadMore = function() {
 
-    console.log("load more!!!");
-
-    $http({
-      method: 'GET',
-      url: ipAddress + '/topics/getTopics',
-      params: {index_start: $scope.topics.length, count: 3}
-    }).success(function (data) {
-      // console.log(data.length);
-      if(data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          $scope.topics.push(data[i]);
-        }
+      console.log("Community load more!!! Topics: " + $scope.topics.length);
+      if($scope.number > $scope.topics.length) {
+        $scope.isbusy = true;
+        $http({
+          method: 'GET',
+          url: ipAddress + '/topics/getTopics',
+          params: {index_start: $scope.topics.length, count: 3}
+        }).success(function (data) {
+            console.log("data length: " + data.length);
+          if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+              $scope.topics.push(data[i]);
+            }
+            $scope.isbusy = false;
+            // $scope.topics.push(data);
+          }
+        }, function (error) {
+          $scope.error = error;
+        });
       }
-    }, function (error) {
-      $scope.error = error;
-    });
   };
 
 

@@ -9,7 +9,10 @@ var buybs = angular.module('jk_backend', [
     'ngCookies',
     'ngSanitize',
     'infinite-scroll'
-]);
+]).value("THROTTLE_MILLISECONDS", 3000);
+
+// you might call this after your module initalization
+// angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 500);
 
 buybs.config(['$routeProvider',
   function($routeProvider) {

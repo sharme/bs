@@ -42,6 +42,7 @@ a {
   padding: 10%;
   font-size: 18px;
   color: grey;
+  background-color: #eeeeee;
 }
 .welcome .welcome_register {
   height: 400px;
@@ -435,7 +436,6 @@ button {
   background-color: darkgray;
   line-height: 2;
   border-radius: 5px;
-  margin-top: 10px;
   cursor: pointer;
 }
 .create_footstep {

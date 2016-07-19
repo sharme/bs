@@ -3,7 +3,7 @@
         <a ng-click="countryFilter(this,country.c_name)">{{country.c_name}}</a></button>
 </div>
 <div class="footstep-count">{{number}}足迹</div>
-<div id="footstep-list" class="footstep_list_home" infinite-scroll="loadMore()" infinite-scroll-distance="2">
+<div id="footstep-list" class="footstep_list_home" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="false">
         <div id="footstep-list-div" class="footstep-list-div" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic" ng-click="loginCheck(result.fs_id)">
                 <!--<a href="#/foot/{{result.fs_id}}">-->
