@@ -26,6 +26,10 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/homepage.html',
         controller: 'FootstepsListCtrl'
       }).
+        when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'loginCtrl'
+    }).
         when('/foot/:footId',{
         templateUrl: 'views/footDetail.html',
         controller: 'FootDetailCtrl'

@@ -135,21 +135,15 @@ button {
   color: cadetblue;
 }
 #login-popup {
-  height: 320px;
-  position: absolute;
-  background-color: whitesmoke;
-  z-index: 2;
-  margin: 300px 35%;
-  border-radius: 30px;
-  display: none;
+  width: 400px;
+  margin-top: 50px;
+  margin-left: 5%;
 }
 #login-popup .login-popup-header {
   width: 100%;
-  text-align: center;
-  height: 50px;
   line-height: 3;
-  border-bottom: solid gray 1px;
-  font-size: 18px;
+  font-size: 24px;
+  color: grey;
 }
 #login-popup .login-popup-register {
   height: 30px;
@@ -160,9 +154,6 @@ button {
   cursor: pointer;
   float: right;
   margin-right: 10px;
-}
-#login-popup .login-popup-form {
-  margin: 40px 40px 40px 60px;
 }
 #login-popup .login-popup-form .login-popup-form-phoneNumber,
 #login-popup .login-popup-form .login-popup-form-password {
@@ -184,6 +175,7 @@ button {
   min-height: 600px;
   padding: 0px 20% 0px 20%;
   display: none;
+  z-index: 2;
 }
 .footstep_list_profile {
   width: 100%;
@@ -218,7 +210,7 @@ button {
   float: left;
   border: solid 1px lightgrey;
   border-radius: 6px;
-  margin: 0px 3.3% 0px 0px;
+  margin: 10px 1.6% 0px 1.6%;
   width: 30%;
   top: 200px;
 }
@@ -493,7 +485,7 @@ button {
 .create_footstep .create_footstep-info .create_footstep-info-pic,
 .create_footstep .create_footstep-info .create_footstep-info-desc,
 .create_footstep .create_footstep-info .create_footstep-info-from {
-  width: 80%;
+  width: 100%;
   border-radius: 1px;
 }
 .follow-list-div-comment-avatar {
@@ -548,7 +540,7 @@ button {
   color: gray;
 }
 #register-form {
-  margin: 0px 0px 0px 5%;
+  margin: 50px 0px 0px 5%;
 }
 #register-form #register-form-phoneNumber,
 #register-form #register-form-username,
@@ -601,13 +593,17 @@ button {
   display: inline-block;
 }
 .message {
-  margin: 100px 200px;
+  margin: 50px 10%;
 }
 .message .message-title {
   font-size: 16px;
   margin: 0px 0px 20px;
 }
+.message .message-content {
+  width: 100%;
+  border: solid 1px gray;
+}
 .message .message-submit {
   float: right;
-  margin: 0px 35%;
+  margin: 0px 5%;
 }

@@ -9,13 +9,12 @@ var mobileSize = 800;
 
 
 
-function displayPosition(){
+function displayPosition(miles){
   var timer = setInterval(function(){
-
     window.clearInterval(timer);
 
     if($(window).width() < mobileSize) {
-      $('.footstep_list_home').css("padding", "0px 5%");
+      $('.footstep_list_home').css("padding", "0px 10%");
       $('.footstep-list-div').css('width', '95%');
       $('.footstep-list_end').css('position', 'relative');
       $('.footstep-list_end').css('float', 'left');
@@ -34,8 +33,9 @@ function displayPosition(){
         ];
 
         var maxVal = 30;
+        var listIndex = 0;
         $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
-
+          listIndex++;
           $(element).css({
             "position": "absolute",
             "width": '18%',
@@ -50,31 +50,30 @@ function displayPosition(){
             count++;
           } else {
             i++;
-            for (var j = 0; j < 3; j++) {
-              maxVal = topPxs[j];
-              if (maxVal < topPxs[j + 1] && j < 2) {
-                maxVal = topPxs[j + 1];
-              }
-            }
-            // console.log("maxVal= " + JSON.stringify(maxVal));
 
             if ((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
               trigger++;
             }
           }
 
-        });
+          if($(".footstep_list_home").children("#footstep-list-div").size() -1 == listIndex ) {
+            console.log("children(#footstep-list-div) = " + $(".footstep_list_home").children("#footstep-list-div").size() + ", index = " + listIndex);
+            maxVal = topPxs[i].topPx;
+          }
 
-        $('.footstep-list_end').css('top', maxVal.topPx + 500);
+        });
+        console.log("maxVal = " + maxVal)
+        $('.footstep-list_end').css('top', maxVal + 500);
+
       } else {
         $('.footstep-list_end').css('display', 'none');
       }
     }
 
-  },500);
+  },miles);
 }
 
-function displayProfilePosition(){
+function displayProfilePosition(miles){
   var timer = setInterval(function(){
     clearInterval(timer);
 
@@ -137,8 +136,73 @@ function displayProfilePosition(){
 
       }
     }
-  },500);
+  },miles);
 }
+
+buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+
+  var cookieUser = $cookies.get("username");
+  if(cookieUser) {
+
+    if($cookies.get('u_avatar')) {
+      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a>");
+    } else {
+      $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
+    }
+    $(".header-right-logout").css("display", "block");
+    $(".header-right-login").css("display", "none");
+  } else {
+    $(".header-right-logout").css("display", "none");
+    $(".header-right-login").css("display", "block");
+  }
+
+  $scope.showUName = function(){alert("1")};
+  console.log("cookieUser: " + cookieUser);
+
+  $scope.data = {
+    phoneNumber: '',
+    password: ''
+  };
+
+  $scope.submit = function(){
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/users/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.user)
+    };
+
+    $http(req).success(function(result){
+      if(result.length > 0) {
+        if(result[0].u_avatar) {
+          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a>");
+          $cookies.put('u_avatar', result[0].u_avatar);
+        } else {
+          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
+        }
+        $cookies.put('username', result[0].u_name);
+        $cookies.put('u_id', result[0].u_id);
+        $(".header-right-logout").css("display", "block");
+        $(".header-right-login").css("display", "none");
+        $("#login-popup").css("display", "none");
+        $(".login-cover").css("display", "none");
+        $("body").css("overflow","auto");
+        $window.location.href="#/foot";
+      }else {
+        $(".login-popup-form-invalid").css("display", "block");
+        $scope.user = angular.copy($scope.data);
+      }
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+  $scope.user = angular.copy($scope.data);
+
+
+}]);
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
@@ -149,7 +213,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       .success(function(data){
         $scope.footsteps = data;
         $('.footstep_list_home').css("display","block");
-        displayPosition();
+        displayPosition(500);
       },function(error){
         $scope.error = error;
       });
@@ -166,7 +230,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from}})
         .success(function(data){
           $scope.footsteps = data;
-          displayPosition();
+          displayPosition(500);
           $scope.number = data.length;
         }, function(error){
           $scope.error = error;
@@ -199,7 +263,9 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          displayPosition();
+          $('.footstep_list_home').css("display","none");
+          displayPosition(1);
+          $('.footstep_list_home').css("display","block");
 
         }
       }, function (error) {
@@ -212,11 +278,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   $scope.stickBtn = function(id){
 
     console.log("User: " + $cookies.get('u_id'));
-
     if($cookies.get('u_id') == undefined){
-      $("#login-popup").css("display", "block");
-      $(".login-cover").css("display", "block");
-      return;
+      $window.location.href = '#/login';
     }
 
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
@@ -245,26 +308,19 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         }, function(error){
           console.log(error);
         });
-
   };
 
   $scope.loginCheck = function(fs_id) {
     if($cookies.get('u_id') == undefined){
-      $("#login-popup").css("display", "block");
-      $(".login-cover").css("display", "block");
-      return;
+      $window.location.href = '#/login';
     } else {
       $window.location.href = "#/foot/" + fs_id;
     }
-
   };
 
   $scope.likeBtn = function(id){
-
     if($cookies.get('u_id') == undefined){
-      $("#login-popup").css("display", "block");
-      $(".login-cover").css("display", "block");
-      return;
+      $window.location.href = '#/login';
     }
 
     $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
@@ -284,7 +340,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
                 'u_id': $cookies.get('u_id')
               }
             };
-
             $http(req).success(function(result){
               console.log('liked');
             }, function(error){
@@ -295,7 +350,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           $scope.error = error;
         });
   };
-
 
 }]);
 
@@ -335,7 +389,8 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
 
   $scope.backHome = function () {
-    window.history.go(-1);
+    // window.history.go(-1);
+    window.location.href = '#/foot'
   };
 
   $scope.stickBtn = function(id){
@@ -651,6 +706,10 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         console.log(JSON.stringify(data));
         $scope.userProfile = data;
 
+        if($(window).width() < mobileSize){
+          $('.profile_middle').css("margin", "0px");
+        }
+
       }, function(error){
         $scope.error = error;
       });
@@ -658,8 +717,8 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   var val = 0;
   $scope.isbusy = false;
   $scope.loadMore = function() {
-
-    if(val = 1) {
+    console.log("profile load more! val = " + val);
+    if(val == 1) {
       $scope.isbusy = true;
       $http({
         method: 'GET',
@@ -675,9 +734,10 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
           }
-          $scope.isbusy = false;
-          displayProfilePosition();
+
+          displayProfilePosition(50);
         }
+        $scope.isbusy = false;
 
       }, function (error) {
         $scope.error = error;
@@ -698,9 +758,10 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
           }
-          $scope.isbusy = false;
-         displayProfilePosition();
+
+         displayProfilePosition(50);
         }
+        $scope.isbusy = false;
 
       }, function (error) {
         $scope.error = error;
@@ -713,13 +774,13 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
         .success(function(data){
           $scope.footsteps = data;
-          $("#footstep-list").css("display", "block");
+          // $("#footstep-list").css("display", "block");
           val = 1;
           $scope.results = null;
         }, function(error){
           $scope.error = error;
         });
-    displayProfilePosition();
+    displayProfilePosition(100);
     // preview = setInterval(timePage, 1000);
   };
   
@@ -727,13 +788,13 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
         .success(function(data){
           $scope.footsteps = data;
-          $("#footstep-list").css("display", "block");
+          // $("#footstep-list").css("display", "block");
           val = 2;
           $scope.results = null;
         }, function(error){
           $scope.error = error;
         });
-    displayProfilePosition();
+    displayProfilePosition(100);
     // preview = setInterval(timePage, 1000);
   };
 
@@ -775,7 +836,8 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       });
 
   $scope.closeBtn = function() {
-    $window.history.go(-1);
+    // $window.history.go(-1);
+    $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
   };
 
   $scope.submit = function() {
@@ -845,7 +907,8 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
 
   $scope.closeBtn = function() {
-    $window.history.go(-1);
+    // $window.history.go(-1);
+    $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
   };
 
   $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id')}})
@@ -1004,9 +1067,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
   $scope.topicLoginCheck = function(tp_id) {
     if($cookies.get('u_id') == undefined){
-      $("#login-popup").css("display", "block");
-      $(".login-cover").css("display", "block");
-      return;
+      $window.location.href = '#/login';
     } else {
       var click = {
         tp_id: tp_id,
@@ -1034,9 +1095,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
   $scope.addLoginCheck = function() {
     if($cookies.get('u_id') == undefined){
-      $("#login-popup").css("display", "block");
-      $(".login-cover").css("display", "block");
-      return;
+      $window.location.href = '#/login';
     } else {
       $window.location.href = "#/community/topics/addTopic";
     }
