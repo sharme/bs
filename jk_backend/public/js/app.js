@@ -8,7 +8,8 @@ var buybs = angular.module('jk_backend', [
   'buybsFilters',
     'ngCookies',
     'ngSanitize',
-    'infinite-scroll'
+    'infinite-scroll',
+    'angularCSS'
 ]).value("THROTTLE_MILLISECONDS", 3000);
 
 // you might call this after your module initalization
@@ -19,7 +20,7 @@ buybs.config(['$routeProvider',
     
     $routeProvider.
     when('/', {
-        templateUrl: 'views/welcome.html',
+        templateUrl: 'views/welcome/welcome.html',
         controller: 'WelcomeCtrl'
     }).
       when('/foot', {
@@ -42,7 +43,7 @@ buybs.config(['$routeProvider',
         controller: 'RegisterCtrl'
     }).
         when('/profile',{
-        templateUrl: 'views/profile.html',
+        templateUrl: 'views/profile/profile.html',
         controller: 'ProfileController'
     }).
         when('/profile/edit',{
@@ -54,7 +55,7 @@ buybs.config(['$routeProvider',
         controller: 'FootstepAddController'
     }).
         when('/message',{
-        templateUrl: 'views/message.html',
+        templateUrl: 'views/message/message.html',
         controller: 'MessageController'
     }).
         when('/logout', {

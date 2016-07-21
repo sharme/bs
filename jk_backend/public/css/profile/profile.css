@@ -1,0 +1,106 @@
+.profile_top-edit {
+  height: 120px;
+  background-color: lightslategray;
+}
+.profile_top-edit .profile_top-edit-info {
+  height: 80px;
+  width: 100px;
+  left: 45%;
+  position: absolute;
+  text-align: center;
+  line-height: 1.5;
+  padding-top: 20px;
+}
+.profile_top-edit .profile_top-edit-info .profile_top-edit-info-name {
+  position: relative;
+  height: 30px;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.profile_top-edit .profile_top-edit-info .profile_top-edit-info-name .profile_top-edit-info-edit {
+  float: left;
+  width: 70px;
+  text-align: center;
+}
+.profile_middle {
+  height: 100px;
+  margin: 0px 27%;
+  padding-top: 20px;
+}
+.profile_middle .profile_middle-point {
+  width: 15%;
+  height: 60px;
+  text-align: center;
+  line-height: 2;
+  float: left;
+  margin-left: 7%;
+  background-color: lightslategray;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+.footstep-list {
+  margin-bottom: 20px;
+}
+.footstep-list .profile_down-create {
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+  text-align: center;
+  background-color: darkgray;
+  line-height: 2;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.footstep-list .footstep-list_end,
+.footstep-list .footstep-list_profile_end {
+  padding-right: 40%;
+  height: 100px;
+  position: absolute;
+  color: grey;
+  bottom: 0;
+  text-align: center;
+  line-height: 3;
+  font-size: 14px;
+  width: 100%;
+}
+.footstep-list #footstep-list-div {
+  float: left;
+  border: solid 1px lightgrey;
+  border-radius: 6px;
+  margin: 20px 1.6% 0px 1.6%;
+  width: 18%;
+  top: 200px;
+}
+.footstep-list .footstep-list-div-pic {
+  min-height: 100px;
+}
+.footstep-list .footstep-list-div-createTime {
+  font-size: 11px;
+  padding: 10px;
+  color: grey;
+}
+.footstep-list .footstep-list-div-desc {
+  padding: 10px;
+  word-wrap: break-word;
+}
+.footstep-list .footstep-list-div-comment {
+  line-height: 15px;
+  padding: 10px;
+  position: relative;
+  font-size: 12px;
+  font-family: cursive;
+}
+.follow-list .follow-list-div-comment-avatar {
+  position: relative;
+  border-radius: 50%;
+  width: 100px;
+  height: 80px;
+  float: left;
+  padding: 20px;
+}
+.follow-list .follow-list-div-comment-avatar-img {
+  height: 60px;
+  width: 60px;
+  border-radius: 12px;
+}

@@ -54,8 +54,8 @@
 .community .community_promo,
 .topic .community_promo,
 .topic_add .community_promo {
-  width: 22%;
-  margin-left: 78%;
+  width: 20%;
+  margin-left: 80%;
   height: 500px;
 }
 .community .community_promo .community_promo_active,

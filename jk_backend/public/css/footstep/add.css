@@ -1,0 +1,58 @@
+.create_footstep {
+  margin: 50px 20%;
+}
+.create_footstep .create_footstep-info {
+  min-height: 560px;
+  max-height: 850px;
+}
+.create_footstep .create_footstep-info #create_footstep-info-header {
+  width: 100%;
+  text-align: left;
+  height: 50px;
+  line-height: 3;
+  font-size: 16px;
+}
+.create_footstep .create_footstep-info #create_footstep-info-header #create_footstep-info-header-del {
+  float: right;
+  font-size: 20px;
+  color: white;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 1.3;
+  background-color: gray;
+  cursor: pointer;
+  border: solid 1px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+.create_footstep .create_footstep-info #create_footstep-info-image {
+  margin: 10px 25px;
+  height: 280px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.create_footstep .create_footstep-info #footstep_form-submit {
+  margin-right: 20px;
+  float: right;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 120px;
+  border-radius: 5px;
+  background-color: darkgray;
+  border: none;
+}
+.create_footstep .create_footstep-info .create_footstep-info-span {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+.create_footstep .create_footstep-info .create_footstep-info-div {
+  margin-top: 10px;
+}
+.create_footstep .create_footstep-info .create_footstep-info-pic,
+.create_footstep .create_footstep-info .create_footstep-info-desc,
+.create_footstep .create_footstep-info .create_footstep-info-from {
+  width: 100%;
+  border-radius: 1px;
+}

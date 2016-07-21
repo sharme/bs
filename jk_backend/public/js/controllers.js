@@ -8,18 +8,12 @@ var ipAddress = 'http://180.76.152.112';
 var mobileSize = 800;
 
 
-
 function displayPosition(miles){
   var timer = setInterval(function(){
     window.clearInterval(timer);
 
     if($(window).width() < mobileSize) {
-      $('.footstep_list_home').css("padding", "0px 10%");
-      $('.footstep-list-div').css('width', '95%');
-      $('.footstep-list_end').css('position', 'relative');
-      $('.footstep-list_end').css('float', 'left');
-      $('.footstep-list_end').css('padding', '10px 30% 0px 20%');
-      $('.footstep-count').css({"position": "relative", "float": "left", "margin": "10px 0px 0px 5%"});
+      
     } else {
 
       if ($(".footstep_list_home").children("#footstep-list-div").size() > 1) {
@@ -78,29 +72,22 @@ function displayProfilePosition(miles){
     clearInterval(timer);
 
     if ($(window).width() < mobileSize) {
-      $('.footstep_list_profile').css("padding", "0px 5%");
-      $('.footstep-list-div').css('width', '95%');
-      $('.profile_middle').css("margin", "0px ");
-      $('.profile_top-edit-info').css("margin", "0px 35%");
-      $('.profile_top-edit-info').css("left", "0px");
-      $('.footstep-list_profile_end').css('position', 'relative');
-      $('.footstep-list_profile_end').css('float', 'left');
-    } else {
 
-      if ($(".footstep_list_profile").children("#footstep-list-div").size() > 4) {
+    } else {
+      if ($(".footstep-list").children("#footstep-list-div").size() > 4) {
         var i = 0;
         var count = 0;
         var trigger = 0;
         var topPxs = [
-          {"topPx": 320, "leftPx": "0%"},
-          {"topPx": 320, "leftPx": "20%"},
-          {"topPx": 320, "leftPx": "40%"},
-          {"topPx": 320, "leftPx": "60%"},
-          {"topPx": 320, "leftPx": "80%"}
+          {"topPx": 300, "leftPx": "0%"},
+          {"topPx": 300, "leftPx": "20%"},
+          {"topPx": 300, "leftPx": "40%"},
+          {"topPx": 300, "leftPx": "60%"},
+          {"topPx": 300, "leftPx": "80%"}
         ];
 
         var maxVal = 30;
-        $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
+        $(".footstep-list").children("#footstep-list-div").each(function (index, element) {
 
           $(element).css({
             "position": "absolute",
@@ -137,6 +124,14 @@ function displayProfilePosition(miles){
       }
     }
   },miles);
+}
+
+function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
+  if($(window).width() < mobileSize) {
+    cssObj.add(mobileCSS);
+  } else {
+    cssObj.add(defaultCSS);
+  }
 }
 
 buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
@@ -205,14 +200,13 @@ buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$htt
 }]);
 
 /* Get footsteps list */
-buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window', function ($scope, $http, $cookies, $window) {
+buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window','$css', function ($scope, $http, $cookies, $window, $css) {
 
-  console.log("Browser width: " + $(window).width());
+  dynamicallyCSS(mobileSize,'../css/home/footstep.css', '../css/home/footstep-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 9}})
       .success(function(data){
         $scope.footsteps = data;
-        $('.footstep_list_home').css("display","block");
         displayPosition(500);
       },function(error){
         $scope.error = error;
@@ -220,7 +214,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
-        console.log('countries: ' + data);
         $scope.countries = data;
       }, function(error){
         $scope.error = error;
@@ -237,14 +230,12 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         });
   };
 
-
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsNumber'})
       .success(function(data){
         $scope.number = data[0].number;
       },function(error){
         $scope.error = error;
       });
-
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
@@ -263,10 +254,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          $('.footstep_list_home').css("display","none");
-          displayPosition(1);
-          $('.footstep_list_home').css("display","block");
-
+          displayPosition(200);
         }
       }, function (error) {
         $scope.error = error;
@@ -274,14 +262,11 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     }
   };
 
-
   $scope.stickBtn = function(id){
-
     console.log("User: " + $cookies.get('u_id'));
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
     }
-
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           if(data.length > 0 ) {
@@ -354,26 +339,21 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 }]);
 
 /* get footstep detail by foot id */
-buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window', function ($scope, $routeParams, $http, $cookies, $window) {
+buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window','$css', function ($scope, $routeParams, $http, $cookies, $window,$css) {
+
+  dynamicallyCSS(mobileSize,'../css/home/footdetail.css','../css/home/footdetail-m.css',$css);
 
 
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
         console.log('data: ' + (JSON.stringify(data)));
         $scope.foot = data[0];
-
-        if($(window).width() < mobileSize){
-          $('.foot_wrapper-back').css("padding", "0px 5% 0px 5%");
-          $('.foot_wrapper-main').css("padding", "0px 5% 0px 5%");
-        }
-
       }, function(error){
         $scope.error = error;
       });
 
   $http({method: 'GET', url: ipAddress + '/comments/getCommentsByFSID', params:{fs_id:$routeParams.footId}})
       .success(function(data){
-        console.log('comments data: ' + (JSON.stringify(data)));
         $scope.comments = data;
       }, function(error){
         $scope.error = error;
@@ -381,7 +361,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   $http({method: 'GET', url: ipAddress + '/sticks/getSticksByFSID', params:{fs_id:$routeParams.footId}})
       .success(function(data){
-        console.log('sticks data: ' + (JSON.stringify(data)));
         $scope.sticks = data;
       }, function(error){
         $scope.error = error;
@@ -389,12 +368,10 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
 
   $scope.backHome = function () {
-    // window.history.go(-1);
     window.location.href = '#/foot'
   };
 
   $scope.stickBtn = function(id){
-
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           if(data.length > 0 ) {
@@ -450,16 +427,12 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
               console.log(error);
             })
           }
-
-
         }, function(error){
           $scope.error = error;
         });
-
   };
 
   $scope.followUpBtn = function(id) {
-
 
     $http({method: 'GET', url: ipAddress + '/followers/getFollowCheck', params:{u_id:id, fl_fl_id:$cookies.get('u_id')}})
         .success(function(data){
@@ -523,8 +496,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       console.log(error);
     });
   };
-
-  
   
 }]);
 
@@ -583,8 +554,8 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 }]);
 
 /* welcome */
-buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
-
+buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
+  dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome.css',$css);
 }]);
 
 /* Register */
@@ -666,7 +637,9 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 }]);
 
 /* mange user's info */
-buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','$cookies','$routeParams', function($scope, $http, $window, $cookies, $routeParams) {
+buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','$cookies','$routeParams','$css', function($scope, $http, $window, $cookies, $routeParams, $css) {
+
+  dynamicallyCSS(mobileSize,'../css/profile/profile.css','../css/profile/profile-m.css',$css);
 
   var data = {
     fs_desc: '',
@@ -705,11 +678,6 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       .success(function(data){
         console.log(JSON.stringify(data));
         $scope.userProfile = data;
-
-        if($(window).width() < mobileSize){
-          $('.profile_middle').css("margin", "0px");
-        }
-
       }, function(error){
         $scope.error = error;
       });
@@ -735,7 +703,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
             $scope.footsteps.push(data[i]);
           }
 
-          displayProfilePosition(50);
+          displayProfilePosition(100);
         }
         $scope.isbusy = false;
 
@@ -759,7 +727,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
             $scope.footsteps.push(data[i]);
           }
 
-         displayProfilePosition(50);
+         displayProfilePosition(100);
         }
         $scope.isbusy = false;
 
@@ -774,35 +742,36 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
         .success(function(data){
           $scope.footsteps = data;
-          // $("#footstep-list").css("display", "block");
           val = 1;
+          $('.follow-list').css("display",'none');
+          $(".footstep-list").css("display", "block");
           $scope.results = null;
         }, function(error){
           $scope.error = error;
         });
     displayProfilePosition(100);
-    // preview = setInterval(timePage, 1000);
   };
   
   $scope.profileSticks = function(u_id) {
     $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
         .success(function(data){
           $scope.footsteps = data;
-          // $("#footstep-list").css("display", "block");
           val = 2;
+          $('.follow-list').css("display",'none');
+          $(".footstep-list").css("display", "block");
           $scope.results = null;
         }, function(error){
           $scope.error = error;
         });
     displayProfilePosition(100);
-    // preview = setInterval(timePage, 1000);
   };
 
   $scope.profileFollows = function(u_id) {
     $http({method: 'GET', url: ipAddress + '/followers/getFollowsByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.results = data;
-          $("#footstep-list").css("display", "none");
+          $(".footstep-list").css("display", "none");
+          $('.follow-list').css("display",'block');
         }, function(error){
           $scope.error = error;
         });
@@ -812,7 +781,8 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $http({method: 'GET', url: ipAddress + '/followers/getFansByUID', params:{u_id: u_id}})
         .success(function(data){
           $scope.results = data;
-          $("#footstep-list").css("display", "none");
+          $(".footstep-list").css("display", "none");
+          $('.follow-list').css("display",'block');
         }, function(error){
           $scope.error = error;
         });
@@ -821,27 +791,22 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 }]);
 
 /* Message to site owner */
-buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
+  dynamicallyCSS(mobileSize,'../css/footstep/add.css','../css/footstep/add-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
-        console.log('countries: ' + data);
         $scope.countries = data;
-        if($(window).width() > 800) {
-          $(".create_footstep").css("margin", "50px 20%");
-        }
       }, function(error){
         $scope.error = error;
       });
 
   $scope.closeBtn = function() {
-    // $window.history.go(-1);
     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
   };
 
   $scope.submit = function() {
-
     var footstepData = {
       fs_desc: $scope.footstep.fs_desc,
       fs_from: $scope.footstep.fs_from,
@@ -850,9 +815,7 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       fs_bigImg: $scope.footstep.fs_bigImg,
       fs_smallImg: $scope.footstep.fs_smallImg
     };
-
     console.log("shopData: " + JSON.stringify(footstepData));
-
     var req = {
       method: 'POST',
       url: ipAddress + '/footsteps/create',
@@ -863,7 +826,6 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     };
 
     $http(req).success(function(result){
-      // alert("添加成功");
       $('.create_footstep').css("display","none");
       $('#create_footstep-info-image').css('background-image', null);
       $window.location.reload();
@@ -871,8 +833,6 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       console.log(error);
     });
   };
-
-
   $scope.uploadFile = function(file) {
     console.log('upload file');
     var file_data = $(file).prop('files')[0];
@@ -899,15 +859,14 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     });
   }
 
-
 }]);
 
 /* Message to site owner */
-buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
+  dynamicallyCSS(mobileSize,'../css/profile/edit.css','../css/profile/edit-m.css',$css);
 
   $scope.closeBtn = function() {
-    // $window.history.go(-1);
     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
   };
 
@@ -915,19 +874,12 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
       .success(function(data){
         console.log('user: ' + data);
         $scope.user = data[0];
-
-        if($(window).width() < 800) {
-          $(".profile_top").css("margin", "50px 5% 100px 5%");
-        }
-
       }, function(error){
         $scope.error = error;
       });
 
   $scope.updateSubmit = function() {
-
     console.log("userData: " + JSON.stringify($scope.user));
-
     var reqData = {
       u_name: $scope.user.u_name,
       u_avatar: $scope.user.u_avatar,
@@ -976,7 +928,6 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
     });
   };
 
-
 }]);
 
 /* Message to site owner */
@@ -1013,7 +964,9 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 }]);
 
 /* community */
-buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
+
+  dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12}})
       .success(function(data){
@@ -1039,8 +992,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
-
-      console.log("Community load more!!! Topics: " + $scope.topics.length);
+      // console.log("Community load more!!! Topics: " + $scope.topics.length);
       if($scope.number > $scope.topics.length) {
         $scope.isbusy = true;
         $http({
@@ -1054,16 +1006,12 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
               $scope.topics.push(data[i]);
             }
             $scope.isbusy = false;
-            // $scope.topics.push(data);
           }
         }, function (error) {
           $scope.error = error;
         });
       }
   };
-
-
-
 
   $scope.topicLoginCheck = function(tp_id) {
     if($cookies.get('u_id') == undefined){
@@ -1073,7 +1021,6 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
         tp_id: tp_id,
         u_id: $cookies.get('u_id')
       };
-
       var req = {
         method: 'POST',
         url: ipAddress + '/topicClicks/add',
@@ -1089,7 +1036,6 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
       }, function(error){
         console.log(error);
       });
-
     }
   };
 
@@ -1101,23 +1047,16 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
     }
   };
 
-
 }]);
 
 
-buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams', function($scope, $cookies, $window, $http, $routeParams){
+buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams, $css){
+
+  dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
         $scope.topic = data[0];
-
-        console.log("here!!!!!!" + $(window).width());
-        if ($(window).width() < mobileSize) {
-          $('.topic_content').css("float", "left");
-          $('.topic_info_elements').css({'margin-left':'0px', "float": "left", "width": "100%"});
-          $('.topic_info_img').css("width", "100% ");
-        }
-
       },function(error){
         $scope.error = error;
       });
@@ -1137,8 +1076,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
         $scope.error = error;
       });
 
-  
-
   $scope.replay = {m_content: '从这里开始输入内容...'};
 
   $scope.likeBtn = function(tp_id){
@@ -1147,7 +1084,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       tp_id: tp_id,
       u_id: $cookies.get('u_id')
     };
-
     var req = {
       method: 'POST',
       url: ipAddress + '/topicLikes/add',
@@ -1162,8 +1098,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
     }, function(error){
       console.log(error);
     });
-
-
   };
 
   $scope.submit = function(){
@@ -1193,22 +1127,19 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
     });
   };
 
-
   $scope.closeTopic = function() {
     $window.location.href = '#/community/index';
   }
 
-
-
 }]);
 
 
-buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams', function($scope, $cookies, $window, $http, $routeParams){
+buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
 
+  dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
-        console.log('countries: ' + data);
         $scope.countries = data;
       }, function(error){
         $scope.error = error;
@@ -1226,13 +1157,6 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
     tp_title: ''
   };
 
-  $scope.checkVal = function() {
-    if($scope.topic.tp_about == ''){
-      alert('关于不能为空!');
-    }
-
-  };
-
   $scope.submit = function(){
 
     var tp_subject = "";
@@ -1243,8 +1167,6 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
     }else{
       tp_subject = CKEDITOR.instances.editor1.getData();
     }
-
-
 
     var replayData = {
       u_id: $cookies.get('u_id'),
@@ -1257,9 +1179,8 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
 
     if($scope.topic.tp_about == ''){
       alert('关于不能为空!');
-      $window.location.reload();
+      return;
     }
-
 
     var req = {
       method: 'POST',
@@ -1279,8 +1200,6 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       console.log(error);
     });
   };
-
-
 
 }]);
 
