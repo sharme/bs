@@ -73,3 +73,25 @@ button {
   bottom: 0;
   position: fixed;
 }
+.message {
+  margin: 50px 10%;
+}
+.message .message-title {
+  font-size: 16px;
+  margin: 0px 0px 20px;
+}
+.message .message-content {
+  width: 100%;
+  border: solid 1px gray;
+}
+.message .message-submit {
+  margin-right: 20px;
+  float: right;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 120px;
+  border-radius: 5px;
+  background-color: darkgray;
+  border: none;
+}

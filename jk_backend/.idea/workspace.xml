@@ -21,52 +21,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="register.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/register/register.less">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footdetail.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/home/footdetail.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="78" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/profile/profile.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="113" column="1" selection-start-line="113" selection-start-column="1" selection-end-line="113" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile-m.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/profile/profile-m.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="112" column="1" selection-start-line="112" selection-start-column="1" selection-end-line="112" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/profile/edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="42" column="67" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="67" />
-              <folding />
+            <state relative-caret-position="173">
+              <caret line="568" column="145" selection-start-line="568" selection-start-column="145" selection-end-line="568" selection-end-column="145" />
+              <folding>
+                <element signature="n#!!block;n#displayPosition#0" expanded="false" />
+                <element signature="n#!!block;n#displayProfilePosition#0" expanded="false" />
+                <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
+                <element signature="e#3750#6010#0" expanded="false" />
+                <element signature="e#6189#10205#0" expanded="false" />
+                <element signature="e#10422#14889#0" expanded="false" />
+                <element signature="e#15020#15746#0" expanded="false" />
+                <element signature="e#15881#16196#0" expanded="false" />
+                <element signature="e#16340#16436#0" expanded="false" />
+                <element signature="e#16582#16685#0" expanded="false" />
+                <element signature="e#16847#19317#0" expanded="false" />
+                <element signature="e#19522#23914#0" expanded="false" />
+                <element signature="e#24098#26264#0" expanded="false" />
+                <element signature="e#26448#28253#0" expanded="false" />
+                <element signature="e#28420#29022#0" expanded="false" />
+                <element signature="e#29187#31517#0" expanded="false" />
+                <element signature="e#31691#33744#0" expanded="false" />
+                <element signature="e#33920#35605#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,8 +53,8 @@
       <file leaf-file-name="edit.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/profile/edit.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="106" column="15" selection-start-line="106" selection-start-column="15" selection-end-line="106" selection-end-column="15" />
+            <state relative-caret-position="229">
+              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="106" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -91,31 +70,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footstep-m.less" pinned="false" current-in-tab="true">
+      <file leaf-file-name="footstep-m.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/home/footstep-m.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+            <state relative-caret-position="255">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit-m.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/profile/edit-m.less">
+      <file leaf-file-name="message.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/views/message/message.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="102" column="15" selection-start-line="102" selection-start-column="15" selection-end-line="102" selection-end-column="15" />
+            <state relative-caret-position="75">
+              <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/login.html">
+      <file leaf-file-name="main.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/main.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+            <state relative-caret-position="136">
+              <caret line="667" column="0" selection-start-line="667" selection-start-column="0" selection-end-line="681" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/default.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/default.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/footstep/add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="510" column="15" selection-start-line="510" selection-start-column="15" selection-end-line="510" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -136,7 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/topicLikes.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/bin/run.js" />
@@ -158,7 +176,6 @@
         <option value="$PROJECT_DIR$/public/css/footstep.css" />
         <option value="$PROJECT_DIR$/public/css/profile.css" />
         <option value="$PROJECT_DIR$/public/css/welcome.less" />
-        <option value="$PROJECT_DIR$/public/css/default.less" />
         <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/public/views/welcome.html" />
         <option value="$PROJECT_DIR$/public/css/footstep.less" />
@@ -187,6 +204,8 @@
         <option value="$PROJECT_DIR$/public/css/profile/edit.less" />
         <option value="$PROJECT_DIR$/public/css/home/footstep.less" />
         <option value="$PROJECT_DIR$/public/css/home/footstep-m.less" />
+        <option value="$PROJECT_DIR$/public/css/default.less" />
+        <option value="$PROJECT_DIR$/public/views/message/message.html" />
       </list>
     </option>
   </component>
@@ -296,7 +315,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="profile" />
+              <option name="myItemId" value="message" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="footstep" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,28 +374,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jk_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jk_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -485,12 +504,12 @@
       <workItem from="1468815783435" duration="738000" />
       <workItem from="1468831113404" duration="4242000" />
       <workItem from="1468898203965" duration="16350000" />
-      <workItem from="1469019640871" duration="23425000" />
+      <workItem from="1469019640871" duration="23911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199546000" />
+    <option name="totallyTimeSpent" value="200032000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="118" y="94" width="1320" height="847" extended-state="0" />
@@ -538,13 +557,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/feature-detection">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -618,14 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="510" column="15" selection-start-line="510" selection-start-column="15" selection-end-line="510" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/common/angular-css.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -662,22 +666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/message/message.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/footstep/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="27" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -736,14 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/default.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-689">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -836,40 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/main.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="200" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="571" column="52" selection-start-line="571" selection-start-column="52" selection-end-line="571" selection-end-column="52" />
-          <folding>
-            <element signature="n#!!block;n#displayPosition#0" expanded="false" />
-            <element signature="n#!!block;n#displayProfilePosition#0" expanded="false" />
-            <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
-            <element signature="e#3750#6010#0" expanded="false" />
-            <element signature="e#6189#10205#0" expanded="false" />
-            <element signature="e#10422#14889#0" expanded="false" />
-            <element signature="e#15020#15746#0" expanded="false" />
-            <element signature="e#15881#16196#0" expanded="false" />
-            <element signature="e#16340#16436#0" expanded="false" />
-            <element signature="e#16582#16685#0" expanded="false" />
-            <element signature="e#19522#23914#0" expanded="false" />
-            <element signature="e#24098#26264#0" expanded="false" />
-            <element signature="e#26448#28253#0" expanded="false" />
-            <element signature="e#28420#29022#0" expanded="false" />
-            <element signature="e#29187#31517#0" expanded="false" />
-            <element signature="e#31691#33744#0" expanded="false" />
-            <element signature="e#33920#35605#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/login/login.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
@@ -934,14 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/profile/edit.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="106" column="15" selection-start-line="106" selection-start-column="15" selection-end-line="106" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/home/footstep.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -952,8 +890,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/home/footstep-m.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="255">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="510" column="15" selection-start-line="510" selection-start-column="15" selection-end-line="510" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="667" column="0" selection-start-line="667" selection-start-column="0" selection-end-line="681" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="568" column="145" selection-start-line="568" selection-start-column="145" selection-end-line="568" selection-end-column="145" />
+          <folding>
+            <element signature="n#!!block;n#displayPosition#0" expanded="false" />
+            <element signature="n#!!block;n#displayProfilePosition#0" expanded="false" />
+            <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
+            <element signature="e#3750#6010#0" expanded="false" />
+            <element signature="e#6189#10205#0" expanded="false" />
+            <element signature="e#10422#14889#0" expanded="false" />
+            <element signature="e#15020#15746#0" expanded="false" />
+            <element signature="e#15881#16196#0" expanded="false" />
+            <element signature="e#16340#16436#0" expanded="false" />
+            <element signature="e#16582#16685#0" expanded="false" />
+            <element signature="e#16847#19317#0" expanded="false" />
+            <element signature="e#19522#23914#0" expanded="false" />
+            <element signature="e#24098#26264#0" expanded="false" />
+            <element signature="e#26448#28253#0" expanded="false" />
+            <element signature="e#28420#29022#0" expanded="false" />
+            <element signature="e#29187#31517#0" expanded="false" />
+            <element signature="e#31691#33744#0" expanded="false" />
+            <element signature="e#33920#35605#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/profile/edit.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="106" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/default.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="110" column="17" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/footstep/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/message/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
           <folding />
         </state>
       </provider>
