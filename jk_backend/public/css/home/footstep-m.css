@@ -1,11 +1,11 @@
 #navigation {
   float: left;
   width: 100%;
-  padding: 50px 10% 46px 10%;
+  padding: 50px 10% 10px 10%;
   background-color: white;
 }
 #navigation .navigation-country {
-  margin: 2px;
+  margin: 5px;
 }
 .footstep_list_home {
   min-height: 600px;

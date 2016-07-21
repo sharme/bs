@@ -91,16 +91,15 @@
   font-size: 12px;
   font-family: cursive;
 }
-.follow-list .follow-list-div-comment-avatar {
+.footstep-list-div-comment-avatar {
   position: relative;
   border-radius: 50%;
-  width: 100px;
-  height: 80px;
-  float: left;
-  padding: 20px;
-}
-.follow-list .follow-list-div-comment-avatar-img {
+  width: 50px;
   height: 60px;
-  width: 60px;
+  float: left;
+}
+.footstep-list-div-comment-avatar-img {
+  height: 30px;
+  width: 35px;
   border-radius: 12px;
 }

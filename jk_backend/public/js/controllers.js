@@ -559,16 +559,17 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
 }]);
 
 /* Register */
-buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
+buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
 
-  $("#login-popup").css("display", "none");
-  $(".login-cover").css("display", "none");
-  $("body").css("overflow","auto");
+  dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register.css',$css);
 
 }]);
 
 /* Login */
-buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
+buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies','$css', function($scope, $http, $window, $cookies,$css) {
+
+
+  dynamicallyCSS(mobileSize,'../css/login/login.css','../css/login/login.css',$css);
 
   var cookieUser = $cookies.get("username");
   if(cookieUser) {
