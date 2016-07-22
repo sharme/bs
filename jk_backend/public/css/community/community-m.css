@@ -6,7 +6,6 @@
 .community .community_topic,
 .topic .community_topic,
 .topic_add .community_topic {
-  margin: 0px 25% 100px 0px;
   float: left;
 }
 .community .community_topic .community_topic_main,
@@ -54,16 +53,19 @@
 .community .community_promo,
 .topic .community_promo,
 .topic_add .community_promo {
-  width: 20%;
-  margin-left: 80%;
-  height: 500px;
+  display: none;
 }
 .community .community_promo .community_promo_active,
 .topic .community_promo .community_promo_active,
 .topic_add .community_promo .community_promo_active {
   position: absolute;
-  width: 16.5%;
+  width: 10%;
   height: 350px;
+}
+.community .community_promo .community_promo_active .community_promo_active_span,
+.topic .community_promo .community_promo_active .community_promo_active_span,
+.topic_add .community_promo .community_promo_active .community_promo_active_span {
+  padding: 5px 20px;
 }
 .community .community_promo .community_promo_active hr,
 .topic .community_promo .community_promo_active hr,

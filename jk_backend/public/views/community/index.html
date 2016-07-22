@@ -44,8 +44,8 @@
         <div class="community_promo_active">
                 <span>最活跃自由人</span>
                 <hr>
-                <span ng-repeat="user in topUsers">
-                    <img style="height: 40px; width: 40px;" ng-src="{{user.u_avatar}}"> {{user.u_name}}
+                <span class="community_promo_active_span" ng-repeat="user in topUsers">
+                    <img style="height: 40px; width: 40px;" ng-src="{{user.u_avatar}}" title="{{user.u_name}}">
                     <hr>
                 </span>
 

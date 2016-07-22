@@ -967,7 +967,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 /* community */
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
-  dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
+  dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css', $css);
 
   $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12}})
       .success(function(data){
@@ -993,7 +993,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
-      // console.log("Community load more!!! Topics: " + $scope.topics.length);
+      console.log("Community load more!!! Topics: " + $scope.topics.length);
       if($scope.number > $scope.topics.length) {
         $scope.isbusy = true;
         $http({
