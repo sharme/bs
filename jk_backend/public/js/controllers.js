@@ -254,7 +254,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          displayPosition(200);
+          displayPosition(300);
         }
       }, function (error) {
         $scope.error = error;
@@ -502,36 +502,8 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 /* sign up */
 buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
-  $scope.data = {
-    username: '',
-    phoneNumber: '',
-    password: '',
-    scCode: '',
-    agreement: "checked"
-  };
 
-  $scope.submit = function(){
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/users/create',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.user)
-    };
-    console.log("sign up: " + JSON.stringify($scope.user));
 
-    $http(req).success(function(result){
-      console.log('sign up:' + result);
-      $scope.result = result;
-      $window.location.href = '#/signUpCompleted';
-    }, function(error){
-      console.log(error);
-    });
-    $scope.user = angular.copy($scope.data);
-  };
-
-  $scope.user = angular.copy($scope.data);
 
 }]);
 
@@ -549,7 +521,8 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
     $cookies.remove('u_id');
     $window.location.href = '#/foot';
     $window.location.reload();
-  }
+  };
+
 
 }]);
 
@@ -559,9 +532,101 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
 }]);
 
 /* Register */
-buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
-
+buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
+  
   dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register.css',$css);
+
+  $scope.data = {
+    username: '',
+    phoneNumber: '',
+    password: '',
+    scCode: '',
+    agreement: "checked"
+  };
+
+  $scope.submit = function(){
+
+    var req = {
+      method: 'GET',
+      url: "http://localhost:8080/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    $http(req).success(function(result){
+      console.log('send Code:' + result);
+      if(result === "00"){
+        alert("请输入正确验证码");
+      } else {
+        var req = {
+          method: 'POST',
+          url: ipAddress + '/users/create',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify($scope.user)
+        };
+        console.log("sign up: " + JSON.stringify($scope.user));
+
+        $http(req).success(function(result){
+          console.log('sign up:' + result);
+          $scope.result = result;
+          $window.location.href = '#/signUpCompleted';
+        }, function(error){
+          console.log(error);
+        });
+      }
+    }, function(error){
+      console.log(error);
+    });
+
+    $scope.user = angular.copy($scope.data);
+  };
+  $scope.user = angular.copy($scope.data);
+
+
+  $scope.sendVerifyCode = function() {
+
+
+    if ($('#register-form-phoneNumber').valid()) {
+
+      var req = {
+        method: 'GET',
+        url: "http://localhost:8080/api/sendCode?to=" + $scope.user.phoneNumber,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      $http(req).success(function (result) {
+        console.log('send Code:' + result);
+        if ("01" == result) {
+          $('.sendScCode').css("pointer-events", "none");
+          $scope.scCount = 60;
+          var scCodeBan = setInterval(function () {
+
+            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
+            $scope.scCount--;
+
+            if ($scope.scCount == 0) {
+              clearInterval(scCodeBan);
+              $('.sendScCode').text("获取验证码");
+              $('.sendScCode').css("pointer-events", "");
+            }
+          }, 1000);
+          // alert("发送成功");
+        } else if( "02" == result ){
+          alert("验证码发送频繁.")
+        } else {
+          alert("发送失败. 再试一次");
+        }
+
+      }, function (error) {
+        console.log(error);
+      });
+    }
+
+
+  }
 
 }]);
 
@@ -575,7 +640,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   if(cookieUser) {
 
     if($cookies.get('u_avatar')) {
-      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a>");
+      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'> "+cookieUser +"</div></a>");
     } else {
       $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
     }
@@ -610,7 +675,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
         console.log('login result:' + JSON.stringify(result));
         if(result[0].u_avatar) {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a>");
+          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'> "+ result[0].u_name +"</div></a>");
           $cookies.put('u_avatar', result[0].u_avatar);
         } else {
           $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
@@ -634,6 +699,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   };
 
   $scope.user = angular.copy($scope.data);
+
 
 }]);
 
@@ -808,6 +874,12 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
   };
 
   $scope.submit = function() {
+    
+    if($scope.footstep.fs_from == null){
+      alert('来自不能为空');
+      return;
+    }
+
     var footstepData = {
       fs_desc: $scope.footstep.fs_desc,
       fs_from: $scope.footstep.fs_from,
@@ -827,9 +899,8 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     };
 
     $http(req).success(function(result){
-      $('.create_footstep').css("display","none");
-      $('#create_footstep-info-image').css('background-image', null);
-      $window.location.reload();
+      alert("恭喜, 创建成功.");
+      $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
     }, function(error){
       console.log(error);
     });
@@ -900,7 +971,7 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
     $http(req).success(function(result){
       console.log("添加成功");
-      $('.profile_top').css("display","none");
+     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
     }, function(error){
       console.log(error);
     });
@@ -924,7 +995,7 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
         console.log('uploaded, URL: ' + res);
         $(file).prev().css("background-image", 'url(' + res + ')');
         $scope.user.u_avatar = res;
-        $(file).css("display", "none");
+        // $(file).css("display", "none");
       }
     });
   };

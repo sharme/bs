@@ -38,3 +38,12 @@
   cursor: pointer;
   background-color: lightgrey;
 }
+#register-form span {
+  color: red;
+  padding: 5px;
+}
+#register-form a {
+  border: solid 1px grey;
+  padding: 5px;
+  text-decoration: none;
+}

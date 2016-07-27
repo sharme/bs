@@ -11,7 +11,7 @@ button {
 .user-avatar {
   position: relative;
   border-radius: 50%;
-  width: 50px;
+  width: auto;
   height: 30px;
   float: left;
 }
@@ -19,6 +19,14 @@ button {
   height: 30px;
   width: 35px;
   border-radius: 12px;
+}
+.newmsg {
+  top: 0px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: 30px;
+  background: url(../img/msg.png);
 }
 #header {
   height: 60px;
@@ -46,7 +54,7 @@ button {
   display: none;
 }
 #header .header-right .header-right-user-icon {
-  background: url(img/core-sprites.png) -237px 6px no-repeat;
+  background: url(../img/core-sprites.png) -237px 6px no-repeat;
   width: 30px;
   height: 30px;
   position: absolute;
@@ -94,4 +102,34 @@ button {
   border-radius: 5px;
   background-color: darkgray;
   border: none;
+}
+.notification {
+  background-color: white;
+  position: absolute;
+  width: 20%;
+  margin: 35px 0px 0px 77%;
+  border: solid 1px #eee;
+  height: 350px;
+  display: none;
+  z-index: 20;
+  font-size: 12px;
+}
+.notification hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.notification .notification-msg-title {
+  padding: 10px;
+  font-size: 16px;
+}
+.notification .notification-msg-content {
+  padding: 0px 15px;
+  overflow: overlay;
+  height: 250px;
+}
+.notification .notification-msg-all {
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
 }

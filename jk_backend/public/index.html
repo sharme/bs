@@ -26,6 +26,9 @@
   <script src="../js/common/angular-sanitize.js"></script>
   <script src="../js/common/ng-infinite-scroll.min.js"></script>
   <script src="../js/common/angular-css.min.js"></script>
+  <script src="../js/common/jquery.validate.min.js"></script>
+  <script src="../js/common/localization/messages_zh.min.js"></script>
+
 
 </head>
 <body>
@@ -41,7 +44,7 @@
 <div id="header" class="header" ng-controller="headerController">
   <a href="#/" class="header-site"><img src="img/youtu.png" style="width: 40px;height: 40px;"></a>
   <a ng-click="homepageBtn()" href="javascript: void(0);" class="header-homepage">主页</a>
-  <a href="#/community/index" class="header-homepage">社区</a>
+  <a href="#/community/index" class="header-homepage" ng-click="msgShow()">社区</a>
   <div class="header-right" ng-controller="LoginController">
     <div class="header-right-logout">
     <span id="login_username"></span><span style="line-height: 2;">| <a ng-click="logout()" href="javascript: void(0);">登出</a></span>
@@ -53,6 +56,40 @@
     </span>
     </div>
   </div>
+
+  <div class="notification">
+    <div class="notification-msg-title">消息</div>
+    <hr>
+    <div class="notification-msg-content">
+        <span>
+        用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
+        </span>
+        <hr>
+        <span>
+        用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
+        </span>
+        <hr>
+        <span>
+        用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
+        </span>
+        <hr>
+        <span>
+          用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
+          </span>
+        <hr>
+        <span>
+          用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
+          </span>
+        <hr>
+        <span>
+        欢迎您加入有图大家庭, 快去分享您的没图吧.
+        </span>
+    </div>
+    <div class="notification-msg-all">
+      查看全部
+    </div>
+  </div>
+
 </div>
 
 
@@ -60,9 +97,24 @@
 <div class="view-container">
   <div ng-view class="view-frame"></div>
 </div>
-<div id="footer">联系我: yaomiwang@qq.com | <a href="#/message">给我留言</a></div>
+<div id="footer"><a href="#/message">给我留言</a></div>
 
+<script>
+  $(document).ready(function () {
+    $('.user-avatar').mouseenter(function () {
+      $('.notification').css('display','block');
+    }).mouseout(function() {
+      $('.notification').css('display','none');
+    });
 
+    $('.notification').mouseover(function () {
+      $('.notification').css('display','block');
+    }).mouseleave(function() {
+      $('.notification').css('display','none');
+    });
+
+  });
+</script>
 
 </body>
 

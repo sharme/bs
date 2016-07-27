@@ -5,25 +5,21 @@
             <!--<img id="create_footstep-info-image" ng-src="{{uploadUrl}}">-->
             <hr>
             <div id="create_footstep-info-image">
-                <input type="file" class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
+                <input type="file" required class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
             </div>
-
             <hr>
-            <!--<div class="create_footstep-info-div">-->
-            <!--<span class="create_footstep-info-span">地址</span><input class="create_footstep-info-pic" type="text" ng-model="footstep.fs_pic" name="imagePrice1" id="register_shop-href" value=""/>-->
-            <!--</div>-->
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_smallImg" id="upload_smallImg-href">
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_bigImg" id="upload_bigImg-href">
             <div  class="create_footstep-info-div">
                 <span class="create_footstep-info-span">描述</span>
-                <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40"></textarea>
+                <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40" required></textarea>
                 <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
             </div>
 
             <br/>
             <div>
                 <span class="create_footstep-info-span">来自</span>
-                <select class="create_footstep-info-from" ng-model="footstep.fs_from">
+                <select class="create_footstep-info-from" ng-model="footstep.fs_from" required>
                     <option ng-repeat="country in countries">{{country.c_name}}</option>
                     <!--<option ng-model="footstep.fs_from">印度</option>-->
                 </select>

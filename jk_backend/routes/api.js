@@ -6,6 +6,8 @@ var fs = require('fs');
 var qiniu = require("qiniu");
 var busboy = require('connect-busboy');
 var easyimg = require('easyimage');
+var md5 = require("blueimp-md5");
+var http = require('http');
 router.use(busboy());
 
 //需要填写你的 Access Key 和 Secret Key
@@ -289,6 +291,137 @@ function resize(filename, folder, smallFolderPath, originalFolderPath, bigFolder
 
 
 }
+
+var codeList = [];
+
+var tempCodeList = [];
+
+var clearTempCodeList = setInterval(function(){
+    tempCodeList = [];
+},1000*60);
+
+
+var clearCodeList = setInterval(function(){
+    codeList = [];
+},1000*60*5);
+
+
+router.get('/sendCode', function (req, res, next) {
+
+    var to = req.param('to');
+
+    console.log("tempList: " + JSON.stringify(tempCodeList));
+    console.log("codeList: " + JSON.stringify(codeList));
+
+    tempCodeList.forEach(function(item, index){
+        for (key in item){
+            console.log(key + " ; " + item[key]);
+            if(key === "to" && item[key] === to){
+                console.log("too many sending");
+                res.send("02");
+                return false;
+            }
+        }
+    });
+
+
+    // return a random number between 1000 - 9999
+    var code = Math.floor((Math.random() * 1000000)+1);
+    console.log("phone number: " + to);
+    var codeUrl = "https://api.miaodiyun.com/20150822/industrySMS/sendSMS";
+    var date = new Date();
+    var year = date.getFullYear().toString();
+    var month = (new Date().getMonth() + 1).toString();
+    if(month < 9) {
+        month = 0 + month;
+    }
+    var day = date.getDate().toString();
+    if(day < 9) {
+        day = 0 + day;
+    }
+    var hours = date.getHours().toString();
+    if(hours < 9) {
+        hours = 0 + hours;
+    }
+    var min = date.getMinutes().toString();
+    if(min < 9) {
+        min = 0 + min;
+    }
+    var seconds = date.getSeconds().toString();
+    if(seconds < 9 ){
+        seconds = 0 + seconds;
+    }
+    var time = year + month + day + hours + min + seconds;
+    var sig = md5("49c9e38e67f44f778a921da9793a8237" + "7dce4a441bcb48c7bc0e63290fa83f21" + time);
+    var data = {
+        accountSid: "49c9e38e67f44f778a921da9793a8237",
+        smsContent: "【有图网】您注册有图网的验证码为"+ code +"，请于5分钟内正确输入验证码。",
+        to: to,
+        timestamp: time,
+        sig: sig
+    };
+
+    var reqData = "";
+    reqData += "accountSid=" + "49c9e38e67f44f778a921da9793a8237";
+    reqData += "&smsContent=" + "【有图网】您注册有图网的验证码为"+ code +"，请于5分钟内正确输入验证码。";
+    reqData += "&to=" + to;
+    reqData += "&timestamp=" + time;
+    reqData += "&sig=" + sig;
+    var req = {
+        hostname: 'api.miaodiyun.com',
+        port:80,
+        path: '/20150822/industrySMS/sendSMS',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+    console.log("request data: " + JSON.stringify(req));
+
+    var httpReq = http.request(req, function (response) {
+        response.on("data", function(result){
+            console.log("API response: " + JSON.parse(result).respCode + "; data: " + result.respCode + "; result: " + result );
+            if("00000" === JSON.parse(result).respCode){
+                codeList.push({to: to,code:code});
+                tempCodeList.push({to:to,code:code});
+                res.send("01");
+            }else{
+                res.send("00");
+            }
+        });
+
+    });
+    httpReq.on("error", function(err){
+       console.log("API response: " + err);
+    });
+    // write the request parameters
+    console.log("request Parameters: " + reqData);
+    httpReq.write(reqData);
+    httpReq.end();
+
+
+});
+
+
+
+
+
+router.get('/checkCode', function (req, res, next) {
+
+    var key = req.param('to');
+    var val = req.param('scCode');
+
+    codeList.forEach(function(item, index){
+        if(item.key === key && item.val === val){
+            res.send("01");
+        } else {
+            res.send("00");
+        }
+
+    });
+    res.send("00");
+});
+
 
 
 
