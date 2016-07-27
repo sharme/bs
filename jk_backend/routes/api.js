@@ -305,6 +305,8 @@ var clearCodeList = setInterval(function(){
     codeList = [];
 },1000*60*5);
 
+var blacklist = [];
+var whitelist = [];
 
 router.get('/sendCode', function (req, res, next) {
 
@@ -331,6 +333,43 @@ router.get('/sendCode', function (req, res, next) {
             }
         }
     });
+    var checkCount = 0;
+    codeList.forEach(function(item, index){
+        for (key in item){
+            console.log(key + " ; " + item[key]);
+            if(key === 'ip' && item[key] === ipAddress){
+               checkCount++;
+            }
+        }
+    });
+
+    if(checkCount > 3) {
+        blacklist.push({ip: ipAddress});
+    }
+
+
+    blacklist.forEach(function(item, index){
+        for (key in item){
+            console.log(key + " ; " + item[key]);
+            if(key === 'ip' && item[key] === ipAddress){
+                send = false;
+                res.send('03');
+                return;
+            }
+        }
+    });
+
+    whitelist.forEach(function(item, index){
+        for (key in item){
+            console.log(key + " ; " + item[key]);
+            if(key === 'ip' && item[key] === ipAddress){
+                send = true;
+                return;
+            }
+        }
+    });
+    
+    console.log("Blacklist: " + JSON.stringify(blacklist));
 
     if(send) {
         // return a random number between 1000 - 9999
@@ -386,7 +425,6 @@ router.get('/sendCode', function (req, res, next) {
         };
         console.log("request data: " + JSON.stringify(req));
 
-
         var httpReq = http.request(req, function (response) {
             response.on("data", function(result){
                 console.log("API response: " + JSON.parse(result).respCode + "; data: " + result.respCode + "; result: " + result );
@@ -398,7 +436,7 @@ router.get('/sendCode', function (req, res, next) {
                     res.send("00");
                 }
             });
-
+        
         });
         httpReq.on("error", function(err){
            console.log("API response: " + err);

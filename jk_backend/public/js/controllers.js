@@ -616,7 +616,9 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
           // alert("发送成功");
         } else if( "02" == result ){
           alert("验证码发送频繁.")
-        } else {
+        } else if ("03" == result){
+          alert("发送异常, 请联系管理员.");
+        }else {
           alert("发送失败. 再试一次");
         }
 
