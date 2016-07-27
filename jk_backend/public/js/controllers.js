@@ -548,7 +548,7 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
     var req = {
       method: 'GET',
-      url: "http://localhost:8080/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
+      url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
       headers: {
         'Content-Type': 'application/json'
       }
@@ -592,7 +592,7 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
       var req = {
         method: 'GET',
-        url: "http://localhost:8080/api/sendCode?to=" + $scope.user.phoneNumber,
+        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
         headers: {
           'Content-Type': 'application/json'
         }
