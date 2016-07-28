@@ -134,7 +134,10 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
   }
 }
 
+
 buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   var cookieUser = $cookies.get("username");
   if(cookieUser) {
@@ -203,6 +206,7 @@ buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$htt
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window','$css', function ($scope, $http, $cookies, $window, $css) {
 
   dynamicallyCSS(mobileSize,'../css/home/footstep.css', '../css/home/footstep-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 9}})
       .success(function(data){
@@ -342,7 +346,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window','$css', function ($scope, $routeParams, $http, $cookies, $window,$css) {
 
   dynamicallyCSS(mobileSize,'../css/home/footdetail.css','../css/home/footdetail-m.css',$css);
-
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
@@ -499,14 +503,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   
 }]);
 
-/* sign up */
-buybsControllers.controller('SignUpController', ['$scope', '$http', '$window', function($scope, $http, $window) {
-
-
-
-
-}]);
-
 /* header */
 buybsControllers.controller('headerController', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
   
@@ -529,12 +525,14 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 /* welcome */
 buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
   dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 }]);
 
 /* Register */
 buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
   
   dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $scope.data = {
     username: '',
@@ -637,14 +635,15 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
 
   dynamicallyCSS(mobileSize,'../css/login/login.css','../css/login/login.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   var cookieUser = $cookies.get("username");
   if(cookieUser) {
 
     if($cookies.get('u_avatar')) {
-      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'> "+cookieUser +"</div></a>");
+      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div><a href='#/profile?u_id="+ $cookies.get('u_id') +"'>"+cookieUser +"</a>");
     } else {
-      $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
+      $("#login_username").html("<div class='header-right-user-icon user-avatar'></div><a href='#/profile?u_id=" + $cookies.get('u_id') + "'>"+ cookieUser +"</a>");
     }
     $(".header-right-logout").css("display", "block");
     $(".header-right-login").css("display", "none");
@@ -677,10 +676,10 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
         console.log('login result:' + JSON.stringify(result));
         if(result[0].u_avatar) {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'> "+ result[0].u_name +"</div></a>");
+          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div><a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
           $cookies.put('u_avatar', result[0].u_avatar);
         } else {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
+          $("#login_username").html("<div class='header-right-user-icon user-avatar'></div><a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
         }
 
         $cookies.put('username', result[0].u_name);
@@ -709,6 +708,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','$cookies','$routeParams','$css', function($scope, $http, $window, $cookies, $routeParams, $css) {
 
   dynamicallyCSS(mobileSize,'../css/profile/profile.css','../css/profile/profile-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   var data = {
     fs_desc: '',
@@ -863,6 +863,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize,'../css/footstep/add.css','../css/footstep/add-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
@@ -939,6 +940,7 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
 buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize,'../css/profile/edit.css','../css/profile/edit-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $scope.closeBtn = function() {
     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
@@ -1007,6 +1009,8 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 /* Message to site owner */
 buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
 
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
   $scope.message = {
     u_id: $cookies.get('u_id'),
     m_content: ''
@@ -1041,6 +1045,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css', $css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12}})
       .success(function(data){
@@ -1127,6 +1132,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams, $css){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
@@ -1211,6 +1217,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
