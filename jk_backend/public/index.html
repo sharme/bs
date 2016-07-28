@@ -53,28 +53,9 @@
     <div class="notification-msg-title">消息</div>
     <hr>
     <div class="notification-msg-content">
-        <span>
-        用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
-        </span>
-        <hr>
-        <span>
-        用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
-        </span>
-        <hr>
-        <span>
-        用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
-        </span>
-        <hr>
-        <span>
-          用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
-          </span>
-        <hr>
-        <span>
-          用户corresponse5222收藏了你的帖子: 一年的时间, 7个国家, 两个世界.
-          </span>
-        <hr>
-        <span>
-        欢迎您加入有图大家庭, 快去分享您的没图吧.
+        <span ng-repeat="noti in notifications">
+        {{noti.u_name}}&nbsp;&nbsp;{{noti.action}}了你的&nbsp;&nbsp;<a style="color:blue;">{{noti.type}}</a>
+            <hr>
         </span>
     </div>
     <div class="notification-msg-all">

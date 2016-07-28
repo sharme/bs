@@ -7,6 +7,14 @@ var buybsControllers = angular.module('buybsControllers', []);
 var ipAddress = 'http://180.76.152.112';
 var mobileSize = 800;
 
+var eLike = 4;
+var eFollow = 5;
+var eCollect = 6;
+var eComment = 7;
+var eFootstep = 3;
+var eTopic = 4;
+var ePeople = 5;
+
 
 function displayPosition(miles){
   var timer = setInterval(function(){
@@ -134,6 +142,30 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
   }
 }
 
+function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id){
+  var data = {
+    u_id: u_id,
+    at_id: at_id,
+    nf_to: nf_to,
+    tp_id: tp_id,
+    c_id: c_id
+  };
+  var req = {
+    method: 'POST',
+    url: ipAddress + '/notifications/add',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: data
+  };
+
+  $http(req).success(function(result){
+    console.log('add event');
+    $window.location.reload();
+  }, function(error){
+    console.log(error);
+  });
+}
 
 buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
@@ -266,7 +298,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     }
   };
 
-  $scope.stickBtn = function(id){
+  $scope.stickBtn = function(id, u_id){
     console.log("User: " + $cookies.get('u_id'));
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
@@ -289,6 +321,9 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
 
             $http(req).success(function(result){
+
+              addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
+
               console.log('stick');
             }, function(error){
               console.log(error);
@@ -307,7 +342,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     }
   };
 
-  $scope.likeBtn = function(id){
+  $scope.likeBtn = function(id, u_id){
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
     }
@@ -330,6 +365,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
               }
             };
             $http(req).success(function(result){
+              addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
               console.log('liked');
             }, function(error){
               console.log(error);
@@ -375,66 +411,66 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
     window.location.href = '#/foot'
   };
 
-  $scope.stickBtn = function(id){
-    $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
-        .success(function(data){
-          if(data.length > 0 ) {
-            alert("已经收藏成功");
-          } else {
-            var req = {
-              method: 'POST',
-              url: 'http://localhost:3000/sticks/add',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              data: {
-                'fs_id': id,
-                'u_id': $cookies.get('u_id')
-              }
-            };
-
-            $http(req).success(function(result){
-              console.log('stick');
-            }, function(error){
-              console.log(error);
-            });
-          }
-        }, function(error){
-          console.log(error);
-        });
-
-  };
-
-  $scope.likeBtn = function(id){
-
-    $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
-        .success(function(data){
-          console.log(data);
-          if(data.length > 0) {
-            alert('每个人只能喜欢一次哦');
-          } else {
-            var req = {
-              method: 'POST',
-              url: ipAddress + '/likes/add',
-              header: {
-                'Content-Type': 'application/json'
-              },
-              data: {
-                'fs_id': id,
-                'u_id': $cookies.get('u_id')
-              }
-            };
-
-            $http(req).success(function(result){
-              console.log('liked');
-            }, function(error){
-              console.log(error);
-            })
-          }
-        }, function(error){
-          $scope.error = error;
-        });
-  };
+  // $scope.stickBtn = function(id){
+  //   $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+  //       .success(function(data){
+  //         if(data.length > 0 ) {
+  //           alert("已经收藏成功");
+  //         } else {
+  //           var req = {
+  //             method: 'POST',
+  //             url: 'http://localhost:3000/sticks/add',
+  //             headers: {
+  //               'Content-Type': 'application/json'
+  //             },
+  //             data: {
+  //               'fs_id': id,
+  //               'u_id': $cookies.get('u_id')
+  //             }
+  //           };
+  //
+  //           $http(req).success(function(result){
+  //             console.log('stick');
+  //           }, function(error){
+  //             console.log(error);
+  //           });
+  //         }
+  //       }, function(error){
+  //         console.log(error);
+  //       });
+  //
+  // };
+  //
+  // $scope.likeBtn = function(id){
+  //
+  //   $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+  //       .success(function(data){
+  //         console.log(data);
+  //         if(data.length > 0) {
+  //           alert('每个人只能喜欢一次哦');
+  //         } else {
+  //           var req = {
+  //             method: 'POST',
+  //             url: ipAddress + '/likes/add',
+  //             header: {
+  //               'Content-Type': 'application/json'
+  //             },
+  //             data: {
+  //               'fs_id': id,
+  //               'u_id': $cookies.get('u_id')
+  //             }
+  //           };
+  //
+  //           $http(req).success(function(result){
+  //             console.log('liked');
+  //           }, function(error){
+  //             console.log(error);
+  //           })
+  //         }
+  //       }, function(error){
+  //         $scope.error = error;
+  //       });
+  // };
 
   $scope.followUpBtn = function(id) {
 
@@ -458,6 +494,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
             console.log("follow up: " + JSON.stringify(reqData));
 
             $http(req).success(function(result){
+              addEvent($http, $window, $cookies.get('u_id'),eFollow,id,null,null);
               console.log('added:' + result);
               $window.location.reload();
             }, function(error){
@@ -491,11 +528,13 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       data: JSON.stringify($scope.addComment)
     };
 
-    console.log("add comment: " + JSON.stringify(CKEDITOR.instances.editor1.getData()));
+    // console.log("add comment: " + JSON.stringify(CKEDITOR.instances.editor1.getData()));
 
     $http(req).success(function(result){
-      console.log('added comment:' + result);
-      $window.location.reload();
+      console.log($scope.foot.u_id + " ; " + $scope.foot.fs_id);
+      addEvent($http, $window, $cookies.get('u_id'),eComment,$scope.foot.u_id,eFootstep,$scope.foot.fs_id);
+      // console.log('added comment:' + result);
+      // $window.location.reload();
     }, function(error){
       console.log(error);
     });
@@ -504,7 +543,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 }]);
 
 /* header */
-buybsControllers.controller('headerController', ['$scope', '$cookies', '$window', function($scope, $cookies, $window){
+buybsControllers.controller('headerController', ['$scope', '$cookies', '$window','$http', function($scope, $cookies, $window,$http){
   
   $scope.homepageBtn = function() {
     $window.location = '#/foot';
@@ -518,6 +557,14 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
     $window.location.href = '#/foot';
     $window.location.reload();
   };
+
+  // alert('1');
+  $http({method: 'GET', url: ipAddress + '/notifications/getNotifications', params:{u_id: $cookies.get('u_id')}})
+      .success(function(data){
+        $scope.notifications = data;
+      },function(error){
+        $scope.error = error;
+      });
 
 
 }]);
@@ -1161,7 +1208,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
   $scope.replay = {m_content: '从这里开始输入内容...'};
 
-  $scope.likeBtn = function(tp_id){
+  $scope.likeBtn = function(tp_id,u_id){
 
     var like = {
       tp_id: tp_id,
@@ -1177,6 +1224,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
     };
 
     $http(req).success(function(result){
+      addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eTopic,tp_id);
       $window.location.reload();
     }, function(error){
       console.log(error);
