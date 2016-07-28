@@ -19,6 +19,7 @@ var topics = require('./routes/topics');
 var topicLikes = require('./routes/topicLikes');
 var topicComments = require('./routes/topicComments');
 var topicClicks = require('./routes/topicClicks');
+var notifications = require('./routes/notifications');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use('/topics', topics);
 app.use('/topicLikes', topicLikes);
 app.use('/topicComments', topicComments);
 app.use('/topicClicks', topicClicks);
+app.use('/notifications', notifications);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

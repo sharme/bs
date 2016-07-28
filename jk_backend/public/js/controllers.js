@@ -135,7 +135,7 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
 }
 
 
-buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
@@ -544,39 +544,42 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
   $scope.submit = function(){
 
-    var req = {
-      method: 'GET',
-      url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-    $http(req).success(function(result){
-      console.log('send Code:' + result);
-      if(result === "00"){
-        alert("请输入正确验证码");
-      } else {
-        var req = {
-          method: 'POST',
-          url: ipAddress + '/users/create',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          data: JSON.stringify($scope.user)
-        };
-        console.log("sign up: " + JSON.stringify($scope.user));
+    if ($('#register_form').valid()) {
 
-        $http(req).success(function(result){
-          console.log('sign up:' + result);
-          $scope.result = result;
-          $window.location.href = '#/signUpCompleted';
-        }, function(error){
-          console.log(error);
-        });
-      }
-    }, function(error){
-      console.log(error);
-    });
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      $http(req).success(function (result) {
+        console.log('send Code:' + result);
+        if (result === "00") {
+          alert("请输入正确验证码");
+        } else {
+          var req = {
+            method: 'POST',
+            url: ipAddress + '/users/create',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: JSON.stringify($scope.user)
+          };
+          console.log("sign up: " + JSON.stringify($scope.user));
+
+          $http(req).success(function (result) {
+            console.log('sign up:' + result);
+            $scope.result = result;
+            $window.location.href = '#/signUpCompleted';
+          }, function (error) {
+            console.log(error);
+          });
+        }
+      }, function (error) {
+        console.log(error);
+      });
+    }
 
     $scope.user = angular.copy($scope.data);
   };

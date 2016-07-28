@@ -1,8 +1,8 @@
 <div id="login-popup">
     <form ng-controller="LoginController" ng-submit="submit()" method="POST">
         <div class="login-popup-header">登陆</div>
-        <div class="login-popup-form">手机号<input type="text" name="phoneNumber" ng-model="user.phoneNumber" class="login-popup-form-phoneNumber" value="">
-            <br>密码<input type="password" class="login-popup-form-password" ng-model="user.password" name="password" value="">
+        <div class="login-popup-form">手机号<input type="text" name="phoneNumber" ng-model="user.phoneNumber" class="login-popup-form-phoneNumber" value="" required>
+            <br>密码<input type="password" class="login-popup-form-password" ng-model="user.password" name="password" value="" required>
             <br>
             <div class="login-popup-form-invalid">提示: 手机号码或密码不正确, 请重新尝试.</div>
             <input type="submit" class="login-popup-form-submit" value="登陆">
