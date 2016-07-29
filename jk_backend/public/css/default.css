@@ -127,6 +127,10 @@ button {
   overflow: overlay;
   height: 250px;
 }
+.notification .notification-msg-content .notification-msg-content-time {
+  color: grey;
+  font-size: 9px;
+}
 .notification .notification-msg-all {
   height: 35px;
   text-align: center;

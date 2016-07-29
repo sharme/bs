@@ -565,7 +565,8 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
       },function(error){
         $scope.error = error;
       });
-
+  
+  
 
 }]);
 

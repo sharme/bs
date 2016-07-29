@@ -54,7 +54,8 @@
     <hr>
     <div class="notification-msg-content">
         <span ng-repeat="noti in notifications">
-        {{noti.u_name}}&nbsp;&nbsp;{{noti.action}}了你的&nbsp;&nbsp;<a style="color:blue;">{{noti.type}}</a>
+        {{noti.u_name}}&nbsp;&nbsp;{{noti.action}}了你的&nbsp;&nbsp;<a style="color:blue;">{{noti.type}}</a>&nbsp;&nbsp;
+            <span class="notification-msg-content-time">{{noti.nf_create_time | date: 'yyyy-MM-dd HH:mm'}}</span>
             <hr>
         </span>
     </div>
@@ -74,17 +75,32 @@
 
 <script>
   $(document).ready(function () {
-    $('.user-avatar').mouseenter(function () {
-      $('.notification').css('display','block');
-    }).mouseout(function() {
-      $('.notification').css('display','none');
-    });
 
-    $('.notification').mouseover(function () {
-      $('.notification').css('display','block');
-    }).mouseleave(function() {
-      $('.notification').css('display','none');
-    });
+    if($(window).width() < 800){
+        $('.user-avatar').click(function(){
+            if($('.notification').css('display') === 'block'){
+                $('.notification').css('display','none');
+            } else {
+                $('.notification').css('display','block');
+            }
+        });
+    } else {
+
+        $('.user-avatar').mouseenter(function () {
+            $('.notification').css('display', 'block');
+        }).mouseout(function () {
+            $('.notification').css('display', 'none');
+        });
+
+        $('.notification').mouseover(function () {
+            $('.notification').css('display', 'block');
+        }).mouseleave(function () {
+            $('.notification').css('display', 'none');
+        });
+
+    }
+
+
 
   });
 </script>
