@@ -54,7 +54,7 @@
     <hr>
     <div class="notification-msg-content">
         <span ng-repeat="noti in notifications">
-        {{noti.u_name}}&nbsp;&nbsp;{{noti.action}}了你的&nbsp;&nbsp;<a style="color:blue;">{{noti.type}}</a>&nbsp;&nbsp;
+        {{noti.u_name}}&nbsp;&nbsp;{{noti.action}}了你&nbsp;&nbsp;<a style="color:blue;" ng-click="linkTo(noti.type,noti.c_id)">{{noti.type == '图友'?'': '的' + noti.type}}</a>&nbsp;&nbsp;
             <span class="notification-msg-content-time">{{noti.nf_create_time | date: 'yyyy-MM-dd HH:mm'}}</span>
             <hr>
         </span>

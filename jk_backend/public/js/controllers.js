@@ -29,9 +29,9 @@ function displayPosition(miles){
         var count = 0;
         var trigger = 0;
         var topPxs = [
-          {"topPx": 155, "leftPx": "20%"},
-          {"topPx": 155, "leftPx": "40%"},
-          {"topPx": 155, "leftPx": "60%"}
+          {"topPx": 195, "leftPx": "20%"},
+          {"topPx": 195, "leftPx": "40%"},
+          {"topPx": 195, "leftPx": "60%"}
         ];
 
         var maxVal = 30;
@@ -417,66 +417,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
     window.location.href = '#/foot'
   };
 
-  // $scope.stickBtn = function(id){
-  //   $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
-  //       .success(function(data){
-  //         if(data.length > 0 ) {
-  //           alert("已经收藏成功");
-  //         } else {
-  //           var req = {
-  //             method: 'POST',
-  //             url: 'http://localhost:3000/sticks/add',
-  //             headers: {
-  //               'Content-Type': 'application/json'
-  //             },
-  //             data: {
-  //               'fs_id': id,
-  //               'u_id': $cookies.get('u_id')
-  //             }
-  //           };
-  //
-  //           $http(req).success(function(result){
-  //             console.log('stick');
-  //           }, function(error){
-  //             console.log(error);
-  //           });
-  //         }
-  //       }, function(error){
-  //         console.log(error);
-  //       });
-  //
-  // };
-  //
-  // $scope.likeBtn = function(id){
-  //
-  //   $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
-  //       .success(function(data){
-  //         console.log(data);
-  //         if(data.length > 0) {
-  //           alert('每个人只能喜欢一次哦');
-  //         } else {
-  //           var req = {
-  //             method: 'POST',
-  //             url: ipAddress + '/likes/add',
-  //             header: {
-  //               'Content-Type': 'application/json'
-  //             },
-  //             data: {
-  //               'fs_id': id,
-  //               'u_id': $cookies.get('u_id')
-  //             }
-  //           };
-  //
-  //           $http(req).success(function(result){
-  //             console.log('liked');
-  //           }, function(error){
-  //             console.log(error);
-  //           })
-  //         }
-  //       }, function(error){
-  //         $scope.error = error;
-  //       });
-  // };
 
   $scope.followUpBtn = function(id) {
 
@@ -500,9 +440,8 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
             console.log("follow up: " + JSON.stringify(reqData));
 
             $http(req).success(function(result){
-              addEvent($http, $window, $cookies.get('u_id'),eFollow,id,null,null);
+              addEvent($http, $window, $cookies.get('u_id'),eFollow,id,ePeople,id);
               console.log('added:' + result);
-              $window.location.reload();
             }, function(error){
               console.log(error);
             });
@@ -539,8 +478,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
     $http(req).success(function(result){
       console.log($scope.foot.u_id + " ; " + $scope.foot.fs_id);
       addEvent($http, $window, $cookies.get('u_id'),eComment,$scope.foot.u_id,eFootstep,$scope.foot.fs_id);
-      // console.log('added comment:' + result);
-      // $window.location.reload();
     }, function(error){
       console.log(error);
     });
@@ -560,6 +497,7 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
     console.log("remove cookies");
     $cookies.remove('username');
     $cookies.remove('u_id');
+    $cookies.remove('u_avatar');
     $window.location.href = '#/foot';
     $window.location.reload();
   };
@@ -571,7 +509,15 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
       },function(error){
         $scope.error = error;
       });
-  
+
+  $scope.linkTo = function(type, c_id) {
+    if(type === '足迹'){
+      $window.location.href = '#/foot/' + c_id;
+    } else {
+      $window.location.href = '#/community/topics/' + c_id;
+    }
+
+  };
   
 
 }]);
@@ -698,9 +644,9 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   if(cookieUser) {
 
     if($cookies.get('u_avatar')) {
-      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div><a href='#/profile?u_id="+ $cookies.get('u_id') +"'>"+cookieUser +"</a>");
+      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div><a href='#/profile?u_id="+ $cookies.get('u_id') +"'>&nbsp;"+cookieUser +"</a>");
     } else {
-      $("#login_username").html("<div class='header-right-user-icon user-avatar'></div><a href='#/profile?u_id=" + $cookies.get('u_id') + "'>"+ cookieUser +"</a>");
+      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='../../img/default_icon.png'></div><a href='#/profile?u_id="+ $cookies.get('u_id') +"'>&nbsp;"+cookieUser +"</a>");
     }
     $(".header-right-logout").css("display", "block");
     $(".header-right-login").css("display", "none");
@@ -733,10 +679,10 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
         console.log('login result:' + JSON.stringify(result));
         if(result[0].u_avatar) {
-          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div><a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
+          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div><a href='#/profile?u_id=" + result[0].u_id + "'>&nbsp;"+ result[0].u_name +"</a>");
           $cookies.put('u_avatar', result[0].u_avatar);
         } else {
-          $("#login_username").html("<div class='header-right-user-icon user-avatar'></div><a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
+          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='../../img/default_icon.png'></div><a href='#/profile?u_id=" + result[0].u_id + "'>&nbsp;"+ result[0].u_name +"</a>");
         }
 
         $cookies.put('username', result[0].u_name);
@@ -747,6 +693,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         $(".login-cover").css("display", "none");
         $("body").css("overflow","auto");
         $window.location.href="#/foot";
+        $window.location.reload();
       }else {
         $(".login-popup-form-invalid").css("display", "block");
         $scope.user = angular.copy($scope.data);
@@ -1232,7 +1179,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
     $http(req).success(function(result){
       addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eTopic,tp_id);
-      $window.location.reload();
     }, function(error){
       console.log(error);
     });
@@ -1259,7 +1205,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
     console.log("topic comments replied : " + JSON.stringify(replayData));
 
     $http(req).success(function(result){
-      $window.location.reload();
+      addEvent($http,$window,$cookies.get('u_id'),eComment,$scope.topic.u_id,eTopic,tp_id);
     }, function(error){
       console.log(error);
     });
