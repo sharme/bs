@@ -7,13 +7,13 @@ var buybsControllers = angular.module('buybsControllers', []);
 var ipAddress = 'http://180.76.152.112';
 var mobileSize = 800;
 
-var eLike = 4;
-var eFollow = 5;
-var eCollect = 6;
-var eComment = 7;
-var eFootstep = 3;
-var eTopic = 4;
-var ePeople = 5;
+var eLike = 1;
+var eFollow = 2;
+var eCollect = 3;
+var eComment = 4;
+var eFootstep = 1;
+var eTopic = 2;
+var ePeople = 3;
 
 
 function displayPosition(miles){
@@ -143,28 +143,34 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
 }
 
 function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id){
-  var data = {
-    u_id: u_id,
-    at_id: at_id,
-    nf_to: nf_to,
-    tp_id: tp_id,
-    c_id: c_id
-  };
-  var req = {
-    method: 'POST',
-    url: ipAddress + '/notifications/add',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    data: data
-  };
 
-  $http(req).success(function(result){
-    console.log('add event');
-    $window.location.reload();
-  }, function(error){
-    console.log(error);
-  });
+  if(u_id != nf_to) {
+
+    var data = {
+      u_id: u_id,
+      at_id: at_id,
+      nf_to: nf_to,
+      tp_id: tp_id,
+      c_id: c_id
+    };
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/notifications/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    $http(req).success(function (result) {
+      console.log('add event');
+      $window.location.reload();
+    }, function (error) {
+      console.log(error);
+    });
+  } else {
+
+  }
 }
 
 buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){

@@ -18,7 +18,7 @@ var date = new Date();
 
 router.post('/add', function(req, res, next) {
     console.log(req.body.u_id + " ; " + req.param('u_id'));
-    var addSQL = mysql.format("insert into jk_notifications(u_id,at_id,nf_to,tp_id,c_id,nf_create_time) values (?,?,?,?,?,?)",[ req.body.u_id, req.body.at_id, req.body.nf_to, req.body.tp_id, req.body.c_id, date]);
+    var addSQL = mysql.format("insert into jk_notifications(u_id,at_id,nf_to,tp_id,c_id,nf_status,nf_create_time) values (?,?,?,?,?,?,?)",[ req.body.u_id, req.body.at_id, req.body.nf_to, req.body.tp_id, req.body.c_id, 0, date]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {
