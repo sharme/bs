@@ -29,10 +29,22 @@ router.post('/add', function(req, res, next) {
     })
 });
 
+router.post('/consume', function(req, res, next) {
+    var addSQL = mysql.format("update jk_notifications set nf_status=1 where nf_id=?",[ req.param('nf_id')]);
+
+    connection.query(addSQL, function (err, result) {
+        if(err) {
+            res.send("Error: " + err);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
 // 小白u_id 喜欢at_id 足迹tp_id
 // [小白] [喜欢] 了你的 [足迹]    [时间]
 router.get('/getNotifications', function(req, res, next) {
-    var sql = "select (select u_name from jk_users as jku where jku.u_id=jkn.u_id) as u_name, (select at_val from jk_actions as jka where jka.at_id=jkn.at_id ) as action, (select tp_val from jk_types as jkt where jkt.tp_id=jkn.tp_id) as type, c_id, jkn.nf_create_time from jk_notifications as jkn where jkn.nf_to=?;";
+    var sql = "select (select nf_id, u_name from jk_users as jku where jku.u_id=jkn.u_id) as u_name, (select at_val from jk_actions as jka where jka.at_id=jkn.at_id ) as action, (select tp_val from jk_types as jkt where jkt.tp_id=jkn.tp_id) as type, c_id, nf_status, jkn.nf_create_time from jk_notifications as jkn where jkn.nf_to=?;";
     var searchSQL = mysql.format(sql, [req.param('u_id')]);
 
     connection.query(searchSQL, function (err, result) {

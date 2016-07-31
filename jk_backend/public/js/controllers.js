@@ -142,7 +142,7 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
   }
 }
 
-function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id){
+function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
 
   if(u_id != nf_to) {
 
@@ -164,13 +164,20 @@ function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id){
 
     $http(req).success(function (result) {
       console.log('add event');
+      if(reload) {
+        $window.location.reload();
+      }
       $window.location.reload();
     }, function (error) {
       console.log(error);
     });
   } else {
-
+    if(reload){
+      $window.location.reload();
+    }
   }
+
+
 }
 
 buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
@@ -440,7 +447,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
             console.log("follow up: " + JSON.stringify(reqData));
 
             $http(req).success(function(result){
-              addEvent($http, $window, $cookies.get('u_id'),eFollow,id,ePeople,id);
+              addEvent($http, $window, $cookies.get('u_id'),eFollow,id,ePeople,id, true);
               console.log('added:' + result);
             }, function(error){
               console.log(error);
@@ -477,7 +484,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
     $http(req).success(function(result){
       console.log($scope.foot.u_id + " ; " + $scope.foot.fs_id);
-      addEvent($http, $window, $cookies.get('u_id'),eComment,$scope.foot.u_id,eFootstep,$scope.foot.fs_id);
+      addEvent($http, $window, $cookies.get('u_id'),eComment,$scope.foot.u_id,eFootstep,$scope.foot.fs_id, true);
     }, function(error){
       console.log(error);
     });
@@ -506,16 +513,25 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
   $http({method: 'GET', url: ipAddress + '/notifications/getNotifications', params:{u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.notifications = data;
+        if(data.length > 0 ) {
+          $('.newmsg').css("display","block");
+        }
       },function(error){
         $scope.error = error;
       });
 
-  $scope.linkTo = function(type, c_id) {
-    if(type === '足迹'){
-      $window.location.href = '#/foot/' + c_id;
-    } else {
-      $window.location.href = '#/community/topics/' + c_id;
-    }
+  $scope.linkTo = function(type, c_id, nf_id) {
+
+    $http({method: 'POST', url: ipAddress + '/notifications/consume', params: {nf_id: nf_id}})
+        .success(function(data){
+          if(type === '足迹'){
+            $window.location.href = '#/foot/' + c_id;
+          } else {
+            $window.location.href = '#/community/topics/' + c_id;
+          }
+        }, function(error){
+          $scope.error = error;
+        });
 
   };
   
@@ -1178,7 +1194,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
     };
 
     $http(req).success(function(result){
-      addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eTopic,tp_id);
+      addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eTopic,tp_id, true);
     }, function(error){
       console.log(error);
     });
@@ -1205,7 +1221,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
     console.log("topic comments replied : " + JSON.stringify(replayData));
 
     $http(req).success(function(result){
-      addEvent($http,$window,$cookies.get('u_id'),eComment,$scope.topic.u_id,eTopic,tp_id);
+      addEvent($http,$window,$cookies.get('u_id'),eComment,$scope.topic.u_id,eTopic,$scope.topic.tp_id, true);
     }, function(error){
       console.log(error);
     });
