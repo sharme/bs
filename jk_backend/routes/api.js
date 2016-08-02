@@ -162,16 +162,6 @@ router.post('/uploadAvatar', function(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 function updateSmallFileQiniu (small, smallPath, big, bigPath, res) {
     //构建上传策略函数
     function uptoken(bucket, small) {
@@ -252,7 +242,6 @@ function updateBigFileQiniu (key, path, res, smallImg) {
     uploadFile(token, key, filePath);
 
 }
-
 
 function resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, size, res) {
     
@@ -432,7 +421,10 @@ function sendSMS(res, to, ipAddress){
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     };
-    console.log("request data: " + JSON.stringify(req));
+    console.log("request data: " + JSON.stringify(req + " ; "+ reqData));
+    // codeList.push({to: to, code: code, ip: ipAddress});
+    // tempCodeList.push({to: to, code: code, ip: ipAddress});
+    // res.send("01");
 
     var httpReq = http.request(req, function (response) {
         response.on("data", function(result){
@@ -463,23 +455,40 @@ function sendSMS(res, to, ipAddress){
 }
 
 
-
-
-
 router.get('/checkCode', function (req, res, next) {
 
-    var key = req.param('to');
-    var val = req.param('scCode');
 
+    var to = req.param('to');
+    var scCode = req.param('scCode');
+    var check = true;
+    console.log("codeList=" + JSON.stringify(codeList)  +"key=" + to + " ;val=" + scCode);
     codeList.forEach(function(item, index){
-        if(item.key === key && item.val === val){
+        var toVal = false;
+        var scVal = false;
+        for (var key in item){
+            console.log(key + " ; " + item[key]);
+            if(key === 'to' && item[key] === to){
+                toVal = true;
+            }
+
+            if(key === 'code' && item[key] == scCode){
+                scVal = true;
+            }
+        }
+        console.log(toVal + " ; " + scVal);
+        if(toVal && scVal) {
+            check = false;
             res.send("01");
         } else {
+            check = false;
             res.send("00");
         }
 
     });
-    res.send("00");
+    if(check) {
+        console.log('return more');
+        res.send("03");
+    }
 });
 
 

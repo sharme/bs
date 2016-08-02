@@ -28,10 +28,12 @@ function displayPosition(miles){
         var i = 0;
         var count = 0;
         var trigger = 0;
+        var multiply = 3;
         var topPxs = [
           {"topPx": 195, "leftPx": "20%"},
           {"topPx": 195, "leftPx": "40%"},
           {"topPx": 195, "leftPx": "60%"}
+
         ];
 
         var maxVal = 30;
@@ -47,13 +49,13 @@ function displayPosition(miles){
 
           topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
 
-          if ((index + 1) % 3 == 0) {
+          if ((index + 1) % multiply == 0) {
             i = 0;
             count++;
           } else {
             i++;
 
-            if ((count * 3) + 3 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
+            if ((count * multiply) + multiply > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
               trigger++;
             }
           }
@@ -573,7 +575,11 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
         console.log('send Code:' + result);
         if (result === "00") {
           alert("请输入正确验证码");
-        } else {
+          $window.location.reload();
+        } else if(result === '03'){
+          alert("验证码失效.");
+          $window.location.reload();
+        }else {
           var req = {
             method: 'POST',
             url: ipAddress + '/users/create',
@@ -604,8 +610,7 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
   $scope.sendVerifyCode = function() {
 
-
-    if ($('#register-form-phoneNumber').valid()) {
+    if ($('#register-form-phoneNumber').val().length == 11) {
 
       var req = {
         method: 'GET',
@@ -642,6 +647,10 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
       }, function (error) {
         console.log(error);
       });
+    } else if($('#register-form-phoneNumber').val().length == 0){
+      alert("请输入手机号码");
+    } else {
+      alert("请输入正确的手机号码");
     }
 
 
