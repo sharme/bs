@@ -7,6 +7,7 @@
             <div id="create_footstep-info-image">
                 <input type="file" required class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
             </div>
+            <img ng-src="{{uploadUrl}}" style="width: 580px;">
             <hr>
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_smallImg" id="upload_smallImg-href">
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_bigImg" id="upload_bigImg-href">

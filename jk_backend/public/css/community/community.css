@@ -1,7 +1,8 @@
 .community,
 .topic,
 .topic_add {
-  margin: 50px 10%;
+  margin: 50px auto;
+  width: 600px;
 }
 .community .community_topic,
 .topic .community_topic,
@@ -63,11 +64,6 @@
 .topic_add .community_promo .community_promo_active .community_promo_active_span {
   padding: 5px 20px;
   float: left;
-}
-.community .community_promo .community_promo_active .community_promo_active_span img,
-.topic .community_promo .community_promo_active .community_promo_active_span img,
-.topic_add .community_promo .community_promo_active .community_promo_active_span img {
-  background-image: url(../../img/core-sprites.png) -237px 6px no-repeat;
 }
 .community .community_promo .community_promo_active hr,
 .topic .community_promo .community_promo_active hr,
@@ -195,7 +191,8 @@
   width: 80px;
 }
 .topic_add {
-  margin-bottom: 150px;
+  width: 600px;
+  margin: 50px auto;
 }
 .topic_add .topic_add_title {
   font-size: 20px;

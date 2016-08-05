@@ -201,7 +201,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   dynamicallyCSS(mobileSize,'../css/home/footstep.css', '../css/home/footstep-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 9}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 12}})
       .success(function(data){
         $scope.footsteps = data;
         displayPosition(500,10);
@@ -251,7 +251,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          displayPosition(300,10);
+          displayPosition(500,10);
         }
       }, function (error) {
         $scope.error = error;
@@ -475,6 +475,8 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
         // alert(newmsgShow);
         if(newmsgShow) {
           $('.newmsg').css("display","block");
+        }else{
+          $('.newmsg').css("display","none");
         }
       },function(error){
         $scope.error = error;
@@ -627,9 +629,9 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   if(cookieUser) {
 
     if($cookies.get('u_avatar')) {
-      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div><a href='#/profile?u_id="+ $cookies.get('u_id') +"'>&nbsp;"+cookieUser +"</a>");
+      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div>&nbsp;<a href='#/profile?u_id="+ $cookies.get('u_id') +"'>"+cookieUser +"</a>");
     } else {
-      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='../../img/default_icon.png'></div><a href='#/profile?u_id="+ $cookies.get('u_id') +"'>&nbsp;"+cookieUser +"</a>");
+      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id="+ $cookies.get('u_id') +"'>"+cookieUser +"</a>");
     }
     $(".header-right-logout").css("display", "block");
     $(".header-right-login").css("display", "none");
@@ -662,10 +664,10 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
         console.log('login result:' + JSON.stringify(result));
         if(result[0].u_avatar) {
-          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div><a href='#/profile?u_id=" + result[0].u_id + "'>&nbsp;"+ result[0].u_name +"</a>");
+          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
           $cookies.put('u_avatar', result[0].u_avatar);
         } else {
-          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='../../img/default_icon.png'></div><a href='#/profile?u_id=" + result[0].u_id + "'>&nbsp;"+ result[0].u_name +"</a>");
+          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
         }
 
         $cookies.put('username', result[0].u_name);
@@ -911,7 +913,8 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       type: "POST",
       success: function (res) {
         console.log('successfully uploaded, URL: ' + res);
-        $(file).parent().css("background-image", 'url(' + res.bigImg + ')');
+        $(file).parent().css("min-height", '0px');
+        $scope.uploadUrl = res.bigImg;
         $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
         $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
         $(file).parent().nextAll("#upload_smallImg-href").change();
