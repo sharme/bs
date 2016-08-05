@@ -2,8 +2,8 @@
   margin: 50px 20%;
 }
 .create_footstep .create_footstep-info {
-  min-height: 560px;
-  max-height: 850px;
+  width: 600px;
+  margin: 0 auto;
 }
 .create_footstep .create_footstep-info #create_footstep-info-header {
   width: 100%;

@@ -1,9 +1,6 @@
 .foot_wrapper {
   margin: 50px 5%;
 }
-.foot_wrapper .foot_wrapper-back {
-  padding: 0px 20% 0px 20%;
-}
 .foot_wrapper .foot_wrapper-back .foot_wrapper-back_close {
   float: right;
   font-size: 20px;
@@ -19,9 +16,8 @@
   margin-right: 5px;
 }
 .foot_wrapper .foot_wrapper-main {
-  width: 100%;
-  height: 800px;
-  padding: 0px 20% 0px 20%;
+  width: 600px;
+  margin: 0 auto;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_follow {
   float: right;

@@ -81,6 +81,7 @@ button {
   background-color: lightgrey;
   bottom: 0;
   position: fixed;
+  z-index: 1000;
 }
 .message {
   margin: 50px 10%;

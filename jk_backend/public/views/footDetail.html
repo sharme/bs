@@ -1,11 +1,12 @@
 <div class="foot_wrapper">
-    <div class="foot_wrapper-back">
-        <a href="" ng-click="backHome()">
-        <span class="foot_wrapper-back_close">X</span>
-        </a>
-        <!--<hr>-->
-    </div>
+
     <div class="foot_wrapper-main">
+        <div class="foot_wrapper-back">
+            <a href="" ng-click="backHome()">
+                <span class="foot_wrapper-back_close">X</span>
+            </a>
+            <!--<hr>-->
+        </div>
         <div>
             <div>
                 <button class="stick_footstep" style="cursor: not-allowed;" ng-click="stickBtn(foot.fs_id)">收藏</button>&nbsp;&nbsp;{{foot.sticks}}
@@ -64,7 +65,7 @@
                 都有谁收藏<hr>
                 <div class="foot_wrapper-main_follower-img" ng-repeat="stick in sticks">
                     <div class="footstep-list-div-comment-avatar">
-                        <img ng-src="{{stick.u_avatar}}" class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">
+                        <img ng-src="{{stick.u_avatar?stick.u_avatar:'../img/default_icon.png'}}"  class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">
                     </div>
                 </div>
             </div>

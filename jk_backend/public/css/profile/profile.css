@@ -68,9 +68,11 @@
   float: left;
   border: solid 1px lightgrey;
   border-radius: 6px;
-  margin: 20px 1.6% 0px 1.6%;
-  width: 18%;
+  margin: 10px 10px 0px 10px;
+  width: 216px;
   top: 200px;
+  position: absolute;
+  visibility: hidden;
 }
 .footstep-list .footstep-list-div-pic {
   min-height: 100px;

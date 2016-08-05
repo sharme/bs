@@ -16,35 +16,40 @@ var eTopic = 2;
 var ePeople = 3;
 
 
-function displayPosition(miles){
+function displayPosition(miles, top){
   var timer = setInterval(function(){
     window.clearInterval(timer);
 
-    if($(window).width() < mobileSize) {
+    if($("#footstep-list").width() < mobileSize) {
       
     } else {
 
-      if ($(".footstep_list_home").children("#footstep-list-div").size() > 1) {
+      var arrayAcount = Math.floor($("#footstep-list").width()/248);
+
+      if ($("#footstep-list").children("#footstep-list-div").size() > 1) {
         var i = 0;
         var count = 0;
         var trigger = 0;
-        var multiply = 3;
+        var multiply = arrayAcount;
+
         var topPxs = [
-          {"topPx": 195, "leftPx": "20%"},
-          {"topPx": 195, "leftPx": "40%"},
-          {"topPx": 195, "leftPx": "60%"}
 
         ];
+
+        for(var h = 0; h < arrayAcount; h ++) {
+          topPxs.push({"topPx": top, "leftPx": 248 * h});
+        }
+
+
 
         var maxVal = 30;
         var listIndex = 0;
         $("#footstep-list").children("#footstep-list-div").each(function (index, element) {
           listIndex++;
           $(element).css({
-            "position": "absolute",
-            "width": '18%',
             "top": topPxs[i].topPx + "px",
-            "left": topPxs[i].leftPx + ""
+            "left": topPxs[i].leftPx + "px",
+            "visibility": "visible"
           });
 
           topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
@@ -60,13 +65,13 @@ function displayPosition(miles){
             }
           }
 
-          if($(".footstep_list_home").children("#footstep-list-div").size() -1 == listIndex ) {
+          if($("#footstep-list").children("#footstep-list-div").size() -1 == listIndex ) {
             console.log("children(#footstep-list-div) = " + $(".footstep_list_home").children("#footstep-list-div").size() + ", index = " + listIndex);
             maxVal = topPxs[i].topPx;
           }
 
         });
-        console.log("maxVal = " + maxVal)
+        console.log("maxVal = " + maxVal);
         $('.footstep-list_end').css('top', maxVal + 500);
 
       } else {
@@ -74,65 +79,6 @@ function displayPosition(miles){
       }
     }
 
-  },miles);
-}
-
-function displayProfilePosition(miles){
-  var timer = setInterval(function(){
-    clearInterval(timer);
-
-    if ($(window).width() < mobileSize) {
-
-    } else {
-      if ($(".footstep-list").children("#footstep-list-div").size() > 4) {
-        var i = 0;
-        var count = 0;
-        var trigger = 0;
-        var topPxs = [
-          {"topPx": 300, "leftPx": "0%"},
-          {"topPx": 300, "leftPx": "20%"},
-          {"topPx": 300, "leftPx": "40%"},
-          {"topPx": 300, "leftPx": "60%"},
-          {"topPx": 300, "leftPx": "80%"}
-        ];
-
-        var maxVal = 30;
-        $(".footstep-list").children("#footstep-list-div").each(function (index, element) {
-
-          $(element).css({
-            "position": "absolute",
-            "width": '18%',
-            "top": topPxs[i].topPx + "px",
-            "left": topPxs[i].leftPx + ""
-          });
-
-          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
-
-          if ((index + 1) % 5 == 0) {
-            i = 0;
-            count++;
-          } else {
-
-            i++;
-
-            for (var j = 0; j < 3; j++) {
-              maxVal = topPxs[j];
-              if (maxVal < topPxs[j + 1] && j < 2) {
-                maxVal = topPxs[j + 1];
-              }
-            }
-
-            if ((count * 5) + 5 > $("#footstep-list").children("#footstep-list-div").size() && trigger == 0) {
-              // i = 0;
-              trigger++;
-              // alert("test");
-            }
-          }
-        });
-        $('.footstep-list_profile_end').css('top', maxVal.topPx + 500);
-
-      }
-    }
   },miles);
 }
 
@@ -258,7 +204,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 9}})
       .success(function(data){
         $scope.footsteps = data;
-        displayPosition(500);
+        displayPosition(500,10);
       },function(error){
         $scope.error = error;
       });
@@ -274,7 +220,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from}})
         .success(function(data){
           $scope.footsteps = data;
-          displayPosition(500);
+          displayPosition(500,10);
           $scope.number = data.length;
         }, function(error){
           $scope.error = error;
@@ -305,7 +251,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          displayPosition(300);
+          displayPosition(300,10);
         }
       }, function (error) {
         $scope.error = error;
@@ -515,7 +461,19 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
   $http({method: 'GET', url: ipAddress + '/notifications/getNotifications', params:{u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.notifications = data;
-        if(data.length > 0 ) {
+        var newmsgShow = false;
+        $scope.notifications.forEach(function (item, index) {
+          // alert(item);
+          for(var key in item) {
+            // alert(key + " ; " + item[key]);
+            if(key === 'nf_status' && item[key] == 0){
+              newmsgShow = true;
+              return;
+            }
+          }
+        });
+        // alert(newmsgShow);
+        if(newmsgShow) {
           $('.newmsg').css("display","block");
         }
       },function(error){
@@ -788,7 +746,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       $scope.isbusy = true;
       $http({
         method: 'GET',
-        url: ipAddress + '/footsteps/getFootsteps',
+        url: ipAddress + '/footsteps/getFootstepsByUID',
         params: {
           u_id: $cookies.get('u_id'),
           index_start: $scope.footsteps.length,
@@ -801,7 +759,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
             $scope.footsteps.push(data[i]);
           }
 
-          displayProfilePosition(100);
+          displayPosition(300,320);
         }
         $scope.isbusy = false;
 
@@ -825,7 +783,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
             $scope.footsteps.push(data[i]);
           }
 
-         displayProfilePosition(100);
+         displayPosition(300,320);
         }
         $scope.isbusy = false;
 
@@ -847,7 +805,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         }, function(error){
           $scope.error = error;
         });
-    displayProfilePosition(100);
+    displayPosition(500,320);
   };
   
   $scope.profileSticks = function(u_id) {
@@ -861,7 +819,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         }, function(error){
           $scope.error = error;
         });
-    displayProfilePosition(100);
+    displayPosition(500,320);
   };
 
   $scope.profileFollows = function(u_id) {

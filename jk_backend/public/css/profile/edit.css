@@ -23,7 +23,8 @@
   text-align: center;
 }
 .profile_top {
-  margin: 50px 20% 100px 20%;
+  width: 600px;
+  margin: 10px auto;
 }
 .profile_top #profile_top-header {
   width: 100%;

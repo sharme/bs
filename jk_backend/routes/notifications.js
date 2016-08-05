@@ -58,6 +58,21 @@ router.get('/getNotifications', function(req, res, next) {
 });
 
 
+router.get('/getNotifications', function(req, res, next) {
+    var sql = "select nf_id, (select u_name from jk_users as jku where jku.u_id=jkn.u_id) as u_name, (select at_val from jk_actions as jka where jka.at_id=jkn.at_id ) as action, (select tp_val from jk_types as jkt where jkt.tp_id=jkn.tp_id) as type, c_id, nf_status, jkn.nf_create_time from jk_notifications as jkn where jkn.nf_to=?;";
+    var searchSQL = mysql.format(sql, [req.param('u_id')]);
+
+    connection.query(searchSQL, function (err, result) {
+        if(err) {
+            res.send("Error: " + err);
+        } else {
+            res.send(result);
+        }
+    })
+
+});
+
+
 
 
 

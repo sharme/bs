@@ -29,7 +29,7 @@
     </div>
 
 <div style="min-height: 400px;">
-    <div class="footstep-list" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="false">
+    <div id="footstep-list" class="footstep-list" infinite-scroll="loadMore()" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="false">
         <div class="profile_down-create" ng-click="createBtn()">创建足迹</div>
         <div id="footstep-list-div" class="footstep-list-div" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic">
@@ -55,7 +55,7 @@
                 </div>
                 <div>
                     <div>{{result.u_name}}</div>
-                    <div>{{result.cm_content}}</div>
+                    <div ng-bind-html="result.cm_content"></div>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
     <div class="follow-list">
         <div ng-repeat="result in results">
             <div class="follow-list-div-comment-avatar">
-                <img ng-src="{{result.u_avatar}}" class="follow-list-div-comment-avatar-img" title="{{result.u_name}}">
+                <img ng-src="{{result.u_avatar?result.u_avatar:'../../img/default_icon.png'}}" class="follow-list-div-comment-avatar-img" title="{{result.u_name}}">
             </div>
         </div>
     </div>
