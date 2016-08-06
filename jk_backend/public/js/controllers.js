@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112';
+var ipAddress = 'http://localhost:8080';
 var mobileSize = 800;
 
 var eLike = 1;
@@ -201,7 +201,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   dynamicallyCSS(mobileSize,'../css/home/footstep.css', '../css/home/footstep-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 12}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 12, u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.footsteps = data;
         displayPosition(500,10);
@@ -217,7 +217,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       });
 
   $scope.countryFilter = function(element, fs_from){
-    $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from,u_id: $cookies.get('u_id')}})
         .success(function(data){
           $scope.footsteps = data;
           displayPosition(500,10);
@@ -243,7 +243,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getFootsteps',
-        params: {index_start: $scope.footsteps.length, count: 3}
+        params: {index_start: $scope.footsteps.length, count: 3,u_id: $cookies.get('u_id')}
       }).success(function (data) {
         console.log("data length: " + data.length);
         if (data.length > 0) {
@@ -267,7 +267,29 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           if(data.length > 0 ) {
-            alert("已经收藏成功");
+            // alert("已经收藏成功");
+            var req = {
+              method: 'POST',
+              url: ipAddress + '/sticks/delete',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+
+            $http(req).success(function(result){
+
+              // addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
+              $(".btnStick" + id).css("background-color","");
+              console.log('unfollow stick');
+            }, function(error){
+              console.log(error);
+            });
+
+
           } else {
             var req = {
               method: 'POST',
@@ -284,7 +306,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $http(req).success(function(result){
 
               addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
-
+              $(".btnStick" + id).css("background-color","darkgrey");
               console.log('stick');
             }, function(error){
               console.log(error);
@@ -312,7 +334,25 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         .success(function(data){
           console.log(data);
           if(data.length > 0) {
-            alert('每个人只能喜欢一次哦');
+            // alert('每个人只能喜欢一次哦');
+            var req = {
+              method: 'POST',
+              url: ipAddress + '/likes/delete',
+              header: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+            $http(req).success(function(result){
+              // addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
+              console.log('unliked');
+             $(".btnLike" + id).css("background-color","");
+            }, function(error){
+              console.log(error);
+            })
           } else {
             var req = {
               method: 'POST',
@@ -328,6 +368,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
               console.log('liked');
+              $(".btnLike" + id).css("background-color","darkgrey");
             }, function(error){
               console.log(error);
             })

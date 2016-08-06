@@ -79,8 +79,6 @@
   height: 60px;
   float: left;
 }
-.footstep-list-div-comment-avatar-img {
-  height: 30px;
-  width: 35px;
-  border-radius: 12px;
+button {
+  outline: none;
 }

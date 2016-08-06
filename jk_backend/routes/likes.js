@@ -33,6 +33,23 @@ router.post('/add', function(req, res, next) {
     })
 });
 
+router.post('/delete', function(req, res, next) {
+    var addSQL = mysql.format("delete from jk_likes where fs_id=? and u_id=?",[req.body.fs_id, req.body.u_id]);
+
+    connection.query(addSQL, function (err, result) {
+        if(err) {
+            res.send("Error: " + err);
+        } else {
+
+            // var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,?)",[req.body.u_id, 'like',date]);
+            // connection.query(addEvent);
+
+            res.send(result);
+
+        }
+    })
+});
+
 router.get('/search', function(req, res, next) {
    var searchSQL = mysql.format("select * from jk_likes where fs_id = ? and u_id = ?;", [req.param('fs_id'), req.param('u_id')]);
 

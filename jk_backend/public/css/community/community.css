@@ -7,7 +7,8 @@
 .community .community_topic,
 .topic .community_topic,
 .topic_add .community_topic {
-  margin: 0px 0px 100px 15%;
+  margin: 0px 0px 100px 100px;
+  width: 500px;
   float: left;
 }
 .community .community_topic .community_topic_main,
@@ -56,7 +57,7 @@
 .topic .community_promo .community_promo_active,
 .topic_add .community_promo .community_promo_active {
   position: absolute;
-  width: 10%;
+  width: 100px;
   height: 350px;
 }
 .community .community_promo .community_promo_active .community_promo_active_span,

@@ -32,6 +32,22 @@ router.post('/add', function(req, res, next) {
     })
 });
 
+router.post('/delete', function(req, res, next) {
+    var addSQL = mysql.format("delete from jk_sticks where fs_id=? and u_id=?",[req.body.fs_id, req.body.u_id]);
+
+    connection.query(addSQL, function (err, result) {
+        if(err) {
+            res.send("Error: " + err);
+        } else {
+
+            // var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,?)",[req.body.u_id, 'stick',date]);
+            // connection.query(addEvent);
+
+            res.send(result);
+        }
+    })
+});
+
 
 router.get('/getSticksByFSID', function(req, res, next) {
    var criteriaSQL = mysql.format("select (select u_avatar from jk_users as jku where jku.u_id = jks.u_id) as u_avatar, (select u_name from jk_users as jku where jku.u_id = jks.u_id) as u_name from jk_sticks as jks where jks.fs_id = ?",[req.param('fs_id')]);

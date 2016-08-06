@@ -18,15 +18,31 @@ var date = new Date();
 
 router.get('/getFootsteps', function(req, res, next) {
 
-    var criteriaSQL = "select fs_id,u_id,fs_pic,fs_des,fs_from," +
-        "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
-        "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
-        "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_avatar," +
-        "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_name," +
-        "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
-        "fs_smallImg, fs_bigImg, fs_create_time " +
-        " from jk_footsteps as jkf";
-
+    var u_id = req.param('u_id');
+    
+    var criteriaSQL = "";
+    if(u_id) {
+         criteriaSQL = mysql.format("select fs_id,u_id,fs_pic,fs_des,fs_from," +
+            "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
+            "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id and jks.u_id=?) as stick_status," +
+            "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
+            "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id and jkl.u_id=?) as like_status," +
+            "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_avatar," +
+            "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_name," +
+            "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
+            "fs_smallImg, fs_bigImg, fs_create_time " +
+            " from jk_footsteps as jkf",[req.param('u_id'),req.param('u_id')]);
+    } else {
+        criteriaSQL = "select fs_id,u_id,fs_pic,fs_des,fs_from," +
+            "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
+            "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
+            "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_avatar," +
+            "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_name," +
+            "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
+            "fs_smallImg, fs_bigImg, fs_create_time " +
+            " from jk_footsteps as jkf";
+    }
+    
     console.log(req.param('fs_from'));
 
     if(req.param('fs_from')){
