@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+            <state relative-caret-position="90">
+              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
               <folding>
                 <element signature="n#!!block;n#displayPosition#0" expanded="false" />
                 <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="community.less" pinned="false" current-in-tab="true">
+      <file leaf-file-name="community.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/community/community.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+            <state relative-caret-position="135">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="homepage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/homepage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="304">
+              <caret line="28" column="101" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="101" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -73,11 +73,11 @@
       <file leaf-file-name="footstep.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/home/footstep.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+            <state relative-caret-position="98">
+              <caret line="92" column="1" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
               <folding>
-                <marker date="1470475371000" expanded="true" signature="39:70" placeholder="{...}" />
-                <marker date="1470475371000" expanded="true" signature="984:1041" placeholder="{...}" />
+                <marker date="1470498259000" expanded="true" signature="39:70" placeholder="{...}" />
+                <marker date="1470498259000" expanded="true" signature="984:1041" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -187,10 +187,10 @@
         <option value="$PROJECT_DIR$/routes/footsteps.js" />
         <option value="$PROJECT_DIR$/routes/sticks.js" />
         <option value="$PROJECT_DIR$/routes/likes.js" />
+        <option value="$PROJECT_DIR$/public/css/community/community.less" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
         <option value="$PROJECT_DIR$/public/views/homepage.html" />
         <option value="$PROJECT_DIR$/public/css/home/footstep.less" />
-        <option value="$PROJECT_DIR$/public/css/community/community.less" />
       </list>
     </option>
   </component>
@@ -591,12 +591,12 @@
       <workItem from="1469849599490" duration="58000" />
       <workItem from="1469853203931" duration="23000" />
       <workItem from="1469933081921" duration="21114000" />
-      <workItem from="1470401645737" duration="12418000" />
+      <workItem from="1470401645737" duration="13498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311290000" />
+    <option name="totallyTimeSpent" value="312370000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="176" y="148" width="1344" height="729" extended-state="0" />
@@ -964,10 +964,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/community/community.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+        <state relative-caret-position="304">
+          <caret line="28" column="101" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="101" />
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -977,19 +985,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/home/footstep.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+        <state relative-caret-position="98">
+          <caret line="92" column="1" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
           <folding>
-            <marker date="1470475371000" expanded="true" signature="39:70" placeholder="{...}" />
-            <marker date="1470475371000" expanded="true" signature="984:1041" placeholder="{...}" />
+            <marker date="1470498259000" expanded="true" signature="39:70" placeholder="{...}" />
+            <marker date="1470498259000" expanded="true" signature="984:1041" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+        <state relative-caret-position="90">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding>
             <element signature="n#!!block;n#displayPosition#0" expanded="false" />
             <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
@@ -1007,14 +1015,6 @@
             <element signature="e#35758#38025#0" expanded="false" />
             <element signature="e#38201#39966#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/community/community.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>

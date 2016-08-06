@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://localhost:8080';
+var ipAddress = 'http://180.76.152.112';
 var mobileSize = 800;
 
 var eLike = 1;
