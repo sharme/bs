@@ -115,7 +115,6 @@ function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
       if(reload) {
         $window.location.reload();
       }
-      $window.location.reload();
     }, function (error) {
       console.log(error);
     });
@@ -305,7 +304,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
             $http(req).success(function(result){
 
-              addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
+              addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id, false);
               $(".btnStick" + id).css("background-color","darkgrey");
               console.log('stick');
             }, function(error){
@@ -366,7 +365,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
               }
             };
             $http(req).success(function(result){
-              addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
+              addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id, false);
               console.log('liked');
               $(".btnLike" + id).css("background-color","darkgrey");
             }, function(error){
