@@ -48,12 +48,13 @@ router.get('/getFootsteps', function(req, res, next) {
     if(req.param('fs_from')){
         criteriaSQL += " where jkf.fs_from='" + req.param('fs_from') + "'";
     }
-
+    criteriaSQL += " order by fs_create_time desc";
+    
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
     
-    criteriaSQL += " order by fs_create_time desc";
+    
 
 
     console.log(criteriaSQL);
@@ -79,12 +80,11 @@ router.get('/getFootstepsByUID', function(req, res, next) {
         "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content, fs_smallImg, fs_bigImg, fs_create_time" +
         " from jk_footsteps as jkf where jkf.u_id = ?",[req.param('u_id')]);
 
-
+    criteriaSQL += " order by fs_create_time desc";
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
-    criteriaSQL += " order by fs_create_time desc";
-
+    
     connection.query(criteriaSQL, function(err, result) {
         if(err) {
             res.send("Error: " + err);
@@ -116,11 +116,11 @@ router.get('/getStickFootstepsByUID', function(req, res, next) {
         "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_name," +
         "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content, fs_smallImg, fs_bigImg" +
         " from jk_footsteps as jkf where jkf.fs_id IN (select fs_id from jk_sticks as jks where jks.u_id = ?)",[req.param('u_id')]);
-
+    criteriaSQL += " order by fs_create_time desc";
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
-    criteriaSQL += " order by fs_create_time desc";
+    
     connection.query(criteriaSQL, function(err, result) {
         if(err) {
             res.send("Error: " + err);

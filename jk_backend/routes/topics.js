@@ -26,11 +26,11 @@ router.get('/getTopics', function(req, res, next) {
         criteriaSQL += " where jkf.fs_from='" + req.param('fs_from') + "'";
     }
 
+    criteriaSQL += " order by tp_update_time desc";
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
-
-    criteriaSQL += " order by tp_update_time desc";
+    
     console.log(criteriaSQL);
 
 
