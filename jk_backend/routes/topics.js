@@ -30,7 +30,7 @@ router.get('/getTopics', function(req, res, next) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
 
-
+    criteriaSQL += " order by tp_update_time desc";
     console.log(criteriaSQL);
 
 

@@ -52,6 +52,8 @@ router.get('/getFootsteps', function(req, res, next) {
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
+    
+    criteriaSQL += " order by fs_create_time desc";
 
 
     console.log(criteriaSQL);
@@ -81,7 +83,7 @@ router.get('/getFootstepsByUID', function(req, res, next) {
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
-
+    criteriaSQL += " order by fs_create_time desc";
 
     connection.query(criteriaSQL, function(err, result) {
         if(err) {
@@ -118,7 +120,7 @@ router.get('/getStickFootstepsByUID', function(req, res, next) {
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
-    
+    criteriaSQL += " order by fs_create_time desc";
     connection.query(criteriaSQL, function(err, result) {
         if(err) {
             res.send("Error: " + err);
