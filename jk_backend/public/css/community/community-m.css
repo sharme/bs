@@ -160,6 +160,7 @@
   margin-left: 20%;
   min-height: 100px;
   padding: 20px;
+  overflow-wrap: break-word;
 }
 .topic .topic_content .topic_content_reply {
   margin-top: 10px;

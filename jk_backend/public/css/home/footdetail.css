@@ -30,9 +30,9 @@
   min-height: 20px;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-content {
-  height: 70px;
   margin: 10px;
   line-height: 2;
+  overflow-wrap: break-word;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-add {
   width: 80px;
