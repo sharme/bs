@@ -52,7 +52,7 @@ function displayPosition(miles, top){
             "visibility": "visible"
           });
 
-          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 10;
+          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 25;
 
           if ((index + 1) % multiply == 0) {
             i = 0;
