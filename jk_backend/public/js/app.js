@@ -9,8 +9,7 @@ var buybs = angular.module('jk_backend', [
     'ngCookies',
     'ngSanitize',
     'infinite-scroll',
-    'angularCSS',
-    'flow'
+    'angularCSS'
 ]).value("THROTTLE_MILLISECONDS", 3000);
 
 // you might call this after your module initalization
