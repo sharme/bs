@@ -937,31 +937,51 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       console.log(error);
     });
   };
+
+var progress = 1;
+  var progressBar = function(){
+    progress += 1;
+    if(progress < 99) {
+      $('#myBar').width(progress + "%");
+      $('#myBar').text(progress + "%");
+    } else {
+      $('#myBar').width("100%");
+      $('#myBar').text('上传完成!');
+    }
+  };
+
   $scope.uploadFile = function(file) {
     console.log('upload file');
-    var file_data = $(file).prop('files')[0];
-    var form_data = new FormData();
-    form_data.append('u_id', $cookies.get('u_id'));
-    form_data.append("file", file_data);
 
-    $.ajax({
-      url: ipAddress + "/api/uploadPhotos",
-      contentType: false,
-      data: form_data,
-      processData: false,
-      cache: false,
-      type: "POST",
-      success: function (res) {
-        console.log('successfully uploaded, URL: ' + res);
-        $(file).parent().css("min-height", '0px');
-        $scope.uploadUrl = res.bigImg;
-        $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
-        $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
-        $(file).parent().nextAll("#upload_smallImg-href").change();
-        $(file).parent().nextAll("#upload_bigImg-href").change();
-        $(file).css("display", "none");
-      }
-    });
+      setInterval(progressBar, 20);
+
+      var file_data = $(file).prop('files')[0];
+      var form_data = new FormData();
+      form_data.append('u_id', $cookies.get('u_id'));
+      form_data.append("file", file_data);
+
+      $.ajax({
+        url: ipAddress + "/api/uploadPhotos",
+        contentType: false,
+        data: form_data,
+        processData: false,
+        cache: false,
+        type: "POST",
+        success: function (res) {
+          clearInterval(progressBar);
+          $('#myBar').width("100%");
+          $('#myBar').text('上传完成!');
+          console.log('successfully uploaded, URL: ' + res);
+          $(file).parent().css("min-height", '0px');
+          $scope.uploadUrl = res.bigImg;
+          $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
+          $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
+          $(file).parent().nextAll("#upload_smallImg-href").change();
+          $(file).parent().nextAll("#upload_bigImg-href").change();
+          $(file).css("display", "none");
+          $('.fileUpload').css("display", 'none');
+        }
+      });
   }
 
 }]);

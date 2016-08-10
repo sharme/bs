@@ -4,11 +4,17 @@
             <div id="create_footstep-info-header">创建足迹<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
             <!--<img id="create_footstep-info-image" ng-src="{{uploadUrl}}">-->
             <hr>
-            <div id="create_footstep-info-image">
-                <input type="file" required class="imageName-btn" onchange="angular.element(this).scope().uploadFile(this)" id="imageName-btn" name="imageName"/>
+            <div class="fileUpload">
+                <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this)" id="uploadBtn" name="imageName"/>
+                <span class="uploadBtn">上传图片</span>
             </div>
-            <img ng-src="{{uploadUrl}}" style="width: 580px;">
+
+            <img  ng-src="{{uploadUrl}}" style="width: 580px; min-height: 300px;">
             <hr>
+            <div id="myProgress">
+                <div id="myBar"></div>
+            </div>
+
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_smallImg" id="upload_smallImg-href">
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_bigImg" id="upload_bigImg-href">
             <div  class="create_footstep-info-div">
