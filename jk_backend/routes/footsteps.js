@@ -31,7 +31,7 @@ router.get('/getFootsteps', function(req, res, next) {
             "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_name," +
             "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
             "fs_smallImg, fs_bigImg, fs_create_time " +
-            " from jk_footsteps as jkf",[req.param('u_id'),req.param('u_id')]);
+            " from jk_footsteps as jkf where jkf.fs_status=1 ",[req.param('u_id'),req.param('u_id')]);
     } else {
         criteriaSQL = "select fs_id,u_id,fs_pic,fs_des,fs_from," +
             "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
@@ -40,13 +40,13 @@ router.get('/getFootsteps', function(req, res, next) {
             "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc where jkc.fs_id=jkf.fs_id limit 1) as u_name," +
             "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content," +
             "fs_smallImg, fs_bigImg, fs_create_time " +
-            " from jk_footsteps as jkf";
+            " from jk_footsteps as jkf where jkf.fs_status=1 ";
     }
     
     console.log(req.param('fs_from'));
 
     if(req.param('fs_from')){
-        criteriaSQL += " where jkf.fs_from='" + req.param('fs_from') + "'";
+        criteriaSQL += " and jkf.fs_from='" + req.param('fs_from') + "'";
     }
     criteriaSQL += " order by fs_create_time desc";
     
@@ -161,6 +161,9 @@ router.get('/getFootstepsDetail', function (req, res, next) {
 
 
 });
+
+
+
 
 
 

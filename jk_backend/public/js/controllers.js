@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112';
+var ipAddress = 'http://localhost:3000';
 var mobileSize = 800;
 
 var eLike = 1;
@@ -26,7 +26,7 @@ function displayPosition(miles, top){
 
       var arrayAcount = Math.floor($("#footstep-list").width()/248);
 
-      if ($("#footstep-list").children("#footstep-list-div").size() > 1) {
+      if ($("#footstep-list").children("#footstep-list-div").size() > 0) {
         var i = 0;
         var count = 0;
         var trigger = 0;
@@ -837,7 +837,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileFootsteps = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 12}})
         .success(function(data){
           $scope.footsteps = data;
           val = 1;
@@ -851,7 +851,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileSticks = function(u_id) {
-    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 9}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 12}})
         .success(function(data){
           $scope.footsteps = data;
           val = 2;
