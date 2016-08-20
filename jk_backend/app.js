@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var footsteps = require('./routes/footsteps');
@@ -20,8 +22,11 @@ var topicLikes = require('./routes/topicLikes');
 var topicComments = require('./routes/topicComments');
 var topicClicks = require('./routes/topicClicks');
 var notifications = require('./routes/notifications');
+var pictureApprove = require('./routes/pictureApprove');
 
 var app = express();
+
+
 
 
 // view engine setup
@@ -35,6 +40,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'js')));
+
 
 
 app.use(function(req, res, next){
@@ -44,7 +51,7 @@ app.use(function(req, res, next){
   next();
 });
 
-app.use('/', routes);
+app.use('/backend', routes);
 app.use('/users', users);
 app.use('/footsteps', footsteps);
 app.use('/countries', countries);
@@ -59,6 +66,7 @@ app.use('/topicLikes', topicLikes);
 app.use('/topicComments', topicComments);
 app.use('/topicClicks', topicClicks);
 app.use('/notifications', notifications);
+app.use('/pictureApprove', pictureApprove);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
