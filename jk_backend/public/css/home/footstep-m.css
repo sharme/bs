@@ -1,7 +1,7 @@
 #navigation {
   float: left;
   width: 100%;
-  padding: 50px 10% 10px 10%;
+  padding: 5px 1% 10px 1%;
   background-color: white;
 }
 #navigation .navigation-country {
@@ -9,8 +9,10 @@
 }
 .footstep_list_home {
   min-height: 600px;
-  padding: 0px 10%;
   z-index: 2;
+  top: 150px;
+  position: relative;
+  margin: 10px 2%;
 }
 .footstep_list_profile {
   width: 100%;
@@ -44,11 +46,13 @@
 }
 #footstep-list .footstep-list-div {
   float: left;
-  border: solid 1px lightgrey;
   border-radius: 6px;
+  font-size: 12px;
   margin: 10px 1.6% 0px 1.6%;
-  width: 95%;
-  top: 200px;
+  width: 164px;
+  top: 10px;
+  position: absolute;
+  visibility: hidden;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;

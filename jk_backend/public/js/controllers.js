@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://localhost:3000';
+var ipAddress = 'http://180.76.152.112';
 var mobileSize = 800;
 
 var eLike = 1;
@@ -19,12 +19,17 @@ var ePeople = 3;
 function displayPosition(miles, top){
   var timer = setInterval(function(){
     window.clearInterval(timer);
-
-    if($("#footstep-list").width() < mobileSize) {
+    // if($("#footstep-list").width() < mobileSize) {
       
-    } else {
+    // } else {
 
-      var arrayAcount = Math.floor($("#footstep-list").width()/248);
+    var arrayAcount = Math.floor($("#footstep-list").width()/248);
+    var left = 248;
+
+    if($("#footstep-list").width() < mobileSize){
+      arrayAcount = 2;
+      left = 180;
+    }
 
       if ($("#footstep-list").children("#footstep-list-div").size() > 0) {
         var i = 0;
@@ -37,10 +42,8 @@ function displayPosition(miles, top){
         ];
 
         for(var h = 0; h < arrayAcount; h ++) {
-          topPxs.push({"topPx": top, "leftPx": 248 * h});
+          topPxs.push({"topPx": top, "leftPx": left * h});
         }
-
-
 
         var maxVal = 30;
         var listIndex = 0;
@@ -64,12 +67,10 @@ function displayPosition(miles, top){
               trigger++;
             }
           }
-
           if($("#footstep-list").children("#footstep-list-div").size() -1 == listIndex ) {
             console.log("children(#footstep-list-div) = " + $(".footstep_list_home").children("#footstep-list-div").size() + ", index = " + listIndex);
             maxVal = topPxs[i].topPx;
           }
-
         });
         console.log("maxVal = " + maxVal);
         $('.footstep-list_end').css('top', maxVal + 500);
@@ -77,7 +78,7 @@ function displayPosition(miles, top){
       } else {
         $('.footstep-list_end').css('display', 'none');
       }
-    }
+    // }
 
   },miles);
 }
