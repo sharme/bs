@@ -6,16 +6,19 @@
   width: 600px;
   .community_topic {
     margin: 0px 0px 100px 100px;
-    //float: left;
     width: 500px;
     float: left;
+    padding-left: 6px;
     .community_topic_main {
       margin-bottom: 10px;
-      .community_topic_main_title_time {
-        width: auto;
-        float: right;
-        line-height: 3;
-        font-size: 12px;
+      border-bottom: 1px solid #eee;
+      .community_topic_main_title_img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .community_topic_main_title_heart {
+        height: 15px;width: 15px;
       }
     }
     .community_topic_end {
@@ -26,9 +29,6 @@
     }
 
     .community_topic_content_description{
-      //margin: 10px 35% 0px 0px;
-      float: left;
-      //height: 120px;
       width: 100%;
       .community_topic_content_description_title {
         padding: 10px 0px 10px 0px;
@@ -37,9 +37,18 @@
         cursor: pointer;
       }
     }
+    .community_topic_content_description_time {
+      width: auto;
+      line-height: 3;
+      font-size: 12px;
+      .community_topic_content_description_time_img {
+        height: 6px; width: 6px;
+        background-color: red;
+        border-radius: 50%;
+      }
+    }
 
     .community_topic_content_img {
-      //width: 32%;
       height: 120px;
       margin-left: 67%;
       background-color: darkgray;
@@ -48,9 +57,6 @@
   }
 
   .community_promo {
-    //width: 20%;
-    //margin-left: 80%;
-    //height: 500px;
     .community_promo_active {
       position: absolute;
       width: 100px;
@@ -58,6 +64,10 @@
       .community_promo_active_span {
         padding: 5px 20px;
         float: left;
+        .community_promo_active_span_img {
+          height: 40px; width: 40px;
+          border-radius: 50%;
+        }
       }
       hr {
         margin-top: 10px;
@@ -125,10 +135,13 @@
 
   .topic_info {
     .topic_info_img {
-      //margin: 0px 30% 0px 0px;
       float: left;
       height: 80px;
       color: grey;
+      .topic_info_img_avatar{
+        width: 40px; height: 40px;
+        border-radius: 50%;
+      }
     }
     .topic_info_elements {
       width: 60%;
@@ -165,6 +178,10 @@
         padding: 20px 50px 20px 20px;
         line-height: 3;
         float: left;
+        .topic_content_comment_left_img {
+          width: 40px; height: 40px;
+          border-radius: 50%;
+        }
       }
       .topic_content_comment_right {
         margin-left: 20%;

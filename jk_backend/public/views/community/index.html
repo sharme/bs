@@ -8,32 +8,28 @@
     <div class="community_topic" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="false">
         <div class="community_topic_main" ng-repeat="topic in topics track by $index">
             <div class="community_topic_main_title">
-                <div>
-                    <span style="width: 40px;">
-                        <img style="width: 40px;height: 40px;" ng-src="{{topic.u_avatar}}">
+                    <span>
+                        <img class="community_topic_main_title_img" ng-src="{{topic.u_avatar}}">
                     </span>
                     &nbsp;&nbsp;{{topic.u_name}} &nbsp;&nbsp;关于&nbsp;&nbsp;
-                    <span style="color:lightgray;">{{topic.tp_about}}</span>
+                    <span>{{topic.tp_about}}</span>
                     &nbsp;&nbsp;发布的话题&nbsp;&nbsp;
-                    <span style="font-size: 13px;"><img src="img/heart.png" style="height: 15px;width: 15px;">&nbsp;{{topic.likes}}人喜欢</span>
-
-                    <div class="community_topic_main_title_time">
+                    <span><img src="img/heart.png" class="community_topic_main_title_heart">&nbsp;{{topic.likes}}人喜欢</span>
+            </div>
+            <div class="community_topic_content_description">
+                <div class="community_topic_content_description_title" ng-click="topicLoginCheck(topic.tp_id)">{{topic.tp_title}}</div>
+                <div ng-bind-html="topic.tp_subject">
+                </div>
+                <div class="community_topic_content_description_time">
                         <span>
-                            <img style="height: 18px; width: 18px;">
+                            <img class="community_topic_content_description_time_img">
                         </span>
-                        最后回复于
-                        <span style="color: lightgray;">{{topic.tp_update_time | date: 'yyyy-MM-dd HH:mm'}}</span>
-                    </div>
+                    <span>{{topic.tp_update_time | date: 'yyyy-MM-dd HH:mm'}}</span>
                 </div>
             </div>
-            <div class="community_topic_content">
-                <div class="community_topic_content_description">
-                        <div class="community_topic_content_description_title" ng-click="topicLoginCheck(topic.tp_id)">{{topic.tp_title}}</div>
-                        <div ng-bind-html="topic.tp_subject">
-                        </div>
-                </div>
-                <!--<img ng-if="topic.tp_img != '' " src="{{topic.tp_img}}" style="width: 30%; height: 120px;">-->
-            </div>
+            <!--<div class="community_topic_content">-->
+             <!---->
+            <!--</div>-->
         </div>
         <div class="community_topic_end">没有了</div>
 
@@ -44,7 +40,7 @@
                 <span>最活跃自由人</span>
                 <hr>
                 <span class="community_promo_active_span" ng-repeat="user in topUsers">
-                    <img style="height: 40px; width: 40px;" ng-src="{{user.u_avatar?user.u_avatar:'../../img/default_icon.png'}}" title="{{user.u_name}}">
+                    <img class="community_promo_active_span_img" ng-src="{{user.u_avatar?user.u_avatar:'../../img/default_icon.png'}}" title="{{user.u_name}}">
                     <hr>
                 </span>
 

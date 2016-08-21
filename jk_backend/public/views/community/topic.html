@@ -13,7 +13,7 @@
     <hr>
     <div class="topic_info">
         <div class="topic_info_img">
-            <img style="width: 40px; height: 40px;" ng-src="{{topic.u_avatar}}"> &nbsp; &nbsp; {{topic.u_name}} <br> 发布于: &nbsp;&nbsp; {{topic.tp_update_time | date: 'yyyy-MM-dd hh:MM'}}
+            <img class="topic_info_img_avatar" ng-src="{{topic.u_avatar}}"> &nbsp; &nbsp; {{topic.u_name}} <br> 发布于: &nbsp;&nbsp; {{topic.tp_update_time | date: 'yyyy-MM-dd hh:MM'}}
         </div>
         <div class="topic_info_elements">
             <div class="topic_info_elements_data">喜欢<br>{{topic.likes}}</div>
@@ -32,7 +32,7 @@
                 <hr>
                 <div>
                     <div class="topic_content_comment_left">
-                        <img style="width: 40px; height: 40px;" ng-src="{{comment.u_avatar}}"><br> {{comment.u_name}}
+                        <img class="topic_content_comment_left_img" ng-src="{{comment.u_avatar}}"><br> {{comment.u_name}}
                     </div>
                     <div class="topic_content_comment_right">
                         <p ng-bind-html="comment.tp_cm_content"></p>

@@ -81,9 +81,9 @@
   float: left;
 }
 .footstep-list-div-comment-avatar-img {
-  height: 30px;
+  height: 35px;
   width: 35px;
-  border-radius: 12px;
+  border-radius: 50%;
 }
 button {
   outline: none;

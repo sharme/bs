@@ -3,23 +3,37 @@
 .topic_add {
   margin: 50px 5%;
 }
+.community hr,
+.topic hr,
+.topic_add hr {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
 .community .community_topic,
 .topic .community_topic,
 .topic_add .community_topic {
   float: left;
+  font-size: 12px;
+  padding: 10px;
 }
 .community .community_topic .community_topic_main,
 .topic .community_topic .community_topic_main,
 .topic_add .community_topic .community_topic_main {
   margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
-.community .community_topic .community_topic_main .community_topic_main_title_time,
-.topic .community_topic .community_topic_main .community_topic_main_title_time,
-.topic_add .community_topic .community_topic_main .community_topic_main_title_time {
-  width: auto;
-  float: right;
-  line-height: 3;
-  font-size: 12px;
+.community .community_topic .community_topic_main .community_topic_main_title_img,
+.topic .community_topic .community_topic_main .community_topic_main_title_img,
+.topic_add .community_topic .community_topic_main .community_topic_main_title_img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.community .community_topic .community_topic_main .community_topic_main_title_heart,
+.topic .community_topic .community_topic_main .community_topic_main_title_heart,
+.topic_add .community_topic .community_topic_main .community_topic_main_title_heart {
+  height: 15px;
+  width: 15px;
 }
 .community .community_topic .community_topic_end,
 .topic .community_topic .community_topic_end,
@@ -32,16 +46,29 @@
 .community .community_topic .community_topic_content_description,
 .topic .community_topic .community_topic_content_description,
 .topic_add .community_topic .community_topic_content_description {
-  float: left;
   width: 100%;
 }
 .community .community_topic .community_topic_content_description .community_topic_content_description_title,
 .topic .community_topic .community_topic_content_description .community_topic_content_description_title,
 .topic_add .community_topic .community_topic_content_description .community_topic_content_description_title {
-  padding: 10px 0px 10px 0px;
-  font-size: 18px;
+  padding: 10px 10px 5px 0px;
+  font-size: 16px;
   color: seagreen;
   cursor: pointer;
+}
+.community .community_topic .community_topic_content_description .community_topic_content_description_time,
+.topic .community_topic .community_topic_content_description .community_topic_content_description_time,
+.topic_add .community_topic .community_topic_content_description .community_topic_content_description_time {
+  width: auto;
+  font-size: 12px;
+}
+.community .community_topic .community_topic_content_description .community_topic_content_description_time .community_topic_content_description_time_img,
+.topic .community_topic .community_topic_content_description .community_topic_content_description_time .community_topic_content_description_time_img,
+.topic_add .community_topic .community_topic_content_description .community_topic_content_description_time .community_topic_content_description_time_img {
+  height: 6px;
+  width: 6px;
+  background-color: red;
+  border-radius: 50%;
 }
 .community .community_topic .community_topic_content_img,
 .topic .community_topic .community_topic_content_img,
@@ -124,6 +151,11 @@
   width: 100%;
   color: grey;
 }
+.topic .topic_info .topic_info_img .topic_info_img_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 .topic .topic_info .topic_info_elements {
   width: 100%;
   margin-left: 0px;
@@ -155,6 +187,11 @@
   padding: 20px 50px 20px 20px;
   line-height: 3;
   float: left;
+}
+.topic .topic_content .topic_content_comment .topic_content_comment_left .topic_content_comment_left_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 .topic .topic_content .topic_content_comment .topic_content_comment_right {
   margin-left: 20%;
