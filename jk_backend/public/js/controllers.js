@@ -1048,8 +1048,10 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
       type: "POST",
       success: function (res) {
         console.log('uploaded, URL: ' + res);
-        $(file).prev().css("background-image", 'url(' + res + ')');
+        $('.profile_top_info-avatar-div_img').attr('src', res);
+        // $('.profile_top_info-avatar-div_img').css("background-image", 'url(' + res + ')');
         $scope.user.u_avatar = res;
+        // $window.location.reload();
         // $(file).css("display", "none");
       }
     });

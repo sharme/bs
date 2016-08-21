@@ -15,9 +15,15 @@
             <div class="profile_top_info-avatar-div">
                 <div>
                     <span class="profile_top_info-avatar">个人图像</span>
-                        <span class="profile_top_info-avatar-img" style="background-image: url({{user.u_avatar}})">
-                        </span>
-                    <input type="file" onchange="angular.element(this).scope().uploadAvatar(this)" id="avatarImg-btn" class="profile_top_info-avatar-val" name="imageName"/>
+
+                    <div class="fileUpload">
+                        <input type="file" class="upload" onchange="angular.element(this).scope().uploadAvatar(this)" id="avatarImg-btn" class="profile_top_info-avatar-val" name="imageName"/>
+                        <span class="uploadBtn">上传图片</span>
+                    </div>
+
+                    <img class="profile_top_info-avatar-div_img" src="{{user.u_avatar}}">
+
+                    <!--<input type="file" onchange="angular.element(this).scope().uploadAvatar(this)" id="avatarImg-btn" class="profile_top_info-avatar-val" name="imageName"/>-->
 
                 </div>
             </div>

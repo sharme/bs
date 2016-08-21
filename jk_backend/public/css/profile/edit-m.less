@@ -81,6 +81,11 @@
 }
 .profile_top_info-slogan-div, .profile_top_info-avatar-div {
   height: 120px;
+  .profile_top_info-avatar-div_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
 }
 .profile_top_info-avatar-img {
   width: 80px;
@@ -101,4 +106,41 @@
   border-radius: 5px;
   background-color: darkgray;
   border: none;
+}
+
+
+
+
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+.uploadBtn {
+  display: inline-block;
+  vertical-align: top;
+  background: #47a447;
+  font-size: 16px;
+  padding: 3px 10px;
+  height: 30px;
+  line-height: 22px;
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin-left: 20px;
 }
