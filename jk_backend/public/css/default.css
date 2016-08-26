@@ -4,7 +4,7 @@ a {
   cursor: pointer;
 }
 button {
-  border-radius: 6px;
+  border-radius: 2px;
   background-color: #eee;
   border: none;
 }
@@ -102,6 +102,19 @@ button {
   border-radius: 5px;
   background-color: darkgray;
   border: none;
+}
+.message .closeTopic {
+  float: right;
+  font-size: 20px;
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 1.5;
+  background-color: gray;
+  cursor: pointer;
+  border: solid 1px;
+  border-radius: 15px;
 }
 .notification {
   background-color: white;

@@ -1,8 +1,14 @@
+.explore {
+  padding: 10px 2.5%;
+  border-bottom: 1px solid rgba(138, 138, 138, 0.3);
+  height: 60px;
+}
+.explore .explore_sel {
+  width: 20px;
+  float: left;
+}
 #navigation {
   float: left;
-  width: 100%;
-  padding: 0px 2%;
-  background-color: white;
 }
 #navigation .navigation-country {
   margin: 5px;
@@ -10,7 +16,6 @@
 .footstep_list_home {
   min-height: 600px;
   z-index: 2;
-  top: 50px;
   position: relative;
   margin: 10px 2%;
 }

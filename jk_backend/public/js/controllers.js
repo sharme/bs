@@ -5,7 +5,7 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 var ipAddress = 'http://180.76.152.112';
-var mobileSize = 800;
+var mobileSize = 500;
 
 var eLike = 1;
 var eFollow = 2;
@@ -147,8 +147,7 @@ buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$htt
     $(".header-right-login").css("display", "block");
   }
 
-  $scope.showUName = function(){alert("1")};
-  console.log("cookieUser: " + cookieUser);
+  // console.log("cookieUser: " + cookieUser);
 
   $scope.data = {
     phoneNumber: '',
@@ -237,7 +236,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   $scope.isbusy = false;
   $scope.loadMore = function() {
 
-    console.log("Community load more!!! Topics: " + $scope.footsteps.length);
+    // console.log("Community load more!!! Topics: " + $scope.footsteps.length);
     if($scope.number > $scope.footsteps.length) {
       $scope.isbusy = true;
       $http({
@@ -245,7 +244,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         url: ipAddress + '/footsteps/getFootsteps',
         params: {index_start: $scope.footsteps.length, count: 3,u_id: $cookies.get('u_id')}
       }).success(function (data) {
-        console.log("data length: " + data.length);
+        // console.log("data length: " + data.length);
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
@@ -260,7 +259,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
   $scope.stickBtn = function(id, u_id){
-    console.log("User: " + $cookies.get('u_id'));
+    // console.log("User: " + $cookies.get('u_id'));
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
     }
@@ -284,7 +283,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
               // addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
               $(".btnStick" + id).css("background-color","");
-              console.log('unfollow stick');
+              // console.log('unfollow stick');
             }, function(error){
               console.log(error);
             });
@@ -307,7 +306,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
               addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id, false);
               $(".btnStick" + id).css("background-color","darkgrey");
-              console.log('stick');
+              // console.log('stick');
             }, function(error){
               console.log(error);
             });
@@ -348,7 +347,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
             $http(req).success(function(result){
               // addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
-              console.log('unliked');
+              // console.log('unliked');
              $(".btnLike" + id).css("background-color","");
             }, function(error){
               console.log(error);
@@ -367,7 +366,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id, false);
-              console.log('liked');
+              // console.log('liked');
               $(".btnLike" + id).css("background-color","darkgrey");
             }, function(error){
               console.log(error);
@@ -418,7 +417,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
     $http({method: 'GET', url: ipAddress + '/followers/getFollowCheck', params:{u_id:id, fl_fl_id:$cookies.get('u_id')}})
         .success(function(data){
-          console.log('follower check data: ' + (JSON.stringify(data.length)));
+          // console.log('follower check data: ' + (JSON.stringify(data.length)));
           if(data.length == 0){
             var reqData = {
               u_id: id,
@@ -433,11 +432,11 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
               data: reqData
             };
 
-            console.log("follow up: " + JSON.stringify(reqData));
+            // console.log("follow up: " + JSON.stringify(reqData));
 
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eFollow,id,ePeople,id, true);
-              console.log('added:' + result);
+              // console.log('added:' + result);
             }, function(error){
               console.log(error);
             });
@@ -564,6 +563,10 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
   $scope.submit = function(){
 
     if ($('#register_form').valid()) {
+      if($('#register-form-phoneNumber').val().length != 11){
+        alert("请输入正确的手机号");
+        return;
+      }
 
       var req = {
         method: 'GET',
@@ -573,10 +576,10 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
         }
       };
       $http(req).success(function (result) {
-        console.log('send Code:' + result);
+        // console.log('send Code:' + result);
         if (result === "00") {
           alert("请输入正确验证码");
-          $window.location.reload();
+          return;
         } else if(result === '03'){
           alert("验证码失效.");
           $window.location.reload();
@@ -589,10 +592,10 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
             },
             data: JSON.stringify($scope.user)
           };
-          console.log("sign up: " + JSON.stringify($scope.user));
+          // console.log("sign up: " + JSON.stringify($scope.user));
 
           $http(req).success(function (result) {
-            console.log('sign up:' + result);
+            // console.log('sign up:' + result);
             $scope.result = result;
             $window.location.href = '#/signUpCompleted';
           }, function (error) {
@@ -621,7 +624,7 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
         }
       };
       $http(req).success(function (result) {
-        console.log('send Code:' + result);
+        // console.log('send Code:' + result);
         if ("01" == result) {
           $('.sendScCode').css("pointer-events", "none");
           $scope.scCount = 60;
@@ -775,7 +778,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   
   $http({method: 'GET', url: ipAddress + '/users/getUserDetail', params:{u_id: $routeParams.u_id}})
       .success(function(data){
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         $scope.userProfile = data;
       }, function(error){
         $scope.error = error;
@@ -784,7 +787,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   var val = 0;
   $scope.isbusy = false;
   $scope.loadMore = function() {
-    console.log("profile load more! val = " + val);
+    // console.log("profile load more! val = " + val);
     if(val == 1) {
       $scope.isbusy = true;
       $http({
@@ -820,7 +823,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           count: 5
         }
       }).success(function (data) {
-        console.log(data.length);
+        // console.log(data.length);
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
@@ -921,7 +924,7 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       fs_bigImg: $scope.footstep.fs_bigImg,
       fs_smallImg: $scope.footstep.fs_smallImg
     };
-    console.log("shopData: " + JSON.stringify(footstepData));
+    // console.log("shopData: " + JSON.stringify(footstepData));
     var req = {
       method: 'POST',
       url: ipAddress + '/footsteps/create',
@@ -999,14 +1002,14 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
   $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id')}})
       .success(function(data){
-        console.log('user: ' + data);
+        // console.log('user: ' + data);
         $scope.user = data[0];
       }, function(error){
         $scope.error = error;
       });
 
   $scope.updateSubmit = function() {
-    console.log("userData: " + JSON.stringify($scope.user));
+    // console.log("userData: " + JSON.stringify($scope.user));
     var reqData = {
       u_name: $scope.user.u_name,
       u_avatar: $scope.user.u_avatar,
@@ -1060,7 +1063,7 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 }]);
 
 /* Message to site owner */
-buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', function($scope, $cookies, $window, $http){
+buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
@@ -1080,15 +1083,20 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
       data: JSON.stringify($scope.message)
     };
 
-    console.log("message to Station house : " + JSON.stringify($scope.message));
+    // console.log("message to Station house : " + JSON.stringify($scope.message));
 
     $http(req).success(function(result){
-      console.log('message sent:' + result);
+      // console.log('message sent:' + result);
       alert("留言发送成功.");
-      $window.location.reload();
+      $window.history.back();
     }, function(error){
       console.log(error);
     });
+  };
+
+
+  $scope.closeTopic = function() {
+    $window.history.back();
   };
   
 
@@ -1132,7 +1140,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
           url: ipAddress + '/topics/getTopics',
           params: {index_start: $scope.topics.length, count: 3}
         }).success(function (data) {
-            console.log("data length: " + data.length);
+            // console.log("data length: " + data.length);
           if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
               $scope.topics.push(data[i]);
@@ -1251,7 +1259,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       data: JSON.stringify(replayData)
     };
 
-    console.log("topic comments replied : " + JSON.stringify(replayData));
+    // console.log("topic comments replied : " + JSON.stringify(replayData));
 
     $http(req).success(function(result){
       addEvent($http,$window,$cookies.get('u_id'),eComment,$scope.topic.u_id,eTopic,$scope.topic.tp_id, true);
@@ -1325,7 +1333,7 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       data: JSON.stringify(replayData)
     };
 
-    console.log("topic comments replied : " + JSON.stringify(replayData));
+    // console.log("topic comments replied : " + JSON.stringify(replayData));
 
     $http(req).success(function(result){
       alert("发布成功");

@@ -18,7 +18,8 @@
             </div>
             <div class="community_topic_content_description">
                 <div class="community_topic_content_description_title" ng-click="topicLoginCheck(topic.tp_id)">{{topic.tp_title}}</div>
-                <div ng-bind-html="topic.tp_subject">
+                <div>
+                    <p ng-bind-html="topic.tp_subject"></p>
                 </div>
                 <div class="community_topic_content_description_time">
                         <span>
