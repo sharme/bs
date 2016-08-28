@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://localhost:8080';
+var ipAddress = 'http://180.76.152.112';
 var mobileSize = 500;
 
 var eLike = 1;
@@ -1107,7 +1107,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 /* Message to site owner */
 buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
-  
+
 
 
 }]);
