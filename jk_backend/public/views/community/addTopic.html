@@ -14,6 +14,14 @@
                 <option ng-repeat="country in countries">{{country.c_name}}</option>
             </select>
         </div>
+        <hr>
+        <div>
+            类型: &nbsp; &nbsp;
+            <select ng-model="topic.tp_type">
+                <option>话题</option>
+                <option>分享</option>
+            </select>
+        </div>
     </div>
     <div class="topic_content_reply" style="margin-top: 10px;">
             <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>

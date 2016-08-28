@@ -1,8 +1,14 @@
 
 <div class="community">
+    <div class="community_top">
     <div>
+        <div class="topicFilter" ng-click="topicFilter()">话题</div>
+        <div class="shareFilter" ng-click="shareFilter()">分享</div>
+    </div>
+    <div class="topic_btn">
         话题&nbsp;&nbsp;
         <button ng-click="addLoginCheck()">发表话题</button>
+    </div>
     </div>
     <hr>
     <div class="community_topic" infinite-scroll="loadMore()" infinite-scroll-distance="2" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="false">

@@ -26,6 +26,10 @@ router.get('/getTopics', function(req, res, next) {
         criteriaSQL += " where jkf.fs_from='" + req.param('fs_from') + "'";
     }
 
+    if(req.param('tp_type')){
+        criteriaSQL += " where jkt.tp_type='" + req.param('tp_type') + "'";
+    }
+
     criteriaSQL += " order by tp_update_time desc";
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
@@ -60,7 +64,7 @@ router.get('/getTopicsNumber', function(req, res, next) {
 
 
 router.post('/create', function(req, res, next) {
-    var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time,tp_subject) values(?,?,?,?,?,?,?,?)", [req.body.u_id, req.body.tp_about,req.body.tp_content,req.body.tp_img,req.body.tp_title,date,date,req.body.tp_subject]);
+    var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time,tp_subject,tp_type) values(?,?,?,?,?,?,?,?,?)", [req.body.u_id, req.body.tp_about,req.body.tp_content,req.body.tp_img,req.body.tp_title,date,date,req.body.tp_subject, req.body.tp_type]);
 
     connection.query(createSQL, function (err, result) {
         if(err) {
@@ -83,8 +87,8 @@ router.get('/getTopicsByTPID', function (req, res, next) {
         }
     })
 
-
 });
+
 
 
 

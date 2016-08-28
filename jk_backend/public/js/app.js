@@ -58,6 +58,10 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/message/message.html',
         controller: 'MessageController'
     }).
+        when('/about',{
+        templateUrl: 'views/about/about.html',
+        controller: 'AboutController'
+    }).
         when('/logout', {
         controller: 'logoutController',
         templateUrl: 'views/homepage.html'

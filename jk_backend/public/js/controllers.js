@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112';
+var ipAddress = 'http://localhost:8080';
 var mobileSize = 500;
 
 var eLike = 1;
@@ -1102,6 +1102,16 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 
 }]);
 
+
+
+/* Message to site owner */
+buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
+
+  
+
+
+}]);
+
 /* community */
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
@@ -1129,6 +1139,50 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
         $scope.error = error;
       });
 
+  $scope.shareFilter = function() {
+    if($scope.type == '分享'){
+      $scope.type = '';
+      $scope.shareSelected = false;
+      $('.shareFilter').css('background-color','white');
+    } else {
+      $('.shareFilter').css('background-color','#eee');
+      if($scope.topicSelected){
+        $('.topicFilter').css('background-color','white');
+      }
+      $scope.shareSelected = true;
+      $scope.type = '分享';
+    }
+    
+    $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12, tp_type: $scope.type }})
+        .success(function(data){
+          $scope.topics = data;
+        },function(error){
+          $scope.error = error;
+        });
+  };
+
+  $scope.topicFilter = function(val) {
+    if($scope.type == '话题'){
+      $scope.topicSelected = false;
+      $scope.type = '';
+      $('.topicFilter').css('background-color','white');
+    } else {
+      if($scope.shareSelected) {
+        $('.shareFilter').css('background-color','white');
+      }
+      $('.topicFilter').css('background-color','#eee');
+      $scope.topicSelected = true;
+      $scope.type = '话题';
+    }
+
+    $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12, tp_type: $scope.type }})
+        .success(function(data){
+          $scope.topics = data;
+        },function(error){
+          $scope.error = error;
+        });
+  };
+  
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
@@ -1138,7 +1192,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
         $http({
           method: 'GET',
           url: ipAddress + '/topics/getTopics',
-          params: {index_start: $scope.topics.length, count: 3}
+          params: {index_start: $scope.topics.length, count: 3, tp_type: $scope.type}
         }).success(function (data) {
             // console.log("data length: " + data.length);
           if (data.length > 0) {
@@ -1240,6 +1294,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       console.log(error);
     });
   };
+  
 
   $scope.submit = function(){
 
@@ -1293,10 +1348,11 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
 
   $scope.topic = {
     u_id: '',
-    tp_about: '',
+    tp_about: '中国',
     tp_content: '从这里开始输入内容...',
     tp_img: '',
-    tp_title: ''
+    tp_title: '',
+    tp_type: '话题'
   };
 
   $scope.submit = function(){
@@ -1316,7 +1372,8 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       tp_content: CKEDITOR.instances.editor1.getData(),
       tp_img: '',
       tp_title: $scope.topic.tp_title,
-      tp_subject: tp_subject
+      tp_subject: tp_subject,
+      tp_type: $scope.topic.tp_type
     };
 
     if($scope.topic.tp_about == ''){
