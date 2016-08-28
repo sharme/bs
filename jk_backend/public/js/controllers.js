@@ -29,7 +29,7 @@ function displayPosition(miles, top){
     if($("#footstep-list").width() < mobileSize && $("#footstep-list").width() > mobileSize - 100){
       arrayAcount = 2;
       left = 248;
-      top = 40;
+      top = 60;
     }
     if($("#footstep-list").width() < mobileSize - 100){
       arrayAcount = 2;
@@ -89,7 +89,7 @@ function displayPosition(miles, top){
 }
 
 function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
-  if($(window).width() < mobileSize) {
+  if($(window).width() < mobileSize - 100) {
     cssObj.add(mobileCSS);
   } else {
     cssObj.add(defaultCSS);
