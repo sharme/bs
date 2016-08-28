@@ -53,6 +53,7 @@
   top: 10px;
   position: absolute;
   visibility: hidden;
+  background-color: darkgray;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;

@@ -34,7 +34,7 @@
         <div id="footstep-list-div" class="footstep-list-div" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic">
                 <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->
-               <a href="#/foot/{{result.fs_id}}"> <img ng-src="{{result.fs_smallImg}}" style="border-radius: 20px; width: 100%; height: 100%; cursor: zoom-in;"></a>
+               <a href="#/foot/{{result.fs_id}}"> <img ng-src="{{result.fs_smallImg}}" style="border-radius: 2%; min-height: 200px; width: 100%; height: 100%; cursor: zoom-in;"></a>
             </div>
             <span class="footstep-list-div-createTime">{{result.fs_create_time}}</span>
             <!--<hr>-->
