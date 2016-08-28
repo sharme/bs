@@ -24,24 +24,24 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
+            <state relative-caret-position="150">
+              <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
               <folding>
                 <element signature="n#!!block;n#addEvent#0" expanded="false" />
-                <element signature="e#3368#5667#0" expanded="false" />
-                <element signature="e#5846#11698#0" expanded="false" />
-                <element signature="e#11915#14913#0" expanded="false" />
-                <element signature="e#15062#16636#0" expanded="false" />
-                <element signature="e#16780#16956#0" expanded="false" />
-                <element signature="e#17116#20193#0" expanded="false" />
-                <element signature="e#20355#23291#0" expanded="false" />
-                <element signature="e#23496#27972#0" expanded="false" />
-                <element signature="e#28156#30963#0" expanded="false" />
-                <element signature="e#31147#33193#0" expanded="false" />
-                <element signature="e#33374#34130#0" expanded="false" />
-                <element signature="e#34311#34484#0" expanded="false" />
-                <element signature="e#38558#40831#0" expanded="false" />
-                <element signature="e#41007#42833#0" expanded="false" />
+                <element signature="e#3435#5734#0" expanded="false" />
+                <element signature="e#5913#11765#0" expanded="false" />
+                <element signature="e#11982#14980#0" expanded="false" />
+                <element signature="e#15129#16703#0" expanded="false" />
+                <element signature="e#16847#17023#0" expanded="false" />
+                <element signature="e#17183#20260#0" expanded="false" />
+                <element signature="e#20422#23358#0" expanded="false" />
+                <element signature="e#23563#28039#0" expanded="false" />
+                <element signature="e#28223#31030#0" expanded="false" />
+                <element signature="e#31214#33260#0" expanded="false" />
+                <element signature="e#33441#34197#0" expanded="false" />
+                <element signature="e#34378#34551#0" expanded="false" />
+                <element signature="e#38625#40898#0" expanded="false" />
+                <element signature="e#41074#42900#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -452,12 +452,12 @@
       <workItem from="1471791577509" duration="983000" />
       <workItem from="1471861430332" duration="1902000" />
       <workItem from="1472197905516" duration="3862000" />
-      <workItem from="1472214938854" duration="13647000" />
+      <workItem from="1472214938854" duration="14565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="348816000" />
+    <option name="totallyTimeSpent" value="349734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="91" width="1344" height="729" extended-state="0" />
@@ -878,24 +878,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
+        <state relative-caret-position="150">
+          <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
           <folding>
             <element signature="n#!!block;n#addEvent#0" expanded="false" />
-            <element signature="e#3368#5667#0" expanded="false" />
-            <element signature="e#5846#11698#0" expanded="false" />
-            <element signature="e#11915#14913#0" expanded="false" />
-            <element signature="e#15062#16636#0" expanded="false" />
-            <element signature="e#16780#16956#0" expanded="false" />
-            <element signature="e#17116#20193#0" expanded="false" />
-            <element signature="e#20355#23291#0" expanded="false" />
-            <element signature="e#23496#27972#0" expanded="false" />
-            <element signature="e#28156#30963#0" expanded="false" />
-            <element signature="e#31147#33193#0" expanded="false" />
-            <element signature="e#33374#34130#0" expanded="false" />
-            <element signature="e#34311#34484#0" expanded="false" />
-            <element signature="e#38558#40831#0" expanded="false" />
-            <element signature="e#41007#42833#0" expanded="false" />
+            <element signature="e#3435#5734#0" expanded="false" />
+            <element signature="e#5913#11765#0" expanded="false" />
+            <element signature="e#11982#14980#0" expanded="false" />
+            <element signature="e#15129#16703#0" expanded="false" />
+            <element signature="e#16847#17023#0" expanded="false" />
+            <element signature="e#17183#20260#0" expanded="false" />
+            <element signature="e#20422#23358#0" expanded="false" />
+            <element signature="e#23563#28039#0" expanded="false" />
+            <element signature="e#28223#31030#0" expanded="false" />
+            <element signature="e#31214#33260#0" expanded="false" />
+            <element signature="e#33441#34197#0" expanded="false" />
+            <element signature="e#34378#34551#0" expanded="false" />
+            <element signature="e#38625#40898#0" expanded="false" />
+            <element signature="e#41074#42900#0" expanded="false" />
           </folding>
         </state>
       </provider>

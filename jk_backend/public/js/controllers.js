@@ -5,7 +5,7 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 var ipAddress = 'http://180.76.152.112';
-var mobileSize = 600;
+var mobileSize = 550;
 
 var eLike = 1;
 var eFollow = 2;
@@ -26,12 +26,13 @@ function displayPosition(miles, top){
     var arrayAcount = Math.floor($("#footstep-list").width()/248);
     var left = 248;
 
-    if($("#footstep-list").width() < mobileSize && $("#footstep-list").width() > mobileSize - 100){
+    if($("#footstep-list").width() < mobileSize && $("#footstep-list").width() >= (mobileSize - 100)){
       arrayAcount = 2;
       left = 248;
-      top = 60;
+      top = 80;
     }
-    if($("#footstep-list").width() < mobileSize - 100){
+    // alert($("#footstep-list").width() < mobileSize - 100);
+    if($("#footstep-list").width() < (mobileSize - 100)){
       arrayAcount = 2;
       left = 180;
     }
