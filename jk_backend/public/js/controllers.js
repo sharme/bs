@@ -1107,7 +1107,8 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 /* Message to site owner */
 buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
-
+  dynamicallyCSS(mobileSize,'../css/about/about.css','../css/about/about-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
 
 }]);
