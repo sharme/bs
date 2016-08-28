@@ -26,7 +26,12 @@ function displayPosition(miles, top){
     var arrayAcount = Math.floor($("#footstep-list").width()/248);
     var left = 248;
 
-    if($("#footstep-list").width() < mobileSize){
+    if($("#footstep-list").width() < mobileSize && $("#footstep-list").width() > mobileSize - 100){
+      arrayAcount = 2;
+      left = 248;
+      top = 40;
+    }
+    if($("#footstep-list").width() < mobileSize - 100){
       arrayAcount = 2;
       left = 180;
     }
