@@ -5,7 +5,7 @@
 var buybsControllers = angular.module('buybsControllers', []);
 
 var ipAddress = 'http://180.76.152.112';
-var mobileSize = 500;
+var mobileSize = 600;
 
 var eLike = 1;
 var eFollow = 2;
@@ -204,6 +204,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       .success(function(data){
         $scope.footsteps = data;
         displayPosition(500,10);
+
       },function(error){
         $scope.error = error;
       });
@@ -1187,7 +1188,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
-      console.log("Community load more!!! Topics: " + $scope.topics.length);
+
       if($scope.number > $scope.topics.length) {
         $scope.isbusy = true;
         $http({

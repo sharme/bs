@@ -21,114 +21,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="73" column="73" selection-start-line="73" selection-start-column="73" selection-end-line="73" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="community-m.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/community/community-m.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="community.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/community/community.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="1112" column="0" selection-start-line="1112" selection-start-column="0" selection-end-line="1112" selection-end-column="0" />
+            <state relative-caret-position="212">
+              <caret line="1191" column="45" selection-start-line="1191" selection-start-column="45" selection-end-line="1191" selection-end-column="45" />
               <folding>
                 <element signature="n#!!block;n#displayPosition#0" expanded="false" />
                 <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
                 <element signature="n#!!block;n#addEvent#0" expanded="false" />
-                <element signature="e#11739#14737#0" expanded="false" />
-                <element signature="e#14886#16460#0" expanded="false" />
-                <element signature="e#16604#16780#0" expanded="false" />
-                <element signature="e#16940#20017#0" expanded="false" />
-                <element signature="e#20179#23115#0" expanded="false" />
-                <element signature="e#23320#27796#0" expanded="false" />
-                <element signature="e#27980#30787#0" expanded="false" />
-                <element signature="e#30971#33017#0" expanded="false" />
-                <element signature="e#33198#33954#0" expanded="false" />
+                <element signature="e#3193#5492#0" expanded="false" />
+                <element signature="e#5671#11523#0" expanded="false" />
+                <element signature="e#11740#14738#0" expanded="false" />
+                <element signature="e#14887#16461#0" expanded="false" />
+                <element signature="e#16605#16781#0" expanded="false" />
+                <element signature="e#16941#20018#0" expanded="false" />
+                <element signature="e#20180#23116#0" expanded="false" />
+                <element signature="e#23321#27797#0" expanded="false" />
+                <element signature="e#27981#30788#0" expanded="false" />
+                <element signature="e#30972#33018#0" expanded="false" />
+                <element signature="e#33199#33955#0" expanded="false" />
+                <element signature="e#34136#34309#0" expanded="false" />
+                <element signature="e#38383#40656#0" expanded="false" />
+                <element signature="e#40832#42658#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="about.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/about/about.less">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/community/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about-m.less" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/css/about/about-m.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="58" column="38" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/about/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="35" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/welcome/welcome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="181">
+              <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -164,7 +89,6 @@
         <option value="$PROJECT_DIR$/public/css/profile/profile-m.less" />
         <option value="$PROJECT_DIR$/public/views/login.html" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/public/css/home/footstep-m.less" />
         <option value="$PROJECT_DIR$/public/views/community/topic.html" />
         <option value="$PROJECT_DIR$/public/views/register/register.html" />
         <option value="$PROJECT_DIR$/routes/sticks.js" />
@@ -192,14 +116,15 @@
         <option value="$PROJECT_DIR$/public/css/profile/profile.less" />
         <option value="$PROJECT_DIR$/public/views/community/addTopic.html" />
         <option value="$PROJECT_DIR$/public/css/community/community.less" />
-        <option value="$PROJECT_DIR$/public/views/community/index.html" />
         <option value="$PROJECT_DIR$/routes/topics.js" />
         <option value="$PROJECT_DIR$/public/css/community/community-m.less" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers.js" />
         <option value="$PROJECT_DIR$/public/views/about/about.html" />
         <option value="$PROJECT_DIR$/public/css/about/about.less" />
         <option value="$PROJECT_DIR$/public/css/about/about-m.less" />
+        <option value="$PROJECT_DIR$/public/css/home/footstep-m.less" />
+        <option value="$PROJECT_DIR$/public/views/community/index.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers.js" />
       </list>
     </option>
   </component>
@@ -211,7 +136,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="96" />
+    <option name="x" value="50" />
     <option name="y" value="91" />
     <option name="width" value="1344" />
     <option name="height" value="729" />
@@ -346,7 +271,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="about" />
+              <option name="myItemId" value="community" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,28 +308,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jk_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jk_backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="about" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -551,15 +454,15 @@
       <workItem from="1471791577509" duration="983000" />
       <workItem from="1471861430332" duration="1902000" />
       <workItem from="1472197905516" duration="3862000" />
-      <workItem from="1472214938854" duration="10593000" />
+      <workItem from="1472214938854" duration="12459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="345762000" />
+    <option name="totallyTimeSpent" value="347628000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="96" y="91" width="1344" height="729" extended-state="0" />
+    <frame x="50" y="91" width="1344" height="729" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2585034" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -608,13 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/home/footstep-m.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -918,14 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/community/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
@@ -950,27 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="1112" column="0" selection-start-line="1112" selection-start-column="0" selection-end-line="1112" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#displayPosition#0" expanded="false" />
-            <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
-            <element signature="n#!!block;n#addEvent#0" expanded="false" />
-            <element signature="e#11739#14737#0" expanded="false" />
-            <element signature="e#14886#16460#0" expanded="false" />
-            <element signature="e#16604#16780#0" expanded="false" />
-            <element signature="e#16940#20017#0" expanded="false" />
-            <element signature="e#20179#23115#0" expanded="false" />
-            <element signature="e#23320#27796#0" expanded="false" />
-            <element signature="e#27980#30787#0" expanded="false" />
-            <element signature="e#30971#33017#0" expanded="false" />
-            <element signature="e#33198#33954#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/about/about.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -992,6 +859,48 @@
         <state relative-caret-position="120">
           <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/home/footstep-m.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/community/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="1191" column="45" selection-start-line="1191" selection-start-column="45" selection-end-line="1191" selection-end-column="45" />
+          <folding>
+            <element signature="n#!!block;n#displayPosition#0" expanded="false" />
+            <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
+            <element signature="n#!!block;n#addEvent#0" expanded="false" />
+            <element signature="e#3193#5492#0" expanded="false" />
+            <element signature="e#5671#11523#0" expanded="false" />
+            <element signature="e#11740#14738#0" expanded="false" />
+            <element signature="e#14887#16461#0" expanded="false" />
+            <element signature="e#16605#16781#0" expanded="false" />
+            <element signature="e#16941#20018#0" expanded="false" />
+            <element signature="e#20180#23116#0" expanded="false" />
+            <element signature="e#23321#27797#0" expanded="false" />
+            <element signature="e#27981#30788#0" expanded="false" />
+            <element signature="e#30972#33018#0" expanded="false" />
+            <element signature="e#33199#33955#0" expanded="false" />
+            <element signature="e#34136#34309#0" expanded="false" />
+            <element signature="e#38383#40656#0" expanded="false" />
+            <element signature="e#40832#42658#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
