@@ -387,11 +387,22 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 }]);
 
 /* get footstep detail by foot id */
-buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window','$css', function ($scope, $routeParams, $http, $cookies, $window,$css) {
+buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http', '$cookies', '$window','$css','$sce', function ($scope, $routeParams, $http, $cookies, $window,$css,$sce) {
 
   dynamicallyCSS(mobileSize,'../css/home/footdetail.css','../css/home/footdetail-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
+  if($(window).width() < mobileSize - 100) {
+    $scope.zoom = false;
+  } else {
+    $scope.zoom = true;
+  }
+
+  $scope.trustSrc = function(src){
+    return $sce.trustAsResourceUrl(src);
+  };
+
+  
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
         console.log('data: ' + (JSON.stringify(data)));
