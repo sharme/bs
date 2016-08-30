@@ -596,20 +596,12 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
         }
       };
 
-      // var postData = {
-      //   username: $scope.user.username,
-      //   phoneNumber: $scope.user.phoneNumber,
-      //   password: $scope.user.password,
-      //   scCode: $scope.user.scCode,
-      //   agreement: "checked"
-      // };
-
       var postData = $scope.user;
 
       $http(req).success(function (result) {
         if (result === "00") {
           alert("请输入正确验证码");
-          return;
+          $window.location.reload();
         } else if(result === '03'){
           alert("验证码失效.");
           $window.location.reload();
@@ -650,51 +642,51 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
   $scope.sendVerifyCode = function() {
 
-    if ($('#register-form-phoneNumber').val().length == 11) {
+      if ($('#register-form-phoneNumber').val().length == 11 && $('#register-form-password').val().length > 8 && $('#register-form-username').val().length > 4 ) {
 
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      $http(req).success(function (result) {
-        // console.log('send Code:' + result);
-        if ("01" == result) {
-          $('.sendScCode').css("pointer-events", "none");
-          $scope.scCount = 60;
-          var scCodeBan = setInterval(function () {
+        var req = {
+          method: 'GET',
+          url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+        $http(req).success(function (result) {
 
-            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
-            $scope.scCount--;
+          if ("01" == result) {
+            $('.sendScCode').css("pointer-events", "none");
+            $scope.scCount = 60;
+            var scCodeBan = setInterval(function () {
 
-            if ($scope.scCount == 0) {
-              clearInterval(scCodeBan);
-              $('.sendScCode').text("获取验证码");
-              $('.sendScCode').css("pointer-events", "");
-            }
-          }, 1000);
-          // alert("发送成功");
-        } else if( "02" == result ){
-          alert("验证码发送频繁.")
-        } else if ("03" == result){
-          alert("发送异常, 请联系管理员.");
-        }else {
-          alert("发送失败. 再试一次");
-        }
+              $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
+              $scope.scCount--;
 
-      }, function (error) {
-        console.log(error);
-      });
-    } else if($('#register-form-phoneNumber').val().length == 0){
-      alert("请输入手机号码");
-    } else {
-      alert("请输入正确的手机号码");
+              if ($scope.scCount == 0) {
+                clearInterval(scCodeBan);
+                $('.sendScCode').text("获取验证码");
+                $('.sendScCode').css("pointer-events", "");
+              }
+            }, 1000);
+            
+          } else if ("02" == result) {
+            alert("验证码发送频繁.")
+          } else if ("03" == result) {
+            alert("发送异常, 请联系管理员.");
+          } else {
+            alert("发送失败. 再试一次");
+          }
+
+        }, function (error) {
+          console.log(error);
+        });
+      } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
+        alert("请输入正确的手机号码");
+      } else if ($('#register-form-password').val().length < 8){
+        alert("密码长度不能低于8位");
+      } else {
+        alert("请输入用户名")
+      }
     }
-
-
-  }
 
 }]);
 
