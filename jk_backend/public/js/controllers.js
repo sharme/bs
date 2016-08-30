@@ -595,8 +595,18 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
           'Content-Type': 'application/json'
         }
       };
+
+      // var postData = {
+      //   username: $scope.user.username,
+      //   phoneNumber: $scope.user.phoneNumber,
+      //   password: $scope.user.password,
+      //   scCode: $scope.user.scCode,
+      //   agreement: "checked"
+      // };
+
+      var postData = $scope.user;
+
       $http(req).success(function (result) {
-        // console.log('send Code:' + result);
         if (result === "00") {
           alert("请输入正确验证码");
           return;
@@ -604,20 +614,26 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
           alert("验证码失效.");
           $window.location.reload();
         }else {
+
           var req = {
             method: 'POST',
             url: ipAddress + '/users/create',
             headers: {
               'Content-Type': 'application/json'
             },
-            data: JSON.stringify($scope.user)
+            data: JSON.stringify(postData)
           };
-          // console.log("sign up: " + JSON.stringify($scope.user));
+          // console.log("sign up: " + JSON.stringify(postData));
 
           $http(req).success(function (result) {
-            // console.log('sign up:' + result);
-            $scope.result = result;
-            $window.location.href = '#/signUpCompleted';
+            console.log('sign up:' + result);
+            if(result.errno){
+              alert("注册失败, 请联系管理员.");
+            } else {
+              alert("注册成功, 进行登录");
+              $window.location.href = '#/login';
+            }
+
           }, function (error) {
             console.log(error);
           });
@@ -685,7 +701,6 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 /* Login */
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies','$css', function($scope, $http, $window, $cookies,$css) {
 
-
   dynamicallyCSS(mobileSize,'../css/login/login.css','../css/login/login.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
@@ -741,8 +756,9 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         $("#login-popup").css("display", "none");
         $(".login-cover").css("display", "none");
         $("body").css("overflow","auto");
-        $window.location.href="#/foot";
-        $window.location.reload();
+        // $window.location.href="#/foot";
+        // $window.location.reload();
+        $window.history.back();
       }else {
         $(".login-popup-form-invalid").css("display", "block");
         $scope.user = angular.copy($scope.data);
@@ -1121,8 +1137,6 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
   
 
 }]);
-
-
 
 /* Message to site owner */
 buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){

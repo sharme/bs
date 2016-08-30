@@ -20,7 +20,7 @@ var date = new Date();
 router.get('/getUsers', function(req, res, next) {
   connection.query('select * from jk_users', function (err, rows, fields) {
     if(err) {
-      res.send('Error: ' + err);
+      res.send(err);
     } else {
       console.log('Username is: ' + rows[0].u_name);
       // connection.end();
@@ -34,7 +34,7 @@ router.get('/getUserById', function(req, res, next) {
   var criteriaSQL = mysql.format('select * from jk_users where u_id = ?', req.param('u_id'));
   connection.query(criteriaSQL, function (err, rows, fields) {
     if(err) {
-      res.send('Error: ' + err);
+      res.send(err);
     } else {
       console.log('Username is: ' + rows[0].u_name);
       // connection.end();
@@ -55,7 +55,7 @@ router.get('/getUserDetail', function(req, res, next) {
   
   connection.query(criteriaSQL, function(err, result) {
     if(err) {
-      res.send("Error: " + err);
+      res.send(err);
     } else {
       res.send(result);
     }
@@ -63,13 +63,13 @@ router.get('/getUserDetail', function(req, res, next) {
 });
 
 router.post('/create', urlencodeParser, function(req, res, next) {
-  var createSQL = "insert into jk_users(u_phone_num,u_pwd,u_name,u_status,u_link,u_create_time) values (?,?,?,1,?,?)";
-  var inserts = [req.body.phoneNumber, req.body.password, req.body.username,"www.buybs.com/"+ req.body.username,date];
+  var createSQL = "insert into jk_users(u_phone_num,u_pwd,u_name,u_status,u_link,u_create_time,u_update_time) values (?,?,?,1,?,?,?)";
+  var inserts = [req.body.phoneNumber, req.body.password, req.body.username,"www.buybs.com/"+ req.body.username,date,date];
   createSQL = mysql.format(createSQL, inserts);
-
+  console.log(createSQL);
   connection.query(createSQL, function (err, result) {
     if(err) {
-      res.send('Error: ' + err);
+      res.send(err);
     } else {
       res.send(result);
     }
@@ -81,7 +81,7 @@ router.post('/login', urlencodeParser, function(req,res, next) {
 
   connection.query(criteriaSQL, function(err, result) {
     if(err) {
-      res.send('Error: ' + err);
+      res.send(err);
     } else {
       res.send(result);
     }
@@ -93,7 +93,7 @@ router.post('/update', urlencodeParser, function(req, res, next) {
 
   connection.query(updateSQL, function (err, result) {
     if(err) {
-      res.send("Error: " + err);
+      res.send(err);
     } else {
       res.send(result);
     }
@@ -105,7 +105,7 @@ router.get('/follow', function(req, res, next) {
 
   connection.query(followSQL, function (err, result) {
     if(err) {
-      res.send("Error: " + err);
+      res.send(err);
     } else {
       res.send(result);
     }
@@ -118,7 +118,7 @@ router.get('/followers', function(req, res, next) {
 
   connection.query(followerSQL, function (err, result) {
     if(err) {
-      res.send("Error: " + err);
+      res.send(err);
     } else {
       res.send(result);
     }
