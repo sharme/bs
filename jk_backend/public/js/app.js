@@ -121,6 +121,7 @@ angular
             });
 
             function moveMark(offsetX, offsetY){
+
                   var  x = offsetX;
                   var  y = offsetY;
                 mark
@@ -128,17 +129,17 @@ angular
                     .css('top',  y + 'px');
 
                 scope.$broadcast('mark:moved', [
-                    x - 110, y - 200, originalImg[0].height, originalImg[0].width
+                    x - (scope.windowSize - 600)/2, y - 200, originalImg[0].height, originalImg[0].width
                 ]);
             }
 
             function updateZoomed(originalX, originalY, originalHeight, originalWidth){
                 var zoomLvl = scope.zoomLvl;
                 scope.$apply(function(){
-                    zoomed
-                        .css('height', '200px')
-                        .css('width', '100%')
-                        .css('margin-top','30px');
+                    // zoomed
+                    //     .css('height', '200px')
+                    //     .css('width', '100%')
+                    //     .css('margin-top','30px');
                     zoomedImg
                         .attr('src', scope.src)
                         .css('height', zoomLvl*originalHeight+'px')
@@ -174,6 +175,7 @@ angular
         return {
             restrict: 'EA',
             scope: {
+                windowSize: '@windowSize',
                 markHeight: '@markHeight',
                 markWidth: '@markWidth',
                 src: '@src',

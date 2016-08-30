@@ -4,9 +4,16 @@ html, body {
 }
 .zoomed{
     /*margin-left: 4em;*/
+    height: 300px;
+    width: 200px;
+    top: 250px;
+    position: absolute;
+    left: 75%;
+    margin-top: 30px;
+    overflow: hidden;
 }
 
-.original, .zoomed{
+.original{
     /*float: left;*/
     position: relative;
     overflow: hidden;

@@ -397,6 +397,8 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   } else {
     $scope.zoom = true;
   }
+  
+  $scope.windowSize = $(window).width();
 
   $scope.trustSrc = function(src){
     return $sce.trustAsResourceUrl(src);

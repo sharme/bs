@@ -8,42 +8,92 @@
   font-size: 28px;
   color: gray;
 }
-#register-form {
-  margin: 50px 0px 0px 5%;
+#register-content {
+  min-height: 30px;
 }
-#register-form #register-form-phoneNumber,
-#register-form #register-form-username,
-#register-form #register-form-password {
-  padding: 5px 0px 5px 3px;
-  margin: 10px 0px 0px 20px;
-  width: 200px;
+#register-content .register-content-wrapper {
+  padding: 30px;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: left;
 }
-#register-form #register-form-scCode {
-  padding: 5px 0px 5px 3px;
-  margin: 10px 5px 10px 20px;
-}
-#register-form .register_title {
+#register-content .register-content-wrapper .register-content-wrapper-main {
   width: 100%;
-  line-height: 3;
-  font-size: 24px;
-  color: grey;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
 }
-#register-form #register-form-password {
-  margin-left: 33px;
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-title {
+  width: 100%;
+  padding: 30px;
+  float: left;
+  text-align: center !important;
 }
-#register-form #register-form-submit {
-  width: 260px;
-  padding: 10px;
-  border-radius: 5px;
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form {
+  padding: 15px !important;
+  width: 100%;
+  float: left;
+  margin-bottom: 100px;
+}
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form .g-div {
+  width: 100%;
+}
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form label {
+  display: inline-block;
+  font-size: 1.125em;
+  font-weight: 400;
+  margin: 0 0 15px 0;
   cursor: pointer;
-  background-color: lightgrey;
+  text-align: left;
 }
-#register-form span {
-  color: red;
-  padding: 5px;
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form input[type='text'],
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form input[type='password'] {
+  width: 100%;
+  display: block;
+  line-height: 20px;
+  padding: 12px 13px;
+  border: #d6dadc 1px solid;
+  font-size: 1em;
+  font-weight: 300;
+  outline-width: 0;
+  outline: none;
+  border-radius: 3px;
 }
-#register-form a {
-  border: solid 1px grey;
-  padding: 5px;
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form input[type='submit'] {
+  line-height: 20px;
+  display: block;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  padding: 13px 32px;
+  font-size: 0.9375em;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  border-image-width: 0;
+  border-radius: 3px;
+  background-color: #8ac249;
+  margin-right: 15px !important;
+  color: #fff;
   text-decoration: none;
+}
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form div {
+  width: 50%;
+  padding: 5px;
+  float: left;
+}
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form p {
+  margin-bottom: 0 !important;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0 0 15px 0;
+  box-sizing: border-box;
+  text-align: left;
+}
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form button {
+  padding: 10px;
+  margin: 10px 0px;
 }
