@@ -569,7 +569,7 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
 /* Register */
 buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
   
-  dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register.css',$css);
+  dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $scope.data = {

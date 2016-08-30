@@ -23,6 +23,7 @@
   padding: 15px !important;
   width: 100%;
   float: left;
+  margin-bottom: 100px;
 }
 #login-content .login-content-wrapper .login-content-wrapper-main .login-content-wrapper-main-form label {
   display: inline-block;
