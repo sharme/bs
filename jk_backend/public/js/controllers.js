@@ -17,6 +17,7 @@ var ePeople = 3;
 
 
 function displayPosition(miles, top){
+  var maxTop = 500;
   var timer = setInterval(function(){
     window.clearInterval(timer);
     // if($("#footstep-list").width() < mobileSize) {
@@ -61,6 +62,13 @@ function displayPosition(miles, top){
             "visibility": "visible"
           });
 
+          if(maxTop < topPxs[i].topPx) {
+            maxTop = topPxs[i].topPx;
+            $(element).css({
+              "margin-bottom": "200px"
+            });
+          }
+
           topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 25;
 
           if ((index + 1) % multiply == 0) {
@@ -87,6 +95,9 @@ function displayPosition(miles, top){
     // }
 
   },miles);
+
+  // $('#footstep-list').css("top", maxTop + 200 + "px");
+
 }
 
 function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
@@ -833,7 +844,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
             $scope.footsteps.push(data[i]);
           }
 
-          displayPosition(300,320);
+          displayPosition(500,320);
         }
         $scope.isbusy = false;
 
@@ -940,7 +951,12 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
   $scope.submit = function() {
     
     if($scope.footstep.fs_from == null){
-      alert('来自不能为空');
+      alert('国家不能为空');
+      return;
+    }
+
+    if($scope.footstep.fs_desc == null){
+      alert('描述不能为空');
       return;
     }
 
@@ -977,8 +993,7 @@ var progress = 1;
       $('#myBar').width(progress + "%");
       $('#myBar').text(progress + "%");
     } else {
-      $('#myBar').width("100%");
-      $('#myBar').text('上传完成!');
+      clearInterval(progressBar);
     }
   };
 
@@ -1000,9 +1015,9 @@ var progress = 1;
         cache: false,
         type: "POST",
         success: function (res) {
-          clearInterval(progressBar);
           $('#myBar').width("100%");
           $('#myBar').text('上传完成!');
+
           console.log('successfully uploaded, URL: ' + res);
           $(file).parent().css("min-height", '0px');
           $scope.uploadUrl = res.bigImg;

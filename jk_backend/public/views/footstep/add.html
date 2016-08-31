@@ -1,7 +1,7 @@
 <div class="create_footstep">
     <div class="create_footstep-info">
         <form ng-submit="submit()" method="POST">
-            <div id="create_footstep-info-header">创建足迹<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
+            <div id="create_footstep-info-header">添加图片<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
             <!--<img id="create_footstep-info-image" ng-src="{{uploadUrl}}">-->
             <hr>
             <div class="fileUpload">
@@ -25,14 +25,14 @@
 
             <br/>
             <div>
-                <span class="create_footstep-info-span">来自</span>
+                <span class="create_footstep-info-span">国家</span>
                 <select class="create_footstep-info-from" ng-model="footstep.fs_from" required>
                     <option ng-repeat="country in countries">{{country.c_name}}</option>
                     <!--<option ng-model="footstep.fs_from">印度</option>-->
                 </select>
             </div>
             <br/>
-            <input type="submit" id="footstep_form-submit" value="创建">
+            <input type="submit" id="footstep_form-submit" value="完成">
         </form>
     </div>
 </div>

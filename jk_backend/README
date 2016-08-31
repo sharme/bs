@@ -1,19 +1,71 @@
 
+# NGINX
+
 #sudo service nginx start
 #sudo service nginx stop
 #sudo service nginx restart
 #sudo nginx -s reload     execute when configuration file is updated.
 
+# all the request goes to NGINX, zip it and forward and back to Node server
 
+
+
+
+# MYSQL
 
 # ps aux | grep mysql
 # sudo kill [mysql pid]
-
-
-
 #mysql connection
 #mysql.server start
 #mysql -u root -p
+
+
+
+
+# QINIU
+
+# all of the uploaded pictures are uploaded to QINIU SERVER
+
+
+
+
+# ZOOM PICTURE
+
+# scale/zoom the original and relocation the new one.
+
+
+
+
+# NG INFINITE SCROLL
+# picture stream smoothly loading
+
+
+
+
+
+# CKEDITOR
+
+# OPEN SOURCE and best web text editor
+
+
+
+
+
+# FOREVER
+
+# forever continuous restart/reconnect your server when connection is broken.
+
+# forever start app.js
+# forever restart
+# forever list
+# forever -h
+
+
+
+
+
+
+
 
 
 # The first version of implement for scroll loading and then changed to ngInfiniteScroll.JS
