@@ -759,9 +759,8 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         $("#login-popup").css("display", "none");
         $(".login-cover").css("display", "none");
         $("body").css("overflow","auto");
-        // $window.location.href="#/foot";
-        // $window.location.reload();
-        $window.history.back();
+        $window.location.href="#/foot";
+        $window.location.reload();
       }else {
         $(".login-popup-form-invalid").css("display", "block");
         $scope.user = angular.copy($scope.data);
