@@ -377,23 +377,23 @@ function sendSMS(res, to, ipAddress){
     var date = new Date();
     var year = date.getFullYear().toString();
     var month = (new Date().getMonth() + 1).toString();
-    if (month < 9) {
+    if (month <= 9) {
         month = 0 + month;
     }
     var day = date.getDate().toString();
-    if (day < 9) {
+    if (day <= 9) {
         day = 0 + day;
     }
     var hours = date.getHours().toString();
-    if (hours < 9) {
+    if (hours <= 9) {
         hours = 0 + hours;
     }
     var min = date.getMinutes().toString();
-    if (min < 9) {
+    if (min <= 9) {
         min = 0 + min;
     }
     var seconds = date.getSeconds().toString();
-    if (seconds < 9) {
+    if (seconds <= 9) {
         seconds = 0 + seconds;
     }
     var time = year + month + day + hours + min + seconds;
@@ -428,7 +428,7 @@ function sendSMS(res, to, ipAddress){
 
     var httpReq = http.request(req, function (response) {
         response.on("data", function(result){
-            console.log("API response: " + JSON.parse(result).respCode + "; data: " + result.respCode + "; result: " + result );
+            console.log("API response: " + JSON.parse(result).respCode + ";"  +" result: " + result );
             if("00000" === JSON.parse(result).respCode){
                 codeList.push({to: to, code: code, ip: ipAddress});
                 tempCodeList.push({to: to, code: code, ip: ipAddress});
