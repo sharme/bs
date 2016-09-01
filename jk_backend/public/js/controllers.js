@@ -694,8 +694,8 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
         alert("请输入正确的手机号码");
       } else if ($('#register-form-password').val().length < 8){
         alert("密码长度不能低于8位");
-      } else {
-        alert("请输入用户名")
+      } else if ($('#register-form-username').val().length < 4){
+        alert("用户名长度太短");
       }
     }
 
