@@ -2,7 +2,7 @@
 CKEDITOR.dialog.add("simpleimagebrowser-dialog",
     function(){
         return{
-            title:"选择图片",minWidth:380,minHeight:400,maxWidth:800,maxHeight:400,
+            title:"选择图片",minWidth:450,minHeight:260,maxWidth:800,maxHeight:260,
             contents:[
                 {
                     id:"tab-step1",
@@ -63,7 +63,7 @@ CKEDITOR.dialog.add("simpleimagebrowser-dialog",
                         return console.log(a),b = a, a = "",
                             $.each(b, function(b,c){
                                 a="thumbnails"===CKEDITOR.config.simpleImageBrowserListType?a+ "<div onclick=\"CKEDITOR.tools.simpleimagebrowserinsertpicture('"+c.url+"');\" " +
-                                "style=\"position:relative;width:175px;height:175px;display:inline-block;margin:5px;background-image:url('"+c.url+"');background-repeat:no-repeat;background-size:125%;background-position:center center;float:left;\"></div>":"link"}),
+                                "style=\"position:relative;width:135px;height: 130px;;display:inline-block;margin:5px;background-image:url('"+c.url+"');background-repeat:no-repeat;background-size:125%;background-position:center center;float:left;\"></div>":"link"}),
                             $("#imageBrowser").html(a)})
                 }),a.addCommand("simpleimagebrowser-start",
                 new CKEDITOR.dialogCommand("simpleimagebrowser-dialog")),

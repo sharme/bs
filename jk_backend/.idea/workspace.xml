@@ -21,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="113">
@@ -65,14 +65,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugin.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plugin.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+            <state relative-caret-position="60">
+              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
               <folding>
-                <marker date="1472831934000" expanded="true" signature="2985:3188" placeholder="..." />
-                <marker date="1472831934000" expanded="true" signature="3723:3724" placeholder="..." />
+                <marker date="1472834410000" expanded="true" signature="2985:3190" placeholder="..." />
+                <marker date="1472834410000" expanded="true" signature="3725:3726" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -200,10 +200,10 @@
         <option value="$PROJECT_DIR$/public/css/home/footdetail.less" />
         <option value="$PROJECT_DIR$/public/views/footDetail.html" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js" />
         <option value="$PROJECT_DIR$/public/js/ckeditor/skins/moono/dialog.css" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
         <option value="$PROJECT_DIR$/public/js/ckeditor/config.js" />
+        <option value="$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js" />
       </list>
     </option>
   </component>
@@ -636,12 +636,12 @@
       <workItem from="1472197905516" duration="3862000" />
       <workItem from="1472214938854" duration="14710000" />
       <workItem from="1472397397744" duration="29459000" />
-      <workItem from="1472801666669" duration="15183000" />
+      <workItem from="1472801666669" duration="15660000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="394521000" />
+    <option name="totallyTimeSpent" value="394998000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="177" width="1344" height="729" extended-state="0" />
@@ -1059,17 +1059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding>
-            <marker date="1472831934000" expanded="true" signature="2985:3188" placeholder="..." />
-            <marker date="1472831934000" expanded="true" signature="3723:3724" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/ckeditor/skins/minimalist/editor.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1112,6 +1101,17 @@
             <element signature="e#34453#35209#0" expanded="false" />
             <element signature="e#35388#35561#0" expanded="false" />
             <element signature="e#35726#39461#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <folding>
+            <marker date="1472834410000" expanded="true" signature="2985:3190" placeholder="..." />
+            <marker date="1472834410000" expanded="true" signature="3725:3726" placeholder="..." />
           </folding>
         </state>
       </provider>
