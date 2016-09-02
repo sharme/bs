@@ -24,13 +24,12 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+            <state relative-caret-position="113">
+              <caret line="219" column="106" selection-start-line="219" selection-start-column="103" selection-end-line="219" selection-end-column="106" />
               <folding>
                 <element signature="n#!!block;n#displayPosition#0" expanded="false" />
                 <element signature="n#!!block;n#addEvent#0" expanded="false" />
                 <element signature="e#3691#5990#0" expanded="false" />
-                <element signature="e#6169#12021#0" expanded="false" />
                 <element signature="e#15717#17291#0" expanded="false" />
                 <element signature="e#17435#17611#0" expanded="false" />
                 <element signature="e#17771#21257#0" expanded="false" />
@@ -46,31 +45,74 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="364" column="15" selection-start-line="364" selection-start-column="8" selection-end-line="364" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+              <folding>
+                <marker date="1472831934000" expanded="true" signature="2985:3188" placeholder="..." />
+                <marker date="1472831934000" expanded="true" signature="3723:3724" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editor.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/ckeditor/skins/minimalist/editor.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="4" column="35429" selection-start-line="4" selection-start-column="35429" selection-end-line="4" selection-end-column="35429" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dialog.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/ckeditor/skins/moono/dialog.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="101">
+              <caret line="4" column="4425" selection-start-line="4" selection-start-column="4425" selection-end-line="4" selection-end-column="4425" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/ckeditor/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="37" column="88" selection-start-line="37" selection-start-column="88" selection-end-line="37" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="footDetail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/footDetail.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="570">
               <caret line="38" column="69" selection-start-line="38" selection-start-column="69" selection-end-line="38" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="topic.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/community/topic.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="37" column="56" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footdetail-m.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/home/footdetail-m.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,16 +138,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/welcome/welcome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -121,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/css/profile/profile-m.less" />
         <option value="$PROJECT_DIR$/routes/sticks.js" />
         <option value="$PROJECT_DIR$/routes/likes.js" />
         <option value="$PROJECT_DIR$/routes/notifications.js" />
@@ -160,18 +191,19 @@
         <option value="$PROJECT_DIR$/public/views/profile/profile.html" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/public/js/ckeditor/config.js" />
         <option value="$PROJECT_DIR$/public/css/community/community-m.less" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/public/css/community/community.less" />
-        <option value="$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js" />
         <option value="$PROJECT_DIR$/routes/topicComments.js" />
         <option value="$PROJECT_DIR$/public/views/community/topic.html" />
         <option value="$PROJECT_DIR$/public/css/home/footdetail-m.less" />
         <option value="$PROJECT_DIR$/public/css/home/footdetail.less" />
         <option value="$PROJECT_DIR$/public/views/footDetail.html" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js" />
+        <option value="$PROJECT_DIR$/public/js/ckeditor/skins/moono/dialog.css" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
+        <option value="$PROJECT_DIR$/public/js/ckeditor/config.js" />
       </list>
     </option>
   </component>
@@ -383,7 +415,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
+              <option name="myItemId" value="skins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moono" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -409,11 +445,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simpleimagebrowser" />
+              <option name="myItemId" value="skins" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -604,12 +636,12 @@
       <workItem from="1472197905516" duration="3862000" />
       <workItem from="1472214938854" duration="14710000" />
       <workItem from="1472397397744" duration="29459000" />
-      <workItem from="1472801666669" duration="12109000" />
+      <workItem from="1472801666669" duration="15183000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="391447000" />
+    <option name="totallyTimeSpent" value="394521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="177" width="1344" height="729" extended-state="0" />
@@ -676,20 +708,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/profile/edit-m.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="145" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/profile/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/message/message.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -853,13 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-741">
-          <caret line="364" column="15" selection-start-line="364" selection-start-column="8" selection-end-line="364" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
@@ -950,22 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
@@ -1005,17 +1000,6 @@
         <state relative-caret-position="237">
           <caret line="212" column="24" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="73" column="55" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="55" />
-          <folding>
-            <marker date="1472823397000" expanded="true" signature="2985:3188" placeholder="..." />
-            <marker date="1472823397000" expanded="true" signature="3723:3724" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1059,15 +1043,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="364" column="15" selection-start-line="364" selection-start-column="8" selection-end-line="364" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/plugins/simpleimagebrowser/plugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+          <folding>
+            <marker date="1472831934000" expanded="true" signature="2985:3188" placeholder="..." />
+            <marker date="1472831934000" expanded="true" signature="3723:3724" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/skins/minimalist/editor.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="4" column="35429" selection-start-line="4" selection-start-column="35429" selection-end-line="4" selection-end-column="35429" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/skins/moono/dialog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="4" column="4425" selection-start-line="4" selection-start-column="4425" selection-end-line="4" selection-end-column="4425" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ckeditor/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="37" column="88" selection-start-line="37" selection-start-column="88" selection-end-line="37" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+        <state relative-caret-position="113">
+          <caret line="219" column="106" selection-start-line="219" selection-start-column="103" selection-end-line="219" selection-end-column="106" />
           <folding>
             <element signature="n#!!block;n#displayPosition#0" expanded="false" />
             <element signature="n#!!block;n#addEvent#0" expanded="false" />
             <element signature="e#3691#5990#0" expanded="false" />
-            <element signature="e#6169#12021#0" expanded="false" />
             <element signature="e#15717#17291#0" expanded="false" />
             <element signature="e#17435#17611#0" expanded="false" />
             <element signature="e#17771#21257#0" expanded="false" />

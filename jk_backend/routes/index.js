@@ -39,11 +39,19 @@ router.get('/index', function(req, res, next) {
 
 router.get('/pictures', function(req, res, next) {
 
-  var obj = [
-  {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468399718347.jpg"}, {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468515891894.jpg"}
-  ];
- 
-  res.send(obj);
+  var sql = "select fs_bigImg as url from jk_footsteps where u_id=" + req.param('u_id');
+
+  var obj;
+  var sqlRe;
+  connection.query(sql, function(err, result) {
+
+    sqlRe = result;
+    res.send(sqlRe);
+  });
+
+  // var objs = [
+  // {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468399718347.jpg"}, {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468515891894.jpg"}
+  // ];
   
 });
 

@@ -2,7 +2,7 @@
 CKEDITOR.dialog.add("simpleimagebrowser-dialog",
     function(){
         return{
-            title:"选择图片",minWidth:800,minHeight:400,maxWidth:800,maxHeight:400,
+            title:"选择图片",minWidth:380,minHeight:400,maxWidth:800,maxHeight:400,
             contents:[
                 {
                     id:"tab-step1",
