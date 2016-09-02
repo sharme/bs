@@ -16,7 +16,7 @@
   margin-right: 5px;
 }
 .foot_wrapper .foot_wrapper-main {
-  width: 600px;
+  width: 800px;
   margin: 0 auto;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_follow {
@@ -33,6 +33,7 @@
   margin: 10px;
   line-height: 2;
   overflow-wrap: break-word;
+  overflow: hidden;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-add {
   width: 80px;

@@ -24,15 +24,15 @@
 
 CKEDITOR.editorConfig = function( config ) {
     config.language = 'zh-cn';
-    // config.uiColor = '#F7B42C';
-    config.height = 200;
+    config.height = 500;
     config.toolbarCanCollapse = true;
 
     config.toolbar = [
-        // { name: 'document', items: [ 'Source','Preview'] },
         { name: 'insert', items: [ 'Smiley'] },
-        { name: 'colors', items: [ 'TextColor'] }
+        { name: 'colors', items: [ 'TextColor'] },
+        { name: 'others', items: ['Simple Image Browser']}
     ];
-
-
+    CKEDITOR.config.extraPlugins = 'simpleimagebrowser';
+    CKEDITOR.config.simpleImageBrowserListType = 'thumbnails';
+    CKEDITOR.config.simpleImageBrowserURL = 'backend/pictures';
 };

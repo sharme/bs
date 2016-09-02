@@ -37,6 +37,7 @@
   margin: 10px;
   line-height: 2;
   overflow-wrap: break-word;
+  overflow: hidden;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_comment-add {
   width: 80px;

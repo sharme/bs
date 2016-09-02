@@ -18,7 +18,7 @@ var date = new Date();
 
 /* GET home page. */
 var approve;
-router.get('/', function(req, res, next) {
+router.get('/index', function(req, res, next) {
 
   var secret = req.param("secret");
 
@@ -35,6 +35,16 @@ router.get('/', function(req, res, next) {
   } else {
     res.render('error');
   }
+});
+
+router.get('/pictures', function(req, res, next) {
+
+  var obj = [
+  {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468399718347.jpg"}, {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468515891894.jpg"}
+  ];
+ 
+  res.send(obj);
+  
 });
 
 

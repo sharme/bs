@@ -129,7 +129,7 @@ angular
                     .css('top',  y + 'px');
 
                 scope.$broadcast('mark:moved', [
-                    x - (scope.windowSize - 600)/2, y - 200, originalImg[0].height, originalImg[0].width
+                    x - (scope.windowSize - 800)/2, y - 200, originalImg[0].height, originalImg[0].width
                 ]);
             }
 

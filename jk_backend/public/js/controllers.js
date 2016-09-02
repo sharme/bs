@@ -415,6 +415,9 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
     return $sce.trustAsResourceUrl(src);
   };
 
+  $scope.renderHtml = function(value) {
+    return $sce.trustAsHtml(value);
+  };
   
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
       .success(function(data){
@@ -1285,7 +1288,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 }]);
 
 
-buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams, $css){
+buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css,$sce){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
@@ -1299,6 +1302,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
   $http({method: 'GET', url: ipAddress + '/topicComments/getCommentsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
+        console.log(data);
         $scope.comments = data;
         $scope.commentNum = data.length;
       },function(error){
@@ -1312,6 +1316,11 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
         $scope.error = error;
       });
 
+
+  $scope.renderHtml = function(value) {
+    return $sce.trustAsHtml(value);
+  };
+  
   $scope.replay = {m_content: '从这里开始输入内容...'};
 
   $scope.likeBtn = function(tp_id,u_id){
@@ -1355,7 +1364,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       data: JSON.stringify(replayData)
     };
 
-    // console.log("topic comments replied : " + JSON.stringify(replayData));
+    console.log("topic comments replied : " + JSON.stringify(replayData));
 
     $http(req).success(function(result){
       addEvent($http,$window,$cookies.get('u_id'),eComment,$scope.topic.u_id,eTopic,$scope.topic.tp_id, true);
