@@ -28,7 +28,7 @@
         </div>
         <div class="topic_content_comment" ng-repeat="comment in comments">
             <div>
-                {{comment.tp_cm_create_time | date: 'yyyy-MM-dd HH:mm'}}
+                回复于: {{comment.tp_cm_create_time | date: 'yyyy-MM-dd HH:mm'}}
                 <div class="topic_content_comment_left">
                     <img class="topic_content_comment_left_img" ng-src="{{comment.u_avatar}}"><br> {{comment.u_name}}
                 </div>

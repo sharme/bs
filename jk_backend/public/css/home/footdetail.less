@@ -58,6 +58,11 @@
       height: 60px;
       float: left;
       margin: 10px;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
     }
     .foot_wrapper-main_distance {
       height: 300px;
@@ -66,18 +71,31 @@
 }
 
 
+.foot_wrapper-main_comment {
 
-.footstep-list-div-comment-avatar{
-  position: relative;
-  border-radius: 50%;
-  width: 50px;
-  height: 60px;
-  float: left;
-}
+  border: solid 1px gray;
+  padding: 20px;
+  margin-top: 5px;
+  .footstep-list-div-comment-avatar {
+    //style 1
+    //margin: 0px 0% 0px 0px;
+    //text-align: center;
+    //padding: 0px 50px 0px 20px;
 
-.footstep-list-div-comment-avatar-img {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
+    //style 2
+    margin: 0px 0% 0px 0px;
+    text-align: center;
+    min-height: 100px;
+    padding: 20px 30px 20px 10px;
+    line-height: 3;
+    float: left;
+
+  }
+
+  .footstep-list-div-comment-avatar-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
 }
 

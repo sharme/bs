@@ -206,7 +206,10 @@
 .topic .topic_content .topic_content_comment .topic_content_comment_left {
   margin: 0px 0% 0px 0px;
   text-align: center;
-  padding: 0px 50px 0px 20px;
+  min-height: 100px;
+  padding: 20px 30px 20px 10px;
+  line-height: 3;
+  float: left;
 }
 .topic .topic_content .topic_content_comment .topic_content_comment_left .topic_content_comment_left_img {
   width: 40px;

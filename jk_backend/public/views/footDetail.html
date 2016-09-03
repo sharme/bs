@@ -31,12 +31,15 @@
             <hr>
 
             <div class="foot_wrapper-main_comment" ng-repeat="comment in comments">
-                <div class="footstep-list-div-comment-avatar">
-                    <img ng-src="{{comment.u_avatar}}" class="footstep-list-div-comment-avatar-img">
-                </div>
-                <div class="foot_wrapper-main_comment-content">
-                    <div class="foot_wrapper-main_comment-from">来自: {{comment.u_name}}</div>
-                    <div ng-bind-html="renderHtml(comment.cm_content)"></div>
+                <div>
+                    回复于: {{comment.cm_create_time | date: 'yyyy-MM-dd HH:mm'}}
+                    <div class="footstep-list-div-comment-avatar">
+                        <img ng-src="{{comment.u_avatar}}" class="footstep-list-div-comment-avatar-img"><br>{{comment.u_name}}
+                    </div>
+                    <hr>
+                    <div class="foot_wrapper-main_comment-content">
+                        <div ng-bind-html="renderHtml(comment.cm_content)"></div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -59,9 +62,7 @@
             <div class="foot_wrapper-main_follower">
                 都有谁收藏<hr>
                 <div class="foot_wrapper-main_follower-img" ng-repeat="stick in sticks">
-                    <div class="footstep-list-div-comment-avatar">
                         <img ng-src="{{stick.u_avatar?stick.u_avatar:'../img/default_icon.png'}}"  class="footstep-list-div-comment-avatar-img" title="{{stick.u_name}}">
-                    </div>
                 </div>
             </div>
         </div>

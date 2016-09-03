@@ -209,7 +209,7 @@
   margin: 0px 0% 0px 0px;
   text-align: center;
   min-height: 100px;
-  padding: 20px 50px 20px 20px;
+  padding: 20px 30px 20px 10px;
   line-height: 3;
   float: left;
 }
@@ -219,9 +219,7 @@
   border-radius: 50%;
 }
 .topic .topic_content .topic_content_comment .topic_content_comment_right {
-  margin-left: 20%;
   min-height: 100px;
-  padding: 20px;
   overflow-wrap: break-word;
   overflow: hidden;
 }
