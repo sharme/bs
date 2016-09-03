@@ -6,6 +6,8 @@
 }
 #navigation .navigation-country {
   margin: 5px;
+  background-color: white;
+  border: solid 1px whitesmoke;
 }
 .footstep_list_home {
   min-height: 600px;
@@ -48,12 +50,12 @@
   float: left;
   border-radius: 6px;
   font-size: 12px;
-  margin: 10px 1.6% 0px 1.6%;
+  padding: 10px 1.6% 0px 1.6%;
   width: 164px;
   top: 10px;
   position: absolute;
   visibility: hidden;
-  background-color: darkgray;
+  background-color: #fff;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;

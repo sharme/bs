@@ -244,6 +244,16 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         });
   };
 
+  $scope.bgColorChange = function (divkey) {
+    $(divkey.target).css("background-color",'rgba(239,239,239,0.96)');
+  };
+
+  $scope.bgColorRemove = function (divkey) {
+    $(divkey.target).css("background-color",'#fff');
+  };
+
+
+
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsNumber'})
       .success(function(data){
         $scope.number = data[0].number;
