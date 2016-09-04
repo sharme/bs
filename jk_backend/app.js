@@ -52,7 +52,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/backend', routes);
-app.use('/pictures', routes);
+
 app.use('/users', users);
 app.use('/footsteps', footsteps);
 app.use('/countries', countries);

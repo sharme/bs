@@ -1,28 +1,34 @@
+
 <div id="login-content" style="min-height: 30px;">
     <div id="login-content-wrapper" class="login-content-wrapper">
         <div class="login-content-wrapper-main">
             <div class="login-content-wrapper-main-title">
-                <h3>登录继续</h3>
+                <h3>找回密码</h3>
             </div>
             <div class="login-content-wrapper-main-form">
-                <form ng-controller="LoginController" ng-submit="submit()" method="POST">
+                <form ng-controller="RecoveryEmailCtrl" ng-submit="submit()" method="POST">
+
                     <div>
                         <label>手机号</label>
                         <input type="text" name="phoneNumber" ng-model="user.phoneNumber" class="login-popup-form-phoneNumber" value="" required>
                     </div>
-                    <div>
-                        <label>密码</label>
-                        <input type="password" class="login-popup-form-password" ng-model="user.password" name="password" value="" required>
+                    <div class="g-div">
+                        <label>验证码</label>
+                        <input type="text" ng-model="user.scCode" name="scCode" style="width: 50%;" id="register-form-scCode" />
+                        <!--<a href="javascript:;" class="sendScCode" ng-click="sendVerifyCode()">获取验证码</a>-->
+                        <button type="button" class="sendScCode" ng-click="sendVerifyCode()">获取验证码</button>
                     </div>
+
                     <div class="login-popup-form-invalid">提示: 手机号码或密码不正确, 请重新尝试.</div>
+
                     <div>
-                        <input type="submit" class="login-popup-form-submit" value="登陆">
+                        <input type="submit" class="login-popup-form-submit" value="下一步">
                     </div>
-                    <div>
-                        <p><a href="#/recovery_email">忘记密码 ?</a></p>
-                    </div>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+

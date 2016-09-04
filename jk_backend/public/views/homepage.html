@@ -23,9 +23,9 @@
                 <div>
                     <p>{{result.fs_des}}</p>
                     <p style="color: grey;">{{result.fs_from}}</p>
-                    <div>
-                        <button class="stick-footstep btnStick{{result.fs_id}}"  style={{result.stick_status==1?"background-color:darkgrey;":""}} ng-click="stickBtn(result.fs_id, result.u_id)">收藏</button>&nbsp;&nbsp;{{result.sticks}}
-                        <button class="like-footstep btnLike{{result.fs_id}}" style={{result.like_status==1?"background-color:darkgrey;":""}} ng-click="likeBtn(result.fs_id, result.u_id)">喜欢</button>&nbsp;&nbsp;{{result.likes}}
+                    <span>
+                        <button class="stick-footstep btnStick{{result.fs_id}}"  style={{result.stick_status==1?"background-color:darkgrey;":""}} ng-click="stickBtn(result.fs_id, result.u_id)">收藏</button>&nbsp;&nbsp;<span class="btnStickNum{{result.fs_id}}">{{result.sticks}}</span>
+                        <button class="like-footstep btnLike{{result.fs_id}}" style={{result.like_status==1?"background-color:darkgrey;":""}} ng-click="likeBtn(result.fs_id, result.u_id)">喜欢</button>&nbsp;&nbsp;<span class="btnLikeNum{{result.fs_id}}">{{result.likes}}</span>
                     </div>
                 </div>
             </div>

@@ -42,6 +42,18 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/register/register.html',
         controller: 'RegisterCtrl'
     }).
+        when('/recovery_email', {
+        templateUrl: 'views/account/recovery_email.html',
+        controller: 'RecoveryEmailCtrl'
+    }).
+        when('/reset_pwd', {
+        templateUrl: 'views/account/reset_pwd.html',
+        controller: 'ResetPwdCtrl'
+    }).
+        when('/reset_result', {
+        templateUrl: 'views/account/reset_result.html',
+        controller: 'ResetResultCtrl'
+    }).
         when('/profile',{
         templateUrl: 'views/profile/profile.html',
         controller: 'ProfileController'
@@ -129,7 +141,7 @@ angular
                     .css('top',  y + 'px');
 
                 scope.$broadcast('mark:moved', [
-                    x - (scope.windowSize - 800)/2, y - 200, originalImg[0].height, originalImg[0].width
+                    x - (scope.windowSize - 800)/2 + 20, y - 180, originalImg[0].height, originalImg[0].width
                 ]);
             }
 

@@ -9,8 +9,8 @@
         </div>
         <div>
             <div>
-                <button class="stick_footstep" style="cursor: not-allowed;" ng-click="stickBtn(foot.fs_id)">收藏</button>&nbsp;&nbsp;{{foot.sticks}}
-                <button class="like_footstep" style="cursor: not-allowed;" ng-click="likeBtn(foot.fs_id)">喜欢</button>&nbsp;&nbsp;{{foot.likes}}
+                <button class="stick_footstep" style={{result.stick_status==1?"background-color:darkgrey;":""}} ng-click="stickBtn(foot.fs_id, foot.u_id)">收藏</button>&nbsp;&nbsp;<span class="btnStickNum{{foot.fs_id}}">{{foot.sticks}}</span>
+                <button class="like_footstep" style={{result.like_status==1?"background-color:darkgrey;":""}} ng-click="likeBtn(foot.fs_id, foot.u_id)">喜欢</button>&nbsp;&nbsp;<span class="btnLikeNum{{foot.fs_id}}">{{foot.likes}}</span>
             </div>
             <hr>
             <p>{{foot.fs_des}}</p>

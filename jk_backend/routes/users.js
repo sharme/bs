@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var auth = require('./auth.js');
+
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 // Create application/x-www-form-urlencoded parser
@@ -99,6 +101,43 @@ router.post('/update', urlencodeParser, function(req, res, next) {
     }
   });
 });
+
+router.post('/updatePwd', urlencodeParser, function(req, res, next) {
+  var updateSQL = mysql.format("update jk_users set u_pwd = ? where u_phone_num = ? ",[req.body.password, req.body.phoneNumber]);
+  
+  if(req.body.secret) {
+    var execute = false;
+    auth.authList.forEach(function(item, index){
+      if(item === req.body.secret) {
+        execute = true;
+        auth.authList.splice(index,1);
+      }
+      // for(var key in item) {
+      //   if(key === 'auth' && item[key] === req.body.secret ){
+      //     execute = true;
+      //   }
+      // }
+    });
+    
+    if(execute){
+      connection.query(updateSQL, function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          // auth.authList.remove(req.body.secret);
+          res.send(result);
+        }
+      }); 
+    } else {
+      res.send('01');
+    }
+    
+    
+  }
+
+});
+
+
 
 router.get('/follow', function(req, res, next) {
   var followSQL = mysql.format("select u_id,u_name,u_avatar,u_link from jk_users as jku where jku.u_id in (select u_id from jk_followers as jkf where jkf.fl_fl_id = ?)",[req.param('u_id')]);

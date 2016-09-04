@@ -221,7 +221,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       .success(function(data){
         $scope.footsteps = data;
         displayPosition(500,10);
-
       },function(error){
         $scope.error = error;
       });
@@ -252,8 +251,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $(divkey.target).css("background-color",'#fff');
   };
 
-
-
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsNumber'})
       .success(function(data){
         $scope.number = data[0].number;
@@ -263,8 +260,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
-
-    // console.log("Community load more!!! Topics: " + $scope.footsteps.length);
     if($scope.number > $scope.footsteps.length) {
       $scope.isbusy = true;
       $http({
@@ -272,7 +267,6 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         url: ipAddress + '/footsteps/getFootsteps',
         params: {index_start: $scope.footsteps.length, count: 3,u_id: $cookies.get('u_id')}
       }).success(function (data) {
-        // console.log("data length: " + data.length);
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
@@ -287,14 +281,12 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
   $scope.stickBtn = function(id, u_id){
-    // console.log("User: " + $cookies.get('u_id'));
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
     }
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
           if(data.length > 0 ) {
-            // alert("已经收藏成功");
             var req = {
               method: 'POST',
               url: ipAddress + '/sticks/delete',
@@ -308,10 +300,15 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
 
             $http(req).success(function(result){
-
               // addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
               $(".btnStick" + id).css("background-color","");
-              // console.log('unfollow stick');
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnStickNum' + id).html(data.length);
+                  });
+
             }, function(error){
               console.log(error);
             });
@@ -331,10 +328,14 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
 
             $http(req).success(function(result){
-
               addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id, false);
               $(".btnStick" + id).css("background-color","darkgrey");
-              // console.log('stick');
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnStickNum' + id).html(data.length);
+                  });
             }, function(error){
               console.log(error);
             });
@@ -342,6 +343,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         }, function(error){
           console.log(error);
         });
+
   };
 
   $scope.loginCheck = function(fs_id) {
@@ -375,8 +377,14 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
             $http(req).success(function(result){
               // addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
-              // console.log('unliked');
              $(".btnLike" + id).css("background-color","");
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnLikeNum' + id).html(data.length);
+                  });
+
             }, function(error){
               console.log(error);
             })
@@ -394,8 +402,14 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id, false);
-              // console.log('liked');
               $(".btnLike" + id).css("background-color","darkgrey");
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnLikeNum' + id).html(data.length);
+                  });
+
             }, function(error){
               console.log(error);
             })
@@ -404,6 +418,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           $scope.error = error;
         });
   };
+
 
 }]);
 
@@ -427,6 +442,136 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   $scope.renderHtml = function(value) {
     return $sce.trustAsHtml(value);
+  };
+
+  $scope.likeBtn = function(id, u_id){
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+    }
+
+    $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+        .success(function(data){
+          console.log(data);
+          if(data.length > 0) {
+            var req = {
+              method: 'POST',
+              url: ipAddress + '/likes/delete',
+              header: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+            $http(req).success(function(result){
+              // addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id);
+              $(".like_footstep").css("background-color","");
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnLikeNum' + id).html(data.length);
+                  });
+
+            }, function(error){
+              console.log(error);
+            })
+          } else {
+            var req = {
+              method: 'POST',
+              url: ipAddress + '/likes/add',
+              header: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+            $http(req).success(function(result){
+              addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id, false);
+              $(".like_footstep").css("background-color","darkgrey");
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnLikeNum' + id).html(data.length);
+                  });
+
+            }, function(error){
+              console.log(error);
+            })
+          }
+        }, function(error){
+          $scope.error = error;
+        });
+  };
+
+  $scope.stickBtn = function(id, u_id){
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+    }
+    $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
+        .success(function(data){
+          if(data.length > 0 ) {
+            var req = {
+              method: 'POST',
+              url: ipAddress + '/sticks/delete',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+
+            $http(req).success(function(result){
+              // addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id);
+              $(".stick_footstep").css("background-color","");
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnStickNum' + id).html(data.length);
+                  });
+
+            }, function(error){
+              console.log(error);
+            });
+
+
+          } else {
+            var req = {
+              method: 'POST',
+              url: ipAddress + '/sticks/add',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: {
+                'fs_id': id,
+                'u_id': $cookies.get('u_id')
+              }
+            };
+
+            $http(req).success(function(result){
+              addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id, false);
+              $(".stick_footstep").css("background-color","darkgrey");
+
+              //GET AND REFRESH STICK NUMBER
+              $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id}})
+                  .success(function(data){
+                    $('.btnStickNum' + id).html(data.length);
+                  });
+
+            }, function(error){
+              console.log(error);
+            });
+          }
+        }, function(error){
+          console.log(error);
+        });
   };
   
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:$routeParams.footId}})
@@ -666,7 +811,7 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
   $scope.sendVerifyCode = function() {
 
-      if ($('#register-form-phoneNumber').val().length == 11 && $('#register-form-password').val().length > 8 && $('#register-form-username').val().length > 4 ) {
+      if ($('#register-form-phoneNumber').val().length == 11 && $('#register-form-password').val().length >= 8 && $('#register-form-username').val().length > 4 ) {
 
         var req = {
           method: 'GET',
@@ -714,6 +859,167 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
 
 }]);
 
+/* Recovery */
+buybsControllers.controller('RecoveryEmailCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
+
+  dynamicallyCSS(mobileSize, '../css/account/recovery.css','../css/account/recovery.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.user = {
+    phoneNumber: '',
+    scCode: ''
+  };
+
+  $scope.submit = function(){
+
+      if($scope.user.phoneNumber.length != 11){
+        alert("请输入正确的手机号");
+        return;
+      }
+
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode + "&secret=true",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      $http(req).success(function (result) {
+        if (result === "00") {
+          alert("请输入正确验证码");
+          $window.location.reload();
+        } else if(result === '03'){
+          alert("验证码失效.");
+          $window.location.reload();
+        }else {
+          $window.location.href = "#/reset_pwd?u_phone_num=" + $scope.user.phoneNumber+"&secret=" + result;
+        }
+      }, function (error) {
+        console.log(error);
+      });
+
+  };
+
+  $scope.sendVerifyCode = function() {
+
+    if ($('.login-popup-form-phoneNumber').val().length == 11 ) {
+
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      $http(req).success(function (result) {
+
+        if ("01" == result) {
+          $('.sendScCode').css("pointer-events", "none");
+          $scope.scCount = 60;
+          var scCodeBan = setInterval(function () {
+
+            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
+            $scope.scCount--;
+
+            if ($scope.scCount == 0) {
+              clearInterval(scCodeBan);
+              $('.sendScCode').text("获取验证码");
+              $('.sendScCode').css("pointer-events", "");
+            }
+          }, 1000);
+
+        } else if ("02" == result) {
+          alert("验证码发送频繁.")
+        } else if ("03" == result) {
+          alert("发送异常, 请联系管理员.");
+        } else {
+          alert("发送失败. 再试一次");
+        }
+
+      }, function (error) {
+        console.log(error);
+      });
+    } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
+      alert("请输入正确的手机号码");
+    }
+  }
+
+}]);
+
+/* Reset */
+buybsControllers.controller('ResetPwdCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
+
+  dynamicallyCSS(mobileSize, '../css/account/reset.css','../css/account/reset.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.user = {
+    phoneNumber: $routeParams.u_phone_num,
+    secret: $routeParams.secret,
+    password: '',
+    rePassword: ''
+  };
+
+  $scope.submit = function(){
+    if($scope.user.password.length < 8){
+      $(".reset-popup-form-invalid").css("display", "none");
+      $(".reset-popup-pwd-invalid").css("display", "block");
+      return;
+    }
+
+    if($scope.user.password != $scope.user.rePassword){
+      $(".reset-popup-pwd-invalid").css("display", "none");
+      $(".reset-popup-form-invalid").css("display", "block");
+      return;
+    }
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/users/updatePwd',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.user)
+    };
+
+    $http(req).success(function(result){
+
+      if(result == '01') {
+        alert("非法请求, 请稍后尝试");
+      } else {
+        $window.location.href = '#/reset_result';
+      }
+    }, function(error){
+
+      console.log(error);
+    });
+  };
+
+
+}]);
+
+/* Reset */
+buybsControllers.controller('ResetResultCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
+
+  dynamicallyCSS(mobileSize, '../css/account/reset.css','../css/account/reset.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.back = 10;
+
+  var resetResult = setInterval(function () {
+
+    $('.pwd_result').text(" 密码修改完成, (" + $scope.back + "s) 返回到主页.");
+    $scope.back--;
+
+    if ($scope.back == 0) {
+      clearInterval(resetResult);
+     $window.location.href = '#/login'
+    }
+  }, 1000);
+
+
+}]);
+
 /* Login */
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies','$css', function($scope, $http, $window, $cookies,$css) {
 
@@ -735,7 +1041,6 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
     $(".header-right-login").css("display", "block");
   }
 
-  $scope.showUName = function(){alert("1")};
   console.log("cookieUser: " + cookieUser);
 
   $scope.data = {
@@ -752,12 +1057,9 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
       },
       data: JSON.stringify($scope.user)
     };
-    console.log("login : " + JSON.stringify($scope.user));
 
     $http(req).success(function(result){
       if(result.length > 0) {
-
-        console.log('login result:' + JSON.stringify(result));
         if(result[0].u_avatar) {
           $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
           $cookies.put('u_avatar', result[0].u_avatar);

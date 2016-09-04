@@ -51,8 +51,17 @@ router.post('/delete', function(req, res, next) {
 });
 
 router.get('/search', function(req, res, next) {
-   var searchSQL = mysql.format("select * from jk_likes where fs_id = ? and u_id = ?;", [req.param('fs_id'), req.param('u_id')]);
+   var searchSQL = "select * from jk_likes where 1=1";
 
+    if(req.param('fs_id')) {
+        searchSQL += " and fs_id =" + req.param('fs_id')
+    }
+
+    if(req.param('u_id')) {
+        searchSQL += " and u_id =" + req.param('u_id');
+    }
+    
+    
     connection.query(searchSQL, function (err, result) {
       if(err) {
           res.send("Error: " + err);

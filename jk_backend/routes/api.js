@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var app = express();
+// var app = express();
+var auth = require('./auth.js');
 
 var fs = require('fs');
 var qiniu = require("qiniu");
@@ -91,7 +92,6 @@ router.post('/uploadPhotos', function(req, res) {
     });
 });
 
-
 // Upload file and response back.
 router.post('/uploadAvatar', function(req, res) {
 
@@ -159,8 +159,6 @@ router.post('/uploadAvatar', function(req, res) {
 
     });
 });
-
-
 
 function updateSmallFileQiniu (small, smallPath, big, bigPath, res) {
     //构建上传策略函数
@@ -296,6 +294,7 @@ var clearCodeList = setInterval(function(){
 
 var blacklist = [];
 var whitelist = [];
+
 
 router.get('/sendCode', function (req, res, next) {
 
@@ -460,6 +459,7 @@ router.get('/checkCode', function (req, res, next) {
 
     var to = req.param('to');
     var scCode = req.param('scCode');
+    var secret = req.param('secret');
     var check = true;
     console.log("codeList=" + JSON.stringify(codeList)  +"key=" + to + " ;val=" + scCode);
     codeList.forEach(function(item, index){
@@ -478,7 +478,14 @@ router.get('/checkCode', function (req, res, next) {
         console.log(toVal + " ; " + scVal);
         if(toVal && scVal) {
             check = false;
-            res.send("01");
+            
+            if(secret){
+                var code = auth.encrypt(to,scCode,'q1w3e5r7t8y');
+                auth.addList(code);
+                res.send(code);
+            } else {
+                res.send("01");
+            }
         } else {
             check = false;
             res.send("00");
@@ -486,7 +493,7 @@ router.get('/checkCode', function (req, res, next) {
 
     });
     if(check) {
-        console.log('return more');
+        console.log('code list is empty.');
         res.send("03");
     }
 });
