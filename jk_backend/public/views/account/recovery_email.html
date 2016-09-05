@@ -3,32 +3,25 @@
     <div id="login-content-wrapper" class="login-content-wrapper">
         <div class="login-content-wrapper-main">
             <div class="login-content-wrapper-main-title">
-                <h3>找回密码</h3>
+                <h3>重置密码</h3>
             </div>
             <div class="login-content-wrapper-main-form">
-                <form ng-controller="RecoveryEmailCtrl" ng-submit="submit()" method="POST">
-
+                <form ng-controller="ResetPwdCtrl" ng-submit="submit()" method="POST">
                     <div>
-                        <label>手机号</label>
-                        <input type="text" name="phoneNumber" ng-model="user.phoneNumber" class="login-popup-form-phoneNumber" value="" required>
+                        <label>新密码</label>
+                        <input type="password" name="password" ng-model="user.password" class="login-popup-form-phoneNumber" value="" required>
                     </div>
-                    <div class="g-div">
-                        <label>验证码</label>
-                        <input type="text" ng-model="user.scCode" name="scCode" style="width: 50%;" id="register-form-scCode" />
-                        <!--<a href="javascript:;" class="sendScCode" ng-click="sendVerifyCode()">获取验证码</a>-->
-                        <button type="button" class="sendScCode" ng-click="sendVerifyCode()">获取验证码</button>
-                    </div>
-
-                    <div class="login-popup-form-invalid">提示: 手机号码或密码不正确, 请重新尝试.</div>
-
                     <div>
-                        <input type="submit" class="login-popup-form-submit" value="下一步">
+                        <label>重复密码</label>
+                        <input type="password" class="login-popup-form-password" ng-model="user.rePassword" name="rePassword" value="" required>
                     </div>
-
+                    <div class="reset-popup-form-invalid">提示: 密码不匹配, 请重新尝试.</div>
+                    <div class="reset-popup-pwd-invalid">提示: 密码长度不能小于8位, 请重新尝试.</div>
+                    <div>
+                        <input type="submit" class="login-popup-form-submit" value="更改">
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-

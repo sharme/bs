@@ -26,7 +26,7 @@
                     <span>
                         <button class="stick-footstep btnStick{{result.fs_id}}"  style={{result.stick_status==1?"background-color:darkgrey;":""}} ng-click="stickBtn(result.fs_id, result.u_id)">收藏</button>&nbsp;&nbsp;<span class="btnStickNum{{result.fs_id}}">{{result.sticks}}</span>
                         <button class="like-footstep btnLike{{result.fs_id}}" style={{result.like_status==1?"background-color:darkgrey;":""}} ng-click="likeBtn(result.fs_id, result.u_id)">喜欢</button>&nbsp;&nbsp;<span class="btnLikeNum{{result.fs_id}}">{{result.likes}}</span>
-                    </div>
+                    </span>
                 </div>
             </div>
 
@@ -35,8 +35,8 @@
                         <img ng-src="{{result.u_avatar}}" class="footstep-list-div-comment-avatar-img">
                     </div>
                     <div>
-                    <div>{{result.u_name}}</div>
-                    <div style="overflow-wrap: break-word;" ng-bind-html="result.cm_content"></div>
+                        <div>{{result.u_name}}</div>
+                        <div class="footstep-list-div-comment-content" ng-bind-html="result.cm_content"></div>
                     </div>
             </div>
         </div>
