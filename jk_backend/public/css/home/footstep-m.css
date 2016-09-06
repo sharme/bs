@@ -55,7 +55,7 @@
   top: 10px;
   position: absolute;
   visibility: hidden;
-  background-color: #fff;
+  background-color: #87CEEB;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;
@@ -89,7 +89,8 @@
   border-radius: 50%;
 }
 #footstep-list .footstep-list-div-comment .footstep-list-div-comment-content {
-  overflow: auto;
   overflow-wrap: break-word;
-  max-height: 100px;
+}
+#footstep-list .footstep-list-div-comment .footstep-list-div-comment-content img {
+  max-width: 135px;
 }

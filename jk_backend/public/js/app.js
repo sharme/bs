@@ -89,6 +89,10 @@ buybs.config(['$routeProvider',
         when('/community/topics/:tp_id',{
         templateUrl: 'views/community/topic.html',
         controller: 'TopicCtrl'
+    }).
+        when('/tuyou/index',{
+        templateUrl: 'views/tuyou/index.html',
+        controller: 'tuyouCtrl'
     });
   }]);
 
@@ -131,8 +135,22 @@ angular
             scope.$on('mark:moved', function(event, data){
                 updateZoomed.apply(this, data);
             });
-
+            var firstMove = 1;
+            var firstX;
+            var firstY = 80;
             function moveMark(offsetX, offsetY){
+
+                if(firstMove === 1) {
+                    firstX = (scope.windowSize - 800)/2;
+                    firstMove++;
+                }
+                console.log("offsetX: " + offsetX + " < " + firstX + " && " + offsetY + " < " + firstY);
+                if(offsetX < firstX || offsetY < firstY) {
+                    mark.addClass('hide');
+                } else {
+                    mark.removeClass('hide');
+                }
+
 
                   var  x = offsetX;
                   var  y = offsetY;

@@ -220,7 +220,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 12, u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.footsteps = data;
-        displayPosition(500,10);
+        displayPosition(500,20);
       },function(error){
         $scope.error = error;
       });
@@ -236,7 +236,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from,u_id: $cookies.get('u_id')}})
         .success(function(data){
           $scope.footsteps = data;
-          displayPosition(500,10);
+          displayPosition(500,20);
           $scope.number = data.length;
         }, function(error){
           $scope.error = error;
@@ -244,11 +244,12 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
   $scope.bgColorChange = function (divkey) {
-    $(divkey.target).css("background-color",'rgba(239,239,239,0.96)');
+    $(".bgColorChange"+divkey).css("background-color",'rgba(239,239,239,0.96)');
+
   };
 
   $scope.bgColorRemove = function (divkey) {
-    $(divkey.target).css("background-color",'#fff');
+    $(".bgColorChange" + divkey).css("background-color",'white');
   };
 
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsNumber'})
@@ -272,7 +273,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          displayPosition(500,10);
+          displayPosition(500,20);
         }
       }, function (error) {
         $scope.error = error;
@@ -1113,6 +1114,15 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $window.location.href = "#/profile/edit";
   };
 
+  $scope.bgColorChange = function (divkey) {
+    $(".bgColorChange"+divkey).css("background-color",'rgba(239,239,239,0.96)');
+
+  };
+
+  $scope.bgColorRemove = function (divkey) {
+    $(".bgColorChange" + divkey).css("background-color",'darkgrey');
+  };
+  
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         console.log('countries: ' + data);
@@ -1137,12 +1147,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
 
-  var val = 0;
-  $scope.isbusy = false;
+
+
   $scope.loadMore = function() {
-    // console.log("profile load more! val = " + val);
-    if(val == 1) {
-      $scope.isbusy = true;
+    $scope.isbusy = true;
+    console.log("loadmore= " + $scope.val);
+    if($scope.val === 1) {
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getFootstepsByUID',
@@ -1152,21 +1162,21 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           count: 5
         }
       }).success(function (data) {
-        console.log(data.length);
+        console.log("loaded = " + data.length);
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
           }
-
+          $scope.isbusy = false;
           displayPosition(500,320);
+        } else {
+          $scope.isbusy = true;
         }
-        $scope.isbusy = false;
 
       }, function (error) {
         $scope.error = error;
       });
-    } else {
-      $scope.isbusy = true;
+    } else if($scope.val === 2){
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getStickFootstepsByUID',
@@ -1176,15 +1186,18 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           count: 5
         }
       }).success(function (data) {
-        // console.log(data.length);
+        console.log("loaded = " + data.length);
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
             $scope.footsteps.push(data[i]);
           }
 
-         displayPosition(300,320);
+          $scope.isbusy = false;
+          displayPosition(300,320);
+        } else {
+          $scope.isbusy = true;
         }
-        $scope.isbusy = false;
+
 
       }, function (error) {
         $scope.error = error;
@@ -1194,10 +1207,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileFootsteps = function(u_id) {
+    $scope.footsteps = [];
+    $scope.val = 1;
+    $scope.isbusy = false;
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 12}})
         .success(function(data){
           $scope.footsteps = data;
-          val = 1;
           $('.follow-list').css("display",'none');
           $(".footstep-list").css("display", "block");
           $scope.results = null;
@@ -1208,10 +1223,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
   
   $scope.profileSticks = function(u_id) {
+    $scope.footsteps = [];
+    $scope.val = 2;
+    $scope.isbusy = false;
     $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 12}})
         .success(function(data){
           $scope.footsteps = data;
-          val = 2;
           $('.follow-list').css("display",'none');
           $(".footstep-list").css("display", "block");
           $scope.results = null;
@@ -1763,6 +1780,80 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
   };
 
 }]);
+
+
+buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
+
+  dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/community/tuyou.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
+      .success(function(data){
+        $scope.countries = data;
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.closeTopic = function() {
+    $window.location.href = '#/community/index';
+  };
+
+  $scope.topic = {
+    u_id: '',
+    tp_about: '中国',
+    tp_content: '从这里开始输入内容...',
+    tp_img: '',
+    tp_title: '',
+    tp_type: '话题'
+  };
+
+  $scope.submit = function(){
+
+    var tp_subject = "";
+
+    if(CKEDITOR.instances.editor1.getData().length > 150){
+      // tp_subject = CKEDITOR.instances.editor1.getData().substr(0, CKEDITOR.instances.editor1.getData().indexOf('</p>')+4);
+      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 150);
+    }else{
+      tp_subject = CKEDITOR.instances.editor1.getData();
+    }
+
+    var replayData = {
+      u_id: $cookies.get('u_id'),
+      tp_about: $scope.topic.tp_about,
+      tp_content: CKEDITOR.instances.editor1.getData(),
+      tp_img: '',
+      tp_title: $scope.topic.tp_title,
+      tp_subject: tp_subject,
+      tp_type: $scope.topic.tp_type
+    };
+
+    if($scope.topic.tp_about == ''){
+      alert('关于不能为空!');
+      return;
+    }
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/topics/create',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(replayData)
+    };
+
+    // console.log("topic comments replied : " + JSON.stringify(replayData));
+
+    $http(req).success(function(result){
+      alert("发布成功");
+      $window.location.href= '#/community/index';
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+}]);
+
 
 
 

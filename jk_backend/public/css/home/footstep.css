@@ -55,13 +55,11 @@
   border: solid 1px lightgrey;
   border-radius: 6px;
   margin: 0 !important;
-  padding: 10px 12px !important;
+  padding: 10px 9px !important;
   width: 236px !important;
   top: 200px;
   position: absolute;
   visibility: hidden;
-  border: none;
-  background-color: #fff;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;
@@ -95,9 +93,10 @@
   border-radius: 50%;
 }
 #footstep-list .footstep-list-div-comment .footstep-list-div-comment-content {
-  overflow: auto;
   overflow-wrap: break-word;
-  max-height: 100px;
+}
+#footstep-list .footstep-list-div-comment .footstep-list-div-comment-content img {
+  max-width: 135px;
 }
 button {
   outline: none;

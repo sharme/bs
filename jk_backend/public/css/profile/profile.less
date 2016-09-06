@@ -79,7 +79,8 @@
     top: 200px;
     position: absolute;
     visibility: hidden;
-    border: none;
+    background: darkgrey;
+    //border: none;
   }
   .footstep-list-div-pic {
     min-height: 100px;
@@ -99,22 +100,25 @@
     position: relative;
     font-size: 12px;
     font-family: cursive;
+    .footstep-list-div-comment-avatar{
+      position: relative;
+      border-radius: 50%;
+      width: 50px;
+      height: 60px;
+      float: left;
+    }
+
+    .footstep-list-div-comment-avatar-img {
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+    }
+    img {
+      max-width: 135px;
+    }
   }
 }
 
-.footstep-list-div-comment-avatar{
-  position: relative;
-  border-radius: 50%;
-  width: 50px;
-  height: 60px;
-  float: left;
-}
-
-.footstep-list-div-comment-avatar-img {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-}
 
 .follow-list {
   margin: 0px 20%;
