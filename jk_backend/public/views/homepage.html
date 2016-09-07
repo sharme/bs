@@ -14,7 +14,7 @@
     <div id="footstep-list-div" class="footstep-list-div bgColorChange{{result.fs_id}}" ng-repeat="result in footsteps" ng-mouseleave="bgColorRemove(result.fs_id)" ng-mouseenter="bgColorChange(result.fs_id)">
             <div class="footstep-list-div-pic" ng-click="loginCheck(result.fs_id)">
                 <!--<a href="#/foot/{{result.fs_id}}">-->
-                    <img ng-src="{{result.fs_smallImg}}" style="border-radius: 2%; width: 100%; height: 100%; min-height: 200px; cursor: zoom-in;">
+                    <img ng-src="{{result.fs_smallImg}}" style="border-radius: 2%; width: 100%; height: 100%; min-height: 236px; cursor: zoom-in;">
                 <!--</a>-->
             </div>
             <span class="footstep-list-div-createTime">{{result.fs_create_time | date: 'yyyy-MM-dd HH:mm'}}</span>

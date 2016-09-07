@@ -66,12 +66,13 @@
 }
 #footstep-list .footstep-list-div-createTime {
   font-size: 11px;
-  padding: 10px;
+  padding: 0px;
   color: grey;
 }
 #footstep-list .footstep-list-div-desc {
-  padding: 10px;
+  padding: 5px 10px 0px 0px;
   word-wrap: break-word;
+  font-size: 13px;
 }
 #footstep-list .footstep-list-div-comment {
   line-height: 15px;
