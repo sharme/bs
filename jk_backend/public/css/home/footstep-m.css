@@ -53,9 +53,10 @@
   padding: 10px 1.6% 0px 1.6%;
   width: 164px;
   top: 10px;
+  border: solid 1px lightgrey;
   position: absolute;
   visibility: hidden;
-  background-color: #87CEEB;
+  background-color: white;
 }
 #footstep-list .footstep-list-div-pic {
   min-height: 100px;
@@ -66,7 +67,7 @@
   color: grey;
 }
 #footstep-list .footstep-list-div-desc {
-  padding: 5px 10px 0px 0px;
+  padding: 5px 10px 5px 0px;
   word-wrap: break-word;
   font-size: 13px;
 }

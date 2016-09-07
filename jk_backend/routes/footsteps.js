@@ -115,7 +115,7 @@ router.get('/getStickFootstepsByUID', function(req, res, next) {
         "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
         "(select (select u_avatar from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_avatar," +
         "(select (select u_name from jk_users as jku where jku.u_id = jkc.u_id) from jk_comments as jkc limit 1) as u_name," +
-        "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content, fs_smallImg, fs_bigImg" +
+        "(select cm_content from jk_comments as jkc where jkc.fs_id = jkf.fs_id limit 1) as cm_content, fs_smallImg, fs_bigImg, fs_create_time" +
         " from jk_footsteps as jkf where jkf.fs_id IN (select fs_id from jk_sticks as jks where jks.u_id = ?)",[req.param('u_id')]);
     criteriaSQL += " order by fs_create_time desc";
     if(req.param('index_start') && req.param('count')) {

@@ -81,6 +81,12 @@
   color: seagreen;
   cursor: pointer;
 }
+.community .community_topic .community_topic_content_description .community_topic_content_description_main img,
+.topic .community_topic .community_topic_content_description .community_topic_content_description_main img,
+.topic_add .community_topic .community_topic_content_description .community_topic_content_description_main img {
+  width: 60px;
+  height: 60px;
+}
 .community .community_topic .community_topic_content_description .community_topic_content_description_time,
 .topic .community_topic .community_topic_content_description .community_topic_content_description_time,
 .topic_add .community_topic .community_topic_content_description .community_topic_content_description_time {

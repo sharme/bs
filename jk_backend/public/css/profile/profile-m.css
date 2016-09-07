@@ -67,14 +67,16 @@
 }
 .footstep-list #footstep-list-div {
   float: left;
+  border: solid 1px lightgrey;
   border-radius: 6px;
   font-size: 12px;
-  margin: 10px 1.6% 0px 1.6%;
+  padding: 10px 9px !important;
   width: 164px;
   top: 10px;
   position: absolute;
   visibility: hidden;
-  background: darkgrey;
+  background: white;
+  margin: 0px 0px 0px 10px;
 }
 .footstep-list .footstep-list-div-pic {
   min-height: 100px;
@@ -85,7 +87,7 @@
   color: grey;
 }
 .footstep-list .footstep-list-div-desc {
-  padding: 5px 10px 0px 0px;
+  padding: 5px 10px 5px 0px;
   word-wrap: break-word;
   font-size: 13px;
 }

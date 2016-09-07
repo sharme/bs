@@ -15,9 +15,10 @@ var eFootstep = 1;
 var eTopic = 2;
 var ePeople = 3;
 
+var allowScroll = false;
 
 function displayPosition(miles, top){
-  var maxTop = 500;
+  var maxTop = 0;
   var timer = setInterval(function(){
     window.clearInterval(timer);
     // if($("#footstep-list").width() < mobileSize) {
@@ -64,9 +65,12 @@ function displayPosition(miles, top){
 
           if(maxTop < topPxs[i].topPx) {
             maxTop = topPxs[i].topPx;
-            $(element).css({
-              "margin-bottom": "200px"
-            });
+
+            if (listIndex >= $("#footstep-list").children("#footstep-list-div").size() - 1) {
+              $(element).css({
+                "margin-bottom": "200px"
+              });
+            }
           }
 
           topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 25;
@@ -86,7 +90,7 @@ function displayPosition(miles, top){
             maxVal = topPxs[i].topPx;
           }
         });
-        console.log("maxVal = " + maxVal);
+        allowScroll = true;
         $('.footstep-list_end').css('top', maxVal + 500);
 
       } else {
@@ -1153,7 +1157,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   };
 
   $scope.bgColorRemove = function (divkey) {
-    $(".bgColorChange" + divkey).css("background-color",'darkgrey');
+    $(".bgColorChange" + divkey).css("background-color",'white');
   };
   
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
@@ -1185,7 +1189,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   $scope.loadMore = function() {
     $scope.isbusy = true;
     console.log("loadmore= " + $scope.val);
-    if($scope.val === 1) {
+    if($scope.val === 1 && allowScroll === true) {
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getFootstepsByUID',
@@ -1209,7 +1213,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
       }, function (error) {
         $scope.error = error;
       });
-    } else if($scope.val === 2){
+    } else if($scope.val === 2 && allowScroll === true){
       $http({
         method: 'GET',
         url: ipAddress + '/footsteps/getStickFootstepsByUID',
@@ -1243,6 +1247,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $scope.footsteps = [];
     $scope.val = 1;
     $scope.isbusy = false;
+    allowScroll = true;
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 12}})
         .success(function(data){
           $scope.footsteps = data;
@@ -1259,6 +1264,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $scope.footsteps = [];
     $scope.val = 2;
     $scope.isbusy = false;
+    allowScroll = true;
     $http({method: 'GET', url: ipAddress + '/footsteps/getStickFootstepsByUID', params:{u_id: u_id, index_start: 0, count: 12}})
         .success(function(data){
           $scope.footsteps = data;
