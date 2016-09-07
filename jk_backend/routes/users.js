@@ -80,12 +80,12 @@ router.post('/create', urlencodeParser, function(req, res, next) {
 
 router.post('/login', urlencodeParser, function(req,res, next) {
   var criteriaSQL = mysql.format("select * from jk_users where u_phone_num = ? and u_pwd = ?",[req.body.phoneNumber, req.body.password]);
-
+  
   connection.query(criteriaSQL, function(err, result) {
     if(err) {
       res.send(err);
     } else {
-      res.send(result);
+      res.send([{u_id:result[0].u_id,u_avatar:result[0].u_avatar,u_name:result[0].u_name,secret: auth.getSecret(result[0].u_id)}]);
     }
   });
 });
@@ -112,11 +112,6 @@ router.post('/updatePwd', urlencodeParser, function(req, res, next) {
         execute = true;
         auth.authList.splice(index,1);
       }
-      // for(var key in item) {
-      //   if(key === 'auth' && item[key] === req.body.secret ){
-      //     execute = true;
-      //   }
-      // }
     });
     
     if(execute){
@@ -124,14 +119,12 @@ router.post('/updatePwd', urlencodeParser, function(req, res, next) {
         if (err) {
           res.send(err);
         } else {
-          // auth.authList.remove(req.body.secret);
           res.send(result);
         }
       }); 
     } else {
       res.send('01');
     }
-    
     
   }
 
@@ -163,9 +156,6 @@ router.get('/followers', function(req, res, next) {
     }
   })
 });
-
-
-
 
 
 

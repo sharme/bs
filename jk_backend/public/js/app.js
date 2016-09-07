@@ -29,7 +29,7 @@ buybs.config(['$routeProvider',
       }).
         when('/login', {
         templateUrl: 'views/login.html',
-        controller: 'loginCtrl'
+        controller: 'LoginController'
     }).
         when('/foot/:footId',{
         templateUrl: 'views/footDetail.html',

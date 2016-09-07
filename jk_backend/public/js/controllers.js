@@ -145,71 +145,73 @@ function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
 
 }
 
-buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
-
-  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
-
-  var cookieUser = $cookies.get("username");
-  if(cookieUser) {
-
-    if($cookies.get('u_avatar')) {
-      $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a>");
-    } else {
-      $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
-    }
-    $(".header-right-logout").css("display", "block");
-    $(".header-right-login").css("display", "none");
-  } else {
-    $(".header-right-logout").css("display", "none");
-    $(".header-right-login").css("display", "block");
-  }
-
-  // console.log("cookieUser: " + cookieUser);
-
-  $scope.data = {
-    phoneNumber: '',
-    password: ''
-  };
-
-  $scope.submit = function(){
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/users/login',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.user)
-    };
-
-    $http(req).success(function(result){
-      if(result.length > 0) {
-        if(result[0].u_avatar) {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a>");
-          $cookies.put('u_avatar', result[0].u_avatar);
-        } else {
-          $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
-        }
-        $cookies.put('username', result[0].u_name);
-        $cookies.put('u_id', result[0].u_id);
-        $(".header-right-logout").css("display", "block");
-        $(".header-right-login").css("display", "none");
-        $("#login-popup").css("display", "none");
-        $(".login-cover").css("display", "none");
-        $("body").css("overflow","auto");
-        $window.location.href="#/foot";
-      }else {
-        $(".login-popup-form-invalid").css("display", "block");
-        $scope.user = angular.copy($scope.data);
-      }
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-  $scope.user = angular.copy($scope.data);
-
-
-}]);
+// buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
+//
+//   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+//
+//   var cookieUser = $cookies.get("username");
+//   if(cookieUser) {
+//
+//     if($cookies.get('u_avatar')) {
+//       $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a>");
+//     } else {
+//       $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
+//     }
+//     $(".header-right-logout").css("display", "block");
+//     $(".header-right-login").css("display", "none");
+//   } else {
+//     $(".header-right-logout").css("display", "none");
+//     $(".header-right-login").css("display", "block");
+//   }
+//
+//   $scope.data = {
+//     phoneNumber: '',
+//     password: ''
+//   };
+//
+//   $scope.submit = function(){
+//     var req = {
+//       method: 'POST',
+//       url: ipAddress + '/users/login',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       data: JSON.stringify($scope.user)
+//     };
+//
+//     $http(req).success(function(result){
+//       console.log("login: " + result);
+//
+//       if(result.length > 0) {
+//         if(result[0].u_avatar) {
+//           $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a>");
+//           $cookies.put('u_avatar', result[0].u_avatar);
+//         } else {
+//           $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
+//         }
+//
+//         $cookies.put('secret', result[0].secret);
+//         $cookies.put('username', result[0].u_name);
+//         $cookies.put('u_id', result[0].u_id);
+//         $(".header-right-logout").css("display", "block");
+//         $(".header-right-login").css("display", "none");
+//         $("#login-popup").css("display", "none");
+//         $(".login-cover").css("display", "none");
+//         $("body").css("overflow","auto");
+//         $window.location.href="#/foot";
+//       }else {
+//         $(".login-popup-form-invalid").css("display", "block");
+//         $scope.user = angular.copy($scope.data);
+//       }
+//     }, function(error){
+//       console.log(error);
+//     });
+//   };
+//
+//   $scope.user = angular.copy($scope.data);
+//
+//
+// }]);
 
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window','$css', function ($scope, $http, $cookies, $window, $css) {
@@ -1098,7 +1100,7 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
         } else {
           $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
         }
-
+        $cookies.put('secret', result[0].secret);
         $cookies.put('username', result[0].u_name);
         $cookies.put('u_id', result[0].u_id);
         $(".header-right-logout").css("display", "block");
@@ -1328,7 +1330,8 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
       fs_pic: $scope.footstep.fs_smallImg,
       u_id: $cookies.get('u_id'),
       fs_bigImg: $scope.footstep.fs_bigImg,
-      fs_smallImg: $scope.footstep.fs_smallImg
+      fs_smallImg: $scope.footstep.fs_smallImg,
+      secret: $cookies.get('secret')
     };
     // console.log("shopData: " + JSON.stringify(footstepData));
     var req = {
@@ -1797,7 +1800,8 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       tp_img: '',
       tp_title: $scope.topic.tp_title,
       tp_subject: tp_subject + '...',
-      tp_type: $scope.topic.tp_type
+      tp_type: $scope.topic.tp_type,
+      secret: $cookies.get('secret')
     };
 
     if($scope.topic.tp_about == ''){
@@ -1867,7 +1871,9 @@ buybsControllers.controller('editTopicCtrl', ['$scope', '$cookies', '$window', '
       tp_content: CKEDITOR.instances.editor1.getData(),
       tp_title: $scope.result.tp_title,
       tp_subject: tp_subject + "...",
-      tp_type: $scope.result.tp_type
+      tp_type: $scope.result.tp_type,
+      secret: $cookies.get('secret'),
+      u_id: $cookies.get('u_id')
     };
 
     if($scope.result.tp_about == ''){
@@ -1904,7 +1910,7 @@ buybsControllers.controller('editTopicCtrl', ['$scope', '$cookies', '$window', '
 
 buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
 
-  dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/community/tuyou.css',$css);
+  dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/tuyou/tuyou.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})

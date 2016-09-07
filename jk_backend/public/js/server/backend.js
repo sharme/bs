@@ -1,10 +1,11 @@
 
+var ipaddress = 'http://180.76.152.112';
 
 var menuId = $( "ul.nav" ).first().attr( "id" );
 
 function approve(fs_id) {
     var request = $.ajax({
-        url: "http://localhost:8080/pictureApprove/approve",
+        url: ipaddress + "/pictureApprove/approve",
         method: "POST",
         data: { fs_id : fs_id },
         dataType: "html"
@@ -21,7 +22,7 @@ function approve(fs_id) {
 
 function reject(fs_id) {
     var request = $.ajax({
-        url: "http://localhost:8080/pictureApprove/reject",
+        url: ipaddress + "/pictureApprove/reject",
         method: "POST",
         data: { fs_id : fs_id },
         dataType: "html"
@@ -38,7 +39,7 @@ function reject(fs_id) {
 
 function del(fs_id) {
     var request = $.ajax({
-        url: "http://localhost:8080/pictureApprove/delete",
+        url: ipaddress + "/pictureApprove/delete",
         method: "POST",
         data: { fs_id : fs_id },
         dataType: "html"

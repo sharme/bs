@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var auth = require('./auth');
 var bodyParser = require('body-parser');
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
@@ -64,28 +65,39 @@ router.get('/getTopicsNumber', function(req, res, next) {
 
 
 router.post('/create', function(req, res, next) {
-    var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time,tp_subject,tp_type) values(?,?,?,?,?,?,?,?,?)", [req.body.u_id, req.body.tp_about,req.body.tp_content,req.body.tp_img,req.body.tp_title,date,date,req.body.tp_subject, req.body.tp_type]);
+    
+    if(req.body.secret == auth.getSecret(req.body.u_id)) {
 
-    connection.query(createSQL, function (err, result) {
-        if(err) {
-            res.send("Error: " + err);
-        } else {
-            res.send(result);
-        }
-    })
+        var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time,tp_subject,tp_type) values(?,?,?,?,?,?,?,?,?)", [req.body.u_id, req.body.tp_about, req.body.tp_content, req.body.tp_img, req.body.tp_title, date, date, req.body.tp_subject, req.body.tp_type]);
+
+        connection.query(createSQL, function (err, result) {
+            if (err) {
+                res.send("Error: " + err);
+            } else {
+                res.send(result);
+            }
+        })
+    } else {
+        res.send({err: 'access denied'})
+    }
 });
 
 
 router.post('/update', function(req, res, next) {
-    var createSQL = mysql.format("update jk_topics set tp_about=?, tp_content=?, tp_title=?, tp_update_time=?, tp_subject=?, tp_type=? where tp_id=?", [req.body.tp_about,req.body.tp_content,req.body.tp_title,date,req.body.tp_subject, req.body.tp_type, req.body.tp_id]);
 
-    connection.query(createSQL, function (err, result) {
-        if(err) {
-            res.send(err);
-        } else {
-            res.send(result);
-        }
-    })
+    if(req.body.secret == auth.getSecret(req.body.u_id)) {
+
+        var createSQL = mysql.format("update jk_topics set tp_about=?, tp_content=?, tp_title=?, tp_update_time=?, tp_subject=?, tp_type=? where tp_id=?", [req.body.tp_about, req.body.tp_content, req.body.tp_title, date, req.body.tp_subject, req.body.tp_type, req.body.tp_id]);
+        connection.query(createSQL, function (err, result) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        })
+    } else {
+        res.send({err: 'access denied'})
+    }
 });
 
 
