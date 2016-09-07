@@ -86,6 +86,10 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/community/addTopic.html',
         controller: 'AddTopicCtrl'
     }).
+        when('/community/topics/editTopic',{
+        templateUrl: 'views/community/editTopic.html',
+        controller: 'editTopicCtrl'
+    }).
         when('/community/topics/:tp_id',{
         templateUrl: 'views/community/topic.html',
         controller: 'TopicCtrl'

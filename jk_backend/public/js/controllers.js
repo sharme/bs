@@ -508,6 +508,36 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
           $scope.error = error;
         });
   };
+  
+  $scope.delBtn = function(id,u_id) {
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+    }
+    
+      var req = {
+        method: 'POST',
+        url: ipAddress + '/footsteps/delete',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          'fs_id': id
+        }
+      };
+  
+      $http(req).success(function(result){
+        if(result.errno) {
+          alert("操作失败, 请稍后再试");
+        } else {
+          alert("删除成功");
+          $window.location.href = '#/';
+        }
+      }, function(error){
+        console.log(error);
+      });
+    
+  };
+  
 
   $scope.stickBtn = function(id, u_id){
     if($cookies.get('u_id') == undefined){
@@ -579,6 +609,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       .success(function(data){
         console.log('data: ' + (JSON.stringify(data)));
         $scope.foot = data[0];
+        $scope.checkUser = $scope.foot.u_id == $cookies.get('u_id')?true:false;
       }, function(error){
         $scope.error = error;
       });
@@ -1616,7 +1647,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
 }]);
 
-
+//Topic info
 buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css,$sce){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
@@ -1625,6 +1656,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
       .success(function(data){
         $scope.topic = data[0];
+        $scope.checkUser = $scope.topic.u_id == $cookies.get('u_id')? true: false;
       },function(error){
         $scope.error = error;
       });
@@ -1644,7 +1676,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       },function(error){
         $scope.error = error;
       });
-
 
   $scope.renderHtml = function(value) {
     return $sce.trustAsHtml(value);
@@ -1673,6 +1704,13 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
       console.log(error);
     });
   };
+
+
+  $scope.editBtn = function(tp_id) {
+    $window.location.href = '#/community/topics/editTopic?tp_id=' + tp_id;
+    $window.location.reload();
+  };
+
   
 
   $scope.submit = function(){
@@ -1709,7 +1747,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 }]);
 
 
-buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
+buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams, $css){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
@@ -1737,10 +1775,8 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
   $scope.submit = function(){
 
     var tp_subject = "";
-
-    if(CKEDITOR.instances.editor1.getData().length > 150){
-      // tp_subject = CKEDITOR.instances.editor1.getData().substr(0, CKEDITOR.instances.editor1.getData().indexOf('</p>')+4);
-      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 150);
+    if(CKEDITOR.instances.editor1.getData().length > 180){
+      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 180);
     }else{
       tp_subject = CKEDITOR.instances.editor1.getData();
     }
@@ -1751,7 +1787,7 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       tp_content: CKEDITOR.instances.editor1.getData(),
       tp_img: '',
       tp_title: $scope.topic.tp_title,
-      tp_subject: tp_subject,
+      tp_subject: tp_subject + '...',
       tp_type: $scope.topic.tp_type
     };
 
@@ -1774,6 +1810,83 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
     $http(req).success(function(result){
       alert("发布成功");
       $window.location.href= '#/community/index';
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+}]);
+
+
+buybsControllers.controller('editTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css, $sce){
+
+  dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
+      .success(function(data){
+        $scope.countries = data;
+      }, function(error){
+        $scope.error = error;
+      });
+
+  $scope.closeTopic = function() {
+    $window.location.href = '#/community/index';
+  };
+
+  $scope.renderHtml = function(value) {
+    return $sce.trustAsHtml(value);
+  };
+  
+  $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
+      .success(function(data){
+        $scope.result = data[0];
+      },function(error){
+        $scope.error = error;
+      });
+
+  $scope.submit = function(){
+
+    var tp_subject = "";
+    if(CKEDITOR.instances.editor1.getData().length > 180){
+      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 180);
+    }else{
+      tp_subject = CKEDITOR.instances.editor1.getData();
+    }
+
+    var replayData = {
+      tp_id: $scope.result.tp_id,
+      tp_about: $scope.result.tp_about,
+      tp_content: CKEDITOR.instances.editor1.getData(),
+      tp_title: $scope.result.tp_title,
+      tp_subject: tp_subject + "...",
+      tp_type: $scope.result.tp_type
+    };
+
+    if($scope.result.tp_about == ''){
+      alert('关于不能为空!');
+      return;
+    }
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/topics/update',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(replayData)
+    };
+
+    // console.log("topic comments replied : " + JSON.stringify(replayData));
+
+    $http(req).success(function(result){
+      if(result.errno) {
+        alert("修改失败, 请稍后再试.");
+      } else {
+        alert("修改成功");
+        $window.location.href= '#/community/index';
+      }
+
     }, function(error){
       console.log(error);
     });

@@ -76,8 +76,21 @@ router.post('/create', function(req, res, next) {
 });
 
 
+router.post('/update', function(req, res, next) {
+    var createSQL = mysql.format("update jk_topics set tp_about=?, tp_content=?, tp_title=?, tp_update_time=?, tp_subject=?, tp_type=? where tp_id=?", [req.body.tp_about,req.body.tp_content,req.body.tp_title,date,req.body.tp_subject, req.body.tp_type, req.body.tp_id]);
+
+    connection.query(createSQL, function (err, result) {
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
+
 router.get('/getTopicsByTPID', function (req, res, next) {
-    var criteriaSQL = mysql.format("select tp_id, u_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name, (select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_about, tp_img, tp_update_time from jk_topics as jkt where jkt.tp_id=?", [req.param('tp_id')]);
+    var criteriaSQL = mysql.format("select tp_id, u_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name, (select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_about, tp_img, tp_update_time, tp_type from jk_topics as jkt where jkt.tp_id=?", [req.param('tp_id')]);
 
     connection.query(criteriaSQL, function (err, result) {
         if(err) {

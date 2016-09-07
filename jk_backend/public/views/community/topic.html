@@ -2,7 +2,8 @@
 <div class="topic">
     <span class="closeTopic" ng-click="closeTopic()">X</span>
     <div class="topic_top_like">
-        <div class="topic_top_like_btn" ng-click="likeBtn(topic.tp_id, topic.u_id)">喜欢</div>
+        <div class="topic_top_like_btn" ng-if="!checkUser" ng-click="likeBtn(topic.tp_id, topic.u_id)">喜欢</div>
+        <div class="topic_top_like_btn" ng-if="checkUser" ng-click="editBtn(topic.tp_id)">编辑</div>
     </div>
     <div class="topic_top">
         <div class="topic_top_title">
@@ -24,7 +25,7 @@
     <hr>
     <div class="topic_content">
         <div class="topic_content_info">
-            <p ng-bind-html="topic.tp_content"></p>
+            <p data-ng-bind-html="renderHtml(topic.tp_content)"></p>
         </div>
         <div class="topic_content_comment" ng-repeat="comment in comments">
             <div>

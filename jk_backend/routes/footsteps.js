@@ -142,6 +142,18 @@ router.post('/create', function(req, res, next) {
     })
 });
 
+router.post('/delete', function(req, res, next) {
+    var createSQL = mysql.format("delete from jk_footsteps where fs_id=?", [req.body.fs_id]);
+
+    connection.query(createSQL, function (err, result) {
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
 
 router.get('/getFootstepsDetail', function (req, res, next) {
    var criteriaSQL = mysql.format("select fs_id,u_id,fs_des,fs_pic," +
