@@ -35,7 +35,7 @@ CKEDITOR.editorConfig = function( config ) {
     CKEDITOR.config.extraPlugins = 'simpleimagebrowser';
     CKEDITOR.config.simpleImageBrowserListType = 'thumbnails';
 
-    CKEDITOR.config.simpleImageBrowserURL = 'backend/pictures?u_id=' + getCookie('u_id');
+    CKEDITOR.config.simpleImageBrowserURL = 'pictures/getPictures?u_id=' + getCookie('u_id');
 
     function getCookie(cname) {
         var name = cname + "=";

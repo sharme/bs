@@ -1389,6 +1389,9 @@ var progress = 1;
           $(file).parent().nextAll("#upload_bigImg-href").change();
           $(file).css("display", "none");
           $('.fileUpload').css("display", 'none');
+        },
+        error: function(res) {
+          $('#myBar').text('上传失败!');
         }
       });
   }
@@ -1517,7 +1520,7 @@ buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window',
 }]);
 
 /* community */
-buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
+buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$sce', function($scope, $cookies, $window, $http, $css, $sce){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css', $css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
@@ -1585,6 +1588,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
         },function(error){
           $scope.error = error;
         });
+
   };
   
 
@@ -1643,6 +1647,10 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
     } else {
       $window.location.href = "#/community/topics/addTopic";
     }
+  };
+
+  $scope.renderHtml = function(value) {
+    return $sce.trustAsHtml(value);
   };
 
 }]);
@@ -1742,7 +1750,8 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
   $scope.closeTopic = function() {
     $window.location.href = '#/community/index';
-  }
+  };
+  
 
 }]);
 
@@ -1804,8 +1813,6 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
       },
       data: JSON.stringify(replayData)
     };
-
-    // console.log("topic comments replied : " + JSON.stringify(replayData));
 
     $http(req).success(function(result){
       alert("发布成功");

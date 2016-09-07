@@ -25,11 +25,9 @@ router.get('/index', function(req, res, next) {
   if(secret == '123456qwertyuiop') {
 
     var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps";
-
     connection.query(sql, function (err, result) {
       approve = result;
     });
-
 
     res.render('index', {title: '有图后台', result: approve});
   } else {
@@ -39,7 +37,7 @@ router.get('/index', function(req, res, next) {
 
 router.get('/pictures', function(req, res, next) {
 
-  var sql = "select fs_bigImg as url from jk_footsteps where u_id=" + req.param('u_id');
+  var sql = "select pc_bigImg as url from jk_pictures where u_id=" + req.param('u_id');
 
   var obj;
   var sqlRe;
@@ -48,10 +46,6 @@ router.get('/pictures', function(req, res, next) {
     sqlRe = result;
     res.send(sqlRe);
   });
-
-  // var objs = [
-  // {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468399718347.jpg"}, {"url": "http://o99spo2ev.bkt.clouddn.com/images/21/1468515891894.jpg"}
-  // ];
   
 });
 

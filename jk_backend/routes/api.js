@@ -22,6 +22,16 @@ bucket = 'foot';
 key = 'my-nodejs-logo.png';
 
 
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: '127.0.0.1',
+    user: 'root',
+    password: 'fm@youtumi',
+    database: 'jk'
+});
+connection.connect();
+var date = new Date();
+
 
 // Upload file and response back.
 router.post('/uploadPhotos', function(req, res) {
@@ -160,7 +170,7 @@ router.post('/uploadAvatar', function(req, res) {
     });
 });
 
-function updateSmallFileQiniu (small, smallPath, big, bigPath, res) {
+function updateSmallFileQiniu (folder, small, smallPath, big, bigPath, res) {
     //构建上传策略函数
     function uptoken(bucket, small) {
         var putPolicy = new qiniu.rs.PutPolicy(bucket+":"+small);
@@ -174,7 +184,7 @@ function updateSmallFileQiniu (small, smallPath, big, bigPath, res) {
     filePath = smallPath;
 
     //构造上传函数
-    function uploadFile(uptoken, key, localFile) {
+    function uploadFile(folder, uptoken, key, localFile) {
         var extra = new qiniu.io.PutExtra();
         qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
             if(!err) {
@@ -185,7 +195,7 @@ function updateSmallFileQiniu (small, smallPath, big, bigPath, res) {
                 if(big == null || bigPath == null){
                     res.send("http://o99spo2ev.bkt.clouddn.com/" + key);
                 } else {
-                    updateBigFileQiniu(big, bigPath, res, "http://o99spo2ev.bkt.clouddn.com/" + key);
+                    updateBigFileQiniu(folder, big, bigPath, res, "http://o99spo2ev.bkt.clouddn.com/" + key);
                 }
 
             } else {
@@ -196,11 +206,11 @@ function updateSmallFileQiniu (small, smallPath, big, bigPath, res) {
     }
 
 //调用uploadFile上传
-    uploadFile(token, small, filePath);
+    uploadFile(folder, token, small, filePath);
 
 }
 
-function updateBigFileQiniu (key, path, res, smallImg) {
+function updateBigFileQiniu (folder, key, path, res, smallImg) {
     //构建上传策略函数
     function uptoken(bucket, key) {
         var putPolicy = new qiniu.rs.PutPolicy(bucket+":"+key);
@@ -214,7 +224,7 @@ function updateBigFileQiniu (key, path, res, smallImg) {
     filePath = path;
 
     //构造上传函数
-    function uploadFile(uptoken, key, localFile) {
+    function uploadFile(folder, uptoken, key, localFile) {
         var extra = new qiniu.io.PutExtra();
         qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
             if(!err) {
@@ -227,7 +237,15 @@ function updateBigFileQiniu (key, path, res, smallImg) {
                 };
                 
                 console.log('uploaded = ' + JSON.stringify(data));
-                
+
+                //insert uploaded image url to database.
+                var sql = mysql.format("insert into jk_pictures(u_id,pc_smallImg,pc_bigImg,pc_original,pc_update_time) values(?,?,?,?,?)",[folder,data.smallImg,data.bigImg,null,date]);
+                console.log(sql);
+                connection.query(sql, function (err, result) {
+                        console.log(result);
+                });
+
+
                 res.send(data);
             } else {
                 // 上传失败， 处理返回代码
@@ -237,7 +255,7 @@ function updateBigFileQiniu (key, path, res, smallImg) {
     }
 
 //调用uploadFile上传
-    uploadFile(token, key, filePath);
+    uploadFile(folder, token, key, filePath);
 
 }
 
@@ -257,7 +275,7 @@ function resize(filename, folder, smallFolderPath, originalFolderPath, bigFolder
                     function (image) {
                         console.log('resize small image: ' + image.width);
 
-                        updateSmallFileQiniu("images/small/" + folder + "/" + filename, smallFolderPath + "/" + filename, "images/big/" + folder + "/" + filename, bigFolderPath + "/" + filename, res);
+                        updateSmallFileQiniu(folder, "images/small/" + folder + "/" + filename, smallFolderPath + "/" + filename, "images/big/" + folder + "/" + filename, bigFolderPath + "/" + filename, res);
 
                     }
                 );
@@ -270,7 +288,7 @@ function resize(filename, folder, smallFolderPath, originalFolderPath, bigFolder
             function (image) {
                 console.log('resize mini image: ' + image.width);
                 
-                updateSmallFileQiniu("images/mini/" + folder + "/" + filename, smallFolderPath + "/" + filename, null, null, res);
+                updateSmallFileQiniu(folder, "images/mini/" + folder + "/" + filename, smallFolderPath + "/" + filename, null, null, res);
 
             }
         );
