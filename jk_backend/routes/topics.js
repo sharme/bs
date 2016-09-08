@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var auth = require('./auth');
+var requestIP = require('request-ip');
 var bodyParser = require('body-parser');
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
@@ -46,10 +47,7 @@ router.get('/getTopics', function(req, res, next) {
         } else {
 
             var log = u_id?"用户: " + u_id + " 访问了社区":'游客 访问了社区';
-            var ipAddress = req.connection.remoteAddress;
-            if(req.header['x-forwarded-for']){
-                ipAddress = req.header['x-forwarded-for'];
-            }
+            var ipAddress = requestIP.getClientIp(req);
             var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
             connection.query(insertLog, function(err, result){
                 console.log(insertLog);
@@ -64,9 +62,6 @@ router.get('/getTopics', function(req, res, next) {
     })
 });
 
-
-
-
 router.get('/getTopicsNumber', function(req, res, next) {
     var criteriaSQL = "select count(*) as number from jk_topics;";
 
@@ -78,7 +73,6 @@ router.get('/getTopicsNumber', function(req, res, next) {
         }
     })
 });
-
 
 router.post('/create', function(req, res, next) {
     
@@ -98,7 +92,6 @@ router.post('/create', function(req, res, next) {
     }
 });
 
-
 router.post('/update', function(req, res, next) {
 
     if(req.body.secret == auth.getSecret(req.body.u_id)) {
@@ -116,7 +109,6 @@ router.post('/update', function(req, res, next) {
     }
 });
 
-
 router.get('/getTopicsByTPID', function (req, res, next) {
     var criteriaSQL = mysql.format("select tp_id, u_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name, (select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_about, tp_img, tp_update_time, tp_type from jk_topics as jkt where jkt.tp_id=?", [req.param('tp_id')]);
 
@@ -129,9 +121,6 @@ router.get('/getTopicsByTPID', function (req, res, next) {
     })
 
 });
-
-
-
 
 
 

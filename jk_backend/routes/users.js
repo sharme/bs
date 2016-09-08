@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('./auth.js');
-
+var requestIp = require('request-ip');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 // Create application/x-www-form-urlencoded parser
@@ -85,10 +85,7 @@ router.post('/login', urlencodeParser, function(req,res, next) {
     } else {
       
       var log = "用户: " + result[0].u_id + " 登录成功.";
-      var ipAddress = req.connection.remoteAddress;
-      if(req.header['x-forwarded-for']){
-        ipAddress = req.header['x-forwarded-for'];
-      }
+      var ipAddress = requestIp.getClientIp(req);
       var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
       connection.query(insertLog, function(err, result){
         console.log(insertLog);

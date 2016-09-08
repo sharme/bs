@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 var auth = require('./auth.js');
 var bodyParser = require('body-parser');
+var requestIp = require('request-ip');
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
 
@@ -62,10 +63,7 @@ router.get('/getFootsteps', function(req, res, next) {
             res.send(err);
         } else {
             var log = u_id?"用户: " + u_id + " 访问了主页":'游客 访问了主页.';
-            var ipAddress = req.connection.remoteAddress;
-            if(req.header['x-forwarded-for']){
-                ipAddress = req.header['x-forwarded-for'];
-            }
+            var ipAddress = requestIp.getClientIp(req);
             var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
             connection.query(insertLog, function(err, result){
                 console.log(insertLog);
