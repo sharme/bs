@@ -21,7 +21,6 @@ var approve;
 router.get('/index', function(req, res, next) {
 
   var secret = req.param("secret");
-
   if(secret == '123456qwertyuiop') {
 
     var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps";
@@ -35,17 +34,19 @@ router.get('/index', function(req, res, next) {
   }
 });
 
-router.get('/pictures', function(req, res, next) {
+router.get('/logs', function(req, res, next) {
 
-  var sql = "select pc_bigImg as url from jk_pictures where u_id=" + req.param('u_id');
+  var secret = req.param("secret");
+  if(secret == '123456qwertyuiop') {
+    var sql = "select lg_id, lg_content,lg_ip, lg_create_time from jk_logs";
+    connection.query(sql, function (err, result) {
+      approve = result;
+    });
 
-  var obj;
-  var sqlRe;
-  connection.query(sql, function(err, result) {
-
-    sqlRe = result;
-    res.send(sqlRe);
-  });
+    res.render('logs', {title: '有图后台', result: approve});
+  } else {
+    res.render('error');
+  }
   
 });
 

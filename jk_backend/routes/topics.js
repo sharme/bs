@@ -18,6 +18,8 @@ connection.connect();
 var date = new Date();
 
 router.get('/getTopics', function(req, res, next) {
+    
+    var u_id = req.param('u_id');
 
     var criteriaSQL = "select tp_id, (select u_name from jk_users jku where jku.u_id=jkt.u_id) as u_name,(select u_avatar from jk_users jku where jku.u_id=jkt.u_id) as u_avatar, (select count(*) from jk_topics_likes as jktl where jktl.tp_id=jkt.tp_id) as likes, tp_title, tp_content, tp_about, tp_img, tp_update_time,tp_subject from jk_topics as jkt";
 
@@ -38,11 +40,25 @@ router.get('/getTopics', function(req, res, next) {
     
     console.log(criteriaSQL);
 
-
     connection.query(criteriaSQL, function(err, result) {
         if(err) {
-            res.send("Error: " + err);
+            res.send(err);
         } else {
+
+            var log = u_id?"用户: " + u_id + " 访问了社区":'游客 访问了社区';
+            var ipAddress = req.connection.remoteAddress;
+            if(req.header['x-forwarded-for']){
+                ipAddress = req.header['x-forwarded-for'];
+            }
+            var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
+            connection.query(insertLog, function(err, result){
+                console.log(insertLog);
+                if(err)
+                    console.log(err);
+                else
+                    console.log(result);
+            });
+            
             res.send(result);
         }
     })

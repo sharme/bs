@@ -31,7 +31,6 @@ router.get('/getUsers', function(req, res, next) {
   });
 });
 
-
 router.get('/getUserById', function(req, res, next) {
   var criteriaSQL = mysql.format('select * from jk_users where u_id = ?', req.param('u_id'));
   connection.query(criteriaSQL, function (err, rows, fields) {
@@ -44,7 +43,6 @@ router.get('/getUserById', function(req, res, next) {
     }
   });
 });
-
 
 router.get('/getUserDetail', function(req, res, next) {
   console.log(req.param('u_id'));
@@ -85,6 +83,21 @@ router.post('/login', urlencodeParser, function(req,res, next) {
     if(err) {
       res.send(err);
     } else {
+      
+      var log = "用户: " + result[0].u_id + " 登录成功.";
+      var ipAddress = req.connection.remoteAddress;
+      if(req.header['x-forwarded-for']){
+        ipAddress = req.header['x-forwarded-for'];
+      }
+      var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
+      connection.query(insertLog, function(err, result){
+        console.log(insertLog);
+        if(err)
+          console.log(err);
+        else
+          console.log(result);
+      });
+
       res.send([{u_id:result[0].u_id,u_avatar:result[0].u_avatar,u_name:result[0].u_name,secret: auth.getSecret(result[0].u_id)}]);
     }
   });
@@ -130,8 +143,6 @@ router.post('/updatePwd', urlencodeParser, function(req, res, next) {
 
 });
 
-
-
 router.get('/follow', function(req, res, next) {
   var followSQL = mysql.format("select u_id,u_name,u_avatar,u_link from jk_users as jku where jku.u_id in (select u_id from jk_followers as jkf where jkf.fl_fl_id = ?)",[req.param('u_id')]);
 
@@ -144,7 +155,6 @@ router.get('/follow', function(req, res, next) {
   })
 });
 
-
 router.get('/followers', function(req, res, next) {
   var followerSQL = mysql.format("select u_id,u_name,u_avatar,u_link from jk_users as jku where jku.u_id in (select fl_fl_id from jk_followers as jkf where jkf.u_id = ?)",[req.param('u_id')]);
 
@@ -156,8 +166,6 @@ router.get('/followers', function(req, res, next) {
     }
   })
 });
-
-
 
 
 module.exports = router;

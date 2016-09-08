@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1= title
+    #container.main
+        table(style='width:100%;border:1px solid grey; text-align:center;')
+            tr
+                td ID
+                td Description
+                td Created Time
+                td IP
+
+            each re in result
+                tr
+                td= re.lg_id
+                td= re.lg_content
+                td= re.lg_create_time
+                td= re.lg_ip
+
+
+

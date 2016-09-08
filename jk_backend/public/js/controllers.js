@@ -1534,7 +1534,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css', $css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
-  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12}})
+  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12, u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.topics = data;
       },function(error){

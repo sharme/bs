@@ -54,23 +54,33 @@ router.get('/getFootsteps', function(req, res, next) {
     if(req.param('index_start') && req.param('count')) {
         criteriaSQL += " limit " + req.param('index_start') + "," + req.param('count');
     }
-    
-    
-
 
     console.log(criteriaSQL);
 
-
     connection.query(criteriaSQL, function(err, result) {
         if(err) {
-            res.send("Error: " + err);
+            res.send(err);
         } else {
+            var log = u_id?"用户: " + u_id + " 访问了主页":'游客 访问了主页.';
+            var ipAddress = req.connection.remoteAddress;
+            if(req.header['x-forwarded-for']){
+                ipAddress = req.header['x-forwarded-for'];
+            }
+            var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
+            connection.query(insertLog, function(err, result){
+                console.log(insertLog);
+                if(err)
+                    console.log(err);
+                else 
+                    console.log(result);
+            });
+
+
+
             res.send(result);
         }
     })
 });
-
-
 
 router.get('/getFootstepsByUID', function(req, res, next) {
     var criteriaSQL = mysql.format("select fs_id,u_id,fs_pic,fs_des," +
@@ -95,7 +105,6 @@ router.get('/getFootstepsByUID', function(req, res, next) {
     })
 });
 
-
 router.get('/getFootstepsNumber', function(req, res, next) {
     var criteriaSQL = "select count(*) as number from jk_footsteps;";
 
@@ -107,7 +116,6 @@ router.get('/getFootstepsNumber', function(req, res, next) {
         }
     })
 });
-
 
 router.get('/getStickFootstepsByUID', function(req, res, next) {
     var criteriaSQL = mysql.format("select fs_id,u_id,fs_pic,fs_des," +
@@ -161,7 +169,6 @@ router.post('/delete', function(req, res, next) {
     })
 });
 
-
 router.get('/getFootstepsDetail', function (req, res, next) {
    var criteriaSQL = mysql.format("select fs_id,u_id,fs_des,fs_pic," +
        "(select count(*) from jk_comments as jkc where jkc.fs_id = jkf.fs_id) as comments," +
@@ -180,11 +187,6 @@ router.get('/getFootstepsDetail', function (req, res, next) {
 
 
 });
-
-
-
-
-
 
 
 
