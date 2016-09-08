@@ -1205,7 +1205,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
             $scope.footsteps.push(data[i]);
           }
           $scope.isbusy = false;
-          displayPosition(500,320);
+          displayPosition(500,50);
         } else {
           $scope.isbusy = true;
         }
@@ -1230,7 +1230,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
           }
 
           $scope.isbusy = false;
-          displayPosition(300,320);
+          displayPosition(300,50);
         } else {
           $scope.isbusy = true;
         }
@@ -1257,7 +1257,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         }, function(error){
           $scope.error = error;
         });
-    displayPosition(500,320);
+    displayPosition(500,50);
   };
   
   $scope.profileSticks = function(u_id) {
@@ -1274,7 +1274,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         }, function(error){
           $scope.error = error;
         });
-    displayPosition(500,320);
+    displayPosition(500,50);
   };
 
   $scope.profileFollows = function(u_id) {

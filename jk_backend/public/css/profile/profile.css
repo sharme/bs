@@ -40,7 +40,10 @@
   font-size: 12px;
 }
 .footstep-list {
-  margin-bottom: 20px;
+  min-height: 600px;
+  z-index: 2;
+  position: relative;
+  margin: 10px 2%;
 }
 .footstep-list .profile_down-create {
   width: 100px;
