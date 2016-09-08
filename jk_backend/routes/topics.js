@@ -48,7 +48,13 @@ router.get('/getTopics', function(req, res, next) {
 
             var log = u_id?"用户: " + u_id + " 访问了社区":'游客 访问了社区';
             var ipAddress = requestIP.getClientIp(req);
-            var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
+		console.log("headers: " +JSON.stringify(req.headers));
+        	console.log("X-Forwarded-For: " + req.headers['x-forwarded-for']);
+                console.log("connection remoteadress: " + req.connection.remoteAddress);
+console.log("socket remoteadress: " + req.socket.remoteAddress);
+console.log("X-Real-IP: " + req.headers['x-real-ip']);
+console.log("IP: " + req.ip);
+	    var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)",[log,ipAddress,date]);
             connection.query(insertLog, function(err, result){
                 console.log(insertLog);
                 if(err)

@@ -11,7 +11,7 @@
     <div>
     <div class="profile_middle">
         <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
-            {{userProfile[0].footsteps}}<br>足迹</div>
+            {{userProfile[0].footsteps}}<br>分享</div>
         <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
             {{userProfile[0].sticks}}<br>
             收藏
@@ -30,7 +30,7 @@
 
 <div style="min-height: 400px;">
     <div id="footstep-list" class="footstep-list" infinite-scroll="loadMore()" infinite-scroll-distance="1" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="true">
-        <div class="profile_down-create" ng-click="createBtn()">添加图片</div>
+        <div class="profile_down-create" ng-click="createBtn()">分享图片</div>
         <div id="footstep-list-div" class="footstep-list-div bgColorChange{{result.fs_id}}" ng-mouseleave="bgColorRemove(result.fs_id)" ng-mouseenter="bgColorChange(result.fs_id)" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic">
                 <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->
