@@ -49,8 +49,14 @@ function displayPosition(miles, top){
 
         ];
 
+        //align the same disntance between left and right
+        var balanceLength = ($('#footstep-list').width() - left*arrayAcount)/2;
+
         for(var h = 0; h < arrayAcount; h ++) {
-          topPxs.push({"topPx": top, "leftPx": left * h});
+
+
+
+          topPxs.push({"topPx": top, "leftPx": (left * h)+balanceLength});
         }
 
         var maxVal = 30;
@@ -73,7 +79,7 @@ function displayPosition(miles, top){
             }
           }
 
-          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 25;
+          topPxs[i].topPx = topPxs[i].topPx + $(element).height() + 35;
 
           if ((index + 1) % multiply == 0) {
             i = 0;
