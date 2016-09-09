@@ -46,7 +46,7 @@
         <div class="topic_content_reply" style="margin-top: 10px;">
 
             <form method="POST" ng-submit="submit()" >
-                <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+                <textarea name="editor1" id="editor1" rows="10" cols="80" ng-disabled="loginCheck()"></textarea>
                 <button class="topic_content_reply_btn" type="submit">回复</button>
                 <script>
                     // Replace the <textarea id="editor1"> with a CKEditor

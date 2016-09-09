@@ -90,6 +90,12 @@ var progressBar = function(){
     }
 };
 
+function loginCheck(){
+    if(!getCookie('u_id')){
+        window.location.href = '#/login';
+    }
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -127,6 +133,7 @@ var delPicture = function(url) {
 
 
 var uploadFile = function(file) {
+
     console.log('upload file');
     $('#myBar').width("1%");
     progress = 1;

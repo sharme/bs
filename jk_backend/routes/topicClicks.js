@@ -17,7 +17,13 @@ connection.connect();
 var date =new Date();
 
 router.post('/add', function(req, res, next) {
-    var addSQL = mysql.format("insert into jk_topics_clicks(tp_id,u_id,tp_ck_create_time) values (?,?,?)",[req.body.tp_id, req.body.u_id,date]);
+    
+    var u_id = 0000; //click by visitors
+    if (req.body.u_id){
+        u_id = req.body.u_id;
+    }
+    
+    var addSQL = mysql.format("insert into jk_topics_clicks(tp_id,u_id,tp_ck_create_time) values (?,?,?)",[req.body.tp_id, u_id,date]);
 
     connection.query(addSQL, function (err, result) {
         if(err) {

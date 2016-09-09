@@ -290,6 +290,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   $scope.stickBtn = function(id, u_id){
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
+      return;
     }
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
@@ -354,16 +355,13 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
   $scope.loginCheck = function(fs_id) {
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = '#/login';
-    } else {
       $window.location.href = "#/foot/" + fs_id;
-    }
   };
 
   $scope.likeBtn = function(id, u_id){
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
+      return;
     }
 
     $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
@@ -454,6 +452,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   $scope.likeBtn = function(id, u_id){
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
+      return;
     }
 
     $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
@@ -518,6 +517,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   $scope.delBtn = function(id,u_id) {
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
+      return;
     }
     
       var req = {
@@ -548,6 +548,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   $scope.stickBtn = function(id, u_id){
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
+      return;
     }
     $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id, u_id: $cookies.get('u_id')}})
         .success(function(data){
@@ -639,9 +640,20 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
     window.location.href = '#/foot'
   };
 
+  $scope.loginCheck = function(){
+    if($cookies.get('u_id') == undefined){
+      return true;
+    }
+  };
+
 
   $scope.followUpBtn = function(id) {
 
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+      return;
+    }
+    
     $http({method: 'GET', url: ipAddress + '/followers/getFollowCheck', params:{u_id:id, fl_fl_id:$cookies.get('u_id')}})
         .success(function(data){
           // console.log('follower check data: ' + (JSON.stringify(data.length)));
@@ -684,6 +696,11 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
   $scope.submit = function(){
 
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+      return;
+    }
+    
     $scope.addComment.fs_id = $scope.foot.fs_id;
     $scope.addComment.cm_content = CKEDITOR.instances.editor1.getData();
     var req = {
@@ -1124,6 +1141,11 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
   };
 
   $scope.user = angular.copy($scope.data);
+
+  $scope.goBack = function() {
+    $window.history.back();
+  }
+
 
 
 }]);
@@ -1625,9 +1647,9 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
   };
 
   $scope.topicLoginCheck = function(tp_id) {
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = '#/login';
-    } else {
+    // if($cookies.get('u_id') == undefined){
+    //   $window.location.href = '#/login';
+    // } else {
       var click = {
         tp_id: tp_id,
         u_id: $cookies.get('u_id')
@@ -1647,12 +1669,13 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
       }, function(error){
         console.log(error);
       });
-    }
+    // }
   };
 
   $scope.addLoginCheck = function() {
     if($cookies.get('u_id') == undefined){
       $window.location.href = '#/login';
+      return;
     } else {
       $window.location.href = "#/community/topics/addTopic";
     }
@@ -1702,6 +1725,11 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
   $scope.likeBtn = function(tp_id,u_id){
 
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+      return;
+    }
+
     var like = {
       tp_id: tp_id,
       u_id: $cookies.get('u_id')
@@ -1724,6 +1752,7 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
 
   $scope.editBtn = function(tp_id) {
+
     $window.location.href = '#/community/topics/editTopic?tp_id=' + tp_id;
     $window.location.reload();
   };
@@ -1731,6 +1760,11 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
   
 
   $scope.submit = function(){
+
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+      return;
+    }
 
     var replayData = {
       tp_id: $scope.topic.tp_id,
@@ -1759,6 +1793,12 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
   $scope.closeTopic = function() {
     $window.location.href = '#/community/index';
+  };
+
+  $scope.loginCheck = function(){
+    if($cookies.get('u_id') == undefined){
+      return true;
+    }
   };
   
 
