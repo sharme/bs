@@ -473,8 +473,7 @@ function sendSMS(res, to, ipAddress){
 
 
 router.get('/checkCode', function (req, res, next) {
-
-
+    
     var to = req.param('to');
     var scCode = req.param('scCode');
     var secret = req.param('secret');
@@ -488,7 +487,6 @@ router.get('/checkCode', function (req, res, next) {
             if(key === 'to' && item[key] === to){
                 toVal = true;
             }
-
             if(key === 'code' && item[key] == scCode){
                 scVal = true;
             }

@@ -155,74 +155,6 @@ function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
 
 }
 
-// buybsControllers.controller('loginCtrl', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
-//
-//   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
-//
-//   var cookieUser = $cookies.get("username");
-//   if(cookieUser) {
-//
-//     if($cookies.get('u_avatar')) {
-//       $("#login_username").html("<a href='#/profile?u_id="+ $cookies.get('u_id') +"'><div class='user-avatar'><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div></a>");
-//     } else {
-//       $("#login_username").html("<a href='#/profile?u_id=" + $cookies.get('u_id') + "'><div class='header-right-user-icon'></div></a>");
-//     }
-//     $(".header-right-logout").css("display", "block");
-//     $(".header-right-login").css("display", "none");
-//   } else {
-//     $(".header-right-logout").css("display", "none");
-//     $(".header-right-login").css("display", "block");
-//   }
-//
-//   $scope.data = {
-//     phoneNumber: '',
-//     password: ''
-//   };
-//
-//   $scope.submit = function(){
-//     var req = {
-//       method: 'POST',
-//       url: ipAddress + '/users/login',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       data: JSON.stringify($scope.user)
-//     };
-//
-//     $http(req).success(function(result){
-//       console.log("login: " + result);
-//
-//       if(result.length > 0) {
-//         if(result[0].u_avatar) {
-//           $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='user-avatar'><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div></a>");
-//           $cookies.put('u_avatar', result[0].u_avatar);
-//         } else {
-//           $("#login_username").html("<a href='#/profile?u_id=" + result[0].u_id + "'><div class='header-right-user-icon'></div></a>");
-//         }
-//
-//         $cookies.put('secret', result[0].secret);
-//         $cookies.put('username', result[0].u_name);
-//         $cookies.put('u_id', result[0].u_id);
-//         $(".header-right-logout").css("display", "block");
-//         $(".header-right-login").css("display", "none");
-//         $("#login-popup").css("display", "none");
-//         $(".login-cover").css("display", "none");
-//         $("body").css("overflow","auto");
-//         $window.location.href="#/foot";
-//       }else {
-//         $(".login-popup-form-invalid").css("display", "block");
-//         $scope.user = angular.copy($scope.data);
-//       }
-//     }, function(error){
-//       console.log(error);
-//     });
-//   };
-//
-//   $scope.user = angular.copy($scope.data);
-//
-//
-// }]);
-
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window','$css', function ($scope, $http, $cookies, $window, $css) {
 
@@ -662,7 +594,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
     
     $http({method: 'GET', url: ipAddress + '/followers/getFollowCheck', params:{u_id:id, fl_fl_id:$cookies.get('u_id')}})
         .success(function(data){
-          // console.log('follower check data: ' + (JSON.stringify(data.length)));
           if(data.length == 0){
             var reqData = {
               u_id: id,
@@ -677,11 +608,8 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
               data: reqData
             };
 
-            // console.log("follow up: " + JSON.stringify(reqData));
-
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eFollow,id,ePeople,id, true);
-              // console.log('added:' + result);
             }, function(error){
               console.log(error);
             });
@@ -743,6 +671,7 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
     $cookies.remove('username');
     $cookies.remove('u_id');
     $cookies.remove('u_avatar');
+    $cookies.remove('secret');
     $window.location.href = '#/foot';
     $window.location.reload();
   };
@@ -796,295 +725,205 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 }]);
 
-/* Register */
-buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
-  
-  dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register-m.css',$css);
+
+
+// Controllers for registered or account by email address.
+
+buybsControllers.controller('EmailRegistrationCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
+
+  dynamicallyCSS(mobileSize, '../css/account/email_registration.css','../css/account/email_registration.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
-  $scope.data = {
-    username: '',
-    phoneNumber: '',
-    password: '',
-    scCode: '',
+  $scope.user = {
+    u_name: '',
+    u_email: '',
+    u_pwd: '',
     agreement: "checked"
   };
 
   $scope.submit = function(){
+    
+    if($("#register-form-password").val().length < 8){
+      $('.validation_msg').html("密码长度不能小于8位数.");
+      return;
+    }
 
-    if ($('#register_form').valid()) {
-      if($('#register-form-phoneNumber').val().length != 11){
-        alert("请输入正确的手机号");
-        return;
-      }
-
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-
-      var postData = $scope.user;
-
-      $http(req).success(function (result) {
-        if (result === "00") {
-          alert("请输入正确验证码");
-          $window.location.reload();
-        } else if(result === '03'){
-          alert("验证码失效.");
-          $window.location.reload();
-        }else {
-
+      if ($('#register_form').valid()) {
+        var postData = $scope.user;
           var req = {
             method: 'POST',
-            url: ipAddress + '/users/create',
+            url: ipAddress + '/users/email',
             headers: {
               'Content-Type': 'application/json'
             },
             data: JSON.stringify(postData)
           };
-          // console.log("sign up: " + JSON.stringify(postData));
-
           $http(req).success(function (result) {
-            console.log('sign up:' + result);
             if(result.errno){
-              alert("注册失败, 请联系管理员.");
+              $(".validation_msg").html("注册失败, 请联系管理员.");
+            } else if(result.stage){
+              $(".validation_msg").html("邮箱不正确, 请填写正确的邮箱.");
             } else {
-              alert("注册成功, 进行登录");
-              $window.location.href = '#/login';
+              $('.validation_msg').html("发送成功, 请您查看邮箱并完成注册操作.  如果已完成验证, 点击这里 <a href='#/email_login' style='color: black;'>登录</a>");
             }
-
           }, function (error) {
             console.log(error);
           });
         }
-      }, function (error) {
-        console.log(error);
-      });
-    }
-
-    $scope.user = angular.copy($scope.data);
   };
-  $scope.user = angular.copy($scope.data);
-
-
-  $scope.sendVerifyCode = function() {
-
-      if ($('#register-form-phoneNumber').val().length == 11 && $('#register-form-password').val().length >= 8 && $('#register-form-username').val().length > 4 ) {
-
-        var req = {
-          method: 'GET',
-          url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        };
-        $http(req).success(function (result) {
-
-          if ("01" == result) {
-            $('.sendScCode').css("pointer-events", "none");
-            $scope.scCount = 60;
-            var scCodeBan = setInterval(function () {
-
-              $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
-              $scope.scCount--;
-
-              if ($scope.scCount == 0) {
-                clearInterval(scCodeBan);
-                $('.sendScCode').text("获取验证码");
-                $('.sendScCode').css("pointer-events", "");
-              }
-            }, 1000);
-            
-          } else if ("02" == result) {
-            alert("验证码发送频繁.")
-          } else if ("03" == result) {
-            alert("发送异常, 请联系管理员.");
-          } else {
-            alert("发送失败. 再试一次");
-          }
-
-        }, function (error) {
-          console.log(error);
-        });
-      } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
-        alert("请输入正确的手机号码");
-      } else if ($('#register-form-password').val().length < 8){
-        alert("密码长度不能低于8位");
-      } else if ($('#register-form-username').val().length < 4){
-        alert("用户名长度太短");
-      }
-    }
+  
 
 }]);
 
-/* Recovery */
-buybsControllers.controller('RecoveryEmailCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
+buybsControllers.controller('EmailLoginCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
 
-  dynamicallyCSS(mobileSize, '../css/account/recovery.css','../css/account/recovery.css',$css);
+  dynamicallyCSS(mobileSize, '../css/account/email_registration.css','../css/account/email_registration.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $scope.user = {
-    phoneNumber: '',
-    scCode: ''
+    u_email: '',
+    u_pwd: ''
   };
 
   $scope.submit = function(){
-
-      if($scope.user.phoneNumber.length != 11){
-        alert("请输入正确的手机号");
-        return;
-      }
-
+    if ($('#email_login_form').valid()) {
+      var postData = $scope.user;
       var req = {
-        method: 'GET',
-        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode + "&secret=true",
+        method: 'POST',
+        url: ipAddress + '/users/email_login',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        data: JSON.stringify(postData)
       };
-
       $http(req).success(function (result) {
-        if (result === "00") {
-          alert("请输入正确验证码");
-          $window.location.reload();
-        } else if(result === '03'){
-          alert("验证码失效.");
-          $window.location.reload();
+        console.log('sign up:' + result);
+        if(result.errno == 1003){
+          $(".validation_msg").html("您的邮箱还没有激活, 请您去邮箱完成激活操作.");
+        } else if(result.errno){
+          $(".validation_msg").html("登录失败, 请联系管理员.");
         }else {
-          $window.location.href = "#/reset_pwd?u_phone_num=" + $scope.user.phoneNumber+"&secret=" + result;
+          if(result.length > 0) {
+            console.log(JSON.stringify(result));
+            if (result[0].u_avatar) {
+              $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='" + result[0].u_name + "' class='user-avatar-img' src='" + result[0].u_avatar + "'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>" + result[0].u_name + "</a>");
+              $cookies.put('u_avatar', result[0].u_avatar);
+            } else {
+              $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='" + result[0].u_name + "' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>" + result[0].u_name + "</a>");
+            }
+            $cookies.put('secret', result[0].secret);
+            $cookies.put('username', result[0].u_name);
+            $cookies.put('u_id', result[0].u_id);
+            $(".header-right-logout").css("display", "block");
+            $(".header-right-login").css("display", "none");
+            $("#login-popup").css("display", "none");
+            $(".login-cover").css("display", "none");
+            $("body").css("overflow", "auto");
+            $window.location.href = "#/foot";
+            $window.location.reload();
+          } else {
+            $(".validation_msg").html("用户名或密码不正确, 请正确输入.");
+          }
+          
         }
       }, function (error) {
         console.log(error);
       });
-
+    }
   };
 
-  $scope.sendVerifyCode = function() {
-
-    if ($('.login-popup-form-phoneNumber').val().length == 11 ) {
-
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      $http(req).success(function (result) {
-
-        if ("01" == result) {
-          $('.sendScCode').css("pointer-events", "none");
-          $scope.scCount = 60;
-          var scCodeBan = setInterval(function () {
-
-            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
-            $scope.scCount--;
-
-            if ($scope.scCount == 0) {
-              clearInterval(scCodeBan);
-              $('.sendScCode').text("获取验证码");
-              $('.sendScCode').css("pointer-events", "");
-            }
-          }, 1000);
-
-        } else if ("02" == result) {
-          alert("验证码发送频繁.")
-        } else if ("03" == result) {
-          alert("发送异常, 请联系管理员.");
-        } else {
-          alert("发送失败. 再试一次");
-        }
-
-      }, function (error) {
-        console.log(error);
-      });
-    } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
-      alert("请输入正确的手机号码");
-    }
-  }
 
 }]);
 
-/* Reset */
-buybsControllers.controller('ResetPwdCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
+buybsControllers.controller('EmailRecoveryPwdCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
 
-  dynamicallyCSS(mobileSize, '../css/account/reset.css','../css/account/reset.css',$css);
+  dynamicallyCSS(mobileSize, '../css/account/email_registration.css','../css/account/email_registration.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $scope.user = {
-    phoneNumber: $routeParams.u_phone_num,
-    secret: $routeParams.secret,
-    password: '',
-    rePassword: ''
+    u_email: ''
   };
 
   $scope.submit = function(){
-    if($scope.user.password.length < 8){
-      $(".reset-popup-form-invalid").css("display", "none");
-      $(".reset-popup-pwd-invalid").css("display", "block");
-      return;
+    if ($('#register_form').valid()) {
+      var postData = $scope.user;
+      var req = {
+        method: 'POST',
+        url: ipAddress + '/users/email_recovery',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(postData)
+      };
+      $http(req).success(function (result) {
+        if(result.errno){
+          $('.validation_msg').html("操作失败, 请联系管理员.");
+        } else if(result.stage){
+          $('.validation_msg').html("邮箱不正确, 请填写正确的邮箱.");
+        }else {
+          $(".validation_msg").html("重置密码邮件已经发送至您的邮箱, 请按操作完成密码设置.");
+          $('#register-form-submit').css('display','none');
+        }
+      }, function (error) {
+        console.log(error);
+      });
     }
-
-    if($scope.user.password != $scope.user.rePassword){
-      $(".reset-popup-pwd-invalid").css("display", "none");
-      $(".reset-popup-form-invalid").css("display", "block");
-      return;
-    }
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/users/updatePwd',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.user)
-    };
-
-    $http(req).success(function(result){
-
-      if(result == '01') {
-        alert("非法请求, 请稍后尝试");
-      } else {
-        $window.location.href = '#/reset_result';
-      }
-    }, function(error){
-
-      console.log(error);
-    });
   };
 
 
 }]);
 
-/* Reset */
-buybsControllers.controller('ResetResultCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
+buybsControllers.controller('EmailResetCtrl', ['$scope', '$cookies', '$window','$http','$css', '$routeParams', function($scope, $cookies, $window,$http, $css, $routeParams){
 
-  dynamicallyCSS(mobileSize, '../css/account/reset.css','../css/account/reset.css',$css);
+  dynamicallyCSS(mobileSize, '../css/account/email_registration.css','../css/account/email_registration.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
-  $scope.back = 10;
+  $scope.user = {
+    u_email: $routeParams.u_email,
+    u_pwd: '',
+    secret: $routeParams.secret
+  };
 
-  var resetResult = setInterval(function () {
+  $scope.submit = function(){
 
-    $('.pwd_result').text(" 密码修改完成, (" + $scope.back + "s) 返回到主页.");
-    $scope.back--;
-
-    if ($scope.back == 0) {
-      clearInterval(resetResult);
-     $window.location.href = '#/login'
+    if($('#register-form-password').val().length < 8) {
+      $('.validation_msg').html("密码不能低于8位数.");
+      return;
     }
-  }, 1000);
+
+    if ($('#register_form').valid()) {
+      var postData = $scope.user;
+      var req = {
+        method: 'POST',
+        url: ipAddress + '/users/email_reset',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(postData)
+      };
+      $http(req).success(function (result) {
+        if(result.errno){
+          $('.validation_msg').html("操作失败, 请联系管理员.");
+          $('#register-form-submit').css('display','none');
+        } else {
+          $('#register-form-submit').css('display','none');
+          $('.validation_msg').html("修改成功. 点击这里<a href='#/email_login' style='color: black;'> 登录</a>");
+        }
+      }, function (error) {
+        console.log(error);
+      });
+    }
+  };
 
 
 }]);
 
-/* Login */
+
+// Controllers for registered or account by cell phone.
+
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies','$css', function($scope, $http, $window, $cookies,$css) {
 
-  dynamicallyCSS(mobileSize,'../css/login/login.css','../css/login/login.css',$css);
+  dynamicallyCSS(mobileSize,'../css/account/login.css','../css/account/login.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   var cookieUser = $cookies.get("username");
@@ -1156,7 +995,296 @@ buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$
 
 }]);
 
-/* mange user's info */
+buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
+
+  dynamicallyCSS(mobileSize, '../css/register/register.css','../css/register/register-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.user = {
+    username: '',
+    phoneNumber: '',
+    password: '',
+    scCode: '',
+    agreement: "checked"
+  };
+
+  $scope.submit = function(){
+
+    if ($('#register_form').valid()) {
+      if($('#register-form-phoneNumber').val().length != 11){
+        $('.validation_msg').html("请输入正确的手机号");
+        return;
+      }
+
+      if($('#register-form-password').val().length < 8) {
+        $('.validation_msg').html("密码长度不能低于8位");
+        return;
+      }
+
+      if($scope.scCode) {
+        $('.validation_msg').html("验证码不能为空");
+        return;
+      }
+
+
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      var postData = $scope.user;
+      $http(req).success(function (result) {
+        if (result === "00") {
+          $('.validation_msg').html("请输入正确验证码");
+        } else if(result === '03'){
+          $('.validation_msg').html("验证码失效.");
+        }else {
+
+          var req = {
+            method: 'POST',
+            url: ipAddress + '/users/create',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(postData)
+          };
+
+          $http(req).success(function (result) {
+            if(result.errno){
+              $('.validation_msg').html("注册失败, 请联系管理员.");
+            } else {
+              alert("注册成功, 进行登录");
+              $window.location.href = '#/login';
+            }
+
+          }, function (error) {
+            console.log(error);
+          });
+        }
+      }, function (error) {
+        console.log(error);
+      });
+    }
+  };
+
+
+  $scope.sendVerifyCode = function() {
+
+    if ($('#register-form-phoneNumber').val().length == 11 && $('#register-form-password').val().length >= 8 && $('#register-form-username').val().length > 4 ) {
+
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      $http(req).success(function (result) {
+
+        if ("01" == result) {
+          $('.sendScCode').css("pointer-events", "none");
+          $scope.scCount = 60;
+          var scCodeBan = setInterval(function () {
+            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
+            $scope.scCount--;
+
+            if ($scope.scCount == 0) {
+              clearInterval(scCodeBan);
+              $('.sendScCode').text("获取验证码");
+              $('.sendScCode').css("pointer-events", "");
+            }
+          }, 1000);
+
+        } else if ("02" == result) {
+          alert("验证码发送频繁.")
+        } else if ("03" == result) {
+          alert("发送异常, 请联系管理员.");
+        } else {
+          alert("发送失败. 再试一次");
+        }
+
+      }, function (error) {
+        console.log(error);
+      });
+    } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
+      $('.validation_msg').html("请输入正确的手机号码");
+    } else if ($('#register-form-password').val().length < 8){
+      $('.validation_msg').html("密码长度不能低于8位");
+    } else if ($('#register-form-username').val().length < 4){
+      $('.validation_msg').html("用户名长度太短");
+    }
+  }
+
+}]);
+
+buybsControllers.controller('RecoveryPwdCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
+
+  dynamicallyCSS(mobileSize, '../css/account/register.css','../css/account/register.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.user = {
+    phoneNumber: '',
+    scCode: ''
+  };
+
+  $scope.submit = function(){
+
+      if($scope.user.phoneNumber.length != 11){
+        $('.validation_msg').html("请输入正确的手机号");
+        return;
+      }
+
+      if(!$scope.user.scCode){
+      $('.validation_msg').html("验证码不能为空");
+      return;
+      }
+
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode + "&secret=true",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      $http(req).success(function (result) {
+        if (result === "00") {
+          alert("请输入正确验证码");
+          $window.location.reload();
+        } else if(result === '03'){
+          alert("验证码失效.");
+          $window.location.reload();
+        }else {
+          $window.location.href = "#/reset_pwd?u_phone_num=" + $scope.user.phoneNumber+"&secret=" + result;
+        }
+      }, function (error) {
+        console.log(error);
+      });
+
+  };
+
+  $scope.sendVerifyCode = function() {
+
+    if ($('#register-form-phoneNumber').val().length == 11 ) {
+
+      var req = {
+        method: 'GET',
+        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      $http(req).success(function (result) {
+
+        if ("01" == result) {
+          $('.sendScCode').css("pointer-events", "none");
+          $scope.scCount = 60;
+          var scCodeBan = setInterval(function () {
+
+            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
+            $scope.scCount--;
+
+            if ($scope.scCount == 0) {
+              clearInterval(scCodeBan);
+              $('.sendScCode').text("获取验证码");
+              $('.sendScCode').css("pointer-events", "");
+            }
+          }, 1000);
+
+        } else if ("02" == result) {
+          alert("验证码发送频繁.")
+        } else if ("03" == result) {
+          alert("发送异常, 请联系管理员.");
+        } else {
+          alert("发送失败. 再试一次");
+        }
+
+      }, function (error) {
+        console.log(error);
+      });
+    } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
+      alert("请输入正确的手机号码");
+    }
+  }
+
+}]);
+
+buybsControllers.controller('ResetPwdCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
+
+  dynamicallyCSS(mobileSize, '../css/account/reset.css','../css/account/reset.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.user = {
+    phoneNumber: $routeParams.u_phone_num,
+    secret: $routeParams.secret,
+    password: '',
+    rePassword: ''
+  };
+
+  $scope.submit = function(){
+    if($scope.user.password.length < 8){
+      $(".reset-popup-form-invalid").css("display", "none");
+      $(".reset-popup-pwd-invalid").css("display", "block");
+      return;
+    }
+
+    if($scope.user.password != $scope.user.rePassword){
+      $(".reset-popup-pwd-invalid").css("display", "none");
+      $(".reset-popup-form-invalid").css("display", "block");
+      return;
+    }
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/users/updatePwd',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.user)
+    };
+
+    $http(req).success(function(result){
+      if(result == '01') {
+        alert("非法请求, 请稍后尝试");
+      } else {
+        $window.location.href = '#/reset_result';
+      }
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
+}]);
+
+buybsControllers.controller('ResetResultCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
+
+  dynamicallyCSS(mobileSize, '../css/account/reset.css','../css/account/reset.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.back = 10;
+
+  var resetResult = setInterval(function () {
+    $('.pwd_result').text(" 密码修改完成, (" + $scope.back + "s) 跳转到登录页面.");
+    $scope.back--;
+    if ($scope.back == 0) {
+      clearInterval(resetResult);
+     $window.location.href = '#/login'
+    }
+  }, 1000);
+
+
+}]);
+
+
+
+
+// Controllers for account profile management
+
+
 buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','$cookies','$routeParams','$css', function($scope, $http, $window, $cookies, $routeParams, $css) {
 
   dynamicallyCSS(mobileSize,'../css/profile/profile.css','../css/profile/profile-m.css',$css);
@@ -1196,7 +1324,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
   
-  $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id')}})
+  $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id'),secret:$cookies.get('secret')}})
       .success(function(data){
         console.log('user: ' + data);
         $scope.user = data[0];
@@ -1204,9 +1332,8 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
         $scope.error = error;
       });
   
-  $http({method: 'GET', url: ipAddress + '/users/getUserDetail', params:{u_id: $routeParams.u_id}})
+  $http({method: 'GET', url: ipAddress + '/users/getUserDetail', params:{u_id: $routeParams.u_id,secret:$cookies.get('secret')}})
       .success(function(data){
-        // console.log(JSON.stringify(data));
         $scope.userProfile = data;
       }, function(error){
         $scope.error = error;
@@ -1329,7 +1456,6 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
 }]);
 
-/* Message to site owner */
 buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize,'../css/footstep/add.css','../css/footstep/add-m.css',$css);
@@ -1378,8 +1504,12 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     };
 
     $http(req).success(function(result){
-      alert("恭喜, 创建成功.");
-      $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
+      if(result.errno){
+        alert("创建失败, 请稍后再试.");
+      } else {
+        alert("恭喜, 创建成功.");
+        $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
+      }
     }, function(error){
       console.log(error);
     });
@@ -1435,7 +1565,6 @@ var progress = 1;
 
 }]);
 
-/* Message to site owner */
 buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
   dynamicallyCSS(mobileSize,'../css/profile/edit.css','../css/profile/edit-m.css',$css);
@@ -1445,22 +1574,21 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
   };
 
-  $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id')}})
+  $http({method: 'GET', url: ipAddress + '/users/getUserById', params:{u_id:$cookies.get('u_id'),secret:$cookies.get('secret')}})
       .success(function(data){
-        // console.log('user: ' + data);
         $scope.user = data[0];
       }, function(error){
         $scope.error = error;
       });
 
   $scope.updateSubmit = function() {
-    // console.log("userData: " + JSON.stringify($scope.user));
     var reqData = {
       u_name: $scope.user.u_name,
       u_avatar: $scope.user.u_avatar,
       u_link: $scope.user.u_link,
       u_slogan: $scope.user.u_slogan,
-      u_id: $scope.user.u_id
+      u_id: $scope.user.u_id,
+      secret: $cookies.get('secret')
     };
 
     var req = {
@@ -1473,8 +1601,11 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
     };
 
     $http(req).success(function(result){
-      console.log("添加成功");
-     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
+      if(result.errno){
+        alert("更新失败, 请稍后再试.");
+      } else {
+        $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
+      }
     }, function(error){
       console.log(error);
     });
@@ -1497,15 +1628,15 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
       success: function (res) {
         console.log('uploaded, URL: ' + res);
         $('.profile_top_info-avatar-div_img').attr('src', res);
-        // $('.profile_top_info-avatar-div_img').css("background-image", 'url(' + res + ')');
         $scope.user.u_avatar = res;
-        // $window.location.reload();
-        // $(file).css("display", "none");
       }
     });
   };
 
 }]);
+
+
+
 
 /* Message to site owner */
 buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){

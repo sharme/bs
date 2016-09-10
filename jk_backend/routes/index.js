@@ -47,8 +47,34 @@ router.get('/logs', function(req, res, next) {
   } else {
     res.render('error');
   }
-  
+
 });
+
+
+
+router.get('/email', function (req, res, next) {
+
+  var u_email = req.param('u_email');
+
+
+    res.mailer.send('email', {
+      to: u_email,
+      subject: '欢迎加入有图', // REQUIRED.
+      link: 'http://180.76.152.112/email/verify?code=qweuoqrwqqe234s2342',
+      otherProperty: 'Other Property'
+    }, function (err) {
+      if (err) {
+        // handle error
+        console.log(err);
+        //There was an error sending the email
+        res.send(01);
+        return;
+      }
+      res.send(00);
+    });
+});
+
+
 
 
 

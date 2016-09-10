@@ -27,15 +27,24 @@
                     <div class="g-div">
                         <label>验证码</label>
                         <input type="text" ng-model="user.scCode" name="scCode" style="width: 50%;" id="register-form-scCode" />
-                        <!--<a href="javascript:;" class="sendScCode" ng-click="sendVerifyCode()">获取验证码</a>-->
                         <button type="button" class="sendScCode" ng-click="sendVerifyCode()">获取验证码</button>
                     </div>
                     <div class="g-div">
                         <input type="checkbox">
                         <label>我同意有图网阐明的<a>所有条款</a></label>
                     </div>
+                    <div class="g-div validation_msg" style="color:red;">
+
+                    </div>
                     <div class="g-div">
                         <input type="submit" id="register-form-submit" value="注册"/>
+                    </div>
+
+                    <div>
+                        <p><hr></p>
+                        <p>
+                            <div class="email_registration"><a href="#/email_registration">邮箱注册</a></div>
+                        </p>
                     </div>
                 </form>
             </div>

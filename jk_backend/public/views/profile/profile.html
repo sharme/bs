@@ -11,17 +11,17 @@
     <div>
     <div class="profile_middle">
         <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
-            {{userProfile[0].footsteps}}<br>分享</div>
+            {{userProfile[0].footsteps?userProfile[0].footsteps:0}}<br>分享</div>
         <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
-            {{userProfile[0].sticks}}<br>
+            {{userProfile[0].sticks?userProfile[0].sticks:0}}<br>
             收藏
         </div>
         <div class="profile_middle-point" ng-click="profileFollows(userProfile[0].u_id)">
-            {{userProfile[0].follows}}<br>
+            {{userProfile[0].follows?userProfile[0].follows:0}}<br>
             关注
         </div>
         <div class="profile_middle-point" ng-click="profileFans(userProfile[0].u_id)">
-            {{userProfile[0].fans}}<br>
+            {{userProfile[0].fans?userProfile[0].fans:0}}<br>
             粉丝
         </div>
     </div>

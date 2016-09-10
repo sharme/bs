@@ -26,7 +26,7 @@ router.post('/add', function(req, res, next) {
 
     connection.query(addSQL, function (err, result) {
         if(err) {
-            res.send("Error: " + err);
+            res.send(err);
         } else {
             res.send(result);
         }

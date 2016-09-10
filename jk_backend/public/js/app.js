@@ -27,10 +27,6 @@ buybs.config(['$routeProvider',
         templateUrl: 'views/homepage.html',
         controller: 'FootstepsListCtrl'
       }).
-        when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginController'
-    }).
         when('/foot/:footId',{
         templateUrl: 'views/footDetail.html',
         controller: 'FootDetailCtrl'
@@ -38,13 +34,17 @@ buybs.config(['$routeProvider',
         when('/signUpCompleted', {
         templateUrl: 'views/register/complete.html'
     }).
+        when('/login', {
+        templateUrl: 'views/account/login.html',
+        controller: 'LoginController'
+    }).
         when('/register', {
         templateUrl: 'views/register/register.html',
         controller: 'RegisterCtrl'
     }).
-        when('/recovery_email', {
-        templateUrl: 'views/account/recovery_email.html',
-        controller: 'RecoveryEmailCtrl'
+        when('/recovery_pwd', {
+        templateUrl: 'views/account/recovery_pwd.html',
+        controller: 'RecoveryPwdCtrl'
     }).
         when('/reset_pwd', {
         templateUrl: 'views/account/reset_pwd.html',
@@ -53,6 +53,22 @@ buybs.config(['$routeProvider',
         when('/reset_result', {
         templateUrl: 'views/account/reset_result.html',
         controller: 'ResetResultCtrl'
+    }).
+        when('/email_registration', {
+        templateUrl: 'views/account/email_registration.html',
+        controller: 'EmailRegistrationCtrl'
+    }).
+        when('/email_login', {
+        templateUrl: 'views/account/email_login.html',
+        controller: 'EmailLoginCtrl'
+    }).
+        when('/email_recovery_pwd', {
+        templateUrl: 'views/account/email_recovery_pwd.html',
+        controller: 'EmailRecoveryPwdCtrl'
+    }).
+        when('/email_reset', {
+        templateUrl: 'views/account/email_reset.html',
+        controller: 'EmailResetCtrl'
     }).
         when('/profile',{
         templateUrl: 'views/profile/profile.html',

@@ -7,8 +7,8 @@ var auth = module.exports = {
     encrypt: function(phone, sms, secret) {
         return auth.md5(phone+sms+secret)
     },
-    getSecret: function(u_id) {
-      return auth.md5(u_id + auth.secret)  
+    getSecret: function(key) {
+      return auth.md5(key + auth.secret)
     },
     addList: function(code) {
         auth.authList.push(code);
