@@ -155,6 +155,7 @@ function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
 
 }
 
+
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window','$css', function ($scope, $http, $cookies, $window, $css) {
 
@@ -658,72 +659,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   
 }]);
 
-/* header */
-buybsControllers.controller('headerController', ['$scope', '$cookies', '$window','$http', function($scope, $cookies, $window,$http){
-  
-  $scope.homepageBtn = function() {
-    $window.location = '#/foot';
-    $window.location.reload();
-  };
-  
-  $scope.logout = function(){
-    console.log("remove cookies");
-    $cookies.remove('username');
-    $cookies.remove('u_id');
-    $cookies.remove('u_avatar');
-    $cookies.remove('secret');
-    $window.location.href = '#/foot';
-    $window.location.reload();
-  };
 
-  // alert('1');
-  $http({method: 'GET', url: ipAddress + '/notifications/getNotifications', params:{u_id: $cookies.get('u_id')}})
-      .success(function(data){
-        $scope.notifications = data;
-        var newmsgShow = false;
-        $scope.notifications.forEach(function (item, index) {
-          // alert(item);
-          for(var key in item) {
-            // alert(key + " ; " + item[key]);
-            if(key === 'nf_status' && item[key] == 0){
-              newmsgShow = true;
-              return;
-            }
-          }
-        });
-        // alert(newmsgShow);
-        if(newmsgShow) {
-          $('.newmsg').css("display","block");
-        }else{
-          $('.newmsg').css("display","none");
-        }
-      },function(error){
-        $scope.error = error;
-      });
-
-  $scope.linkTo = function(type, c_id, nf_id) {
-
-    $http({method: 'POST', url: ipAddress + '/notifications/consume', params: {nf_id: nf_id}})
-        .success(function(data){
-          if(type === '足迹'){
-            $window.location.href = '#/foot/' + c_id;
-          } else {
-            $window.location.href = '#/community/topics/' + c_id;
-          }
-        }, function(error){
-          $scope.error = error;
-        });
-
-  };
-  
-
-}]);
-
-/* welcome */
-buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
-  dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome.css',$css);
-  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
-}]);
 
 
 
@@ -745,6 +681,11 @@ buybsControllers.controller('EmailRegistrationCtrl', ['$scope', '$cookies', '$wi
     
     if($("#register-form-password").val().length < 8){
       $('.validation_msg').html("密码长度不能小于8位数.");
+      return;
+    }
+
+    if($("#register-form-username").val().length > 15) {
+      $('.validation_msg').html("用户名长度不能大于16位数.");
       return;
     }
 
@@ -919,7 +860,9 @@ buybsControllers.controller('EmailResetCtrl', ['$scope', '$cookies', '$window','
 }]);
 
 
-// Controllers for registered or account by cell phone.
+
+// Controllers for account management by cell phone
+
 
 buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies','$css', function($scope, $http, $window, $cookies,$css) {
 
@@ -1638,56 +1581,10 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
 
 
-/* Message to site owner */
-buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
-  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
-
-  $scope.message = {
-    u_id: $cookies.get('u_id'),
-    m_content: ''
-  };
-
-  $scope.submit = function(){
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/messages/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.message)
-    };
-
-    // console.log("message to Station house : " + JSON.stringify($scope.message));
-
-    $http(req).success(function(result){
-      // console.log('message sent:' + result);
-      alert("留言发送成功.");
-      $window.history.back();
-    }, function(error){
-      console.log(error);
-    });
-  };
+// Controllers for community.  
 
 
-  $scope.closeTopic = function() {
-    $window.history.back();
-  };
-  
-
-}]);
-
-/* Message to site owner */
-buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
-
-  dynamicallyCSS(mobileSize,'../css/about/about.css','../css/about/about-m.css',$css);
-  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
-
-
-}]);
-
-/* community */
 buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$sce', function($scope, $cookies, $window, $http, $css, $sce){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css', $css);
@@ -1824,7 +1721,6 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
 
 }]);
 
-//Topic info
 buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css,$sce){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
@@ -1941,7 +1837,6 @@ buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$htt
 
 }]);
 
-
 buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams, $css){
 
   dynamicallyCSS(mobileSize, '../css/community/community.css','../css/community/community-m.css',$css);
@@ -2010,7 +1905,6 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
   };
 
 }]);
-
 
 buybsControllers.controller('editTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css, $sce){
 
@@ -2091,6 +1985,59 @@ buybsControllers.controller('editTopicCtrl', ['$scope', '$cookies', '$window', '
 }]);
 
 
+
+
+
+// Controller for other features.
+
+
+buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
+
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.message = {
+    u_id: $cookies.get('u_id'),
+    m_content: ''
+  };
+
+  $scope.submit = function(){
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/messages/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.message)
+    };
+
+    // console.log("message to Station house : " + JSON.stringify($scope.message));
+
+    $http(req).success(function(result){
+      // console.log('message sent:' + result);
+      alert("留言发送成功.");
+      $window.history.back();
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
+  $scope.closeTopic = function() {
+    $window.history.back();
+  };
+
+
+}]);
+
+buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
+
+  dynamicallyCSS(mobileSize,'../css/about/about.css','../css/about/about-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+
+}]);
+
 buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
 
   dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/tuyou/tuyou.css',$css);
@@ -2163,6 +2110,70 @@ buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$htt
 
 }]);
 
+buybsControllers.controller('headerController', ['$scope', '$cookies', '$window','$http', function($scope, $cookies, $window,$http){
+
+  $scope.homepageBtn = function() {
+    $window.location = '#/foot';
+    $window.location.reload();
+  };
+
+  $scope.logout = function(){
+    console.log("remove cookies");
+    $cookies.remove('username');
+    $cookies.remove('u_id');
+    $cookies.remove('u_avatar');
+    $cookies.remove('secret');
+    $window.location.href = '#/foot';
+    $window.location.reload();
+  };
+
+  // alert('1');
+  $http({method: 'GET', url: ipAddress + '/notifications/getNotifications', params:{u_id: $cookies.get('u_id')}})
+      .success(function(data){
+        $scope.notifications = data;
+        var newmsgShow = false;
+        $scope.notifications.forEach(function (item, index) {
+          // alert(item);
+          for(var key in item) {
+            // alert(key + " ; " + item[key]);
+            if(key === 'nf_status' && item[key] == 0){
+              newmsgShow = true;
+              return;
+            }
+          }
+        });
+        // alert(newmsgShow);
+        if(newmsgShow) {
+          $('.newmsg').css("display","block");
+        }else{
+          $('.newmsg').css("display","none");
+        }
+      },function(error){
+        $scope.error = error;
+      });
+
+  $scope.linkTo = function(type, c_id, nf_id) {
+
+    $http({method: 'POST', url: ipAddress + '/notifications/consume', params: {nf_id: nf_id}})
+        .success(function(data){
+          if(type === '足迹'){
+            $window.location.href = '#/foot/' + c_id;
+          } else {
+            $window.location.href = '#/community/topics/' + c_id;
+          }
+        }, function(error){
+          $scope.error = error;
+        });
+
+  };
+
+
+}]);
+
+buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
+  dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+}]);
 
 
 

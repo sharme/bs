@@ -3,6 +3,7 @@ var router = express.Router();
 var auth = require('./auth.js');
 var requestIp = require('request-ip');
 var mysql = require('mysql');
+var helper = require('./helper.js');
 var bodyParser = require('body-parser');
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
@@ -143,6 +144,12 @@ router.post('/create', urlencodeParser, function(req, res, next) {
     if(err) {
       res.send(err);
     } else {
+
+      connection.query("select u_id from jk_users where u_phone_num='"+ req.body.phoneNumber + "';", function(err, result){
+        if(result.length > 0)
+          helper.initializationPicFolder(result[0].u_id);
+      });
+
       res.send(result);
     }
   });
@@ -225,6 +232,12 @@ router.post('/email', function (req, res, next) {
           if (err) {
             res.send(err);
           } else {
+
+            connection.query("select u_id from jk_users where u_email='"+ req.body.u_email + "';", function(err, result){
+              if(result.length > 0)
+                helper.initializationPicFolder(result[0].u_id);
+            });
+
             res.send(result);
           }
         });
