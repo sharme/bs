@@ -6,31 +6,35 @@
         </div>
     </div>
 
-
+    <div>
+        <div class="profile_middle">
+            <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
+                {{userProfile[0].footsteps?userProfile[0].footsteps:0}}<br>分享</div>
+            <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
+                {{userProfile[0].sticks?userProfile[0].sticks:0}}<br>
+                收藏
+            </div>
+            <div class="profile_middle-point" ng-click="profileFollows(userProfile[0].u_id)">
+                {{userProfile[0].follows?userProfile[0].follows:0}}<br>
+                关注
+            </div>
+            <div class="profile_middle-point" ng-click="profileFans(userProfile[0].u_id)">
+                {{userProfile[0].fans?userProfile[0].fans:0}}<br>
+                粉丝
+            </div>
+        </div>
+    </div>
 
     <div>
-    <div class="profile_middle">
-        <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
-            {{userProfile[0].footsteps?userProfile[0].footsteps:0}}<br>分享</div>
-        <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
-            {{userProfile[0].sticks?userProfile[0].sticks:0}}<br>
-            收藏
-        </div>
-        <div class="profile_middle-point" ng-click="profileFollows(userProfile[0].u_id)">
-            {{userProfile[0].follows?userProfile[0].follows:0}}<br>
-            关注
-        </div>
-        <div class="profile_middle-point" ng-click="profileFans(userProfile[0].u_id)">
-            {{userProfile[0].fans?userProfile[0].fans:0}}<br>
-            粉丝
-        </div>
-    </div>
 
     </div>
+
+
+
 
 <div style="min-height: 400px;">
     <div id="footstep-list" class="footstep-list" infinite-scroll="loadMore()" infinite-scroll-distance="1" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="true">
-        <div class="profile_down-create" ng-click="createBtn()">分享图片</div>
+        <div class="profile_down-create" ng-click="createBtn()" ng-if="isMobile()">分享图片</div>
         <div id="footstep-list-div" class="footstep-list-div bgColorChange{{result.fs_id}}" ng-mouseleave="bgColorRemove(result.fs_id)" ng-mouseenter="bgColorChange(result.fs_id)" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic">
                 <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->

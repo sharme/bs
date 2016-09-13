@@ -47,7 +47,7 @@ router.get('/search', function(req, res, next) {
 });
 
 router.get('/topUsers', function(req, res, next) {
-    var searchSQL = "select count(u_id), (select u_avatar from jk_users as jku where jku.u_id=jktc.u_id) as u_avatar,(select u_name from jk_users as jku where jku.u_id=jktc.u_id) as u_name from jk_topics_clicks as jktc group by u_id asc limit 5;";
+    var searchSQL = "select count(u_id), (select u_avatar from jk_users as jku where jku.u_id=jktc.u_id) as u_avatar,(select u_name from jk_users as jku where jku.u_id=jktc.u_id) as u_name from jk_topics_clicks as jktc group by u_id asc limit 8;";
 
     connection.query(searchSQL, function (err, result) {
         if(err) {

@@ -32,11 +32,11 @@ button {
 #header {
   height: 60px;
   padding: 15px 0px 0px 20px;
-  background-color: white;
+  background-color: #43c17e;
   width: 100%;
 }
 #header .header-site {
-  color: gray;
+  color: white;
   float: left;
   font-size: 24px;
 }
@@ -45,7 +45,7 @@ button {
   float: left;
   list-style-type: none;
   font-size: 16px;
-  color: gray;
+  color: white;
 }
 #header .header-right {
   float: right;

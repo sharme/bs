@@ -174,6 +174,7 @@ router.get('/getFootstepsDetail', function (req, res, next) {
        "(select count(*) from jk_sticks as jks where jks.fs_id = jkf.fs_id) as sticks," +
        "(select count(*) from jk_likes as jkl where jkl.fs_id = jkf.fs_id) as likes," +
        "(select u_name from jk_users as jku where jku.u_id = jkf.u_id) as u_name," +
+           "(select u_avatar from jk_users as jku where jku.u_id = jkf.u_id) as u_avatar," +
        "(select u_slogan from jk_users as jku where jku.u_id = jkf.u_id) as u_slogan, fs_smallImg, fs_bigImg from jk_footsteps as jkf where jkf.fs_id = ?", [req.param('fs_id')]);
 
     connection.query(criteriaSQL, function (err, result) {

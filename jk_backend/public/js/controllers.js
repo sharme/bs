@@ -162,7 +162,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   dynamicallyCSS(mobileSize,'../css/home/footstep.css', '../css/home/footstep-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 12, u_id: $cookies.get('u_id')}})
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 20, u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.footsteps = data;
         displayPosition(500,20);
@@ -276,7 +276,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id, false);
-              $(".btnStick" + id).css("background-color","darkgrey");
+              $(".btnStick" + id).css("background-color","#43c17e");
 
               //GET AND REFRESH STICK NUMBER
               $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id}})
@@ -346,7 +346,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
             };
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id, false);
-              $(".btnLike" + id).css("background-color","darkgrey");
+              $(".btnLike" + id).css("background-color","#43c17e");
 
               //GET AND REFRESH STICK NUMBER
               $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id}})
@@ -726,6 +726,10 @@ buybsControllers.controller('EmailLoginCtrl', ['$scope', '$cookies', '$window','
     u_pwd: ''
   };
 
+  $scope.goBack = function() {
+    $window.history.back();
+  };
+
   $scope.submit = function(){
     if ($('#email_login_form').valid()) {
       var postData = $scope.user;
@@ -951,6 +955,10 @@ buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$h
     agreement: "checked"
   };
 
+  $scope.goBack = function() {
+    $window.history.back();
+  };
+
   $scope.submit = function(){
 
     if ($('#register_form').valid()) {
@@ -1073,6 +1081,10 @@ buybsControllers.controller('RecoveryPwdCtrl', ['$scope', '$cookies', '$window',
     scCode: ''
   };
 
+  $scope.goBack = function() {
+    $window.history.back();
+  };
+  
   $scope.submit = function(){
 
       if($scope.user.phoneNumber.length != 11){
@@ -1259,6 +1271,12 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     $(".bgColorChange" + divkey).css("background-color",'white');
   };
   
+  $scope.isMobile = function (){
+    if($(".view-container").width() < (mobileSize - 100)){
+      return true;
+    }
+  };
+  
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         console.log('countries: ' + data);
@@ -1340,6 +1358,22 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
     }
 
   };
+
+  $scope.footsteps = [];
+  $scope.val = 1;
+  $scope.isbusy = false;
+  allowScroll = true;
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: $cookies.get("u_id"), index_start: 0, count: 12}})
+      .success(function(data){
+        $scope.footsteps = data;
+        $('.follow-list').css("display",'none');
+        $(".footstep-list").css("display", "block");
+        displayPosition(500,50);
+        $scope.results = null;
+      }, function(error){
+        $scope.error = error;
+      });
+
   
   $scope.profileFootsteps = function(u_id) {
     $scope.footsteps = [];
@@ -1995,6 +2029,11 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
 
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
+  if($cookies.get('u_id') == undefined){
+    $window.location.href = '#/login';
+    return;
+  }
+
   $scope.message = {
     u_id: $cookies.get('u_id'),
     m_content: ''
@@ -2170,9 +2209,50 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 
 }]);
 
+
+
+
 buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
   dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $scope.isMobile = function (){
+    if($(".view-container").width() < (mobileSize - 100)){
+     $("welcome_pc").css("display","none");
+      $scope.items = [];
+      return true;
+    }
+  };
+  
+  
+
+  $scope.items = [{
+    src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
+    title: "分享图片, 交流经验, 寻找伙伴",
+    content: "上传, 管理, 分享, 评论, 社区一体化, 这里是旅行爱好者的大本营"
+  },
+    {
+      src: 'http://o99spo2ev.bkt.clouddn.com/wel_image4.JPG',
+      title: "分享",
+      content: "你是否有这样的感受, 通过分享自己的旅行经验, 美食图片 . 美景图片 你遇到了很多志同道合的人, 有些是那么一瞬间, 有些则成为了你一生的朋友, 甚至你的另一伴."
+    },
+    {
+      src: 'http://o99spo2ev.bkt.clouddn.com/wel_image3.JPG',
+      title: "交流",
+      content: "你是否有这样的感受, 通过交流, 你学到了很多,懂得了什么不必做,什么必须做, 交流让你的旅行变的更加顺利和精彩."
+    },
+    {
+      src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
+      title: "寻找伙伴",
+      content: "你是否有这样的感受, 一个人的路很美, 很精彩, 很充实, 但是如果有个他或她会更好."
+    },
+    {
+      src: 'http://o99spo2ev.bkt.clouddn.com/wel_image2.JPG',
+      title: "",
+      content: ""
+    }
+  ];
+
 }]);
 
 

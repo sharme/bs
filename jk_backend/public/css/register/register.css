@@ -97,3 +97,6 @@
   padding: 10px;
   margin: 10px 0px;
 }
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form .email_registration {
+  cursor: pointer;
+}

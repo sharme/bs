@@ -74,6 +74,9 @@
   word-wrap: break-word;
   font-size: 13px;
 }
+#footstep-list .footstep-list-div-desc button {
+  background-color: darkgray;
+}
 #footstep-list .footstep-list-div-comment {
   line-height: 15px;
   padding: 10px;

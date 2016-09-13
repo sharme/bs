@@ -13,40 +13,45 @@
 .welcome h3 {
   text-align: center;
 }
-.welcome p {
-  text-align: center;
-}
-.welcome .welcome_middle {
-  height: 290px;
-}
-.welcome .welcome_middle .welcome_middle_div {
-  width: 33.33%;
-  float: left;
-  height: 300px;
-  padding: 100px 0px 100px 0px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  color: white;
-}
-.welcome hr {
-  height: 2px;
-  background-color: #eeeeee;
-}
 .welcome .welcome_footer {
   height: 400px;
   padding: 10%;
   font-size: 18px;
   color: grey;
 }
-.welcome .welcome_register {
-  height: 400px;
+.welcome .swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.welcome .swiper-slide {
   text-align: center;
-  font-size: 36px;
+  font-size: 18px;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
-.welcome .welcome_register .welcome_register_btn {
-  background-color: black;
+.welcome .swiper-slide .wel_image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -120px;
+  height: 600px;
+  width: 100%;
+  padding: 10% 26% 10% 9%;
   color: white;
 }
-.welcome .welcome_register a {
-  color: white;
+.welcome .swiper-slide .wel_image h3 {
+  text-align: center;
+}
+.welcome .swiper-slide .wel_image p {
+  text-align: center;
 }
