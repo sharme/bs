@@ -2244,7 +2244,7 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 
 
 buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
-  dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome.css',$css);
+  dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   if($(".view-container").width() < (mobileSize - 100)){
@@ -2279,8 +2279,6 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
       }
     ];
   } else {
-
-    $('.swiper-container').css("height","760px;");
     
     $scope.items = [{
       src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
