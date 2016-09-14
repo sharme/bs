@@ -23,7 +23,11 @@
             <img ng-if="zoom == false" ng-src="{{foot.fs_bigImg}}" style="width: 100%; height: 100%; cursor: zoom-in;">
         </div>
         <div class="foot_wrapper-main_profile">
-            <p><img src="{{foot.u_avatar}}"> {{foot.u_name}}(图友)</p>
+            <div>
+                <img src="{{foot.u_avatar}}"> {{foot.u_name}}(图友)
+                <div class="prev_pic" style="float: right; margin-left: 10px; padding: 3px 10px; background-color: darkgray; cursor: pointer;" ng-click="prevPic(foot.fs_id)">上一张图</div>
+                <div class="next_pic" style="float: right; margin-left: 10px; padding: 3px 10px; background-color: darkgray; cursor: pointer;" ng-click="nextPic(foot.fs_id)">下一张图</div>
+            </div>
             <div class="foot_wrapper-main_profile-slogan">
                 {{foot.u_slogan}} <button class="foot_wrapper-main_follow" ng-click="followUpBtn(foot.u_id)">关注</button>
             </div>

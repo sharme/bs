@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://180.76.152.112';
+var ipAddress = 'http://localhost:8080';
 var mobileSize = 550;
 
 var eLike = 1;
@@ -377,6 +377,37 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
   } else {
     $scope.zoom = true;
   }
+
+  $scope.nextPic = function(fs_id){
+    $http({method: 'GET', url: ipAddress + '/footsteps/getNext', params:{fs_id: fs_id}})
+        .success(function(data){
+          console.log('data: ' + (JSON.stringify(data)));
+          if(data.fs_id) {
+            $(".prev_pic").html("下一张图");
+            $window.location.href = "#/foot/" + data.fs_id;
+          } else {
+            $(".next_pic").html("没有了");
+          }
+        }, function(error){
+          $scope.error = error;
+        });
+  };
+
+  $scope.prevPic = function(fs_id){
+    $http({method: 'GET', url: ipAddress + '/footsteps/getPrev', params:{fs_id: fs_id}})
+        .success(function(data){
+          console.log('data: ' + (JSON.stringify(data)));
+          if(data.fs_id) {
+            $(".prev_pic").html("上一张图");
+            $window.location.href = "#/foot/" + data.fs_id;
+          } else {
+            $(".prev_pic").html("没有了");
+          }
+        }, function(error){
+          $scope.error = error;
+        });
+  };
+
   
   $scope.windowSize = $(window).width();
 

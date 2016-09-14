@@ -188,6 +188,55 @@ router.get('/getFootstepsDetail', function (req, res, next) {
 
 });
 
+router.get('/getNext', function (req, res, next) {
+    var criteriaSQL = "select fs_id from jk_footsteps as jkf where jkf.fs_status = 1 order by fs_create_time desc ";
+
+    connection.query(criteriaSQL, function (err, result) {
+        if(err) {
+            res.send(err);
+        } else {
+            console.log(JSON.stringify(result));
+            for(var index = 0; index < result.length; index ++ ){
+
+                console.log("result= " + result[index].fs_id + " == " + req.param('fs_id'));
+                if(result[index].fs_id == req.param('fs_id')) {
+                    
+                    if(index+1 < result.length) {
+                        return res.send(result[index+1]);
+                    } else {
+                        return res.send({errno: 1005, code: "no next picture can be found."});
+                    }        
+                }
+            }
+            res.send({errno: 1005, code: "no next picture can be found."});
+        }
+    })
+});
+
+router.get('/getPrev', function (req, res, next) {
+    var criteriaSQL = "select fs_id from jk_footsteps as jkf where jkf.fs_status = 1 order by fs_create_time desc";
+
+    connection.query(criteriaSQL, function (err, result) {
+        if(err) {
+            res.send(err);
+        } else {
+            console.log(JSON.stringify(result));
+            for(var index = 0; index < result.length; index ++ ){
+
+                console.log("result= " + result[index].fs_id + " == " + req.param('fs_id'));
+                if(result[index].fs_id == req.param('fs_id')) {
+
+                    if(index-1 >= 0) {
+                        return res.send(result[index-1]);
+                    } else {
+                        return res.send({errno: 1005, code: "no next picture can be found."});
+                    }
+                }
+            }
+            res.send({errno: 1005, code: "no next picture can be found."});
+        }
+    })
+});
 
 
 
