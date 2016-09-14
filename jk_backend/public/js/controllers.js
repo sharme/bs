@@ -2222,25 +2222,29 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
       src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346832363.jpg',
       title: "分享图片, 交流经验, 寻找伙伴",
       content: "上传, 管理, 分享, 评论, 社区一体化, 这里是旅行爱好者的大本营",
-      position: "-220px"
+      position: "-220px",
+      padding: "30% 30% 10% 9%"
     },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
         title: "分享",
         content: "你是否有这样的感受, 通过分享自己的旅行经验, 美食图片 . 美景图片 你遇到了很多志同道合的人, 有些是那么一瞬间, 有些则成为了你一生的朋友, 甚至你的另一伴.",
-        position: "-220px"
+        position: "-220px",
+        padding: "30% 30% 10% 9%"
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346609808.jpg',
         title: "交流",
         content: "你是否有这样的感受, 通过交流, 你学到了很多,懂得了什么不必做,什么必须做, 交流让你的旅行变的更加顺利和精彩.",
-        position: "-220px"
+        position: "-220px",
+        padding: "30% 30% 10% 9%"
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473335616052.jpeg',
         title: "寻找伙伴",
         content: "你是否有这样的感受, 一个人的路很美, 很精彩, 很充实, 但是如果有个他或她会更好.",
-        position: "-220px"
+        position: "-220px",
+        padding: "30% 30% 10% 9%"
       }
     ];
   } else {
