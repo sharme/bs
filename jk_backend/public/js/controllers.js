@@ -4,7 +4,7 @@
 
 var buybsControllers = angular.module('buybsControllers', []);
 
-var ipAddress = 'http://localhost:8080';
+var ipAddress = 'http://180.76.152.112';
 var mobileSize = 550;
 
 var eLike = 1;
@@ -2279,6 +2279,9 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
       }
     ];
   } else {
+
+    $('.swiper-container').css("height","760px;");
+    
     $scope.items = [{
       src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
       title: "分享图片, 交流经验, 寻找伙伴",
