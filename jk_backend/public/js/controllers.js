@@ -436,7 +436,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
             };
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eFootstep,id, false);
-              $(".like_footstep").css("background-color","darkgrey");
+              $(".like_footstep").css("background-color","#43c17e");
 
               //GET AND REFRESH STICK NUMBER
               $http({method: 'GET', url: ipAddress + '/likes/search', params: {fs_id: id}})
@@ -534,7 +534,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
             $http(req).success(function(result){
               addEvent($http, $window, $cookies.get('u_id'),eCollect,u_id,eFootstep,id, false);
-              $(".stick_footstep").css("background-color","darkgrey");
+              $(".stick_footstep").css("background-color","#43c17e");
 
               //GET AND REFRESH STICK NUMBER
               $http({method: 'GET', url: ipAddress + '/sticks/search', params: {fs_id: id}})

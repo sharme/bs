@@ -27,6 +27,11 @@
   float: right;
   margin: 20px;
 }
+.foot_wrapper .foot_wrapper-main button {
+  border-radius: 2px;
+  background-color: darkgray;
+  border: none;
+}
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_profile {
   margin-top: 10px;
 }
