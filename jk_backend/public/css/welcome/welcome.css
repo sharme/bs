@@ -1,9 +1,9 @@
 .welcome {
   padding: 50px 10%;
-  height: 600px;
+  height: 760px;
 }
 .welcome .welcome_header {
-  height: 600px;
+  height: 760px;
   padding: 10%;
   color: white;
   background-image: url(http://o99spo2ev.bkt.clouddn.com/wel-header.jpg);
@@ -13,12 +13,6 @@
 }
 .welcome h3 {
   text-align: center;
-}
-.welcome .welcome_footer {
-  height: 400px;
-  padding: 10%;
-  font-size: 18px;
-  color: grey;
 }
 .welcome .swiper-container {
   width: 100%;
@@ -45,7 +39,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: -120px;
-  height: 600px;
+  height: 760px;
   width: 100%;
   padding: 10% 26% 10% 9%;
   color: white;
