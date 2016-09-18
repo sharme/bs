@@ -21,7 +21,7 @@ router.post('/add', function(req, res, next) {
 
     connection.query(addSQL, function (err, result) {
         if(err) {
-            res.send("Error: " + err);
+            res.send(err);
         } else {
 
             var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,?)",[req.body.u_id, 'stick',date]);
@@ -37,7 +37,7 @@ router.post('/delete', function(req, res, next) {
 
     connection.query(addSQL, function (err, result) {
         if(err) {
-            res.send("Error: " + err);
+            res.send(err);
         } else {
 
             // var addEvent = mysql.format("insert into jk_events(u_id,et_type,et_create_time) values (?,?,?)",[req.body.u_id, 'stick',date]);

@@ -206,7 +206,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
-    if($scope.number > $scope.footsteps.length) {
+    if($scope.footsteps && $scope.number > $scope.footsteps.length) {
       $scope.isbusy = true;
       $http({
         method: 'GET',
@@ -1962,8 +1962,14 @@ buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$
     };
 
     $http(req).success(function(result){
-      alert("发布成功");
-      $window.location.href= '#/community/index';
+
+      if(result.errno){
+        alert("发布失败");
+      } else {
+        alert("发布成功");
+        $window.location.href= '#/community/index';
+      }
+
     }, function(error){
       console.log(error);
     });
@@ -2252,28 +2258,37 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
     $scope.items = [{
       src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346832363.jpg',
       title: "分享图片, 交流经验, 寻找伙伴",
-      content: "上传, 管理, 分享, 评论, 社区一体化, 这里是旅行爱好者的大本营",
+      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
       position: "-220px",
       padding: "30% 30% 10% 9%"
     },
       {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
-        title: "分享",
-        content: "你是否有这样的感受, 通过分享自己的旅行经验, 美食图片 . 美景图片 你遇到了很多志同道合的人, 有些是那么一瞬间, 有些则成为了你一生的朋友, 甚至你的另一伴.",
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473335616052.jpeg',
+        title: "分享图片",
+        content: "" +
+        "" +
+        "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
         position: "-220px",
         padding: "30% 30% 10% 9%"
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346609808.jpg',
-        title: "交流",
-        content: "你是否有这样的感受, 通过交流, 你学到了很多,懂得了什么不必做,什么必须做, 交流让你的旅行变的更加顺利和精彩.",
+        title: "交流经验",
+        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
         position: "-220px",
         padding: "30% 30% 10% 9%"
       },
       {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473335616052.jpeg',
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
         title: "寻找伙伴",
-        content: "你是否有这样的感受, 一个人的路很美, 很精彩, 很充实, 但是如果有个他或她会更好.",
+        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
+        position: "-220px",
+        padding: "30% 30% 10% 9%"
+      },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
+        title: "寻找伙伴",
+        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
         position: "-220px",
         padding: "30% 30% 10% 9%"
       }
@@ -2283,27 +2298,27 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
     $scope.items = [{
       src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
       title: "分享图片, 交流经验, 寻找伙伴",
-      content: "上传, 管理, 分享, 评论, 社区一体化, 这里是旅行爱好者的大本营"
+      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. "
     },
       {
-        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image4.JPG',
-        title: "分享",
-        content: "你是否有这样的感受, 通过分享自己的旅行经验, 美食图片 . 美景图片 你遇到了很多志同道合的人, 有些是那么一瞬间, 有些则成为了你一生的朋友, 甚至你的另一伴."
+        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
+        title: "分享图片",
+        content: "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. "
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image3.JPG',
-        title: "交流",
-        content: "你是否有这样的感受, 通过交流, 你学到了很多,懂得了什么不必做,什么必须做, 交流让你的旅行变的更加顺利和精彩."
+        title: "交流经验",
+        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化."
       },
       {
-        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
+        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image4.JPG',
         title: "寻找伙伴",
-        content: "你是否有这样的感受, 一个人的路很美, 很精彩, 很充实, 但是如果有个他或她会更好."
+        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. "
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image2.JPG',
-        title: "",
-        content: ""
+        title: "图友社区",
+        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. "
       }
     ];
   }

@@ -82,25 +82,25 @@ router.get('/getTopicsNumber', function(req, res, next) {
 
 router.post('/create', function(req, res, next) {
     
-    if(req.body.secret == auth.getSecret(req.body.u_id)) {
+    if(req.body.secret == auth.encrypt(req.body.u_id)) {
 
         var createSQL = mysql.format("insert into jk_topics(u_id,tp_about,tp_content,tp_img,tp_title,tp_create_time,tp_update_time,tp_subject,tp_type) values(?,?,?,?,?,?,?,?,?)", [req.body.u_id, req.body.tp_about, req.body.tp_content, req.body.tp_img, req.body.tp_title, date, date, req.body.tp_subject, req.body.tp_type]);
 
         connection.query(createSQL, function (err, result) {
             if (err) {
-                res.send("Error: " + err);
+                res.send(err);
             } else {
                 res.send(result);
             }
         })
     } else {
-        res.send({err: 'access denied'})
+        res.send({errno: 1001, code: 'access denied'})
     }
 });
 
 router.post('/update', function(req, res, next) {
 
-    if(req.body.secret == auth.getSecret(req.body.u_id)) {
+    if(req.body.secret == auth.encrypt(req.body.u_id)) {
 
         var createSQL = mysql.format("update jk_topics set tp_about=?, tp_content=?, tp_title=?, tp_update_time=?, tp_subject=?, tp_type=? where tp_id=?", [req.body.tp_about, req.body.tp_content, req.body.tp_title, date, req.body.tp_subject, req.body.tp_type, req.body.tp_id]);
         connection.query(createSQL, function (err, result) {
@@ -111,7 +111,7 @@ router.post('/update', function(req, res, next) {
             }
         })
     } else {
-        res.send({err: 'access denied'})
+        res.send({errno: 1001, code: 'access denied'})
     }
 });
 
@@ -120,7 +120,7 @@ router.get('/getTopicsByTPID', function (req, res, next) {
 
     connection.query(criteriaSQL, function (err, result) {
         if(err) {
-            res.send("Error: " + err);
+            res.send(err);
         } else {
             res.send(result);
         }
