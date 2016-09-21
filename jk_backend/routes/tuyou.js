@@ -37,7 +37,7 @@ router.get('/getTuyou', function(req, res, next) {
     var query = "select ty_id, (select count(tm_id) from jk_tuyou_messages as jktm where jktm.ty_id=jkt.ty_id) as comments, (select u_name from jk_users as jku where jku.u_id=jkt.u_id) as u_name, (select u_avatar from jk_users as jku where jku.u_id=jkt.u_id) as u_avatar,ty_destination,ty_stay_start,ty_stay_end,ty_description from jk_tuyou as jkt where 1=1 and jkt.u_id != ? ";
 
     if(req.param('des')){
-        query += "and jkt.ty_destination=" + req.param('des');
+        query += "and jkt.ty_destination='" + req.param('des') + "';";
     }
 
     var sql = mysql.format(query,[req.param('u_id')]);

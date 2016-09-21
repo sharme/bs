@@ -2178,9 +2178,9 @@ buybsControllers.controller('matchCtrl', ['$scope', '$cookies', '$window', '$htt
 
   $http({method: 'GET', url: ipAddress + '/tuyou/getTuyou', params: {des: $routeParams.des, u_id: $cookies.get('u_id')}})
       .success(function(data){
-        $scope.results = data;
         if(data && data.length < 1) {
           $('.match_result_msg').html("抱歉, 暂时还没有图友在这附近活动");
+          $scope.results = data;
         }
       }, function(error){
         $scope.error = error;
