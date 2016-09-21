@@ -24,6 +24,8 @@ var topicClicks = require('./routes/topicClicks');
 var notifications = require('./routes/notifications');
 var pictureApprove = require('./routes/pictureApprove');
 var pictures = require('./routes/pictures');
+var tuyou = require('./routes/tuyou');
+var tuyouMessages = require('./routes/tuyouMessages');
 
 var app = express();
 
@@ -87,6 +89,8 @@ app.use('/topicClicks', topicClicks);
 app.use('/notifications', notifications);
 app.use('/pictureApprove', pictureApprove);
 app.use('/pictures', pictures);
+app.use('/tuyou', tuyou);
+app.use('/tuyouMessages', tuyouMessages);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

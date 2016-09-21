@@ -1725,7 +1725,7 @@ buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '
   $scope.isbusy = false;
   $scope.loadMore = function() {
 
-      if($scope.number > $scope.topics.length) {
+      if($scope.topics && $scope.number > $scope.topics.length) {
         $scope.isbusy = true;
         $http({
           method: 'GET',
@@ -2087,10 +2087,7 @@ buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window
       data: JSON.stringify($scope.message)
     };
 
-    // console.log("message to Station house : " + JSON.stringify($scope.message));
-
     $http(req).success(function(result){
-      // console.log('message sent:' + result);
       alert("留言发送成功.");
       $window.history.back();
     }, function(error){
@@ -2116,75 +2113,148 @@ buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window',
 
 buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
 
-  dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/tuyou/tuyou.css',$css);
+  dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/tuyou/tuyou-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
-        $scope.countries = data;
+        $scope.destinations = data;
       }, function(error){
         $scope.error = error;
       });
+  
 
-  $scope.closeTopic = function() {
-    $window.location.href = '#/community/index';
+  $scope.des = {
+    u_id: $cookies.get('u_id'),
+    ty_destination: '',
+    ty_stay_start: '',
+    ty_stay_end: '',
+    ty_description: ''
+  };
+  
+  $scope.browserTuyou = function () {
+    $window.location.href = '#/tuyou/match';
   };
 
-  $scope.topic = {
-    u_id: '',
-    tp_about: '中国',
-    tp_content: '从这里开始输入内容...',
-    tp_img: '',
-    tp_title: '',
-    tp_type: '话题'
-  };
+  $scope.matchTuyou = function() {
 
-  $scope.submit = function(){
-
-    var tp_subject = "";
-
-    if(CKEDITOR.instances.editor1.getData().length > 150){
-      // tp_subject = CKEDITOR.instances.editor1.getData().substr(0, CKEDITOR.instances.editor1.getData().indexOf('</p>')+4);
-      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 150);
-    }else{
-      tp_subject = CKEDITOR.instances.editor1.getData();
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = "#/login";
     }
 
-    var replayData = {
-      u_id: $cookies.get('u_id'),
-      tp_about: $scope.topic.tp_about,
-      tp_content: CKEDITOR.instances.editor1.getData(),
-      tp_img: '',
-      tp_title: $scope.topic.tp_title,
-      tp_subject: tp_subject,
-      tp_type: $scope.topic.tp_type
-    };
-
-    if($scope.topic.tp_about == ''){
-      alert('关于不能为空!');
-      return;
-    }
 
     var req = {
       method: 'POST',
-      url: ipAddress + '/topics/create',
+      url: ipAddress + '/tuyou/add',
       headers: {
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(replayData)
+      data: JSON.stringify($scope.des)
     };
-
-    // console.log("topic comments replied : " + JSON.stringify(replayData));
-
     $http(req).success(function(result){
-      alert("发布成功");
-      $window.location.href= '#/community/index';
+      if(!result.errno) {
+        $window.location.href = '#/tuyou/match?des=' + $scope.des.ty_destination;
+      } else {
+        $('.matchMsg').html('没有找到合适的图友.');
+      }
     }, function(error){
       console.log(error);
     });
   };
 
+  $scope.selDestination = function(val) {
+    $scope.des.ty_destination = val;
+    $('.tuyou_destination_list').css('display','none')
+  };
+  
+  
+
 }]);
+
+buybsControllers.controller('matchCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
+
+  dynamicallyCSS(mobileSize, '../css/tuyou/tuyou.css','../css/tuyou/tuyou-m.css',$css);
+  dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
+
+  $http({method: 'GET', url: ipAddress + '/tuyou/getTuyou', params: {des: $routeParams.des, u_id: $cookies.get('u_id')}})
+      .success(function(data){
+        $scope.results = data;
+        if(data && data.length < 1) {
+          $('.match_result_msg').html("抱歉, 暂时还没有图友在这附近活动");
+        }
+      }, function(error){
+        $scope.error = error;
+      });
+
+
+  var hidden = true;
+  $scope.replyList = function(ty_id) {
+    if(hidden) {
+      $http({method: 'GET', url: ipAddress + '/tuyouMessages/getMessages', params: {ty_id: ty_id}})
+          .success(function (data) {
+            $scope.messages = data;
+            $('.comments').css('display', 'none');
+            $('.hide'+ty_id).css('display', 'block');
+          }, function (error) {
+            $scope.error = error;
+          });
+    }
+  };
+
+  $scope.hiddenReply = function(ty_id) {
+    $('.hide'+ty_id).css('display', 'none'); hidden = true;
+  };
+
+  $scope.tm = {
+    ty_id: '',
+    u_id: '',
+    tm_message: ''
+  };
+
+  $scope.submit = function(ty_id){
+
+    if($cookies.get('u_id') == undefined){
+      $window.location.href = '#/login';
+      return;
+    }
+
+    var data = {
+      ty_id: ty_id,
+      u_id: $cookies.get('u_id'),
+      tm_message: $scope.tm.tm_message
+    };
+    
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/tuyouMessages/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(data)
+    };
+
+    $http(req).success(function(result){
+      
+      if(!result.errno){
+        $http({method: 'GET', url: ipAddress + '/tuyouMessages/getMessages', params: {ty_id: ty_id}})
+            .success(function (data) {
+              $scope.messages = data;
+              $('.comment_reply_input_val').val('');
+            }, function (error) {
+              $scope.error = error;
+            });
+      }
+      
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
+
+
+}]);
+
 
 buybsControllers.controller('headerController', ['$scope', '$cookies', '$window','$http', function($scope, $cookies, $window,$http){
 
@@ -2245,9 +2315,6 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 
 
 }]);
-
-
-
 
 buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
   dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome-m.css',$css);

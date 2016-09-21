@@ -1,6 +1,5 @@
 .tuyou {
-  width: 600px;
-  margin: auto;
+  margin: 10px;
   padding-top: 50px;
   padding-bottom: 100px;
 }
@@ -9,7 +8,7 @@
   color: red;
 }
 .tuyou .tuyou_destination {
-  padding: 20px;
+  padding: 20px 10px;
 }
 .tuyou .tuyou_destination input {
   padding: 10px;
@@ -51,24 +50,19 @@
   height: 100px;
   width: 100%;
 }
-.tuyou .tuyou_next {
-  padding: 0px 2%;
-  float: left;
-  width: 100%;
-}
 .tuyou .tuyou_next button {
   width: 100%;
-  float: left;
-  margin: 10px 0px;
+  margin: 20px 0px;
+  padding: 10px;
 }
 .tuyou .match {
   margin: 5px;
   border-bottom: solid 1px #43c17e;
-  min-height: 120px;
+  padding-bottom: 10px;
 }
 .tuyou .match img {
-  width: 65px;
-  height: 65px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
 }
 .tuyou .match .match_account {

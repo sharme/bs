@@ -113,7 +113,11 @@ buybs.config(['$routeProvider',
         when('/tuyou/index',{
         templateUrl: 'views/tuyou/index.html',
         controller: 'tuyouCtrl'
-    });
+    }).
+        when('/tuyou/match',{
+          templateUrl: 'views/tuyou/match.html',
+          controller: 'matchCtrl'
+      });
   }]);
 
 

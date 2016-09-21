@@ -1,7 +1,71 @@
 
 
-<div class="tuyou">
-    正在努力开发当中, 请耐心等待. 欢迎在社区讨论.
+<!--<div class="tuyou">-->
+    <!--正在努力开发当中, 请耐心等待. 欢迎在社区讨论.-->
+<!--</div>-->
+
+<!--<div class="tuyou">-->
+    <!--<div class="tuyou_destination">-->
+        <!--<input type="text" width="100%" hint="选择你的目的地" value="选择你的目的地">-->
+    <!--</div>-->
+    <!--<div class="tuyou_stay">-->
+        <!--停留开始时间<input type="datetime">-->
+        <!--结束时间<input type="datetime">-->
+    <!--</div>-->
+    <!--<div class="tuyou_description">-->
+        <!--<textarea cols="45">聊聊你吧</textarea>-->
+    <!--</div>-->
+    <!--<div class="tuyou_pictures">-->
+        <!--<div class="tuyou_pictures_div">图片一</div>-->
+        <!--<div class="tuyou_pictures_div">图片二</div>-->
+        <!--<div class="tuyou_pictures_div">图片三</div>-->
+        <!--<div class="tuyou_pictures_div">图片四</div>-->
+    <!--</div>-->
+    <!--<div class="tuyou_contact">-->
+        <!--<textarea cols="45">告诉图友如何和你联系.</textarea>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--<button>找图友</button>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+<script src="../../js/common/jquery-ui.min.js"></script>
+
+
+<div class="tuyou" ng-controller="tuyouCtrl">
+    <div class="matchMsg"></div>
+    <div class="tuyou_destination">
+        <input type="text" width="100%" placeholder="选择你要去的目的地国家"  class="search_name" ng-model="des.ty_destination" onfocus="$('.tuyou_destination_list').css('display','')" >
+        <div class="tuyou_destination_list">
+            <li ng-click="selDestination(destination.c_name)" ng-repeat="destination in destinations | filter: searchText" onmouseleave="$(this).css('background-color','')" onmouseover="$(this).css('background-color','grey')">
+                {{destination.c_name}}
+            </li>
+        </div>
+    </div>
+    <div class="tuyou_stay">
+        <input type="text" placeholder="到达时间" class="datepicker" ng-model="des.ty_stay_start">
+        <br><br>
+        <input type="text" class="datepicker" placeholder="离开时间" ng-model="des.ty_stay_end">
+    </div><hr>
+    <!--<div style="text-align: center;">告诉图友关于你的信息并如何和你联系</div><hr>-->
+    <div class="tuyou_description">
+        <textarea cols="45" ng-model="des.ty_description" placeholder="告诉图友关于你的旅行计划和如何联系你"></textarea>
+    </div>
+    <div class="tuyou_next">
+        <button ng-click="matchTuyou()">配对图友</button>
+        <button ng-click="browserTuyou()">浏览图友圈</button>
+    </div>
 </div>
 
+<script>
+    $( function() {
+        $( ".datepicker" ).datepicker();
+        $('.tuyou_destination_list').css('display','none');
 
+        $('li').on("click", function(){
+           alert('hey');
+        });
+
+    } );
+</script>
