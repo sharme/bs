@@ -2180,6 +2180,7 @@ buybsControllers.controller('matchCtrl', ['$scope', '$cookies', '$window', '$htt
       .success(function(data){
         if(data && data.length < 1) {
           $('.match_result_msg').html("抱歉, 暂时还没有图友在这附近活动");
+        } else {
           $scope.results = data;
         }
       }, function(error){
