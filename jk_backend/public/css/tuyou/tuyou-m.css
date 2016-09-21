@@ -64,6 +64,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
+  margin-bottom: 10px;
 }
 .tuyou .match .match_account {
   width: 20%;
@@ -71,6 +72,7 @@
   float: left;
   padding: 10px;
   text-align: center;
+  font-size: 12px;
 }
 .tuyou .match .match_info {
   width: 80%;

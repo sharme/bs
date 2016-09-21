@@ -24,8 +24,8 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="2184" column="9" selection-start-line="2184" selection-start-column="9" selection-end-line="2184" selection-end-column="9" />
+            <state relative-caret-position="90">
+              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
               <folding>
                 <element signature="n#!!block;n#displayPosition#0" expanded="false" />
                 <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
@@ -61,8 +61,8 @@
                 <element signature="e#62517#63876#0" expanded="false" />
                 <element signature="e#66290#67889#0" expanded="false" />
                 <element signature="e#68019#70516#0" expanded="false" />
-                <marker date="1474450674000" expanded="true" signature="21982:21995" placeholder="..." />
-                <marker date="1474450674000" expanded="true" signature="27102:27115" placeholder="..." />
+                <marker date="1474452161000" expanded="true" signature="21982:21995" placeholder="..." />
+                <marker date="1474452161000" expanded="true" signature="27102:27115" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -71,8 +71,8 @@
       <file leaf-file-name="tuyou-m.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/tuyou/tuyou-m.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="89" column="25" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
+            <state relative-caret-position="315">
+              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -91,8 +91,8 @@
       <file leaf-file-name="tuyou.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/tuyou.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
+            <state relative-caret-position="564">
+              <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -101,8 +101,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/tuyou/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="56" column="38" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="38" />
+            <state relative-caret-position="360">
+              <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -111,8 +111,8 @@
       <file leaf-file-name="tuyou.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/tuyou/tuyou.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="156" selection-end-column="7" />
+            <state relative-caret-position="225">
+              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -121,8 +121,8 @@
       <file leaf-file-name="match.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/tuyou/match.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="52" column="69" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="69" />
+            <state relative-caret-position="105">
+              <caret line="9" column="71" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -224,12 +224,12 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/views/tuyou/step_2.html" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
-        <option value="$PROJECT_DIR$/public/views/tuyou/index.html" />
         <option value="$PROJECT_DIR$/routes/tuyouMessages.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/public/css/tuyou/tuyou.less" />
         <option value="$PROJECT_DIR$/public/views/tuyou/match.html" />
         <option value="$PROJECT_DIR$/public/css/tuyou/tuyou-m.less" />
+        <option value="$PROJECT_DIR$/public/views/tuyou/index.html" />
+        <option value="$PROJECT_DIR$/public/css/tuyou/tuyou.less" />
         <option value="$PROJECT_DIR$/routes/tuyou.js" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
       </list>
@@ -614,12 +614,12 @@
       <workItem from="1473834187890" duration="6659000" />
       <workItem from="1474129232675" duration="408000" />
       <workItem from="1474161456888" duration="2365000" />
-      <workItem from="1474330571114" duration="31030000" />
+      <workItem from="1474330571114" duration="31981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="595354000" />
+    <option name="totallyTimeSpent" value="596305000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1400" height="877" extended-state="6" />
@@ -982,14 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/tuyou/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="56" column="38" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1014,18 +1006,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/tuyou/tuyou.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="156" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/tuyou/match.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="52" column="69" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="69" />
+        <state relative-caret-position="105">
+          <caret line="9" column="71" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -1039,24 +1023,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/tuyou/tuyou-m.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="89" column="25" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="25" />
+        <state relative-caret-position="315">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/tuyou/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="49" column="10" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/tuyou/tuyou.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/tuyou.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
+        <state relative-caret-position="564">
+          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="2184" column="9" selection-start-line="2184" selection-start-column="9" selection-end-line="2184" selection-end-column="9" />
+        <state relative-caret-position="90">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding>
             <element signature="n#!!block;n#displayPosition#0" expanded="false" />
             <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
@@ -1092,8 +1092,8 @@
             <element signature="e#62517#63876#0" expanded="false" />
             <element signature="e#66290#67889#0" expanded="false" />
             <element signature="e#68019#70516#0" expanded="false" />
-            <marker date="1474450674000" expanded="true" signature="21982:21995" placeholder="..." />
-            <marker date="1474450674000" expanded="true" signature="27102:27115" placeholder="..." />
+            <marker date="1474452161000" expanded="true" signature="21982:21995" placeholder="..." />
+            <marker date="1474452161000" expanded="true" signature="27102:27115" placeholder="..." />
           </folding>
         </state>
       </provider>

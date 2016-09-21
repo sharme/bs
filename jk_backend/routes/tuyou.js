@@ -40,10 +40,14 @@ router.get('/getTuyou', function(req, res, next) {
         query += "and jkt.ty_destination='" + req.param('des') + "';";
     }
 
-    var sql = mysql.format(query,[req.param('u_id')]);
+    if(req.param('u_id')) {
+        query = mysql.format(query,[req.param('u_id')]);
+    } else {
+        query = mysql.format(query,[0]);
+    }
 
-    console.log(sql);
-    connection.query(sql, function (err, result) {
+    console.log(query);
+    connection.query(query, function (err, result) {
         if(err) {
             res.send(err);
         } else {
