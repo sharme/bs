@@ -2136,6 +2136,17 @@ buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$htt
     $window.location.href = '#/tuyou/match';
   };
 
+
+  $scope.nextStep = function () {
+    $('#step_one').css("display","none");
+    $('#step_two').css("display","block");
+  };
+
+  $scope.PrevStep = function () {
+    $('#step_one').css("display","block");
+    $('#step_two').css("display","none");
+  };
+
   $scope.matchTuyou = function() {
 
     if($cookies.get('u_id') == undefined){
@@ -2143,23 +2154,28 @@ buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$htt
     }
 
 
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/tuyou/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.des)
-    };
-    $http(req).success(function(result){
-      if(!result.errno) {
-        $window.location.href = '#/tuyou/match?des=' + $scope.des.ty_destination;
-      } else {
-        $('.matchMsg').html('没有找到合适的图友.');
-      }
-    }, function(error){
-      console.log(error);
-    });
+    if($scope.des.ty_destination != '' && $scope.des.ty_stay_start != '' && $scope.des.ty_stay_end != '' && $scope.des.ty_description != '') {
+
+      var req = {
+        method: 'POST',
+        url: ipAddress + '/tuyou/add',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify($scope.des)
+      };
+      $http(req).success(function (result) {
+        if (!result.errno) {
+          $window.location.href = '#/tuyou/match?des=' + $scope.des.ty_destination;
+        } else {
+          $('.matchMsg').html('没有找到合适的图友.');
+        }
+      }, function (error) {
+        console.log(error);
+      });
+    } else {
+      $('.matchMsg').html('没有找到合适的图友.');
+    }
   };
 
   $scope.selDestination = function(val) {

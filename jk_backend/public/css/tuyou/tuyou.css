@@ -63,8 +63,7 @@
   margin: 10px 0px;
 }
 .tuyou .match {
-  margin: 5px;
-  border-bottom: solid 1px #43c17e;
+  margin: 5px 5px 20px 5px;
   min-height: 120px;
 }
 .tuyou .match img {
