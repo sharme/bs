@@ -1,12 +1,12 @@
 <div class="create_footstep">
     <div class="create_footstep-info">
         <form ng-submit="submit()" method="POST">
-            <div id="create_footstep-info-header">添加图片<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
+            <div id="create_footstep-info-header">你去过哪里?<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
             <!--<img id="create_footstep-info-image" ng-src="{{uploadUrl}}">-->
             <hr>
             <div class="fileUpload">
                 <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this)" id="uploadBtn" name="imageName"/>
-                <span class="uploadBtn">上传图片</span>
+                <span class="uploadBtn">有图片吗</span>
             </div>
 
             <img  ng-src="{{uploadUrl}}" class="create_footstep-info_img">
@@ -19,7 +19,7 @@
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_bigImg" id="upload_bigImg-href">
             <div  class="create_footstep-info-div">
                 <span class="create_footstep-info-span">描述</span>
-                <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40" required></textarea>
+                <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40" placeholder="描述下这里的位置,特点 和给你的感受." required></textarea>
                 <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
             </div>
 

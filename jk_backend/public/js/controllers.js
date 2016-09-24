@@ -25,18 +25,18 @@ function displayPosition(miles, top){
       
     // } else {
 
-    var arrayAcount = Math.floor($("#footstep-list").width()/248);
-    var left = 248;
+    var arrayAcount = Math.floor($("#footstep-list").width()/(248*2));
+    var left = 248*2;
 
     if($("#footstep-list").width() < mobileSize && $("#footstep-list").width() >= (mobileSize - 100)){
       arrayAcount = 2;
-      left = 248;
+      left = 248*2;
       top = 80;
     }
     // alert($("#footstep-list").width() < mobileSize - 100);
     if($("#footstep-list").width() < (mobileSize - 100)){
-      arrayAcount = 2;
-      left = 180;
+      arrayAcount = 1;
+      left = 360;
     }
 
       if ($("#footstep-list").children("#footstep-list-div").size() > 0) {

@@ -9,7 +9,7 @@
     <div>
         <div class="profile_middle">
             <div class="profile_middle-point" ng-click="profileFootsteps(userProfile[0].u_id)">
-                {{userProfile[0].footsteps?userProfile[0].footsteps:0}}<br>分享</div>
+                {{userProfile[0].footsteps?userProfile[0].footsteps:0}}<br>我去过</div>
             <div class="profile_middle-point" ng-click="profileSticks(userProfile[0].u_id)">
                 {{userProfile[0].sticks?userProfile[0].sticks:0}}<br>
                 想去
@@ -34,12 +34,13 @@
 
 <div style="min-height: 400px;">
     <div id="footstep-list" class="footstep-list" infinite-scroll="loadMore()" infinite-scroll-distance="1" infinite-scroll-disabled="isbusy" infinite-scroll-immediate-check="true">
-        <div class="profile_down-create" ng-click="createBtn()">分享图片</div>
+        <div class="profile_down-create" ng-click="createBtn()">我去过</div>
         <div id="footstep-list-div" class="footstep-list-div bgColorChange{{result.fs_id}}" ng-mouseleave="bgColorRemove(result.fs_id)" ng-mouseenter="bgColorChange(result.fs_id)" ng-repeat="result in footsteps" >
             <div class="footstep-list-div-pic">
                 <!--<div class="footstep_div-pic" style="background-image: url({{result.fs_pic}});">-->
-               <a href="#/foot/{{result.fs_id}}"> <img ng-src="{{result.fs_smallImg}}" style="border-radius: 2%; min-height: 236px; width: 100%; height: 100%; cursor: zoom-in;"></a>
+               <a href="#/foot/{{result.fs_id}}"> <img ng-src="{{result.fs_smallImg}}"></a>
             </div>
+            <div class="footstep-list-div_info">
             <span class="footstep-list-div-createTime">{{result.fs_create_time | date: 'yyyy-MM-dd HH:mm'}}</span>
             <!--<hr>-->
             <div class="footstep-list-div-desc">
@@ -47,7 +48,7 @@
                     <p>{{result.fs_des}}</p>
                     <p style="color: grey;">{{result.fs_from}}</p>
                     <div>
-                        收藏: {{result.sticks}}
+                        想去: {{result.sticks}}
                         喜欢: {{result.likes}}
                     </div>
                     <!--<div>-->
@@ -61,10 +62,11 @@
                 <div class="footstep-list-div-comment-avatar">
                     <img ng-src="{{result.u_avatar}}" class="footstep-list-div-comment-avatar-img">
                 </div>
-                <div>
+                <div class="footstep-list-div-comment-content">
                     <div>{{result.u_name}}</div>
                     <div style="overflow-wrap: break-word;" ng-bind-html="result.cm_content"></div>
                 </div>
+            </div>
             </div>
         </div>
         <!--<div class="footstep-list_profile_end"></div>-->

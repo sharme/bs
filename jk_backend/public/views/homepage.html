@@ -1,10 +1,16 @@
 
 <div class="explore">
     <!--<div class="explore_sel">探索</div>-->
-    <div id="navigation">
-        <button class="navigation-country" ng-repeat="country in countries">
-            <a ng-click="countryFilter(this,country.c_name)">{{country.c_name}}</a></button>
+    <!--<div id="navigation">-->
+        <!--<button class="navigation-country" ng-repeat="country in countries">-->
+            <!--<a ng-click="countryFilter(this,country.c_name)">{{country.c_name}}</a></button>-->
+    <!--</div>-->
+
+    <div class="explore_where">
+        <input type="text" placeholder="告诉我你想去哪里, 什么样的地方. 例如: 古镇, 西藏"><button>图图</button>
     </div>
+推荐给图友的目的地
+
 </div>
 
 
@@ -14,9 +20,10 @@
     <div id="footstep-list-div" class="footstep-list-div bgColorChange{{result.fs_id}}" ng-repeat="result in footsteps" ng-mouseleave="bgColorRemove(result.fs_id)" ng-mouseenter="bgColorChange(result.fs_id)">
             <div class="footstep-list-div-pic" ng-click="loginCheck(result.fs_id)">
                 <!--<a href="#/foot/{{result.fs_id}}">-->
-                    <img ng-src="{{result.fs_smallImg}}" style="border-radius: 2%; width: 100%; height: 100%; min-height: 236px; cursor: zoom-in;">
+                    <img ng-src="{{result.fs_smallImg}}">
                 <!--</a>-->
             </div>
+            <div class="footstep-list-div_info">
             <span class="footstep-list-div-createTime">{{result.fs_create_time | date: 'yyyy-MM-dd HH:mm'}}</span>
             <!--<hr>-->
             <div class="footstep-list-div-desc">
@@ -32,12 +39,15 @@
 
             <div class="footstep-list-div-comment" ng-if="result.cm_content">
                     <div class="footstep-list-div-comment-avatar">
-                        <img ng-src="{{result.u_avatar}}" class="footstep-list-div-comment-avatar-img">
+                        <img ng-src="{{result.u_avatar}}" ng-if="result.u_avatar" class="footstep-list-div-comment-avatar-img">
+                        <img ng-src="{{result.u_avatar}}" ng-if="!result.u_avatar" src='../../img/default_icon.png' class="footstep-list-div-comment-avatar-img">
+
                     </div>
                     <div>
                         <div>{{result.u_name}}</div>
                         <div class="footstep-list-div-comment-content" ng-bind-html="result.cm_content"></div>
                     </div>
+            </div>
             </div>
         </div>
         <div class="footstep-list_end"></div>
