@@ -26,6 +26,7 @@ var pictureApprove = require('./routes/pictureApprove');
 var pictures = require('./routes/pictures');
 var tuyou = require('./routes/tuyou');
 var tuyouMessages = require('./routes/tuyouMessages');
+var tagFootsteps = require('./routes/tagFootsteps');
 
 var app = express();
 
@@ -91,6 +92,7 @@ app.use('/pictureApprove', pictureApprove);
 app.use('/pictures', pictures);
 app.use('/tuyou', tuyou);
 app.use('/tuyouMessages', tuyouMessages);
+app.use('/tagFootsteps', tagFootsteps);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

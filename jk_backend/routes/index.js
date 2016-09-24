@@ -50,6 +50,32 @@ router.get('/logs', function(req, res, next) {
 
 });
 
+var tags;
+router.get('/tags', function(req, res, next) {
+
+  var secret = req.param("secret");
+  if(secret == '123456qwertyuiop') {
+    var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps where fs_status=1";
+    connection.query(sql, function (err, result) {
+      approve = result;
+      console.log(result);
+    });
+
+    var tagSql = "select tg_id, tg_name from jk_tags;";
+    connection.query(tagSql, function (err, result) {
+      tags = result;
+      console.log(result);
+    });
+    
+
+    res.render('tags', {title: '有图后台', result: approve, tags: tags});
+  } else {
+    res.render('error');
+  }
+
+});
+
+
 
 
 router.get('/email', function (req, res, next) {

@@ -188,6 +188,22 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         });
   };
 
+  $scope.tagFilter = function(element, fs_from){
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByTag', params:{tag: $('#tagValue').val(),u_id: $cookies.get('u_id'),index_start: 0, count: 20}})
+        .success(function(data){
+          console.log(data);
+          if(!data.errno){
+            $scope.footsteps = data;
+            displayPosition(500,20);
+            $scope.number = data.length;
+          }
+        }, function(error){
+          $scope.error = error;
+        });
+  };
+  
+  
+
   $scope.bgColorChange = function (divkey) {
     $(".bgColorChange"+divkey).css("background-color",'rgba(239,239,239,0.96)');
 

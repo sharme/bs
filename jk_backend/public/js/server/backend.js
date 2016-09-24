@@ -20,6 +20,38 @@ function approve(fs_id) {
     });
 }
 
+function addIntoTags() {
+
+    $('input[type="checkbox"]:checked').each(function() {
+        console.log(this.value + "tag: " + $('#tags').val());
+        var request = $.ajax({
+            url: ipaddress + "/tagFootsteps/add",
+            method: "POST",
+            data: { tg_id : $('#tags').val(), fs_id: this.value },
+            dataType: "html"
+        });
+        
+        request.done(function( msg ) {
+            console.log("done");
+        });
+
+        request.fail(function( jqXHR, textStatus ) {
+            console.log( "Request failed: " + textStatus );
+        });
+        
+    });
+
+   
+
+
+
+
+    
+    
+    
+}
+
+
 function reject(fs_id) {
     var request = $.ajax({
         url: ipaddress + "/pictureApprove/reject",
