@@ -104,6 +104,10 @@
   word-wrap: break-word;
   font-size: 13px;
 }
+.footstep-list .footstep-list-div_info .footstep-list-div-desc .footstep-list-div-desc_info {
+  max-height: 100px;
+  overflow: hidden;
+}
 .footstep-list .footstep-list-div_info .footstep-list-div-comment {
   line-height: 15px;
   padding: 10px;

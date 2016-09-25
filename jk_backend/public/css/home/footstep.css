@@ -66,7 +66,6 @@
   float: left;
   border: solid 1px lightgrey;
   border-radius: 6px;
-  margin: 0 !important;
   padding: 10px 9px !important;
   width: 472px !important;
   top: 200px;
@@ -101,6 +100,10 @@
 }
 #footstep-list .footstep-list-div_info .footstep-list-div-desc button {
   background-color: darkgray;
+}
+#footstep-list .footstep-list-div_info .footstep-list-div-desc .footstep-list-div-desc_info {
+  max-height: 100px;
+  overflow: hidden;
 }
 #footstep-list .footstep-list-div_info .footstep-list-div-comment {
   line-height: 15px;

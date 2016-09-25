@@ -1409,7 +1409,7 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
   $scope.footsteps = [];
   $scope.val = 1;
   $scope.isbusy = false;
-  allowScroll = true;
+  allowScroll = false;
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByUID', params:{u_id: $cookies.get("u_id"), index_start: 0, count: 12}})
       .success(function(data){
         $scope.footsteps = data;

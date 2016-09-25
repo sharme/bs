@@ -32,7 +32,8 @@ var connection = mysql.createConnection({
 connection.connect();
 var date = new Date();
 
-
+var smallSize = 420;  // 286 the original size
+var bigSize = 860;   // 680 the original size
 // Upload file and response back.
 router.post('/uploadPhotos', function(req, res) {
 
@@ -59,11 +60,11 @@ router.post('/uploadPhotos', function(req, res) {
                 fstream.on('close', function () {
                     fs.exists(smallFolderPath, function(result){
                         if(result) {
-                            resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, 286, res);
+                            resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, smallSize, res);
                         } else {
                             fs.mkdir(smallFolderPath, 0777, function(result){
                                 if(result){
-                                    resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, 286, res);
+                                    resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, smallSize, res);
                                 } else {
                                     console.log(result);
                                 }
@@ -80,11 +81,11 @@ router.post('/uploadPhotos', function(req, res) {
                        fstream.on('close', function () {
                            fs.exists(smallFolderPath, function(result){
                                if(result) {
-                                   resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, 286, res);
+                                   resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, smallSize, res);
                                } else {
                                    fs.mkdir(smallFolderPath, 0777, function(result){
                                        if(result){
-                                           resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, 286, res);
+                                           resize(filename, folder, smallFolderPath, originalFolderPath, bigFolderPath, smallSize, res);
                                        } else {
                                            console.log(result);
                                        }
@@ -264,7 +265,7 @@ function resize(filename, folder, smallFolderPath, originalFolderPath, bigFolder
     if(smallFolderPath != null && bigFolderPath != null) {
 
         easyimg.resize({
-            src: originalFolderPath + "/" + filename, dst: bigFolderPath + "/" + filename, width: 680
+            src: originalFolderPath + "/" + filename, dst: bigFolderPath + "/" + filename, width: bigSize
         }).then(
             function (image) {
                 console.log('resize Big image: ' + image.width);
