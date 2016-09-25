@@ -36,7 +36,7 @@ function displayPosition(miles, top){
     // alert($("#footstep-list").width() < mobileSize - 100);
     if($("#footstep-list").width() < (mobileSize - 100)){
       arrayAcount = 1;
-      left = 360;
+      left = 336;
     }
 
       if ($("#footstep-list").children("#footstep-list-div").size() > 0) {
