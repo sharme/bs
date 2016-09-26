@@ -24,9 +24,10 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+            <state relative-caret-position="381">
+              <caret line="193" column="28" selection-start-line="193" selection-start-column="28" selection-end-line="193" selection-end-column="28" />
               <folding>
+                <element signature="n#!!block;n#displayPosition#0" expanded="false" />
                 <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
                 <element signature="n#!!block;n#addEvent#0" expanded="false" />
                 <element signature="e#6806#8955#0" expanded="false" />
@@ -59,9 +60,19 @@
                 <element signature="e#65104#67209#0" expanded="false" />
                 <element signature="e#67346#68945#0" expanded="false" />
                 <element signature="e#69075#71572#0" expanded="false" />
-                <marker date="1474791290000" expanded="true" signature="22543:22556" placeholder="..." />
-                <marker date="1474791290000" expanded="true" signature="27663:27676" placeholder="..." />
+                <marker date="1474864995000" expanded="true" signature="22543:22556" placeholder="..." />
+                <marker date="1474864995000" expanded="true" signature="27663:27676" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footstep.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/home/footstep.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="35" column="3" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,13 +146,13 @@
         <option value="$PROJECT_DIR$/routes/footsteps.js" />
         <option value="$PROJECT_DIR$/routes/api.js" />
         <option value="$PROJECT_DIR$/public/views/homepage.html" />
-        <option value="$PROJECT_DIR$/public/css/home/footstep.less" />
         <option value="$PROJECT_DIR$/public/css/home/footdetail-m.less" />
         <option value="$PROJECT_DIR$/public/views/footDetail.html" />
         <option value="$PROJECT_DIR$/public/views/profile/profile.html" />
         <option value="$PROJECT_DIR$/public/css/profile/profile.less" />
         <option value="$PROJECT_DIR$/public/js/server/backend.js" />
         <option value="$PROJECT_DIR$/public/css/home/footstep-m.less" />
+        <option value="$PROJECT_DIR$/public/css/home/footstep.less" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
       </list>
     </option>
@@ -607,12 +618,12 @@
       <workItem from="1474161456888" duration="2365000" />
       <workItem from="1474330571114" duration="32079000" />
       <workItem from="1474549360671" duration="2201000" />
-      <workItem from="1474684933106" duration="18505000" />
+      <workItem from="1474684933106" duration="19328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="617109000" />
+    <option name="totallyTimeSpent" value="617932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1400" height="877" extended-state="6" />
@@ -1005,14 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/home/footstep.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="117" column="18" selection-start-line="117" selection-start-column="18" selection-end-line="117" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/home/footdetail-m.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -1069,11 +1072,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/home/footstep.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="3" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        <state relative-caret-position="381">
+          <caret line="193" column="28" selection-start-line="193" selection-start-column="28" selection-end-line="193" selection-end-column="28" />
           <folding>
+            <element signature="n#!!block;n#displayPosition#0" expanded="false" />
             <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
             <element signature="n#!!block;n#addEvent#0" expanded="false" />
             <element signature="e#6806#8955#0" expanded="false" />
@@ -1106,8 +1118,8 @@
             <element signature="e#65104#67209#0" expanded="false" />
             <element signature="e#67346#68945#0" expanded="false" />
             <element signature="e#69075#71572#0" expanded="false" />
-            <marker date="1474791290000" expanded="true" signature="22543:22556" placeholder="..." />
-            <marker date="1474791290000" expanded="true" signature="27663:27676" placeholder="..." />
+            <marker date="1474864995000" expanded="true" signature="22543:22556" placeholder="..." />
+            <marker date="1474864995000" expanded="true" signature="27663:27676" placeholder="..." />
           </folding>
         </state>
       </provider>

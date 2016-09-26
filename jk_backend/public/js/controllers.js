@@ -189,7 +189,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   };
 
   $scope.tagFilter = function(element, fs_from){
-    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByTag', params:{tag: $('#tagValue').val(),u_id: $cookies.get('u_id'),index_start: 0, count: 10}})
+    $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByTag', params:{tag: $('#tagValue').val(),u_id: $cookies.get('u_id'),index_start: 0, count: 20}})
         .success(function(data){
           console.log(data);
           if(!data.errno){
