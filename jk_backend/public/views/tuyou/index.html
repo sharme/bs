@@ -38,7 +38,7 @@
 
     <div id="step_one">
         <div class="tuyou_destination">
-            <input type="text" width="100%" placeholder="选择你要去的目的地国家"  class="search_name" ng-model="des.ty_destination" onfocus="$('.tuyou_destination_list').css('display','')" >
+            <input type="text" style="border: solid 1px #43c17e;" width="100%" placeholder="选择你要去的目的地国家"  class="search_name" ng-model="des.ty_destination" onfocus="$('.tuyou_destination_list').css('display','')" >
             <div class="tuyou_destination_list">
                 <li ng-click="selDestination(destination.c_name)" ng-repeat="destination in destinations | filter: des.ty_destination" onmouseleave="$(this).css('background-color','')" onmouseover="$(this).css('background-color','grey')">
                     {{destination.c_name}}

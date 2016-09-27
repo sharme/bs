@@ -2354,6 +2354,13 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
   dynamicallyCSS(mobileSize,'../css/welcome/welcome.css','../css/welcome/welcome-m.css',$css);
   dynamicallyCSS(mobileSize,'../css/default.css', '../css/default-m.css',$css);
 
+
+  $scope.isMobile = function (){
+    if($(".view-container").width() < (mobileSize - 100)){
+      return true;
+    }
+  };
+  
   if($(".view-container").width() < (mobileSize - 100)){
 
     $scope.items = [{
@@ -2361,7 +2368,8 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
       title: "分享图片, 交流经验, 寻找伙伴",
       content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
       position: "-220px",
-      padding: "30% 30% 10% 9%"
+      padding: "30% 30% 10% 9%",
+      color: 'white'
     },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473335616052.jpeg',
@@ -2370,28 +2378,32 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
         "" +
         "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
         position: "-220px",
-        padding: "30% 30% 10% 9%"
+        padding: "30% 30% 10% 9%",
+        color: 'crimson'
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346609808.jpg',
         title: "交流经验",
         content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
         position: "-220px",
-        padding: "30% 30% 10% 9%"
+        padding: "30% 30% 10% 9%",
+        color: ''
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
         title: "寻找伙伴",
         content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
         position: "-220px",
-        padding: "30% 30% 10% 9%"
+        padding: "30% 30% 10% 9%",
+        color: 'white'
       },
       {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
-        title: "寻找伙伴",
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1474806207636.jpeg',
+        title: "图友社区",
         content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
         position: "-220px",
-        padding: "30% 30% 10% 9%"
+        padding: "30% 30% 10% 9%",
+        color: 'lawngreen'
       }
     ];
   } else {
@@ -2399,27 +2411,32 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
     $scope.items = [{
       src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
       title: "分享图片, 交流经验, 寻找伙伴",
-      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. "
+      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
+      color: 'white'
     },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
         title: "分享图片",
-        content: "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. "
+        content: "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
+        color: 'crimson'
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image3.JPG',
         title: "交流经验",
-        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化."
+        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
+        color: 'white'
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image4.JPG',
         title: "寻找伙伴",
-        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. "
+        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
+        color: ''
       },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image2.JPG',
         title: "图友社区",
-        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. "
+        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
+        color: ''
       }
     ];
   }

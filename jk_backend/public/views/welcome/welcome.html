@@ -1,5 +1,5 @@
 
-<div class="welcome" id="welcome_pc">
+<div class="welcome" id="welcome_pc" ng-if="!isMobile()">
     <!-- Swiper -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -22,6 +22,22 @@
         <div class="swiper-button-prev"></div>
     </div>
 </div>
+
+<div ng-if="isMobile()" style="margin-bottom: 100px; ">
+    <div ng-repeat="item in items" style="margin: 10px;">
+        <div class="wel_image" style="background-image: url({{item.src}}); background-position-x: {{item.position}}; padding:{{item.padding}}; color: {{item.color}};" >
+            <h3>
+                {{item.title}}
+            </h3>
+            <p>
+                {{item.content}}
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 <!-- Swiper JS -->

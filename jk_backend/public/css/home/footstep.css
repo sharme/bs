@@ -19,6 +19,11 @@
   border-radius: 0px;
   margin-left: 10px;
 }
+.explore .explore_recommend {
+  text-align: center;
+  margin: 10px;
+  color: gray;
+}
 #navigation {
   float: left;
   border-bottom: 1px solid rgba(138, 138, 138, 0.3);
