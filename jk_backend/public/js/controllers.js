@@ -2412,7 +2412,8 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
       src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
       title: "分享图片, 交流经验, 寻找伙伴",
       content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
-      color: 'white'
+      color: 'white',
+      style: 'height: 100%; color: white; text-align: center; padding: 40px; background-position-y: -200px;'
     },
       {
         src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
