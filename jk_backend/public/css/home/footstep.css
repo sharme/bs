@@ -81,7 +81,7 @@
 #footstep-list .footstep-list-div-pic {
   width: 65%;
   float: left;
-  height: 170px;
+  height: auto;
 }
 #footstep-list .footstep-list-div-pic img {
   border-radius: 2%;
