@@ -1,15 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  #container.main
+  #container.main(style='width:80%;float:right;')
     table(style='width:100%;border:1px solid grey; text-align:center;')
       tr
         td ID
         td(style='width:20%;') Image
-        td Description
+        td(style='width:30%;') Description
         td Country
-        td Created Time
+        td CreateBy
+        td CreatedTime
         td Action
 
 
@@ -20,7 +20,8 @@ block content
           img(src=re.fs_smallImg style='width: 100px; height: 100px;')
         td= re.fs_des
         td= re.fs_from
-        td= re.fs_create_time
+        td= re.createBy
+        td #{moment(re.fs_create_time).format('YYYY-MM-DD HH:mm')}
         td
           if re.fs_status == '1'
             | approved

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
+var moment = require('moment');
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
 
@@ -22,13 +23,13 @@ router.get('/index', function(req, res, next) {
 
   var secret = req.param("secret");
   if(secret == '123456qwertyuiop') {
-
-    var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps";
+    var sql = "select fs_id, fs_status, fs_smallImg, fs_des, fs_from,(select u_name from jk_users as jku where jku.u_id=jkf.u_id) as createBy, fs_create_time from jk_footsteps as jkf order by jkf.fs_create_time desc;";
+    // var sql = "select fs_id, fs_status, fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps order by fs_create_time desc;";
     connection.query(sql, function (err, result) {
       approve = result;
     });
 
-    res.render('index', {title: '有图后台', result: approve});
+    res.render('index', {title: '有图后台', result: approve, moment: moment});
   } else {
     res.render('error');
   }
@@ -38,16 +39,20 @@ router.get('/logs', function(req, res, next) {
 
   var secret = req.param("secret");
   if(secret == '123456qwertyuiop') {
-    var sql = "select lg_id, lg_content,lg_ip, lg_create_time from jk_logs";
+    var sql = "select lg_id, lg_content,lg_ip, lg_create_time from jk_logs order by lg_id desc;";
     connection.query(sql, function (err, result) {
       approve = result;
     });
 
-    res.render('logs', {title: '有图后台', result: approve});
+    res.render('logs', {title: '有图后台', result: approve, moment: moment});
   } else {
     res.render('error');
   }
 
+});
+
+router.get('/home', function(req, res, next) {
+  res.render('home', {title: '有图后台'});
 });
 
 var tags;
@@ -55,7 +60,7 @@ router.get('/tags', function(req, res, next) {
 
   var secret = req.param("secret");
   if(secret == '123456qwertyuiop') {
-    var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps where fs_status=1";
+    var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps where fs_status=1 order by fs_create_time";
     connection.query(sql, function (err, result) {
       approve = result;
       console.log(result);
@@ -68,7 +73,7 @@ router.get('/tags', function(req, res, next) {
     });
     
 
-    res.render('tags', {title: '有图后台', result: approve, tags: tags});
+    res.render('tags', {title: '有图后台', result: approve, tags: tags, moment: moment});
   } else {
     res.render('error');
   }

@@ -1,41 +1,43 @@
 extends layout
 
 block content
-    h1= title
     #container.main
-        table(style='width:100%;border:1px solid grey; text-align:center;')
-            tr
-                td select
-                td(style='width:20%;') Image
-                td Description
-                td Country
-                td Created Time
-                td Action
-
-
-            each re in result
-                tr
-                td
-                    input(type='checkbox' value='#{re.fs_id}')
-                td
-                    img(src=re.fs_smallImg style='width: 100px; height: 100px;')
-                td= re.fs_des
-                td= re.fs_from
-                td= re.fs_create_time
-                td
-                    if re.fs_status == '1'
-                        | approved
-                    else if re.fs_status == '-1'
-                        | rejected
-                    else
-                        button(onclick='approve(' + re.fs_id + ')') approve
-                        button(onclick='reject(' + re.fs_id + ')') reject
-                        button(onclick='del(' + re.fs_id + ')') delete
-
         div
-        | Tags
-        select(id='tags', name='tags' style='margin:20px;')
+            | Tags
+            select(id='tags', name='tags' style='margin:20px;')
 
-            each re in tags
-                option(value='#{re.tg_id}') #{re.tg_name}
-        button(onclick='addIntoTags()' style='padding:10px;margin:10px;') Add into Tags
+                each re in tags
+                    option(value='#{re.tg_id}') #{re.tg_name}
+            button(onclick='addIntoTags()' style='padding:10px;margin:10px;') Add into Tags
+
+        each re in result
+            div(style='width: 200px; border: solid 1px whitesmoke; padding:5px 20px;float: left; height: 200px;')
+                input(type='checkbox' value='#{re.fs_id}')
+                br
+                img(src=re.fs_smallImg style='width: 100px; height: 100px;')
+                div(style='font-size: 10px;')
+                    p #{re.fs_des}
+                    p #{re.fs_from} #{moment(re.fs_create_time).format('YYYY-MM-DD HH:mm')}
+
+        //table(style='width:100%;border:1px solid grey; text-align:center;')
+        //    tr
+        //        td select
+        //        td(style='width:20%;') Image
+        //        td Description
+        //        td Country
+        //        td Created Time
+        //        td Action
+        //
+        //
+        //    each re in result
+        //
+        //
+        //
+        //        tr
+        //        td
+        //            input(type='checkbox' value='#{re.fs_id}')
+        //        td
+        //            img(src=re.fs_smallImg style='width: 100px; height: 100px;')
+        //        td= re.fs_des
+        //        td= re.fs_from
+        //        td #{moment(re.fs_create_time).format('YYYY-MM-DD HH:mm')}
