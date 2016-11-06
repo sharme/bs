@@ -14,109 +14,318 @@ var buybs = angular.module('jk_backend', [
 // you might call this after your module initalization
 // angular.module('infinite-scroll').value('THROTTLE_MILLISECONDS', 500);
 
-buybs.config(['$routeProvider',
-  function($routeProvider) {
-    
+
+buybs.config(function($routeProvider, $cssProvider){
+
+    angular.extend($cssProvider.defaults, {
+        breakpoints: {
+            mobile: '(max-width: 550px)',
+            desktop: '(min-width: 600px)'
+        }
+    });
+
     $routeProvider.
     when('/', {
         templateUrl: 'views/welcome/welcome.html',
-        controller: 'WelcomeCtrl'
+        controller: 'WelcomeCtrl',
+        css: [
+            {
+                href: '../css/welcome/welcome-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/welcome/welcome.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-      when('/foot', {
+    when('/foot', {
         templateUrl: 'views/homepage.html',
-        controller: 'FootstepsListCtrl'
-      }).
-        when('/foot/:footId',{
+        controller: 'FootstepsListCtrl',
+        css: [
+            {
+                href: '../css/home/footstep-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/home/footstep.css',
+                breakpoint: 'desktop'
+            }
+        ]
+    }).
+    when('/foot/:footId',{
         templateUrl: 'views/footDetail.html',
-        controller: 'FootDetailCtrl'
+        controller: 'FootDetailCtrl',
+        css: [
+            {
+                href: '../css/home/footdetail-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/home/footdetail.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/signUpCompleted', {
-        templateUrl: 'views/register/complete.html'
+    when('/signUpCompleted', {
+        templateUrl: 'views/account/complete.html'
     }).
-        when('/login', {
+    when('/login', {
         templateUrl: 'views/account/login.html',
-        controller: 'LoginController'
+        controller: 'LoginController',
+        css: [
+            {
+                href: '../css/account/login-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/login.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/register', {
-        templateUrl: 'views/register/register.html',
-        controller: 'RegisterCtrl'
+    when('/register', {
+        templateUrl: 'views/account/register.html',
+        controller: 'RegisterCtrl',
+        css: [
+            {
+                href: '../css/register/register-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/register/register.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/recovery_pwd', {
+    when('/recovery_pwd', {
         templateUrl: 'views/account/recovery_pwd.html',
-        controller: 'RecoveryPwdCtrl'
+        controller: 'RecoveryPwdCtrl',
+        css: [
+            {
+                href: '../css/account/register-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/register.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/reset_pwd', {
+    when('/reset_pwd', {
         templateUrl: 'views/account/reset_pwd.html',
-        controller: 'ResetPwdCtrl'
+        controller: 'ResetPwdCtrl',
+        css: [
+            {
+                href: '../css/account/reset-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/reset.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/reset_result', {
+    when('/reset_result', {
         templateUrl: 'views/account/reset_result.html',
-        controller: 'ResetResultCtrl'
+        controller: 'ResetResultCtrl',
+        css: [
+            {
+                href: '../css/account/reset-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/reset.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/email_registration', {
+    when('/email_registration', {
         templateUrl: 'views/account/email_registration.html',
-        controller: 'EmailRegistrationCtrl'
+        controller: 'EmailRegistrationCtrl',
+        css: [
+            {
+                href: '../css/account/email_registration-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/email_registration.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/email_login', {
+    when('/email_login', {
         templateUrl: 'views/account/email_login.html',
-        controller: 'EmailLoginCtrl'
+        controller: 'EmailLoginCtrl',
+        css: [
+            {
+                href: '../css/account/login-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/login.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/email_recovery_pwd', {
+    when('/email_recovery_pwd', {
         templateUrl: 'views/account/email_recovery_pwd.html',
-        controller: 'EmailRecoveryPwdCtrl'
+        controller: 'EmailRecoveryPwdCtrl',
+        css: [
+            {
+                href: '../css/account/email_registration-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/email_registration.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/email_reset', {
+    when('/email_reset', {
         templateUrl: 'views/account/email_reset.html',
-        controller: 'EmailResetCtrl'
+        controller: 'EmailResetCtrl',
+        css: [
+            {
+                href: '../css/account/email_registration-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/account/email_registration.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/profile',{
+    when('/profile',{
         templateUrl: 'views/profile/profile.html',
-        controller: 'ProfileController'
+        controller: 'ProfileController',
+        css: [
+            {
+                href: '../css/profile/profile-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/profile/profile.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/profile/edit',{
+    when('/profile/edit',{
         templateUrl: 'views/profile/edit.html',
-        controller: 'ProfileEditController'
+        controller: 'ProfileEditController',
+        css: [
+            {
+                href: '../css/profile/edit-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/profile/edit.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/footsteps/add',{
+    when('/footsteps/add',{
         templateUrl: 'views/footstep/add.html',
-        controller: 'FootstepAddController'
+        controller: 'FootstepAddController',
+        css: [
+            {
+                href: '../css/footstep/add-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/footstep/add.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/message',{
+    when('/message',{
         templateUrl: 'views/message/message.html',
-        controller: 'MessageController'
+        controller: 'MessageController',
+        css: [
+            {
+                href: '../css/default-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/default.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/about',{
+    when('/about',{
         templateUrl: 'views/about/about.html',
-        controller: 'AboutController'
+        controller: 'AboutController',
+        css: [
+            {
+                href: '../css/about/about-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/about/about.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/logout', {
-        controller: 'logoutController',
-        templateUrl: 'views/homepage.html'
-    }).
-        when('/community/index', {
+    when('/community/index', {
         controller: 'CommunityCtrl',
-        templateUrl: 'views/community/index.html'
+        templateUrl: 'views/community/index.html',
+        css: [
+            {
+                href: '../css/community/community-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/community/community.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/community/topics/addTopic',{
+    when('/community/topics/addTopic',{
         templateUrl: 'views/community/addTopic.html',
-        controller: 'AddTopicCtrl'
+        controller: 'AddTopicCtrl',
+        css: [
+            {
+                href: '../css/community/community-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/community/community.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/community/topics/editTopic',{
+    when('/community/topics/editTopic',{
         templateUrl: 'views/community/editTopic.html',
-        controller: 'editTopicCtrl'
+        controller: 'editTopicCtrl',
+        css: [
+            {
+                href: '../css/community/community-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/community/community.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/community/topics/:tp_id',{
+    when('/community/topics/:tp_id',{
         templateUrl: 'views/community/topic.html',
-        controller: 'TopicCtrl'
+        controller: 'TopicCtrl',
+        css: [
+            {
+                href: '../css/community/community-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/community/community.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/tuyou/index',{
+    when('/tuyou/index',{
         templateUrl: 'views/tuyou/index.html',
-        controller: 'tuyouCtrl'
+        controller: 'tuyouCtrl',
+        css: [
+            {
+                href: '../css/tuyou/tuyou-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/tuyou/tuyou.css',
+                breakpoint: 'desktop'
+            }
+        ]
     }).
-        when('/tuyou/match',{
-          templateUrl: 'views/tuyou/match.html',
-          controller: 'matchCtrl'
-      });
-  }]);
+    when('/tuyou/match',{
+        templateUrl: 'views/tuyou/match.html',
+        controller: 'matchCtrl',
+        css: [
+            {
+                href: '../css/tuyou/tuyou-m.css',
+                breakpoint: 'mobile'
+            }, {
+                href: '../css/tuyou/tuyou.css',
+                breakpoint: 'desktop'
+            }
+        ]
+    });
 
-
+});
