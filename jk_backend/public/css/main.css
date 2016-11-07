@@ -3,6 +3,11 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+.explore {
+  display: none;
+}
+
 .welcome {
   margin: 50px 10%;
 }

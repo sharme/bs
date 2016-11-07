@@ -3,6 +3,7 @@ var router = express.Router();
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var geoip = require('geoip-lite');
 // Create application/x-www-form-urlencoded parser
 var urlencodeParser = bodyParser.urlencoded( { extended: false });
 
@@ -44,7 +45,7 @@ router.get('/logs', function(req, res, next) {
       approve = result;
     });
 
-    res.render('logs', {title: '有图后台', result: approve, moment: moment});
+    res.render('logs', {title: '有图后台', result: approve, moment: moment, geoip: geoip});
   } else {
     res.render('error');
   }

@@ -1,6 +1,7 @@
 .explore {
   padding: 10px 2.5%;
   height: 60px;
+  display: block;
 }
 .explore .explore_sel {
   width: 20px;

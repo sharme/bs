@@ -14,9 +14,46 @@ var eComment = 4;
 var eFootstep = 1;
 var eTopic = 2;
 var ePeople = 3;
+function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
+
+  if(u_id != nf_to) {
+
+    var data = {
+      u_id: u_id,
+      at_id: at_id,
+      nf_to: nf_to,
+      tp_id: tp_id,
+      c_id: c_id
+    };
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/notifications/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    $http(req).success(function (result) {
+      console.log('add event');
+      if(reload) {
+        $window.location.reload();
+      }
+    }, function (error) {
+      console.log(error);
+    });
+  } else {
+    if(reload){
+      $window.location.reload();
+    }
+  }
+
+
+}
+
+
 
 var allowScroll = false;
-
 function displayPosition(miles, top){
   var maxTop = 0;
   var timer = setInterval(function(){
@@ -110,6 +147,8 @@ function displayPosition(miles, top){
 
 }
 
+
+
 //deprecated
 function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
   if($(window).width() < mobileSize - 100) {
@@ -119,42 +158,6 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
   }
 }
 
-function addEvent($http, $window, u_id, at_id, nf_to, tp_id, c_id, reload){
-
-  if(u_id != nf_to) {
-
-    var data = {
-      u_id: u_id,
-      at_id: at_id,
-      nf_to: nf_to,
-      tp_id: tp_id,
-      c_id: c_id
-    };
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/notifications/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: data
-    };
-
-    $http(req).success(function (result) {
-      console.log('add event');
-      if(reload) {
-        $window.location.reload();
-      }
-    }, function (error) {
-      console.log(error);
-    });
-  } else {
-    if(reload){
-      $window.location.reload();
-    }
-  }
-
-
-}
 
 
 /* Get footsteps list */
@@ -706,536 +709,6 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
 
 
 
-// Controllers for registered or account by email address.
-
-buybsControllers.controller('EmailRegistrationCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
-  
-  $scope.user = {
-    u_name: '',
-    u_email: '',
-    u_pwd: '',
-    agreement: "checked"
-  };
-
-  $scope.submit = function(){
-    
-    if($("#register-form-password").val().length < 8){
-      $('.validation_msg').html("密码长度不能小于8位数.");
-      return;
-    }
-
-    if($("#register-form-username").val().length > 15) {
-      $('.validation_msg').html("用户名长度不能大于16位数.");
-      return;
-    }
-    
-        var postData = $scope.user;
-          var req = {
-            method: 'POST',
-            url: ipAddress + '/users/email',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(postData)
-          };
-          $http(req).success(function (result) {
-            if(result.errno){
-              $(".validation_msg").html("注册失败, 请联系管理员.");
-            } else if(result.stage){
-              $(".validation_msg").html("邮箱不正确, 请填写正确的邮箱.");
-            } else {
-              $('.validation_msg').html("发送成功, 请您查看邮箱并完成注册操作.  如果已完成验证, 点击这里 <a href='#/email_login' style='color: black;'>登录</a>");
-            }
-          }, function (error) {
-            console.log(error);
-          });
-  };
-  
-
-}]);
-
-buybsControllers.controller('EmailLoginCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
-
-  $scope.user = {
-    u_email: '',
-    u_pwd: ''
-  };
-
-  $scope.goBack = function() {
-    $window.history.back();
-  };
-
-  $scope.submit = function(){
-    if ($('#email_login_form').valid()) {
-      var postData = $scope.user;
-      var req = {
-        method: 'POST',
-        url: ipAddress + '/users/email_login',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(postData)
-      };
-      $http(req).success(function (result) {
-        console.log('sign up:' + result);
-        if(result.errno == 1003){
-          $(".validation_msg").html("您的邮箱还没有激活, 请您去邮箱完成激活操作.");
-        } else if(result.errno){
-          $(".validation_msg").html("登录失败, 请联系管理员.");
-        }else {
-          if(result.length > 0) {
-            console.log(JSON.stringify(result));
-            if (result[0].u_avatar) {
-              $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='" + result[0].u_name + "' class='user-avatar-img' src='" + result[0].u_avatar + "'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>" + result[0].u_name + "</a>");
-              $cookies.put('u_avatar', result[0].u_avatar);
-            } else {
-              $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='" + result[0].u_name + "' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>" + result[0].u_name + "</a>");
-            }
-            $cookies.put('secret', result[0].secret);
-            $cookies.put('username', result[0].u_name);
-            $cookies.put('u_id', result[0].u_id);
-            $(".header-right-logout").css("display", "block");
-            $(".header-right-login").css("display", "none");
-            $("#login-popup").css("display", "none");
-            $(".login-cover").css("display", "none");
-            $("body").css("overflow", "auto");
-            $window.location.href = "#/foot";
-            $window.location.reload();
-          } else {
-            $(".validation_msg").html("用户名或密码不正确, 请正确输入.");
-          }
-          
-        }
-      }, function (error) {
-        console.log(error);
-      });
-    }
-  };
-
-
-}]);
-
-buybsControllers.controller('EmailRecoveryPwdCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
-
-  $scope.user = {
-    u_email: ''
-  };
-
-  $scope.submit = function(){
-    if ($('#register_form').valid()) {
-      var postData = $scope.user;
-      var req = {
-        method: 'POST',
-        url: ipAddress + '/users/email_recovery',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(postData)
-      };
-      $http(req).success(function (result) {
-        if(result.errno){
-          $('.validation_msg').html("操作失败, 请联系管理员.");
-        } else if(result.stage){
-          $('.validation_msg').html("邮箱不正确, 请填写正确的邮箱.");
-        }else {
-          $(".validation_msg").html("重置密码邮件已经发送至您的邮箱, 请按操作完成密码设置.");
-          $('#register-form-submit').css('display','none');
-        }
-      }, function (error) {
-        console.log(error);
-      });
-    }
-  };
-
-
-}]);
-
-buybsControllers.controller('EmailResetCtrl', ['$scope', '$cookies', '$window','$http','$css', '$routeParams', function($scope, $cookies, $window,$http, $css, $routeParams){
-
-  $scope.user = {
-    u_email: $routeParams.u_email,
-    u_pwd: '',
-    secret: $routeParams.secret
-  };
-
-  $scope.submit = function(){
-
-    if($('#register-form-password').val().length < 8) {
-      $('.validation_msg').html("密码不能低于8位数.");
-      return;
-    }
-
-    if ($('#register_form').valid()) {
-      var postData = $scope.user;
-      var req = {
-        method: 'POST',
-        url: ipAddress + '/users/email_reset',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(postData)
-      };
-      $http(req).success(function (result) {
-        if(result.errno){
-          $('.validation_msg').html("操作失败, 请联系管理员.");
-          $('#register-form-submit').css('display','none');
-        } else {
-          $('#register-form-submit').css('display','none');
-          $('.validation_msg').html("修改成功. 点击这里<a href='#/email_login' style='color: black;'> 登录</a>");
-        }
-      }, function (error) {
-        console.log(error);
-      });
-    }
-  };
-
-
-}]);
-
-
-
-// Controllers for account management by cell phone
-buybsControllers.controller('LoginController', ['$scope', '$http', '$window', '$cookies','$css', function($scope, $http, $window, $cookies,$css) {
-
-  var cookieUser = $cookies.get("username");
-  if(cookieUser) {
-    if($cookies.get('u_avatar')) {
-      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='"+ $cookies.get('u_avatar') +"'></div>&nbsp;<a href='#/profile?u_id="+ $cookies.get('u_id') +"'>"+cookieUser +"</a>");
-    } else {
-      $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ cookieUser +"' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id="+ $cookies.get('u_id') +"'>"+cookieUser +"</a>");
-    }
-    $(".header-right-logout").css("display", "block");
-    $(".header-right-login").css("display", "none");
-  } else {
-    $(".header-right-logout").css("display", "none");
-    $(".header-right-login").css("display", "block");
-  }
-
-  $scope.data = {
-    phoneNumber: '',
-    password: ''
-  };
-
-  $scope.submit = function(){
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/users/login',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.user)
-    };
-
-    $http(req).success(function(result){
-      if(result.length > 0) {
-        if(result[0].u_avatar) {
-          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='"+ result[0].u_avatar +"'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
-          $cookies.put('u_avatar', result[0].u_avatar);
-        } else {
-          $("#login_username").html("<div class='user-avatar'><em class='newmsg'></em><img title='"+ result[0].u_name +"' class='user-avatar-img' src='../../img/default_icon.png'></div>&nbsp;<a href='#/profile?u_id=" + result[0].u_id + "'>"+ result[0].u_name +"</a>");
-        }
-        $cookies.put('secret', result[0].secret);
-        $cookies.put('username', result[0].u_name);
-        $cookies.put('u_id', result[0].u_id);
-        $(".header-right-logout").css("display", "block");
-        $(".header-right-login").css("display", "none");
-        $("#login-popup").css("display", "none");
-        $(".login-cover").css("display", "none");
-        $("body").css("overflow","auto");
-        $window.location.href="#/foot";
-        $window.location.reload();
-      }else {
-        $(".login-popup-form-invalid").css("display", "block");
-        $scope.user = angular.copy($scope.data);
-      }
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-  $scope.user = angular.copy($scope.data);
-
-  $scope.goBack = function() {
-    $window.history.back();
-  }
-
-}]);
-
-buybsControllers.controller('RegisterCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
-
-  $scope.user = {
-    username: '',
-    phoneNumber: '',
-    password: '',
-    scCode: '',
-    agreement: "checked"
-  };
-
-  $scope.goBack = function() {
-    $window.history.back();
-  };
-
-  $scope.submit = function(){
-      if($('#register-form-phoneNumber').val().length != 11){
-        $('.validation_msg').html("请输入正确的手机号");
-        return;
-      }
-
-      if($('#register-form-password').val().length < 8) {
-        $('.validation_msg').html("密码长度不能低于8位");
-        return;
-      }
-
-      if($scope.scCode) {
-        $('.validation_msg').html("验证码不能为空");
-        return;
-      }
-    
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-
-      var postData = $scope.user;
-      $http(req).success(function (result) {
-        if (result === "00") {
-          $('.validation_msg').html("请输入正确验证码");
-        } else if(result === '03'){
-          $('.validation_msg').html("验证码失效.");
-        }else {
-
-          var req = {
-            method: 'POST',
-            url: ipAddress + '/users/create',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(postData)
-          };
-
-          $http(req).success(function (result) {
-            if(result.errno){
-              $('.validation_msg').html("注册失败, 请联系管理员.");
-            } else {
-              alert("注册成功, 进行登录");
-              $window.location.href = '#/login';
-            }
-
-          }, function (error) {
-            console.log(error);
-          });
-        }
-      }, function (error) {
-        console.log(error);
-      });
-  };
-
-
-  $scope.sendVerifyCode = function() {
-
-    if ($('#register-form-phoneNumber').val().length == 11 && $('#register-form-password').val().length >= 8 && $('#register-form-username').val().length > 4 ) {
-
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      $http(req).success(function (result) {
-
-        if ("01" == result) {
-          $('.sendScCode').css("pointer-events", "none");
-          $scope.scCount = 60;
-          var scCodeBan = setInterval(function () {
-            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
-            $scope.scCount--;
-
-            if ($scope.scCount == 0) {
-              clearInterval(scCodeBan);
-              $('.sendScCode').text("获取验证码");
-              $('.sendScCode').css("pointer-events", "");
-            }
-          }, 1000);
-
-        } else if ("02" == result) {
-          alert("验证码发送频繁.")
-        } else if ("03" == result) {
-          alert("发送异常, 请联系管理员.");
-        } else {
-          alert("发送失败. 再试一次");
-        }
-
-      }, function (error) {
-        console.log(error);
-      });
-    } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
-      $('.validation_msg').html("请输入正确的手机号码");
-    } else if ($('#register-form-password').val().length < 8){
-      $('.validation_msg').html("密码长度不能低于8位");
-    } else if ($('#register-form-username').val().length < 4){
-      $('.validation_msg').html("用户名长度太短");
-    }
-  }
-
-}]);
-
-buybsControllers.controller('RecoveryPwdCtrl', ['$scope', '$cookies', '$window','$http','$css', function($scope, $cookies, $window,$http, $css){
-
-  $scope.user = {
-    phoneNumber: '',
-    scCode: ''
-  };
-
-  $scope.goBack = function() {
-    $window.history.back();
-  };
-  
-  $scope.submit = function(){
-
-      if($scope.user.phoneNumber.length != 11){
-        $('.validation_msg').html("请输入正确的手机号");
-        return;
-      }
-
-      if(!$scope.user.scCode){
-      $('.validation_msg').html("验证码不能为空");
-      return;
-      }
-
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/checkCode?to=" + $scope.user.phoneNumber + "&scCode=" + $scope.user.scCode + "&secret=true",
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-
-      $http(req).success(function (result) {
-        if (result === "00") {
-          alert("请输入正确验证码");
-          $window.location.reload();
-        } else if(result === '03'){
-          alert("验证码失效.");
-          $window.location.reload();
-        }else {
-          $window.location.href = "#/reset_pwd?u_phone_num=" + $scope.user.phoneNumber+"&secret=" + result;
-        }
-      }, function (error) {
-        console.log(error);
-      });
-
-  };
-
-  $scope.sendVerifyCode = function() {
-
-    if ($('#register-form-phoneNumber').val().length == 11 ) {
-
-      var req = {
-        method: 'GET',
-        url: ipAddress + "/api/sendCode?to=" + $scope.user.phoneNumber,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
-      $http(req).success(function (result) {
-
-        if ("01" == result) {
-          $('.sendScCode').css("pointer-events", "none");
-          $scope.scCount = 60;
-          var scCodeBan = setInterval(function () {
-
-            $('.sendScCode').text("重新发送(" + $scope.scCount + "s)");
-            $scope.scCount--;
-
-            if ($scope.scCount == 0) {
-              clearInterval(scCodeBan);
-              $('.sendScCode').text("获取验证码");
-              $('.sendScCode').css("pointer-events", "");
-            }
-          }, 1000);
-
-        } else if ("02" == result) {
-          alert("验证码发送频繁.")
-        } else if ("03" == result) {
-          alert("发送异常, 请联系管理员.");
-        } else {
-          alert("发送失败. 再试一次");
-        }
-
-      }, function (error) {
-        console.log(error);
-      });
-    } else if ($('#register-form-phoneNumber').val().length == 0 || $('#register-form-phoneNumber').val().length != 11) {
-      alert("请输入正确的手机号码");
-    }
-  }
-
-}]);
-
-buybsControllers.controller('ResetPwdCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
-
-  $scope.user = {
-    phoneNumber: $routeParams.u_phone_num,
-    secret: $routeParams.secret,
-    password: '',
-    rePassword: ''
-  };
-
-  $scope.submit = function(){
-    if($scope.user.password.length < 8){
-      $(".reset-popup-form-invalid").css("display", "none");
-      $(".reset-popup-pwd-invalid").css("display", "block");
-      return;
-    }
-
-    if($scope.user.password != $scope.user.rePassword){
-      $(".reset-popup-pwd-invalid").css("display", "none");
-      $(".reset-popup-form-invalid").css("display", "block");
-      return;
-    }
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/users/updatePwd',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.user)
-    };
-
-    $http(req).success(function(result){
-      if(result == '01') {
-        alert("非法请求, 请稍后尝试");
-      } else {
-        $window.location.href = '#/reset_result';
-      }
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-}]);
-
-buybsControllers.controller('ResetResultCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$routeParams', function($scope, $cookies, $window, $http, $css, $routeParams){
-
-  $scope.back = 10;
-  var resetResult = setInterval(function () {
-    $('.pwd_result').text(" 密码修改完成, (" + $scope.back + "s) 跳转到登录页面.");
-    $scope.back--;
-    if ($scope.back == 0) {
-      clearInterval(resetResult);
-     $window.location.href = '#/login'
-    }
-  }, 1000);
-
-}]);
-
-
-
 
 // Controllers for account profile management
 buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','$cookies','$routeParams','$css', function($scope, $http, $window, $cookies, $routeParams, $css) {
@@ -1598,606 +1071,98 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
 
 
+// Controller for other features.
 
-// Controllers for community.  
+buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
 
-
-buybsControllers.controller('CommunityCtrl', ['$scope', '$cookies', '$window', '$http', '$css', '$sce', function($scope, $cookies, $window, $http, $css, $sce){
-
-  $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12, u_id: $cookies.get('u_id')}})
-      .success(function(data){
-        $scope.topics = data;
-      },function(error){
-        $scope.error = error;
-      });
-
-  $http({method: 'GET', url: ipAddress + '/topicClicks/topUsers'})
-      .success(function(data){
-        $scope.topUsers = data;
-      },function(error){
-        $scope.error = error;
-      });
-
-  $http({method: 'GET', url: ipAddress + '/topics/getTopicsNumber'})
-      .success(function(data){
-        $scope.number = data[0].number;
-      },function(error){
-        $scope.error = error;
-      });
-
-  $scope.shareFilter = function() {
-    if($scope.type == '分享'){
-      $scope.type = '';
-      $scope.shareSelected = false;
-      $('.shareFilter').css('background-color','white');
-    } else {
-      $('.shareFilter').css('background-color','#eee');
-      if($scope.topicSelected){
-        $('.topicFilter').css('background-color','white');
-      }
-      $scope.shareSelected = true;
-      $scope.type = '分享';
-    }
-    
-    $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12, tp_type: $scope.type }})
-        .success(function(data){
-          $scope.topics = data;
-        },function(error){
-          $scope.error = error;
-        });
-  };
-
-  $scope.topicFilter = function(val) {
-    if($scope.type == '话题'){
-      $scope.topicSelected = false;
-      $scope.type = '';
-      $('.topicFilter').css('background-color','white');
-    } else {
-      if($scope.shareSelected) {
-        $('.shareFilter').css('background-color','white');
-      }
-      $('.topicFilter').css('background-color','#eee');
-      $scope.topicSelected = true;
-      $scope.type = '话题';
-    }
-
-    $http({method: 'GET', url: ipAddress + '/topics/getTopics', params:{index_start: 0, count: 12, tp_type: $scope.type }})
-        .success(function(data){
-          $scope.topics = data;
-        },function(error){
-          $scope.error = error;
-        });
-
-  };
-  
-
-  $scope.isbusy = false;
-  $scope.loadMore = function() {
-
-      if($scope.topics && $scope.number > $scope.topics.length) {
-        $scope.isbusy = true;
-        $http({
-          method: 'GET',
-          url: ipAddress + '/topics/getTopics',
-          params: {index_start: $scope.topics.length, count: 3, tp_type: $scope.type}
-        }).success(function (data) {
-            // console.log("data length: " + data.length);
-          if (data.length > 0) {
-            for (var i = 0; i < data.length; i++) {
-              $scope.topics.push(data[i]);
-            }
-            $scope.isbusy = false;
-          }
-        }, function (error) {
-          $scope.error = error;
-        });
-      }
-  };
-
-  $scope.topicLoginCheck = function(tp_id) {
-    // if($cookies.get('u_id') == undefined){
-    //   $window.location.href = '#/login';
-    // } else {
-      var click = {
-        tp_id: tp_id,
-        u_id: $cookies.get('u_id')
-      };
-      var req = {
-        method: 'POST',
-        url: ipAddress + '/topicClicks/add',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify(click)
-      };
-      console.log(click);
-
-      $http(req).success(function(result){
-        $window.location.href = "#/community/topics/" + tp_id;
-      }, function(error){
-        console.log(error);
-      });
-    // }
-  };
-
-  $scope.addLoginCheck = function() {
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = '#/login';
-      return;
-    } else {
-      $window.location.href = "#/community/topics/addTopic";
-    }
-  };
-
-  $scope.renderHtml = function(value) {
-    return $sce.trustAsHtml(value);
-  };
-
-}]);
-
-buybsControllers.controller('TopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css,$sce){
-
-  $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
-      .success(function(data){
-        $scope.topic = data[0];
-        $scope.checkUser = $scope.topic.u_id == $cookies.get('u_id')? true: false;
-      },function(error){
-        $scope.error = error;
-      });
-
-  $http({method: 'GET', url: ipAddress + '/topicComments/getCommentsByTPID', params:{tp_id: $routeParams.tp_id}})
-      .success(function(data){
-        console.log(data);
-        $scope.comments = data;
-        $scope.commentNum = data.length;
-      },function(error){
-        $scope.error = error;
-      });
-
-  $http({method: 'GET', url: ipAddress + '/topicClicks/search', params:{tp_id: $routeParams.tp_id}})
-      .success(function(data){
-        $scope.clicks = data;
-      },function(error){
-        $scope.error = error;
-      });
-
-  $scope.renderHtml = function(value) {
-    return $sce.trustAsHtml(value);
-  };
-  
-  $scope.replay = {m_content: '从这里开始输入内容...'};
-
-  $scope.likeBtn = function(tp_id,u_id){
-
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = '#/login';
-      return;
-    }
-
-    var like = {
-      tp_id: tp_id,
-      u_id: $cookies.get('u_id')
-    };
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/topicLikes/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(like)
-    };
-
-    $http(req).success(function(result){
-      addEvent($http, $window, $cookies.get('u_id'),eLike,u_id,eTopic,tp_id, true);
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-
-  $scope.editBtn = function(tp_id) {
-
-    $window.location.href = '#/community/topics/editTopic?tp_id=' + tp_id;
-    $window.location.reload();
-  };
-
-  
-
-  $scope.submit = function(){
-
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = '#/login';
-      return;
-    }
-
-    var replayData = {
-      tp_id: $scope.topic.tp_id,
-      u_id: $cookies.get('u_id'),
-      tp_cm_to: 0,
-      tp_cm_content: CKEDITOR.instances.editor1.getData()
-    };
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/topicComments/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(replayData)
-    };
-
-    console.log("topic comments replied : " + JSON.stringify(replayData));
-
-    $http(req).success(function(result){
-      addEvent($http,$window,$cookies.get('u_id'),eComment,$scope.topic.u_id,eTopic,$scope.topic.tp_id, true);
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-  $scope.closeTopic = function() {
-    $window.location.href = '#/community/index';
-  };
-
-  $scope.loginCheck = function(){
-    if($cookies.get('u_id') == undefined){
+  $scope.isMobile = function (){
+    if($(".view-container").width() < (mobileSize - 100)){
       return true;
     }
   };
-  
 
-}]);
+  if($(".view-container").width() < (mobileSize - 100)){
 
-buybsControllers.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams, $css){
-
-  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
-      .success(function(data){
-        $scope.countries = data;
-      }, function(error){
-        $scope.error = error;
-      });
-
-  $scope.closeTopic = function() {
-    $window.location.href = '#/community/index';
-  };
-
-  $scope.topic = {
-    u_id: '',
-    tp_about: '中国',
-    tp_content: '从这里开始输入内容...',
-    tp_img: '',
-    tp_title: '',
-    tp_type: '话题'
-  };
-
-  $scope.submit = function(){
-
-    var tp_subject = "";
-    if(CKEDITOR.instances.editor1.getData().length > 180){
-      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 180);
-    }else{
-      tp_subject = CKEDITOR.instances.editor1.getData();
-    }
-
-    var replayData = {
-      u_id: $cookies.get('u_id'),
-      tp_about: $scope.topic.tp_about,
-      tp_content: CKEDITOR.instances.editor1.getData(),
-      tp_img: '',
-      tp_title: $scope.topic.tp_title,
-      tp_subject: tp_subject + '...',
-      tp_type: $scope.topic.tp_type,
-      secret: $cookies.get('secret')
-    };
-
-    if($scope.topic.tp_about == ''){
-      alert('关于不能为空!');
-      return;
-    }
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/topics/create',
-      headers: {
-        'Content-Type': 'application/json'
+    $scope.items = [{
+      src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346832363.jpg',
+      title: "分享图片, 交流经验, 寻找伙伴",
+      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
+      position: "-220px",
+      padding: "30% 30% 10% 9%",
+      color: 'white'
+    },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473335616052.jpeg',
+        title: "分享图片",
+        content: "" +
+        "" +
+        "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
+        position: "-220px",
+        padding: "30% 30% 10% 9%",
+        color: 'crimson'
       },
-      data: JSON.stringify(replayData)
-    };
-
-    $http(req).success(function(result){
-
-      if(result.errno){
-        alert("发布失败");
-      } else {
-        alert("发布成功");
-        $window.location.href= '#/community/index';
-      }
-
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-}]);
-
-buybsControllers.controller('editTopicCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css','$sce', function($scope, $cookies, $window, $http, $routeParams, $css, $sce){
-
-  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
-      .success(function(data){
-        $scope.countries = data;
-      }, function(error){
-        $scope.error = error;
-      });
-
-  $scope.closeTopic = function() {
-    $window.location.href = '#/community/index';
-  };
-
-  $scope.renderHtml = function(value) {
-    return $sce.trustAsHtml(value);
-  };
-  
-  $http({method: 'GET', url: ipAddress + '/topics/getTopicsByTPID', params:{tp_id: $routeParams.tp_id}})
-      .success(function(data){
-        $scope.result = data[0];
-      },function(error){
-        $scope.error = error;
-      });
-
-  $scope.submit = function(){
-
-    var tp_subject = "";
-    if(CKEDITOR.instances.editor1.getData().length > 180){
-      tp_subject = CKEDITOR.instances.editor1.getData().substr(0, 180);
-    }else{
-      tp_subject = CKEDITOR.instances.editor1.getData();
-    }
-
-    var replayData = {
-      tp_id: $scope.result.tp_id,
-      tp_about: $scope.result.tp_about,
-      tp_content: CKEDITOR.instances.editor1.getData(),
-      tp_title: $scope.result.tp_title,
-      tp_subject: tp_subject + "...",
-      tp_type: $scope.result.tp_type,
-      secret: $cookies.get('secret'),
-      u_id: $cookies.get('u_id')
-    };
-
-    if($scope.result.tp_about == ''){
-      alert('关于不能为空!');
-      return;
-    }
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/topics/update',
-      headers: {
-        'Content-Type': 'application/json'
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346609808.jpg',
+        title: "交流经验",
+        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
+        position: "-220px",
+        padding: "30% 30% 10% 9%",
+        color: ''
       },
-      data: JSON.stringify(replayData)
-    };
-
-    // console.log("topic comments replied : " + JSON.stringify(replayData));
-
-    $http(req).success(function(result){
-      if(result.errno) {
-        alert("修改失败, 请稍后再试.");
-      } else {
-        alert("修改成功");
-        $window.location.href= '#/community/index';
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
+        title: "寻找伙伴",
+        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
+        position: "-220px",
+        padding: "30% 30% 10% 9%",
+        color: 'white'
+      },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1474806207636.jpeg',
+        title: "图友社区",
+        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
+        position: "-220px",
+        padding: "30% 30% 10% 9%",
+        color: 'lawngreen'
       }
+    ];
+  } else {
 
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-}]);
-
-
-
-
-
-// Controller for other features.
-
-
-buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
-
-  if($cookies.get('u_id') == undefined){
-    $window.location.href = '#/login';
-    return;
+    $scope.items = [{
+      src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
+      title: "分享图片, 交流经验, 寻找伙伴",
+      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
+      color: 'white',
+      style: 'height: 100%; color: white; text-align: center; padding: 40px; background-position-y: -200px;'
+    },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
+        title: "分享图片",
+        content: "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
+        color: 'crimson'
+      },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image3.JPG',
+        title: "交流经验",
+        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
+        color: 'white'
+      },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image4.JPG',
+        title: "寻找伙伴",
+        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
+        color: ''
+      },
+      {
+        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image2.JPG',
+        title: "图友社区",
+        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
+        color: ''
+      }
+    ];
   }
 
-  $scope.message = {
-    u_id: $cookies.get('u_id'),
-    m_content: ''
-  };
-
-  $scope.submit = function(){
-
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/messages/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify($scope.message)
-    };
-
-    $http(req).success(function(result){
-      alert("留言发送成功.");
-      $window.history.back();
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-
-  $scope.closeTopic = function() {
-    $window.history.back();
-  };
-
-
 }]);
-
-buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
-
-}]);
-
-buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
-
-  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
-      .success(function(data){
-        $scope.destinations = data;
-      }, function(error){
-        $scope.error = error;
-      });
-
-  $scope.des = {
-    u_id: $cookies.get('u_id'),
-    ty_destination: '',
-    ty_stay_start: '',
-    ty_stay_end: '',
-    ty_description: ''
-  };
-  
-  $scope.browserTuyou = function () {
-    $window.location.href = '#/tuyou/match';
-  };
-
-
-  $scope.nextStep = function () {
-    $('#step_one').css("display","none");
-    $('#step_two').css("display","block");
-  };
-
-  $scope.PrevStep = function () {
-    $('#step_one').css("display","block");
-    $('#step_two').css("display","none");
-  };
-
-  $scope.matchTuyou = function() {
-
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = "#/login";
-    }
-
-
-    if($scope.des.ty_destination != '' && $scope.des.ty_stay_start != '' && $scope.des.ty_stay_end != '' && $scope.des.ty_description != '') {
-
-      var req = {
-        method: 'POST',
-        url: ipAddress + '/tuyou/add',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: JSON.stringify($scope.des)
-      };
-      $http(req).success(function (result) {
-        if (!result.errno) {
-          $window.location.href = '#/tuyou/match?des=' + $scope.des.ty_destination;
-        } else {
-          $('.matchMsg').html('没有找到合适的图友.');
-        }
-      }, function (error) {
-        console.log(error);
-      });
-    } else {
-      $('.matchMsg').html('没有找到合适的图友.');
-    }
-  };
-
-  $scope.selDestination = function(val) {
-    $scope.des.ty_destination = val;
-    $('.tuyou_destination_list').css('display','none')
-  };
-  
-  
-
-}]);
-
-buybsControllers.controller('matchCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
-
-  $http({method: 'GET', url: ipAddress + '/tuyou/getTuyou', params: {des: $routeParams.des, u_id: $cookies.get('u_id')}})
-      .success(function(data){
-        if(data && data.length < 1) {
-          $('.match_result_msg').html("抱歉, 暂时还没有图友在这附近活动");
-        } else {
-          $scope.results = data;
-        }
-      }, function(error){
-        $scope.error = error;
-      });
-
-  var hidden = true;
-  $scope.replyList = function(ty_id) {
-    if(hidden) {
-      $http({method: 'GET', url: ipAddress + '/tuyouMessages/getMessages', params: {ty_id: ty_id}})
-          .success(function (data) {
-            $scope.messages = data;
-            $('.comments').css('display', 'none');
-            $('.hide'+ty_id).css('display', 'block');
-          }, function (error) {
-            $scope.error = error;
-          });
-    }
-  };
-
-  $scope.hiddenReply = function(ty_id) {
-    $('.hide'+ty_id).css('display', 'none'); hidden = true;
-  };
-
-  $scope.tm = {
-    ty_id: '',
-    u_id: '',
-    tm_message: ''
-  };
-
-  $scope.submit = function(ty_id){
-
-    if($cookies.get('u_id') == undefined){
-      $window.location.href = '#/login';
-      return;
-    }
-
-    var data = {
-      ty_id: ty_id,
-      u_id: $cookies.get('u_id'),
-      tm_message: $scope.tm.tm_message
-    };
-    
-    var req = {
-      method: 'POST',
-      url: ipAddress + '/tuyouMessages/add',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(data)
-    };
-
-    $http(req).success(function(result){
-      
-      if(!result.errno){
-        $http({method: 'GET', url: ipAddress + '/tuyouMessages/getMessages', params: {ty_id: ty_id}})
-            .success(function (data) {
-              $scope.messages = data;
-              $('.comment_reply_input_val').val('');
-            }, function (error) {
-              $scope.error = error;
-            });
-      }
-      
-    }, function(error){
-      console.log(error);
-    });
-  };
-
-
-
-
-}]);
-
 
 buybsControllers.controller('headerController', ['$scope', '$cookies', '$window','$http', function($scope, $cookies, $window,$http){
 
@@ -2258,96 +1223,50 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 
 }]);
 
-buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
+buybsControllers.controller('MessageController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
 
-  $scope.isMobile = function (){
-    if($(".view-container").width() < (mobileSize - 100)){
-      return true;
-    }
-  };
-  
-  if($(".view-container").width() < (mobileSize - 100)){
-
-    $scope.items = [{
-      src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346832363.jpg',
-      title: "分享图片, 交流经验, 寻找伙伴",
-      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
-      position: "-220px",
-      padding: "30% 30% 10% 9%",
-      color: 'white'
-    },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473335616052.jpeg',
-        title: "分享图片",
-        content: "" +
-        "" +
-        "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
-        position: "-220px",
-        padding: "30% 30% 10% 9%",
-        color: 'crimson'
-      },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/21/1473346609808.jpg',
-        title: "交流经验",
-        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
-        position: "-220px",
-        padding: "30% 30% 10% 9%",
-        color: ''
-      },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1473604143983.JPG',
-        title: "寻找伙伴",
-        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
-        position: "-220px",
-        padding: "30% 30% 10% 9%",
-        color: 'white'
-      },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/images/big/47/1474806207636.jpeg',
-        title: "图友社区",
-        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
-        position: "-220px",
-        padding: "30% 30% 10% 9%",
-        color: 'lawngreen'
-      }
-    ];
-  } else {
-    
-    $scope.items = [{
-      src: 'http://o99spo2ev.bkt.clouddn.com/wel-header.jpg',
-      title: "分享图片, 交流经验, 寻找伙伴",
-      content: "上传，管理，分享，评论，社区，图友约伴一体化，这里是旅行爱好者的大本营. ",
-      color: 'white',
-      style: 'height: 100%; color: white; text-align: center; padding: 40px; background-position-y: -200px;'
-    },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image5.JPG',
-        title: "分享图片",
-        content: "图友社区汇聚了世界各地的旅行目的地图片, 通过快速搜素，图友社区将为你展示最丰富，最全面，最值得去的旅行目的地. ",
-        color: 'crimson'
-      },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image3.JPG',
-        title: "交流经验",
-        content: "图友社区汇聚了世界各地的旅行经验分享与常见问题解决方案, 图友们相互分享，相互交流，让彼此的旅行变的更容易，让旅行体验最大化.",
-        color: 'white'
-      },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image4.JPG',
-        title: "寻找伙伴",
-        content: "让旅行不再孤单. 图友约伴将根据你的所在位置，停留时间去匹配同样时间，同样地点的图友. 让约伴更容易, 让旅行不再孤单. ",
-        color: ''
-      },
-      {
-        src: 'http://o99spo2ev.bkt.clouddn.com/wel_image2.JPG',
-        title: "图友社区",
-        content: "汇聚每一个爱旅行的人，构建一个绿色，和谐，友爱的社区, 彼此交流，分享，让旅行变的更容易. ",
-        color: ''
-      }
-    ];
+  if($cookies.get('u_id') == undefined){
+    $window.location.href = '#/login';
+    return;
   }
 
+  $scope.message = {
+    u_id: $cookies.get('u_id'),
+    m_content: ''
+  };
+
+  $scope.submit = function(){
+
+    var req = {
+      method: 'POST',
+      url: ipAddress + '/messages/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify($scope.message)
+    };
+
+    $http(req).success(function(result){
+      alert("留言发送成功.");
+      $window.history.back();
+    }, function(error){
+      console.log(error);
+    });
+  };
+
+
+  $scope.closeTopic = function() {
+    $window.history.back();
+  };
+
+
 }]);
+
+buybsControllers.controller('AboutController', ['$scope', '$cookies', '$window', '$http', '$css', function($scope, $cookies, $window, $http, $css){
+
+}]);
+
+
 
 
 

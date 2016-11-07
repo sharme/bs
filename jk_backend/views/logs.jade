@@ -8,6 +8,7 @@ block content
                 td Description
                 td Created Time
                 td IP
+                td Country
 
             each re in result
                 tr
@@ -15,6 +16,7 @@ block content
                 td= re.lg_content
                 td #{moment(re.lg_create_time).format('YYYY-MM-DD HH:mm')}
                 td= re.lg_ip
+                td #{geoip.lookup(re.lg_ip)?geoip.lookup(re.lg_ip).country:''}
 
 
 
