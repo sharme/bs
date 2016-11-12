@@ -28,9 +28,8 @@ router.get('/index', function(req, res, next) {
     // var sql = "select fs_id, fs_status, fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps order by fs_create_time desc;";
     connection.query(sql, function (err, result) {
       approve = result;
+      res.render('index', {title: '有图后台', result: approve, moment: moment});
     });
-
-    res.render('index', {title: '有图后台', result: approve, moment: moment});
   } else {
     res.render('error');
   }
@@ -43,9 +42,8 @@ router.get('/logs', function(req, res, next) {
     var sql = "select lg_id, lg_content,lg_ip, lg_create_time from jk_logs order by lg_id desc;";
     connection.query(sql, function (err, result) {
       approve = result;
+      res.render('logs', {title: '有图后台', result: approve, moment: moment, geoip: geoip});
     });
-
-    res.render('logs', {title: '有图后台', result: approve, moment: moment, geoip: geoip});
   } else {
     res.render('error');
   }
@@ -64,17 +62,15 @@ router.get('/tags', function(req, res, next) {
     var sql = "select fs_id, fs_status,fs_smallImg, fs_des, fs_from, fs_create_time from jk_footsteps where fs_status=1 order by fs_create_time";
     connection.query(sql, function (err, result) {
       approve = result;
-      console.log(result);
+      // console.log(result);
     });
 
     var tagSql = "select tg_id, tg_name from jk_tags;";
     connection.query(tagSql, function (err, result) {
       tags = result;
-      console.log(result);
+      res.render('tags', {title: '有图后台', result: approve, tags: tags, moment: moment});
     });
-    
 
-    res.render('tags', {title: '有图后台', result: approve, tags: tags, moment: moment});
   } else {
     res.render('error');
   }
@@ -105,9 +101,6 @@ router.get('/email', function (req, res, next) {
       res.send(00);
     });
 });
-
-
-
 
 
 module.exports = router;

@@ -15,7 +15,7 @@
   width: 100%;
 }
 .tuyou .tuyou_destination .tuyou_destination_list {
-  height: 100px;
+  height: 150px;
   overflow: scroll;
   border: solid 1px whitesmoke;
 }
@@ -27,7 +27,7 @@
   padding: 0px 20px;
 }
 .tuyou .tuyou_description {
-  padding: 20px;
+  padding: 0px 20px;
 }
 .tuyou .tuyou_description textarea {
   height: 100px;

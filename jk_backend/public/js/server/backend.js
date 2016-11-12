@@ -40,16 +40,29 @@ function addIntoTags() {
         });
         
     });
-
-   
-
-
-
-
-    
-    
-    
 }
+
+function getTags(fs_id) {
+        var request = $.ajax({
+            url: ipaddress + "/tagFootsteps/getTags",
+            method: "GET",
+            data: { fs_id : fs_id },
+            dataType: "html"
+        });
+
+        request.done(function( msg ) {
+            console.log(msg);
+            $('#'+ fs_id).html(msg);
+        });
+
+        request.fail(function( jqXHR, textStatus ) {
+            console.log("Request failed: " + textStatus);
+        });
+}
+
+
+
+
 
 
 function reject(fs_id) {

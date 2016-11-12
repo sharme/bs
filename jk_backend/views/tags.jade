@@ -11,10 +11,15 @@ block content
             button(onclick='addIntoTags()' style='padding:10px;margin:10px;') Add into Tags
 
         each re in result
-            div(style='width: 200px; border: solid 1px whitesmoke; padding:5px 20px;float: left; height: 200px;')
+            div(style='width: 200px; border: solid 1px whitesmoke; padding:5px 20px;float: left; height: 300px;')
                 input(type='checkbox' value='#{re.fs_id}')
                 br
                 img(src=re.fs_smallImg style='width: 100px; height: 100px;')
                 div(style='font-size: 10px;')
                     p #{re.fs_des}
                     p #{re.fs_from} #{moment(re.fs_create_time).format('YYYY-MM-DD HH:mm')}
+                    button(onclick='getTags(#{re.fs_id})' style='margin-bottom:10px;') show tags
+                    div(id='#{re.fs_id}' style='height:100px;')
+
+
+

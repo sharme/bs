@@ -30,6 +30,24 @@ router.post('/add', function(req, res, next) {
 });
 
 
+router.get('/getTags', function(req, res, next) {
+
+    var sql = mysql.format("select tg_name from jk_tags  where tg_id in (select distinct tg_id from jk_tag_footsteps where fs_id=?);",[req.param('fs_id')]);
+    console.log(sql);
+    connection.query(sql, function (err, result) {
+        if(err) {
+            res.send(err);
+        } else {
+            
+            if(result){
+                console.log(JSON.stringify(result));
+            }
+            
+            res.send(JSON.stringify(result));
+        }
+    })
+});
+
 
 
 module.exports = router;
