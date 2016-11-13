@@ -146,14 +146,19 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.notification .notification-profile-edit {
+  margin: 10px 10px;
+  float: right;
+}
 .notification .notification-msg-title {
   padding: 10px;
   font-size: 16px;
 }
 .notification .notification-msg-content {
-  padding: 0px 15px;
+  padding: 20px 15px;
   overflow: overlay;
   height: 250px;
+  width: 100%;
 }
 .notification .notification-msg-content .notification-msg-content-time {
   color: grey;

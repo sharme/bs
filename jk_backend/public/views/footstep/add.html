@@ -1,12 +1,12 @@
 <div class="create_footstep">
     <div class="create_footstep-info">
         <form ng-submit="submit()" method="POST">
-            <div id="create_footstep-info-header">你去过哪里?<span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
+            <div id="create_footstep-info-header"><span id="create_footstep-info-header-del" ng-click="closeBtn()">X</span></div>
             <!--<img id="create_footstep-info-image" ng-src="{{uploadUrl}}">-->
-            <hr>
+            <!--<hr>-->
             <div class="fileUpload">
                 <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this)" id="uploadBtn" name="imageName"/>
-                <span class="uploadBtn">有图片吗</span>
+                <span class="uploadBtn">分享</span>
             </div>
 
             <img  ng-src="{{uploadUrl}}" class="create_footstep-info_img">
@@ -18,21 +18,22 @@
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_smallImg" id="upload_smallImg-href">
             <input type="text" style="display:none;" name="fs_pic" ng-model="footstep.fs_bigImg" id="upload_bigImg-href">
             <div  class="create_footstep-info-div">
-                <span class="create_footstep-info-span">描述</span>
-                <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40" placeholder="描述下这里的位置,特点 和给你的感受." required></textarea>
+                <!--<span class="create_footstep-info-span">描述</span>-->
+                <textarea style="width: 70%;" ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40" placeholder="描述下这里的位置,特点 和给你的感受." required></textarea>
                 <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
+                <input type="submit" id="footstep_form-submit" value="完成">
             </div>
 
-            <br/>
-            <div>
-                <span class="create_footstep-info-span">国家</span>
-                <select class="create_footstep-info-from" ng-model="footstep.fs_from" required>
-                    <option ng-repeat="country in countries">{{country.c_name}}</option>
-                    <!--<option ng-model="footstep.fs_from">印度</option>-->
-                </select>
-            </div>
-            <br/>
-            <input type="submit" id="footstep_form-submit" value="完成">
+            <!--<br/>-->
+            <!--<div>-->
+                <!--<span class="create_footstep-info-span">国家</span>-->
+                <!--<select class="create_footstep-info-from" ng-model="footstep.fs_from" required>-->
+                    <!--<option ng-repeat="country in countries">{{country.c_name}}</option>-->
+                    <!--&lt;!&ndash;<option ng-model="footstep.fs_from">印度</option>&ndash;&gt;-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<br/>-->
+            <!--<input type="submit" id="footstep_form-submit" value="完成">-->
         </form>
     </div>
 </div>

@@ -1,5 +1,8 @@
+body {
+  background-color: black;
+}
 .create_footstep {
-  margin: 50px auto;
+  padding: 10px;
 }
 .create_footstep .create_footstep-info {
   width: 600px;
@@ -11,7 +14,6 @@
 .create_footstep .create_footstep-info #create_footstep-info-header {
   width: 100%;
   text-align: left;
-  height: 50px;
   line-height: 3;
   font-size: 16px;
 }
@@ -40,14 +42,11 @@
   background-repeat: no-repeat;
 }
 .create_footstep .create_footstep-info #footstep_form-submit {
-  margin-right: 20px;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  width: 100%;
+  padding: 16px 30px;
   border-radius: 5px;
   background-color: darkgray;
   border: none;
+  float: right;
 }
 .create_footstep .create_footstep-info .create_footstep-info-span {
   padding-left: 20px;
@@ -68,6 +67,7 @@
   display: inline-block;
   vertical-align: top;
   margin-bottom: 10px;
+  width: 100%;
 }
 .uploadBtn {
   display: inline-block;
@@ -90,6 +90,7 @@
   font-size: 20px;
   cursor: pointer;
   opacity: 0;
+  left: 0px;
 }
 #myProgress {
   position: relative;

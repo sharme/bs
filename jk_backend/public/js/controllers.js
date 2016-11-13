@@ -912,10 +912,10 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
   };
 
   $scope.submit = function() {
-    if($scope.footstep.fs_from == null){
-      alert('国家不能为空');
-      return;
-    }
+    // if($scope.footstep.fs_from == null){
+    //   alert('国家不能为空');
+    //   return;
+    // }
 
     if($scope.footstep.fs_desc == null){
       alert('描述不能为空');

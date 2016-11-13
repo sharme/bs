@@ -61,9 +61,12 @@
     </div>
   </div>
 
+
+
   <div class="notification">
-    <div class="notification-msg-title">消息</div>
-    <hr>
+    <div class="notification-profile-edit"><a href="#/profile/edit">修改个人信息</a></div>
+    <!--<div class="notification-msg-title">消息</div>-->
+    <!--<hr>-->
     <div class="notification-msg-content">
         <span ng-repeat="noti in notifications">
         {{noti.u_name}}&nbsp;&nbsp;{{noti.action}}了你&nbsp;&nbsp;<a style={{noti.nf_status==0?"color:red;":"color:gray;"}} ng-click="linkTo(noti.type,noti.c_id,noti.nf_id)">{{noti.type == '图友'?'': '的' + noti.type}}</a>&nbsp;&nbsp;
