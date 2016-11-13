@@ -163,6 +163,8 @@ function dynamicallyCSS(mobileSize, defaultCSS, mobileCSS, cssObj) {
 /* Get footsteps list */
 buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies', '$window','$css', function ($scope, $http, $cookies, $window, $css) {
 
+  // $('.explore').css('display','block');
+
   $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 20, u_id: $cookies.get('u_id')}})
       .success(function(data){
         $scope.footsteps = data;
@@ -1167,6 +1169,7 @@ buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$cs
 buybsControllers.controller('headerController', ['$scope', '$cookies', '$window','$http', function($scope, $cookies, $window,$http){
 
   $scope.homepageBtn = function() {
+    // $('.view-frame').css('display','none');
     $window.location = '#/foot';
     $window.location.reload();
   };

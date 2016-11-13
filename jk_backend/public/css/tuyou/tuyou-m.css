@@ -2,6 +2,7 @@
   margin: 10px;
   padding-top: 50px;
   padding-bottom: 100px;
+  display: block;
 }
 .tuyou .matchMsg {
   text-align: center;

@@ -10,6 +10,7 @@
 }
 #register-content {
   min-height: 30px;
+  display: block;
 }
 #register-content .register-content-wrapper {
   padding: 30px;

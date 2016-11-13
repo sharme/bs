@@ -1,3 +1,18 @@
+.explore {
+  display: none;
+}
+.community {
+  display: none;
+}
+.tuyou {
+  display: none;
+}
+#login-content {
+  display: none;
+}
+#register-content {
+  display: none;
+}
 a {
   color: black;
   text-decoration: none;

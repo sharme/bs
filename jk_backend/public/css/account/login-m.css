@@ -1,5 +1,6 @@
 #login-content {
   min-height: 30px;
+  display: block;
 }
 #login-content .login-content-wrapper {
   padding: 30px;

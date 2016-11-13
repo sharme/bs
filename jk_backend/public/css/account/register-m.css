@@ -10,6 +10,7 @@
 }
 #register-content {
   min-height: 30px;
+  display: block;
 }
 #register-content .register-content-wrapper {
   padding: 30px;
@@ -79,6 +80,14 @@
   margin-right: 15px !important;
   color: #fff;
   text-decoration: none;
+}
+#register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form .email_registration {
+  text-align: center;
+  background-color: #8ac249;
+  width: 80px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 #register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form div {
   width: 100%;

@@ -85,10 +85,10 @@ buybs.config(function($routeProvider, $cssProvider){
         controller: 'RegisterCtrl',
         css: [
             {
-                href: '../css/register/register-m.css',
+                href: '../css/account/register-m.css',
                 breakpoint: 'mobile'
             }, {
-                href: '../css/register/register.css',
+                href: '../css/account/register.css',
                 breakpoint: 'desktop'
             }
         ]
