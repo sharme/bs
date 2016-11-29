@@ -24,7 +24,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
     config.language = 'zh-cn';
-    config.height = 500;
+    // config.height = 500;
     config.toolbarCanCollapse = true;
 
     config.toolbar = [

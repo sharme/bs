@@ -4,8 +4,9 @@
 .community,
 .topic,
 .topic_add {
-  margin: 50px auto;
-  width: 800px;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
 }
 .community .community_top,
 .topic .community_top,
@@ -35,8 +36,7 @@
 .community .community_topic,
 .topic .community_topic,
 .topic_add .community_topic {
-  margin: 0px 0px 100px 100px;
-  width: 700px;
+  margin: 0px 10px 100px 100px;
   float: left;
   padding-left: 6px;
   color: black;
@@ -265,8 +265,8 @@
   width: 80px;
 }
 .topic_add {
-  width: 800px;
-  margin: 50px auto;
+  margin: auto;
+  margin-top: 50px;
 }
 .topic_add .topic_add_title {
   font-size: 20px;
@@ -275,6 +275,9 @@
 .topic_add .topic_add_title_txt {
   width: 100%;
   height: 30px;
+}
+.topic_add #cke_1_contents {
+  height: 500px;
 }
 .topic_add .topic_add_btn {
   width: 180px;

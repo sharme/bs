@@ -1,5 +1,10 @@
+.cke_contents {
+  height: 100px;
+}
 .foot_wrapper {
-  margin: 50px 5%;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
 }
 .foot_wrapper .foot_wrapper-back .foot_wrapper-back_close {
   float: right;
@@ -16,7 +21,6 @@
   margin-right: 5px;
 }
 .foot_wrapper .foot_wrapper-main {
-  width: 800px;
   margin: 0 auto;
 }
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_follow {

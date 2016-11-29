@@ -1,6 +1,7 @@
 .explore {
   padding: 10px 2.5%;
   height: 60px;
+  display: block;
 }
 .explore .explore_sel {
   width: 20px;
@@ -41,6 +42,7 @@
   top: 60px;
   position: relative;
   margin: 10px 2%;
+  display: block;
 }
 .footstep_list_profile {
   width: 100%;
@@ -103,6 +105,9 @@
   padding: 5px 10px 5px 0px;
   word-wrap: break-word;
   font-size: 13px;
+}
+#footstep-list .footstep-list-div-desc button {
+  background-color: darkgray;
 }
 #footstep-list .footstep-list-div-comment {
   line-height: 15px;
