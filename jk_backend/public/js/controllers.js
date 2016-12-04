@@ -58,9 +58,6 @@ function displayPosition(miles, top){
   var maxTop = 0;
   var timer = setInterval(function(){
     window.clearInterval(timer);
-    // if($("#footstep-list").width() < mobileSize) {
-      
-    // } else {
 
     var arrayAcount = Math.floor($("#footstep-list").width()/(248*2));
     var left = 248*2;
@@ -90,9 +87,6 @@ function displayPosition(miles, top){
         var balanceLength = ($('#footstep-list').width() - left*arrayAcount)/2;
 
         for(var h = 0; h < arrayAcount; h ++) {
-
-
-
           topPxs.push({"topPx": top, "leftPx": (left * h)+balanceLength});
         }
 
@@ -139,12 +133,9 @@ function displayPosition(miles, top){
       } else {
         $('.footstep-list_end').css('display', 'none');
       }
-    // }
 
   },miles);
-
-  // $('#footstep-list').css("top", maxTop + 200 + "px");
-
+  
 }
 
 
