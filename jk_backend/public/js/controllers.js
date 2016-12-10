@@ -181,14 +181,17 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           $scope.error = error;
         });
   };
-
+  $scope.tag = '';
   $scope.tagFilter = function(element, fs_from){
+    $scope.tag = $('#tagValue').val();
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsByTag', params:{tag: $('#tagValue').val(),u_id: $cookies.get('u_id'),index_start: 0, count: 20}})
         .success(function(data){
-          console.log(data);
+          // console.log(JSON.stringify(data));
           if(!data.errno){
             $scope.footsteps = data;
+            $scope.footsteps.push({});
             displayPosition(500,20);
+            $scope.isbusy = false;
             // $scope.number = data.length;
           }
         }, function(error){
@@ -221,8 +224,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       $scope.isbusy = true;
       $http({
         method: 'GET',
-        url: ipAddress + '/footsteps/getFootsteps',
-        params: {index_start: $scope.footsteps.length, count: 3,u_id: $cookies.get('u_id')}
+        url: ipAddress + '/footsteps/getFootstepsByTag',
+        params: {index_start: $scope.footsteps.length, count: 3,u_id: $cookies.get('u_id'), tag: $scope.tag}
       }).success(function (data) {
         if (data.length > 0) {
           for (var i = 0; i < data.length; i++) {
@@ -234,6 +237,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
       }, function (error) {
         $scope.error = error;
       });
+    } else {
+      $scope.footsteps.push({});
     }
   };
 
@@ -891,6 +896,11 @@ buybsControllers.controller('ProfileController', ['$scope', '$http', '$window','
 
 buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$window', '$http','$css', function($scope, $cookies, $window, $http, $css){
 
+  if($cookies.get('u_id') == undefined){
+    $window.location.href = '#/email_login';
+    return;
+  }
+
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         $scope.countries = data;
@@ -903,10 +913,6 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
   };
 
   $scope.submit = function() {
-    // if($scope.footstep.fs_from == null){
-    //   alert('国家不能为空');
-    //   return;
-    // }
 
     if($scope.footstep.fs_desc == null){
       alert('描述不能为空');
