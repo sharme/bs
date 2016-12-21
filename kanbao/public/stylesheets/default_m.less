@@ -1,0 +1,83 @@
+
+body{
+  display:none;
+}
+
+a {
+  color: black;
+}
+
+.header {
+  height: 60px;
+  margin: 5px 5%;
+  border-bottom: solid 1px silver;
+  .header-icon {
+    width: 30px;
+    float: left;
+    img {
+      width: 30px;
+    }
+  }
+  .header-navigation {
+    float: left;
+    padding: 10px 10px 10px 20px;
+  }
+  .header-account {
+    float: right;
+    padding: 10px 20px;
+    .user-avatar-img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+  }
+  span {
+    cursor: pointer;
+  }
+}
+
+.footer {
+  height: 35px;
+  width: 100%;
+  float: left;
+  line-height: 2;
+  padding: 0px 5%;
+  bottom: 0;
+  position: fixed;
+  z-index: 1000;
+  background-color: lightgray;
+}
+
+
+.messenger {
+  position: fixed;
+  margin-left: 70%;
+  width: 30%;
+  background-color: white;
+  border: solid 1px silver;
+  padding: 5px;
+  display: none;
+  .messenger-title {
+    border-bottom: solid 1px silver;
+    height: 25px;
+    span {
+      cursor: pointer;
+      float: right;
+    }
+    .messenger-title-to {
+      float: inherit;
+    }
+  }
+  .messenger-conversion {
+    height: 120px;
+    .messenger-conversion-words {
+      padding: 5px 0px;
+    }
+  }
+  .messenger-msg {
+    padding: 5px 0px;
+    .messenger-msg-content {
+      padding: 10px 0px;
+    }
+  }
+}

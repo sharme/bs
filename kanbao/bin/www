@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('kanbao:server');
 var http = require('http');
+var io = require('socket.io');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,18 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+/***
+ * Create socket server
+ */
+
+io = io.listen(server);
+
+
+// set up our socket server
+require('../sockets/base')(io);
+
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -82,6 +95,7 @@ function onError(error) {
  */
 
 function onListening() {
+  console.log('Express server listening on port: ' + port);
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr

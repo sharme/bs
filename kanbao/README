@@ -1,0 +1,21 @@
+
+# install mysql
+npm install mysql
+
+
+
+# install QINIU
+npm install qiniu
+
+
+
+# easyimage   A promised-based, user-friendly module for processing images in Node.js
+npm install easyimage
+
+
+
+# connect-busboy
+npm install connect-busboy
+
+
+

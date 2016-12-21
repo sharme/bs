@@ -1,0 +1,59 @@
+Add the following lines to the file, replacing USERNAME with your username and PASSWORD with your password (make sure the password is enclosed in quotation marks):
+
+[client]
+user=USERNAME
+password="PASSWORD"
+When the edits are complete, press Ctrl+X, type y to save the file, and then press ENTER.
+To change the character set encoding to UTF-8 for all of the tables in the specified database, type the following command at the command line. Replace DBNAME with the database name:
+
+mysql --database=DBNAME -B -N -e "SHOW TABLES" | awk '{print "SET foreign_key_checks = 0; ALTER TABLE", $1, "CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; SET foreign_key_checks = 1; "}' | mysql --database=DBNAME
+After the command finishes, type the following command to start the mysql program:
+
+mysql
+To change the character set encoding to UTF-8 for the database itself, type the following command at the mysql> prompt. Replace DBNAME with the database name:
+
+ALTER DATABASE DBNAME CHARACTER SET utf8 COLLATE utf8_general_ci;
+To exit the mysql program, type \q at the mysql> prompt.
+To delete the .my.cnf file, type the following command at the command line:
+
+rm .my.cnf
+To verify that the character set encoding is now set to UTF-8, follow the steps in the Determine the current character encoding set procedure above.
+More Information
+
+For more information about UTF-8 and Unicode, please visit http://en.wikipedia.org/wiki/UTF-8.
+
+
+
+Related Articles
+
+Connecting to MySQL from the command line
+You use the mysql program to connect directly to MySQL from the command line. Learn how here.
+
+MySQL
+
+Connecting to MySQL from the command line
+Connecting to MySQL using PHP
+Connecting to MySQL using Python
+Connecting to MySQL using Perl
+Connecting to MySQL using Microsoft .NET
+Import and export a MySQL database
+Remote MySQL connections
+MySQL client applications
+Managing MySQL databases and users from the command line
+Convert a MySQL database to UTF-8
+Convert the MySQL time zone
+MySQL database backups using cron jobs
+MySQL database backups using AutoMySQLBackup
+The information_schema database
+Reset MySQL root password
+MySQL runs out of memory or does not start
+MySQL user privileges on shared servers
+MySQL stored functions and procedures
+MySQL views
+MySQL triggers
+Working with MySQL database engines
+Determining the size of MySQL databases and tables
+Repairing MySQL databases and tables
+Enabling the slow query log in MySQL
+Renaming a MySQL database
+Using indexes to improve MySQL query performance

@@ -1,0 +1,88 @@
+body {
+  display: block;
+}
+.home .home-top {
+  margin: 5px 5%;
+  height: 210px;
+}
+.home .home-top .home-top-nav {
+  width: 100%;
+  margin: 5px 0px;
+  float: left;
+  word-wrap: break-word;
+}
+.home .home-top .home-top-nav .home-top-nav-wrap {
+  width: 100%;
+  height: 90px;
+}
+.home .home-top .home-top-nav .home-top-nav-wrap .home-top-nav-pic {
+  width: 20%;
+  height: 90px;
+  padding: 5px;
+  font-size: 10px;
+  border: solid 1px silver;
+  float: left;
+  margin: 0px 1%;
+  overflow: hidden;
+}
+.home .home-top .home-top-nav .home-top-nav-wrap .home-top-nav-pic .home-top-nav-pic-img img {
+  height: 50px;
+}
+.home .home-top .home-top-msg {
+  width: 100%;
+  float: left;
+  margin: 5px 0px;
+  height: 150px;
+  overflow: scroll;
+  font-size: 12px;
+}
+.home .home-top .home-top-msg .home-top-msg-content {
+  padding: 5px;
+}
+.home .home-middle {
+  margin: 5px 5%;
+}
+.home .home-middle .home-middle-stone {
+  margin: 5px;
+  float: left;
+  word-wrap: break-word;
+  border: solid 1px silver;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-pic {
+  width: 145px;
+  height: 190px;
+  overflow: hidden;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-pic .home-middle-stone-pic-img {
+  width: 145px;
+  padding: 5px;
+  font-size: 12px;
+  float: left;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-pic .home-middle-stone-pic-img img {
+  width: 140px;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-pic .home-middle-stone-pic-desc {
+  padding: 5px;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-dealer {
+  height: 50px;
+  float: left;
+  padding: 5px;
+  width: 100%;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-dealer .home-middle-stone-dealer-img {
+  width: 30px;
+  margin: 0px 5px;
+  float: right;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-dealer .home-middle-stone-dealer-img img {
+  width: 30px;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-dealer .home-middle-stone-dealer-contact {
+  margin: 0px 5px;
+}
+.home .home-middle .home-middle-stone .home-middle-stone-dealer .home-middle-stone-dealer-contact button {
+  float: left;
+  background-color: ghostwhite;
+}

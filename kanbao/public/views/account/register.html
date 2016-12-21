@@ -1,0 +1,31 @@
+
+
+<div class="account-register">
+    <div class="account-register-title">注册</div>
+    <div class="account-register-form">
+        <form method="POST" ng-submit="submit()">
+            <div class="account-register-form-name">
+                <label>用户名</label>
+                <input type="text" ng-model="user.u_name" required>
+            </div>
+            <div class="account-register-form-email">
+                <label>邮箱</label>
+                <input type="text" ng-model="user.u_email" required>
+            </div>
+            <div class="account-register-form-pwd">
+                <label>密码</label>
+                <input type="password" ng-model="user.u_pwd" required>
+            </div>
+            <div class="account-register-form-pwd">
+                <label>重复密码</label>
+                <input type="password" required>
+            </div>
+            <div class="validation_msg" style="color:red;">
+
+            </div>
+            <div class="account-register-form-submit">
+                <input type="submit" value="注册">
+            </div>
+        </form>
+    </div>
+</div>

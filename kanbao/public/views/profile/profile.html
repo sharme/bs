@@ -1,0 +1,209 @@
+
+<div class="profile" ng-controller="ProfileCtrl">
+    <div class="profile-left">
+        <div class="profile-left-item">
+            <span ng-click="selection('default')">个人信息</span>
+        </div>
+        <div class="profile-left-item">
+            <span ng-click="selection('stones')">我的宝石</span>
+        </div>
+        <div class="profile-left-item">
+            <span ng-click="selection('msgs')">我的讯息</span>
+        </div>
+        <div class="profile-left-item">
+            我的客户
+        </div>
+        <div class="profile-left-item">
+            反馈
+        </div>
+    </div>
+    <div class="profile-right" ng-switch on="selectValue">
+        <!-- Stones that posted -->
+        <div class="profile-right-stone" ng-switch-when="stones" ng-controller="StoneListCtrl">
+            <div class="profile-right-stone-wrap">
+                <div class="profile-right-stone-wrap-upgrade">
+                    <button ng-click="selection('upload')">上传</button>
+                </div>
+
+                <!-- list of stones uploaded -->
+                <div class="profile-right-stone-wrap-pic" ng-repeat="result in stones">
+                    <div class="profile-right-stone-wrap-pic-img">
+                        <img src="{{result.s_present}}">
+                    </div>
+                    <div class="profile-right-stone-wrap-pic-description">
+                        {{result.s_description}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="profile-right-upload" ng-switch-when="upload" ng-controller="StoneCtrl">
+            <div class="profile-right-upload-title">
+                上传宝石
+            </div>
+            <form method="POST" ng-submit="submit()">
+            <div class="profile-right-upload-stone">
+                <div class="profile-right-upload-stone-btn">
+                    <div class="fileUpload0">
+                        <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,0)" name="imageName"/>
+                        <span class="uploadBtn">上传</span>
+                    </div>
+
+                    <img class="picture-present0">
+                    <input class="picture-input0" type="text" style="display: none;" ng-model="stone.s_pic">
+                    <hr>
+                    <div id="myProgress0">
+                        <div id="myBar0"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-right-upload-stone">
+                <div class="profile-right-upload-stone-btn">
+                    <div class="fileUpload1">
+                        <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,1)" name="imageName"/>
+                        <span class="uploadBtn">上传</span>
+                    </div>
+
+                    <img class="picture-present1">
+                    <input class="picture-input1" type="text" style="display: none;" ng-model="stone.s_pic_2">
+                    <hr>
+                    <div id="myProgress1">
+                        <div id="myBar1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-right-upload-stone">
+                <div class="profile-right-upload-stone-btn">
+                    <div class="fileUpload2">
+                        <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,2)" name="imageName"/>
+                        <span class="uploadBtn">上传</span>
+                    </div>
+
+                    <img class="picture-present2">
+                    <input class="picture-input2" type="text" style="display: none;" ng-model="stone.s_pic_3">
+                    <hr>
+                    <div id="myProgress2">
+                        <div id="myBar2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-right-upload-description">
+                <div class="profile-right-upload-description-title">添加描述</div>
+                <hr>
+                <div class="profile-right-upload-description-content">
+                    <textarea rows="8" cols="54" ng-model="stone.s_description">
+                        为你的宝贝添加一些描述吧.
+                    </textarea>
+                </div>
+            </div>
+            <div class="validation_msg" style="color:red; padding: 0px 10px 20px 10px">
+
+            </div>
+            <div class="profile-right-upload-handle">
+                <button>取消</button>
+                <input type="submit" value="上传">
+            </div>
+            </form>
+        </div>
+
+
+
+        <div class="profile-right-msg" ng-switch-when="msgs">
+            <div class="profile-right-msg-title">
+                你的私信
+            </div>
+            <div class="profile-right-msg-wrap" ng-controller="MessagesCtrl">
+                <div class="profile-right-msg-wrap-msg" ng-repeat="message in messages">
+                    <div class="profile-right-msg-wrap-msg-content">
+                    [{{message.m_created_time}}] - [{{message.m_sender}}] 给你发送了 [私信: {{message.m_msg}}]
+                    </div>
+                    <div class="profile-right-msg-wrap-msg-handle">
+                        <button ng-click="replyMsg(message.m_sender)">回复</button>
+                        <button>忽略</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- Users personal info  -->
+        <div class="profile-right-info" ng-switch-default>
+            <div class="profile-right-info-wrap">
+                <div class="profile-right-info-wrap-logout"><a ng-click="logout()" href="javascript: void(0);">登出</a><span ng-click="selection('editProfile')">| 修改</span></div>
+                <div class="profile-right-info-wrap-img">
+                    <img src="{{user.u_avatar?user.u_avatar:'images/icon/youtu.png'}}">
+                </div>
+
+                <div class="profile-right-info-wrap-name">
+                    <div class="profile-right-info-wrap-name-title">用户名</div>
+                    <div class="profile-right-info-wrap-name-value">{{user.u_name}}</div>
+                </div>
+                <div class="profile-right-info-wrap-slogan">
+                    <div class="profile-right-info-wrap-slogan-title">个人介绍</div>
+                    <div class="profile-right-info-wrap-slogan-value">{{user.u_slogan?user.u_slogan:'么有'}}</div>
+                </div>
+                <div>主要经营描述/内容</div>
+                <div class="profile-right-info-wrap-description">
+                    <div>{{user.u_description?user.u_description:'么有'}}</div>
+                </div>
+                <div class="profile-right-info-wrap-email">Email: {{user.u_email?user.u_email:'么有'}}</div>
+                <div class="profile-right-info-wrap-phone">Phone: {{user.u_phone_num?user.u_phone_num:'么有'}}</div>
+            </div>
+        </div>
+
+
+        <!-- Edit Users personal info  -->
+        <div class="profile-right-info-edit" ng-switch-when="editProfile">
+            <div class="profile-right-info-edit-wrap">
+                <form method="POST" ng-submit="submit()">
+                    <div class="profile-right-info-edit-wrap-logout"><input type="submit" value="保存"></div>
+                    <div class="profile-right-info-edit-wrap-upload">
+                        <div class="fileUpload">
+                            <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,'')" name="imageName"/>
+                            <span class="uploadBtn">上传</span>
+                        </div>
+
+                        <img class="picture-present" ng-src="{{user.u_avatar?user.u_avatar:'images/icon/youtu.png'}}">
+                        <input class="picture-input" type="text" style="display: none;" ng-model="user_u_avatar">
+                        <div id="myProgress">
+                            <div id="myBar"></div>
+                        </div>
+                    </div>
+
+                    <div class="profile-right-info-edit-wrap-name">
+                        <div class="profile-right-info-edit-wrap-name-title">用户名</div>
+                        <div class="profile-right-info-edit-wrap-name-value">
+                            <input type="text" ng-model="user.u_name">
+                        </div>
+                    </div>
+
+                    <div class="profile-right-info-edit-wrap-slogan">
+                        <div class="profile-right-info-edit-wrap-slogan-title">个人介绍</div>
+                        <div class="profile-right-info-edit-wrap-slogan-value">
+                            <input type="text" ng-model="user.u_slogan">
+                        </div>
+                    </div>
+                    <div>主要经营描述/内容</div>
+                    <div class="profile-right-info-edit-wrap-description">
+                        <div>
+                            <textarea rows="8" cols="54" ng-model="user.u_description">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="profile-right-info-edit-wrap-email">Email: <input type="text" ng-model="user.u_email"></div>
+                    <div class="profile-right-info-edit-wrap-phone">Phone: <input type="text" ng-model="user.u_phone_num"></div>
+                    <div class="validation_msg" style="color:red; padding: 0px 10px 60px 10px">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+       </div>
+    </div>
+</div>

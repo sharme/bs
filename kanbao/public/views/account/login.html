@@ -1,0 +1,22 @@
+
+<div class="account-login">
+    <div class="account-login-title">登陆</div>
+    <div class="account-login-form">
+        <form method="POST" ng-submit="submit()">
+            <div class="account-login-form-email">
+                <label>邮箱</label>
+                <input type="text" ng-model="user.u_email" required>
+            </div>
+            <div class="account-login-form-pwd">
+                <label>密码</label>
+                <input type="password" ng-model="user.u_pwd" required>
+            </div>
+            <div class="validation_msg" style="color:red;">
+
+            </div>
+            <div class="account-login-form-submit">
+                <input type="submit" value="登陆"> <a href="#/register">注册</a>
+            </div>
+        </form>
+    </div>
+</div>
