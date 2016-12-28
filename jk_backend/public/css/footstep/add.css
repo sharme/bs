@@ -51,7 +51,7 @@ body {
 .create_footstep .create_footstep-info .create_footstep-info-pic,
 .create_footstep .create_footstep-info .create_footstep-info-desc,
 .create_footstep .create_footstep-info .create_footstep-info-from {
-  width: 70%;
+  width: 100%;
   border-radius: 1px;
 }
 .fileUpload {

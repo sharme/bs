@@ -7,7 +7,7 @@
             <div class="fileUpload">
                 <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this)" id="uploadBtn" name="imageName"/>
                 <span class="uploadBtn">上传</span>
-                <input class="uploadedBtn" type="submit" id="footstep_form-submit" value="完成">
+
             </div>
 
             <img  ng-src="{{uploadUrl}}" class="create_footstep-info_img">
@@ -23,7 +23,7 @@
                 <textarea ng-model="footstep.fs_desc" class="create_footstep-info-desc" rows="3" cols="40" placeholder="描述下这里的位置,特点 和给你的感受." required></textarea>
                 <!--<input type="text" ng-model="footstep.fs_desc" name="imagePrice1" value=""/>-->
             </div>
-
+            <div><input class="uploadedBtn" type="submit" id="footstep_form-submit" value="完成"></div>
             <!--<br/>-->
             <!--<div>-->
                 <!--<span class="create_footstep-info-span">国家</span>-->

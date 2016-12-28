@@ -400,7 +400,36 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
           console.log('data: ' + (JSON.stringify(data)));
           if(data.fs_id) {
             $(".prev_pic").html("下一张图");
-            $window.location.href = "#/foot/" + data.fs_id;
+            // $window.location.href = "#/foot/" + data.fs_id;
+
+            
+
+            $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:data.fs_id}})
+                .success(function(data){
+                  console.log('data: ' + (JSON.stringify(data)));
+                  $scope.foot = data[0];
+                  $scope.checkUser = $scope.foot.u_id == $cookies.get('u_id')?true:false;
+                }, function(error){
+                  $scope.error = error;
+                });
+
+            $http({method: 'GET', url: ipAddress + '/comments/getCommentsByFSID', params:{fs_id:data.fs_id}})
+                .success(function(data){
+                  $scope.comments = data;
+                }, function(error){
+                  $scope.error = error;
+                });
+
+            $http({method: 'GET', url: ipAddress + '/sticks/getSticksByFSID', params:{fs_id:data.fs_id}})
+                .success(function(data){
+                  $scope.sticks = data;
+                }, function(error){
+                  $scope.error = error;
+                });
+
+
+
+
           } else {
             $(".next_pic").html("没有了");
           }
@@ -415,7 +444,33 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
           console.log('data: ' + (JSON.stringify(data)));
           if(data.fs_id) {
             $(".prev_pic").html("上一张图");
-            $window.location.href = "#/foot/" + data.fs_id;
+            // $window.location.href = "#/foot/" + data.fs_id;
+
+
+            $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:data.fs_id}})
+                .success(function(data){
+                  console.log('data: ' + (JSON.stringify(data)));
+                  $scope.foot = data[0];
+                  $scope.checkUser = $scope.foot.u_id == $cookies.get('u_id')?true:false;
+                }, function(error){
+                  $scope.error = error;
+                });
+
+            $http({method: 'GET', url: ipAddress + '/comments/getCommentsByFSID', params:{fs_id:data.fs_id}})
+                .success(function(data){
+                  $scope.comments = data;
+                }, function(error){
+                  $scope.error = error;
+                });
+
+            $http({method: 'GET', url: ipAddress + '/sticks/getSticksByFSID', params:{fs_id:data.fs_id}})
+                .success(function(data){
+                  $scope.sticks = data;
+                }, function(error){
+                  $scope.error = error;
+                });
+
+
           } else {
             $(".prev_pic").html("没有了");
           }

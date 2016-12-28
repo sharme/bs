@@ -24,22 +24,84 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="1172" column="33" selection-start-line="1172" selection-start-column="33" selection-end-line="1172" selection-end-column="33" />
+            <state relative-caret-position="-350">
+              <caret line="404" column="12" selection-start-line="404" selection-start-column="12" selection-end-line="404" selection-end-column="12" />
               <folding>
                 <element signature="n#!!block;n#addEvent#0" expanded="false" />
                 <element signature="n#!!block;n#displayPosition#0" expanded="false" />
                 <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
-                <element signature="e#11493#20861#0" expanded="false" />
-                <element signature="e#21093#26585#0" expanded="false" />
-                <element signature="e#26741#29543#0" expanded="false" />
-                <element signature="e#29699#31417#0" expanded="false" />
-                <element signature="e#31585#34366#0" expanded="false" />
-                <element signature="e#35038#35605#0" expanded="false" />
-                <element signature="e#35710#36097#0" expanded="false" />
-                <element signature="e#36255#36892#0" expanded="false" />
-                <element signature="e#37043#37047#0" expanded="false" />
+                <element signature="e#3886#11264#0" expanded="false" />
+                <element signature="e#23162#28654#0" expanded="false" />
+                <element signature="e#28810#31612#0" expanded="false" />
+                <element signature="e#31768#33486#0" expanded="false" />
+                <element signature="e#33654#36435#0" expanded="false" />
+                <element signature="e#36571#38171#0" expanded="false" />
+                <element signature="e#37107#37674#0" expanded="false" />
+                <element signature="e#37779#38166#0" expanded="false" />
+                <element signature="e#38324#38961#0" expanded="false" />
+                <element signature="e#39112#39116#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="account-controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/account-controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
+              <folding>
+                <element signature="e#309#1519#0" expanded="false" />
+                <element signature="e#4392#5389#0" expanded="false" />
+                <element signature="e#5557#6768#0" expanded="false" />
+                <element signature="e#6963#9936#0" expanded="false" />
+                <element signature="e#10072#13999#0" expanded="false" />
+                <element signature="e#14138#16907#0" expanded="false" />
+                <element signature="e#17076#18237#0" expanded="false" />
+                <element signature="e#18409#18724#0" expanded="false" />
+                <marker date="1482926833000" expanded="true" signature="1396:1409" placeholder="..." />
+                <marker date="1482926833000" expanded="true" signature="6618:6631" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/footstep/add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="welcome.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/welcome/welcome.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="welcome-m.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/welcome/welcome-m.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/footstep/add.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,7 +154,6 @@
       <list>
         <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/public/js/controllers/accountController.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers/account-controller.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/community-controller.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/match-controller.js" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
@@ -131,15 +192,16 @@
         <option value="$PROJECT_DIR$/public/css/profile/profile-m.less" />
         <option value="$PROJECT_DIR$/public/css/home/footstep-m.less" />
         <option value="$PROJECT_DIR$/public/views/footDetail.html" />
-        <option value="$PROJECT_DIR$/public/css/welcome/welcome.less" />
         <option value="$PROJECT_DIR$/public/views/welcome/welcome.html" />
-        <option value="$PROJECT_DIR$/public/views/footstep/add.html" />
         <option value="$PROJECT_DIR$/public/css/home/footstep.less" />
         <option value="$PROJECT_DIR$/public/views/homepage.html" />
         <option value="$PROJECT_DIR$/public/css/account/login.less" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/public/css/footstep/add.less" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/public/js/controllers/account-controller.js" />
+        <option value="$PROJECT_DIR$/public/css/footstep/add.less" />
+        <option value="$PROJECT_DIR$/public/views/footstep/add.html" />
+        <option value="$PROJECT_DIR$/public/css/welcome/welcome.less" />
         <option value="$PROJECT_DIR$/public/js/controllers.js" />
       </list>
     </option>
@@ -247,6 +309,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="footstep" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -270,6 +354,68 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="welcome" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="footstep" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -439,12 +585,12 @@
       <workItem from="1480946883561" duration="39175000" />
       <workItem from="1482085674170" duration="826000" />
       <workItem from="1482254652757" duration="1610000" />
-      <workItem from="1482558160404" duration="5616000" />
+      <workItem from="1482558160404" duration="6678000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="730650000" />
+    <option name="totallyTimeSpent" value="731712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="92" width="1400" height="877" extended-state="0" />
@@ -665,20 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/welcome/welcome-m.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/welcome/welcome.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/footsteps.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -750,24 +882,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/footstep/add.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/footstep/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -827,17 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/account-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="256" column="17" selection-start-line="256" selection-start-column="11" selection-end-line="256" selection-end-column="17" />
-          <folding>
-            <marker date="1478532134000" expanded="true" signature="1396:1409" placeholder="..." />
-            <marker date="1478532134000" expanded="true" signature="6670:6683" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
@@ -870,23 +977,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/account-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
+          <folding>
+            <element signature="e#309#1519#0" expanded="false" />
+            <element signature="e#4392#5389#0" expanded="false" />
+            <element signature="e#5557#6768#0" expanded="false" />
+            <element signature="e#6963#9936#0" expanded="false" />
+            <element signature="e#10072#13999#0" expanded="false" />
+            <element signature="e#14138#16907#0" expanded="false" />
+            <element signature="e#17076#18237#0" expanded="false" />
+            <element signature="e#18409#18724#0" expanded="false" />
+            <marker date="1482926833000" expanded="true" signature="1396:1409" placeholder="..." />
+            <marker date="1482926833000" expanded="true" signature="6618:6631" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/footstep/add.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/footstep/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/welcome/welcome.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/welcome/welcome-m.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="1172" column="33" selection-start-line="1172" selection-start-column="33" selection-end-line="1172" selection-end-column="33" />
+        <state relative-caret-position="-350">
+          <caret line="404" column="12" selection-start-line="404" selection-start-column="12" selection-end-line="404" selection-end-column="12" />
           <folding>
             <element signature="n#!!block;n#addEvent#0" expanded="false" />
             <element signature="n#!!block;n#displayPosition#0" expanded="false" />
             <element signature="n#!!block;n#dynamicallyCSS#0" expanded="false" />
-            <element signature="e#11493#20861#0" expanded="false" />
-            <element signature="e#21093#26585#0" expanded="false" />
-            <element signature="e#26741#29543#0" expanded="false" />
-            <element signature="e#29699#31417#0" expanded="false" />
-            <element signature="e#31585#34366#0" expanded="false" />
-            <element signature="e#35038#35605#0" expanded="false" />
-            <element signature="e#35710#36097#0" expanded="false" />
-            <element signature="e#36255#36892#0" expanded="false" />
-            <element signature="e#37043#37047#0" expanded="false" />
+            <element signature="e#3886#11264#0" expanded="false" />
+            <element signature="e#23162#28654#0" expanded="false" />
+            <element signature="e#28810#31612#0" expanded="false" />
+            <element signature="e#31768#33486#0" expanded="false" />
+            <element signature="e#33654#36435#0" expanded="false" />
+            <element signature="e#36571#38171#0" expanded="false" />
+            <element signature="e#37107#37674#0" expanded="false" />
+            <element signature="e#37779#38166#0" expanded="false" />
+            <element signature="e#38324#38961#0" expanded="false" />
+            <element signature="e#39112#39116#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -65,7 +65,7 @@ account.controller('EmailLoginCtrl', ['$scope', '$cookies', '$window','$http','$
     };
 
     $scope.submit = function(){
-        if ($('#email_login_form').valid()) {
+
             var postData = $scope.user;
             var req = {
                 method: 'POST',
@@ -109,7 +109,6 @@ account.controller('EmailLoginCtrl', ['$scope', '$cookies', '$window','$http','$
                 console.log(error);
             });
         }
-    };
 
 
 }]);
