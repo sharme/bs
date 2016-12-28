@@ -10,6 +10,10 @@ kb.controller('ProfileCtrl', ['$scope', '$http', '$cookies', '$window', function
         $scope.selectValue = val;
     };
 
+    $scope.stoneDetail = function(s_id) {
+        $window.location.href = '#/stone/' + s_id;
+    };
+
     $http({method: 'GET', url: ipAddress + '/users/email/getUserById', params: {u_id: $cookies.get('u_id')}}).
         success(function(data){
         $scope.user = data[0];
@@ -116,11 +120,32 @@ kb.controller('MessagesCtrl', ['$scope', '$http', '$cookies', '$window', functio
         $scope.error = error;
     });
 
-    $scope.replyMsg = function(to) {
+    $scope.replyMsg = function(m_id, to) {
+        
+        // update message status
+        var req = {
+            method: 'POST',
+            url: ipAddress + '/messages/updateMessageStatus',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {m_id: m_id}
+        };
+
+        $http(req).success(function(result){
+            if(result.errno){
+                console.log('error, replied');
+            } else {
+                console.log('replied');
+            }
+        });
+        
+        //open messenger 
         $('.messenger').css('display','block');
         $scope.toMessenger = to;
         $('.messenger-title-to').html($scope.toMessenger);
         console.log(to);
+        
     };
 
     $scope.closeMessenger = function() {

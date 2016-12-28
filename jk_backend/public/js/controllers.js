@@ -171,6 +171,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         $scope.error = error;
       });
 
+  // deprecated
   $scope.countryFilter = function(element, fs_from){
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from,u_id: $cookies.get('u_id')}})
         .success(function(data){
@@ -181,6 +182,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           $scope.error = error;
         });
   };
+
+
   $scope.tag = '';
   $scope.tagFilter = function(element, fs_from){
     $scope.tag = $('#tagValue').val();
@@ -1167,8 +1170,8 @@ buybsControllers.controller('headerController', ['$scope', '$cookies', '$window'
 
   $scope.homepageBtn = function() {
     // $('.view-frame').css('display','none');
-    $window.location = '#/foot';
-    $window.location.reload();
+    $window.location = '#/foot/';
+
   };
 
   $scope.logout = function(){

@@ -37,11 +37,11 @@ body{
           float: left;
           margin: 5px 5px;
           border: solid 1px silver;
-          height: 320px;
+          height: 258px;
           .profile-right-stone-wrap-pic-img {
             padding: 10px;
-            height: 258px;
-            width: 258px;
+            height: 200px;
+            width: 200px;
             cursor: pointer;
             img {
               width: 100%;
@@ -52,7 +52,7 @@ body{
             overflow-wrap: break-word;
             font-size: 14px;
             padding: 0px 10px;
-            width: 258px;
+            width: 200px;
             overflow: hidden;
             height: 42px;
           }
@@ -169,60 +169,60 @@ body{
 
 
     .profile-right-info {
-        .profile-right-info-wrap {
-          .profile-right-info-wrap-logout {
-            float: right;
-            font-size: 14px;
-            border: solid 1px sienna;
-            width: 80px;
-            text-align: center;
-            span {
-              cursor: pointer;
-            }
-          }
-
-          .profile-right-info-wrap-img {
-            padding: 10% 0px;
-            border-bottom: solid 1px silver;
-            img {
-              width: 100px;
-            }
-          }
-          .profile-right-info-wrap-name {
-            width: 100%;
-            margin: 15px 0px;
-            border-bottom: solid 1px silver;
-            .profile-right-info-wrap-name-title {
-              width: 30%;
-              float: left;
-            }
-            .profile-right-info-wrap-name-value {
-              margin: 10px 0px;
-              font-size: 16px;
-              width: 60%;
-            }
-
-          }
-          .profile-right-info-wrap-slogan {
-            width: 100%;
-            margin: 15px 0px;
-            border-bottom: solid 1px silver;
-            .profile-right-info-wrap-slogan-title {
-              width: 30%;
-              float: left;
-            }
-            .profile-right-info-wrap-slogan-value {
-              margin: 10px 0px;
-              font-size: 14px;
-              width: 60%;
-            }
-          }
-          .profile-right-info-wrap-description {
-            padding: 25px 0px;
-            margin: 10px 0px;
-            border-bottom: solid 1px silver;
+      .profile-right-info-wrap {
+        .profile-right-info-wrap-logout {
+          float: right;
+          font-size: 14px;
+          border: solid 1px sienna;
+          width: 80px;
+          text-align: center;
+          span {
+            cursor: pointer;
           }
         }
+
+        .profile-right-info-wrap-img {
+          padding: 10% 0px;
+          border-bottom: solid 1px silver;
+          img {
+            width: 100px;
+          }
+        }
+        .profile-right-info-wrap-name {
+          width: 100%;
+          margin: 15px 0px;
+          border-bottom: solid 1px silver;
+          .profile-right-info-wrap-name-title {
+            width: 30%;
+            float: left;
+          }
+          .profile-right-info-wrap-name-value {
+            margin: 10px 0px;
+            font-size: 16px;
+            width: 60%;
+          }
+
+        }
+        .profile-right-info-wrap-slogan {
+          width: 100%;
+          margin: 15px 0px;
+          border-bottom: solid 1px silver;
+          .profile-right-info-wrap-slogan-title {
+            width: 30%;
+            float: left;
+          }
+          .profile-right-info-wrap-slogan-value {
+            margin: 10px 0px;
+            font-size: 14px;
+            width: 60%;
+          }
+        }
+        .profile-right-info-wrap-description {
+          padding: 25px 0px;
+          margin: 10px 0px;
+          border-bottom: solid 1px silver;
+        }
+      }
     }
 
     .profile-right-info-edit{
@@ -302,14 +302,26 @@ body{
         .profile-right-info-edit-wrap-name, .profile-right-info-edit-wrap-slogan, .profile-right-info-edit-wrap-email, .profile-right-info-edit-wrap-phone {
           margin: 10px 0px;
           input {
-            width: 48%;
+            width: 100%;
           }
         }
 
-
-
+        .profile-right-info-edit-wrap-description {
+          textarea {
+            width: 200px;
+          }
+        }
       }
     }
-
   }
+}
+
+.messenger {
+  position: fixed;
+  margin-left: 50%;
+  width: 50%;
+  background-color: white;
+  border: solid 1px silver;
+  padding: 5px;
+  display: none;
 }

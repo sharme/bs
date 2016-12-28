@@ -12,18 +12,15 @@ module.exports = function (io) {
     io.on('connection', function (socket) {
         socket.broadcast.emit('user connected');
 
+
         socket.on('message', function (from, to, msg) {
-            
+
+            for(var val in io.sockets){
+                console.log("socket:" + val);
+            }
+
             io.sockets[from] = socket;
-
-            console.log('Received message from', from, 'msg', JSON.stringify(msg));
-            // console.log('broadcasting message');
-            // console.log('payload is', msg);
-            // io.sockets[to].emit('broadcast', {
-            //     payload: msg,
-            //     source: from
-            // });
-
+            console.log('Received message from', from, 'to', to, 'msg',  JSON.stringify(msg));
             if(io.sockets[to]) {
                 io.sockets[to].emit('broadcast', {
                     payload: msg,
@@ -49,12 +46,22 @@ module.exports = function (io) {
                 });
             }
         });
-    });
 
-    // io.clients(function(error, clients){
-    //     if(error) throw error;
-    //     console.log(clients);
-    // })
+        socket.on('remove', function (to) {
+            io.sockets.remove(to);
+            console.log('Base remove socket', to, 'index', io.sockets[to]);
+            for(var val in io.sockets){
+                console.log("socket:" + val);
+            }
+        });
+
+        socket.on('disconnect', function (to) {
+            console.log('socket disconnect', to);
+
+        });
+
+    });
+    
 
 };
 

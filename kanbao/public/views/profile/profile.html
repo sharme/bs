@@ -27,7 +27,7 @@
 
                 <!-- list of stones uploaded -->
                 <div class="profile-right-stone-wrap-pic" ng-repeat="result in stones">
-                    <div class="profile-right-stone-wrap-pic-img">
+                    <div class="profile-right-stone-wrap-pic-img" ng-click="stoneDetail(result.s_id)">
                         <img src="{{result.s_present}}">
                     </div>
                     <div class="profile-right-stone-wrap-pic-description">
@@ -120,8 +120,9 @@
                     [{{message.m_created_time}}] - [{{message.m_sender}}] 给你发送了 [私信: {{message.m_msg}}]
                     </div>
                     <div class="profile-right-msg-wrap-msg-handle">
-                        <button ng-click="replyMsg(message.m_sender)">回复</button>
-                        <button>忽略</button>
+                        <button ng-click="replyMsg(message.m_id, message.m_sender)">回复</button>
+                        <button ng-if="message.m_status === 1">忽略</button>
+                        <span ng-if="message.m_status === 0">以回复</span>
                     </div>
                 </div>
 

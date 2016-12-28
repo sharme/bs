@@ -32,6 +32,21 @@ router.get('/getStonesByUID', function(req, res, next){
     }
 });
 
+router.get('/getStonesBySID', function(req, res, next){
+
+    if(req.param('s_id')){
+        var sql = mysql.format('select kbs.*,(select u_name from kb_users as kbu where kbu.u_id=kbs.u_id) as u_name, (select u_avatar from kb_users as kbu where kbu.u_id=kbs.u_id) as u_avatar from kb_stones as kbs where s_id = ?', req.param('s_id'));
+        console.log(sql);
+        connection.query(sql, function (err, result) {
+            if(err){
+                res.send(err);
+            } else {
+                res.send(result);
+            }
+        });
+    }
+});
+
 router.get('/getStones', function(req, res, next){
         var sql = mysql.format('select kbs.*,(select u_name from kb_users as kbu where kbu.u_id=kbs.u_id) as u_name, (select u_avatar from kb_users as kbu where kbu.u_id=kbs.u_id) as u_avatar from kb_stones as kbs;');
         connection.query(sql, function (err, result) {

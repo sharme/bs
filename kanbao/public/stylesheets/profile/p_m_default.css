@@ -27,12 +27,12 @@ body {
   float: left;
   margin: 5px 5px;
   border: solid 1px silver;
-  height: 320px;
+  height: 258px;
 }
 .profile .profile-right .profile-right-stone .profile-right-stone-wrap .profile-right-stone-wrap-pic .profile-right-stone-wrap-pic-img {
   padding: 10px;
-  height: 258px;
-  width: 258px;
+  height: 200px;
+  width: 200px;
   cursor: pointer;
 }
 .profile .profile-right .profile-right-stone .profile-right-stone-wrap .profile-right-stone-wrap-pic .profile-right-stone-wrap-pic-img img {
@@ -43,7 +43,7 @@ body {
   overflow-wrap: break-word;
   font-size: 14px;
   padding: 0px 10px;
-  width: 258px;
+  width: 200px;
   overflow: hidden;
   height: 42px;
 }
@@ -278,5 +278,17 @@ body {
 .profile .profile-right .profile-right-info-edit .profile-right-info-edit-wrap .profile-right-info-edit-wrap-slogan input,
 .profile .profile-right .profile-right-info-edit .profile-right-info-edit-wrap .profile-right-info-edit-wrap-email input,
 .profile .profile-right .profile-right-info-edit .profile-right-info-edit-wrap .profile-right-info-edit-wrap-phone input {
-  width: 48%;
+  width: 100%;
+}
+.profile .profile-right .profile-right-info-edit .profile-right-info-edit-wrap .profile-right-info-edit-wrap-description textarea {
+  width: 200px;
+}
+.messenger {
+  position: fixed;
+  margin-left: 50%;
+  width: 50%;
+  background-color: white;
+  border: solid 1px silver;
+  padding: 5px;
+  display: none;
 }

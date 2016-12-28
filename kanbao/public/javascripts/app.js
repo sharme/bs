@@ -47,12 +47,26 @@ kanbao.config(function($routeProvider, $cssProvider){
         ]
 
     }).
+    when('/stone/:stoneId', {
+        templateUrl: 'views/detail.html',
+        controller: 'StoneDetailCtrl',
+        css: [
+            {
+                href: '../stylesheets/home/d_m_default.css',
+                breakpoint: 'mobile'
+            },
+            {
+                href: '../stylesheets/home/d_default.css',
+                breakpoint: 'desktop'
+            }
+        ]
+    }).
     when('/profile', {
         templateUrl: 'views/profile/profile.html',
         controller: 'ProfileCtrl',
         css: [
             {
-                href: '../stylesheets/profile/p_default.css',
+                href: '../stylesheets/profile/p_m_default.css',
                 breakpoint: 'mobile'
             }, {
                 href: '../stylesheets/profile/p_default.css',
@@ -65,7 +79,7 @@ kanbao.config(function($routeProvider, $cssProvider){
         controller: 'LoginCtrl',
         css: [
             {
-                href: '../stylesheets/account/a_default.css',
+                href: '../stylesheets/account/a_m_default.css',
                 breakpoint: 'mobile'
             }, {
                 href: '../stylesheets/account/a_default.css',
@@ -78,7 +92,7 @@ kanbao.config(function($routeProvider, $cssProvider){
         controller: 'RegisterCtrl',
         css: [
             {
-                href: '../stylesheets/account/a_default.css',
+                href: '../stylesheets/account/a_h_default.css',
                 breakpoint: 'mobile'
             }, {
                 href: '../stylesheets/account/a_default.css',

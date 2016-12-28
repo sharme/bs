@@ -1,0 +1,57 @@
+body {
+  display: block;
+}
+.account-login {
+  width: 400px;
+  border: solid 1px silver;
+  margin: 100px auto;
+  height: 310px;
+  padding: 20px;
+}
+.account-login .account-login-title {
+  text-align: center;
+  padding: 12px;
+}
+.account-login .account-login-form .account-login-form-email,
+.account-login .account-login-form .account-login-form-pwd,
+.account-login .account-login-form .validation_msg {
+  padding: 12px 40px;
+}
+.account-login .account-login-form .account-login-form-email input,
+.account-login .account-login-form .account-login-form-pwd input,
+.account-login .account-login-form .validation_msg input {
+  width: 100%;
+}
+.account-login .account-login-form .account-login-form-submit {
+  padding: 12px 40px;
+}
+.account-register {
+  width: 400px;
+  border: solid 1px silver;
+  margin: 100px auto;
+  height: 460px;
+  padding: 20px;
+}
+.account-register .account-register-title {
+  text-align: center;
+  padding: 12px;
+}
+.account-register .account-register-form .account-register-form-name {
+  padding: 12px 40px;
+}
+.account-register .account-register-form .account-register-form-name input {
+  width: 100%;
+}
+.account-register .account-register-form .account-register-form-email,
+.account-register .account-register-form .account-register-form-pwd,
+.account-register .account-register-form .validation_msg {
+  padding: 12px 40px;
+}
+.account-register .account-register-form .account-register-form-email input,
+.account-register .account-register-form .account-register-form-pwd input,
+.account-register .account-register-form .validation_msg input {
+  width: 100%;
+}
+.account-register .account-register-form .account-register-form-submit {
+  padding: 12px 40px;
+}

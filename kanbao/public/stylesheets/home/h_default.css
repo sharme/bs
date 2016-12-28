@@ -68,6 +68,7 @@ body {
   padding: 5px;
   font-size: 12px;
   float: left;
+  cursor: pointer;
 }
 .home .home-middle .home-middle-stone .home-middle-stone-pic .home-middle-stone-pic-img img {
   width: 100%;

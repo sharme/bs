@@ -15,10 +15,8 @@ chatApp.controller('SocketCtrl', function ($log, $scope, $cookies, chatSocket, m
         }
         $scope.messageLog = 'Ready to chat!\n';
         $scope.sendMessage = function() {
-
             var toMessenger = $('.messenger-title-to').html();
             if(!toMessenger) toMessenger = 'unknown';
-
             $log.debug('sending message', $scope.message + ", to: " + toMessenger);
             chatSocket.emit('message', $scope.nickName, toMessenger, $scope.message);
             $scope.message = '';
@@ -37,6 +35,7 @@ chatApp.controller('SocketCtrl', function ($log, $scope, $cookies, chatSocket, m
 
         $scope.closeMessenger = function() {
             $('.messenger').css('display','none');
+            chatSocket.emit('remove', $cookies.get('u_name'));
         };
     
     

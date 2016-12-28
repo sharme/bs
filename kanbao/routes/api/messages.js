@@ -21,7 +21,7 @@ var date = new Date(); // new current date.
 router.get('/getMessagesByUName', function(req, res, next){
 
     if(req.param('u_name')){
-        var sql = mysql.format('select * from kb_messages where m_status = 1 and m_to = ?', req.param('u_name'));
+        var sql = mysql.format('select * from kb_messages where m_to = ?', req.param('u_name'));
         connection.query(sql, function (err, result) {
             if(err){
                 res.send(err);
@@ -31,6 +31,23 @@ router.get('/getMessagesByUName', function(req, res, next){
         });
     }
 });
+
+
+router.post('/updateMessageStatus', function(req, res, next){
+
+    if(req.body.m_id) {
+        var sql = mysql.format('update kb_messages set m_status= 0 where m_id = ? ', req.body.m_id);
+        console.log("update: " + sql);
+        connection.query(sql, function(err, result){
+           if(err) {
+               res.send(err);
+           } else {
+               res.send(result);
+           }
+        });
+    }
+});
+
 
 
 router.post('/add', urlEncodeParser, function(req, res, next){

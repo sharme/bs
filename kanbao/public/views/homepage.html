@@ -33,7 +33,7 @@
     <div class="home-middle">
         <div class="home-middle-stone" ng-repeat="result in stones">
             <div class="home-middle-stone-pic">
-                <div class="home-middle-stone-pic-img">
+                <div class="home-middle-stone-pic-img" ng-click="stoneDetail(result.s_id)">
                     <img ng-src="{{result.s_present}}">
                 </div>
                 <div class="home-middle-stone-pic-desc">
@@ -45,8 +45,7 @@
                     <img ng-src="{{result.u_avatar}}">
                 </div>
                 <div class="home-middle-stone-dealer-contact">
-                    <button ng-click="messenger(result.u_id,result.u_name)">私信</button>
-                    <button>预约</button>
+                    <button ng-if="!checkUser(result.u_id)" ng-click="messenger(result.u_id,result.u_name)">私信</button>
                 </div>
             </div>
         </div>
