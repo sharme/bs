@@ -399,7 +399,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
         .success(function(data){
           console.log('data: ' + (JSON.stringify(data)));
           if(data.fs_id) {
-            $(".prev_pic").html("下一张图");
+            $(".next_pic").html("下一张图");
             // $window.location.href = "#/foot/" + data.fs_id;
 
             
