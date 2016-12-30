@@ -217,7 +217,7 @@ router.post('/email', function (req, res, next) {
     res.mailer.send('email', {
       to: u_email,
       subject: '欢迎加入有图',
-      link: 'http://180.76.152.112/users/email_verify?email=' + u_email+"&secret=" + auth.encrypt(u_email) ,
+      link: 'http://www.fmyoutu.com/users/email_verify?email=' + u_email+"&secret=" + auth.encrypt(u_email) ,
       otherProperty: 'Other Property'
     }, function (err) {
       if (err) {
@@ -260,7 +260,7 @@ router.get('/email_verify', function(req, res, next) {
       if (err) {
         res.send(err);
       } else {
-        res.send("<div style='padding: 20px;'>验证成功, <a href='http://180.76.152.112/#/email_login'>点击登陆<a/></div>");
+        res.send("<div style='padding: 20px;'>验证成功, <a href='http://www.fmyoutu.com/#/email_login'>点击登陆<a/></div>");
       }
     })
   } else {
@@ -316,7 +316,7 @@ router.post('/email_recovery', urlencodeParser, function(req,res, next) {
     res.mailer.send('recovery', {
       to: u_email,
       subject: '重置密码',
-      link: 'http://180.76.152.112/#/email_reset?u_email=' + u_email+"&secret=" + auth.encrypt(u_email) ,
+      link: 'http://www.fmyoutu.com/#/email_reset?u_email=' + u_email+"&secret=" + auth.encrypt(u_email) ,
       otherProperty: 'Other Property'
     }, function (err) {
       if (err) {
