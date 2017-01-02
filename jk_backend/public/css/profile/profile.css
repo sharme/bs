@@ -26,6 +26,7 @@
   height: 100px;
   margin: 0px 27%;
   padding-top: 20px;
+  display: block;
 }
 .profile_middle .profile_middle-point {
   width: 15%;
