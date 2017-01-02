@@ -1072,7 +1072,13 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
           $('#myBar').text('上传失败!');
         }
       });
-  }
+  };
+
+  $scope.switchPic = function(pic) {
+    $('.present_picture').attr('src', pic);
+  };
+
+
 
 }]);
 

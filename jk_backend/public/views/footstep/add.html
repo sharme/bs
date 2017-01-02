@@ -12,21 +12,21 @@
                         <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,0)" name="imageName"/>
                         <span class="uploadBtn">+</span>
                     </div>
-                    <img class="footstep_pic0">
+                    <img class="footstep_pic0" ng-click="switchPic(footstep.fs_pic)">
                 </div>
                 <div class="create_footstep-info_img_list_pic">
                     <div class="fileUpload footstep_pic_btn2">
                         <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,2)" name="imageName"/>
                         <span class="uploadBtn">+</span>
                     </div>
-                    <img class="footstep_pic2">
+                    <img class="footstep_pic2" ng-click="switchPic(footstep.fs_pic2)">
                 </div>
                 <div class="create_footstep-info_img_list_pic">
                     <div class="fileUpload footstep_pic_btn3">
                         <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,3)" name="imageName"/>
                         <span class="uploadBtn">+</span>
                     </div>
-                    <img class="footstep_pic3">
+                    <img class="footstep_pic3" ng-click="switchPic(footstep.fs_pic3)">
                 </div>
             </div>
             <hr>
