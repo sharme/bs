@@ -46,8 +46,8 @@
       <file leaf-file-name="add.less" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/footstep/add.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+            <state relative-caret-position="435">
+              <caret line="135" column="13" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -56,8 +56,8 @@
       <file leaf-file-name="add-m.less" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/footstep/add-m.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
+            <state relative-caret-position="552">
+              <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -586,12 +586,12 @@
       <workItem from="1480946883561" duration="39175000" />
       <workItem from="1482085674170" duration="826000" />
       <workItem from="1482254652757" duration="1610000" />
-      <workItem from="1482558160404" duration="18054000" />
+      <workItem from="1482558160404" duration="18200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="743088000" />
+    <option name="totallyTimeSpent" value="743234000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="31" y="30" width="1450" height="877" extended-state="0" />
@@ -1064,16 +1064,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/footstep/add.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+        <state relative-caret-position="435">
+          <caret line="135" column="13" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/footstep/add-m.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="102" selection-end-column="13" />
+        <state relative-caret-position="552">
+          <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
           <folding />
         </state>
       </provider>
