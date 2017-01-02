@@ -3,6 +3,7 @@ body {
 }
 .create_footstep {
   padding: 10px;
+  display: block;
 }
 .create_footstep .create_footstep-info {
   width: 600px;

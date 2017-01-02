@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/default.css">
+  <link rel="stylesheet" type="text/css" href="css/default-m.css">
   <link rel="stylesheet" href="css/zoom.css">
   <link rel="stylesheet" href="css/jquery-ui.min.css">
     <!-- Link Swiper's CSS -->
@@ -75,6 +76,7 @@
             <hr>
         </span>
     </div>
+      <div style="margin-top: 30px; float: right;">点击头像关闭</div>
   </div>
 
 </div>
@@ -94,6 +96,8 @@
             if($('.notification').css('display') === 'block'){
                 $('.notification').css('display','none');
             } else {
+                $('.notification').css('width', '50%');
+                $('.notification').css('margin', '35px 0px 0px 45%');
                 $('.notification').css('display','block');
             }
         });

@@ -142,3 +142,6 @@ button {
 .about {
   float: right;
 }
+.profile_middle {
+  display: none;
+}
