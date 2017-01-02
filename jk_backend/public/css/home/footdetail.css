@@ -32,6 +32,21 @@
   background-color: darkgray;
   border: none;
 }
+.foot_wrapper .foot_wrapper-main .foot_wrapper_pic_list {
+  height: 85px;
+}
+.foot_wrapper .foot_wrapper-main .foot_wrapper_pic_list .foot_wrapper_pic_list_img {
+  width: 75px;
+  height: 75px;
+  margin-top: 10px;
+  margin-right: 10px;
+  float: left;
+}
+.foot_wrapper .foot_wrapper-main .foot_wrapper_pic_list .foot_wrapper_pic_list_img img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
 .foot_wrapper .foot_wrapper-main .foot_wrapper-main_profile {
   margin-top: 10px;
 }

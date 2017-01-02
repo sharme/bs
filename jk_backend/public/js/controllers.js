@@ -402,7 +402,7 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
             $(".next_pic").html("下一张图");
             // $window.location.href = "#/foot/" + data.fs_id;
 
-            
+
 
             $http({method: 'GET', url: ipAddress + '/footsteps/getFootstepsDetail', params:{fs_id:data.fs_id}})
                 .success(function(data){
@@ -758,6 +758,15 @@ buybsControllers.controller('FootDetailCtrl', ['$scope', '$routeParams', '$http'
       console.log(error);
     });
   };
+
+
+
+  $scope.switchPic = function(pic) {
+    $('.picture-present').attr('src',pic);
+  };
+
+
+
   
 }]);
 
@@ -958,7 +967,7 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     $window.location.href = '#/email_login';
     return;
   }
-
+  // deprecated
   $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
       .success(function(data){
         $scope.countries = data;
@@ -970,31 +979,49 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     $window.location.href = '#/profile?u_id=' + $cookies.get('u_id');
   };
 
-  $scope.submit = function() {
+  var progress = 1;
+  var progressBar = function(){
+    progress += 1;
+    if(progress < 99) {
+      $('#myBar').width(progress + "%");
+      $('#myBar').text(progress + "%");
+    } else {
+      clearInterval(progressBar);
+    }
+  };
 
+  $scope.footstep = {
+    fs_pic : '',
+    fs_des : '',
+    fs_from : '',
+    u_id : $cookies.get('u_id'),
+    fs_bigImg : '',
+    fs_smallImg : '',
+    fs_create_time : '',
+    fs_update_time : '',
+    fs_status : '',
+    fs_pic2 : '',
+    fs_pic3 : '',
+    secret : $cookies.get('secret')
+  };
+
+
+  $scope.submit = function() {
     if($scope.footstep.fs_desc == null){
       alert('描述不能为空');
       return;
     }
-
-    var footstepData = {
-      fs_desc: $scope.footstep.fs_desc,
-      fs_from: $scope.footstep.fs_from,
-      fs_pic: $scope.footstep.fs_smallImg,
-      u_id: $cookies.get('u_id'),
-      fs_bigImg: $scope.footstep.fs_bigImg,
-      fs_smallImg: $scope.footstep.fs_smallImg,
-      secret: $cookies.get('secret')
-    };
-
+    
     var req = {
       method: 'POST',
       url: ipAddress + '/footsteps/create',
       headers: {
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(footstepData)
+      data: JSON.stringify($scope.footstep)
     };
+
+    console.log(req);
 
     $http(req).success(function(result){
       if(result.errno){
@@ -1008,20 +1035,9 @@ buybsControllers.controller('FootstepAddController', ['$scope', '$cookies', '$wi
     });
   };
 
-var progress = 1;
-  var progressBar = function(){
-    progress += 1;
-    if(progress < 99) {
-      $('#myBar').width(progress + "%");
-      $('#myBar').text(progress + "%");
-    } else {
-      clearInterval(progressBar);
-    }
-  };
-
-  $scope.uploadFile = function(file) {
-    console.log('upload file');
-
+  $scope.uploadFile = function(file, num) {
+      progress = 1;
+      console.log('upload file');
       setInterval(progressBar, 20);
 
       var file_data = $(file).prop('files')[0];
@@ -1039,16 +1055,18 @@ var progress = 1;
         success: function (res) {
           $('#myBar').width("100%");
           $('#myBar').text('上传完成!');
-
           console.log('successfully uploaded, URL: ' + res);
           $(file).parent().css("min-height", '0px');
-          $scope.uploadUrl = res.bigImg;
-          $(file).parent().nextAll("#upload_smallImg-href").val(res.smallImg);
-          $(file).parent().nextAll("#upload_bigImg-href").val(res.bigImg);
-          $(file).parent().nextAll("#upload_smallImg-href").change();
-          $(file).parent().nextAll("#upload_bigImg-href").change();
+          $('.present_picture').attr('src', res.bigImg);
+          $('.footstep_pic' + num).attr('src', res.bigImg);
+          
+          if(num == 0) {$scope.footstep.fs_pic = res.bigImg; $scope.footstep.fs_smallImg = res.smallImg; $scope.footstep.fs_bigImg = res.bigImg;}
+          if(num == 2) $scope.footstep.fs_pic2 = res.bigImg;
+          if(num == 3) $scope.footstep.fs_pic3 = res.bigImg;
+          
           $(file).css("display", "none");
-          $('.fileUpload').css("display", 'none');
+          $('.footstep_pic_btn' + num).css("display", 'none');
+          $('.footstep_pic' + num).css('display', 'inline-block');
         },
         error: function(res) {
           $('#myBar').text('上传失败!');
@@ -1129,7 +1147,6 @@ buybsControllers.controller('ProfileEditController', ['$scope', '$cookies', '$wi
 
 
 // Controller for other features.
-
 buybsControllers.controller('WelcomeCtrl', ['$scope', '$cookies', '$window','$css', function($scope, $cookies, $window, $css){
 
   $scope.isMobile = function (){

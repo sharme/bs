@@ -3,7 +3,7 @@
 
 var account = angular.module('buybsControllers');
 
-var ipAddress = 'http://180.76.152.112';
+// var ipAddress = 'http://180.76.152.112';
 
 // Controllers for registered or account by email address.
 

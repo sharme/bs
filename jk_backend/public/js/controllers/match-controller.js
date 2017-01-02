@@ -2,7 +2,7 @@
 
 var match = angular.module('buybsControllers');
 
-var ipAddress = 'http://180.76.152.112';
+// var ipAddress = 'http://180.76.152.112';
 
 buybsControllers.controller('tuyouCtrl', ['$scope', '$cookies', '$window', '$http','$routeParams','$css', function($scope, $cookies, $window, $http, $routeParams,$css){
 
