@@ -24,6 +24,7 @@
   height: 100px;
   margin: 0px;
   padding-top: 20px;
+  display: block;
 }
 .profile_middle .profile_middle-point {
   width: 15%;
@@ -78,9 +79,6 @@
   position: absolute;
   visibility: hidden;
   background: white;
-}
-.footstep-list .footstep-list-div-pic {
-  height: 160px;
 }
 .footstep-list .footstep-list-div-pic img {
   border-radius: 2%;

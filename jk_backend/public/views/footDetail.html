@@ -26,10 +26,10 @@
             <div class="foot_wrapper_pic_list_img" ng-click="switchPic(foot.fs_pic)">
                 <img class="footstep_pic0" ng-src="{{foot.fs_pic}}">
             </div>
-            <div class="foot_wrapper_pic_list_img" ng-click="switchPic(foot.fs_pic2)">
+            <div class="foot_wrapper_pic_list_img" ng-if="foot.fs_pic2" ng-click="switchPic(foot.fs_pic2)">
                 <img class="footstep_pic2" ng-src="{{foot.fs_pic2}}">
             </div>
-            <div class="foot_wrapper_pic_list_img" ng-click="switchPic(foot.fs_pic3)">
+            <div class="foot_wrapper_pic_list_img" ng-if="foot.fs_pic3" ng-click="switchPic(foot.fs_pic3)">
                 <img class="footstep_pic3" ng-src="{{foot.fs_pic3}}">
             </div>
         </div>
