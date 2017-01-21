@@ -84,6 +84,7 @@
   width: 50%;
   padding: 5px;
   float: left;
+  cursor: pointer;
 }
 #register-content .register-content-wrapper .register-content-wrapper-main .register-content-wrapper-main-form p {
   margin-bottom: 0 !important;
