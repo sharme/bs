@@ -86,6 +86,19 @@
   visibility: hidden;
   background-color: white;
 }
+#footstep-list .footstep-list-div-tag {
+  width: 80px;
+  background-color: green;
+  margin: 5px;
+  border-radius: 50%;
+  height: 80px;
+  position: absolute;
+}
+#footstep-list .footstep-list-div-tag img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
 #footstep-list .footstep-list-div-pic img {
   border-radius: 2%;
   width: 100%;
