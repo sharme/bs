@@ -1,0 +1,121 @@
+.product {
+  padding: 5%;
+  max-width: 680px;
+  margin: auto;
+}
+.product hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.product .topic_top .topic_top_title {
+  float: left;
+}
+.product .topic_top .topic_top_title .topic_top_title_about {
+  height: 30px;
+  line-height: 2;
+}
+.product .topic_top .topic_top_title .topic_top_title_description {
+  font-size: 18px;
+  color: seagreen;
+  padding: 10px;
+}
+.product .topic_top img {
+  width: 100%;
+}
+.product .topic_top_like {
+  width: 20%;
+  height: 50px;
+}
+.product .topic_top_like .topic_top_like_btn {
+  height: 35px;
+  text-align: center;
+  background-color: grey;
+  border-radius: 6px;
+  cursor: pointer;
+  padding-top: 10px;
+}
+.product .topic_info .topic_info_img {
+  float: left;
+  height: 80px;
+  color: grey;
+}
+.product .topic_info .topic_info_img .topic_info_img_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.product .topic_info .topic_info_elements {
+  width: 60%;
+  margin-left: 40%;
+  height: 80px;
+}
+.product .topic_info .topic_info_elements .topic_info_elements_data {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 10px 20px;
+  border: solid 1px gray;
+  text-align: center;
+  line-height: 1.7;
+  color: grey;
+}
+.product .topic_content .topic_content_info {
+  min-height: 300px;
+}
+.product .topic_content .topic_content_comment {
+  border: solid 1px gray;
+  padding: 20px;
+  margin-top: 5px;
+}
+.product .topic_content .topic_content_comment .topic_content_comment_left {
+  margin: 0px 0% 0px 0px;
+  text-align: center;
+  min-height: 100px;
+  padding: 20px 30px 20px 10px;
+  line-height: 3;
+  float: left;
+}
+.product .topic_content .topic_content_comment .topic_content_comment_left .topic_content_comment_left_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.product .topic_content .topic_content_comment .topic_content_comment_right {
+  min-height: 100px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+.product .topic_content .topic_content_reply {
+  margin-top: 10px;
+  margin-bottom: 180px;
+}
+.product .topic_content .topic_content_reply .topic_content_reply_btn {
+  width: 180px;
+  height: 35px;
+  float: right;
+  text-align: center;
+  margin: 20px;
+  border-color: grey;
+  font-size: 16px;
+  cursor: pointer;
+}
+.product .topic_content .topic_content_comment_btn {
+  margin-left: 70%;
+}
+.product .topic_content .topic_content_comment_btn .topic_content_comment_btn_like {
+  width: 50px;
+  float: left;
+  height: 30px;
+  margin-left: 60px;
+  line-height: 2;
+  text-align: center;
+  background-color: gray;
+}
+.product .topic_content .topic_content_comment_btn .topic_content_comment_btn_reply {
+  height: 30px;
+  margin-left: 150px;
+  line-height: 2;
+  text-align: center;
+  background-color: gray;
+  width: 80px;
+}

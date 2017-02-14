@@ -10,7 +10,7 @@
 
     <div id="footstep-list-div" class="footstep-list-div bgColorChange{{result.fs_id}}" ng-repeat="result in footsteps" ng-mouseleave="bgColorRemove(result.fs_id)" ng-mouseenter="bgColorChange(result.fs_id)">
             <div class="footstep-list-div-tag">
-                <img ng-src="{{result.u_tag}}">
+                <img ng-if="result.u_tag" ng-src="{{result.u_tag}}">
             </div>
             <div class="footstep-list-div-pic" ng-click="loginCheck(result.fs_id)" ng-if="result.fs_id">
                 <!--<a href="#/foot/{{result.fs_id}}">-->

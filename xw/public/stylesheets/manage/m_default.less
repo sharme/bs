@@ -1,0 +1,150 @@
+
+.manage {
+  padding: 5%;
+
+  .manage-nav {
+    height: 100px;
+    .manage-nav-product-btn, .manage-nav-add-btn {
+      height: 30px;
+      width: 120px;
+      text-align: center;
+      border: solid 1px lightgray;
+      cursor: pointer;
+      float: left;
+    }
+    .manage-nav-product-btn:hover, .manage-nav-add-btn:hover {
+      background-color: grey;
+    }
+
+
+  }
+
+  .manage-product-list {
+
+    .manage-product-list-wrap {
+      width: 258px;
+      height: 310px;
+      float: left;
+      margin: 5px;
+      border: solid 1px lightgrey;
+      overflow: hidden;
+      .manage-product-list-wrap-img {
+        width: 258px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .manage-product-list-wrap-desc {
+        height: 40px;
+        overflow: hidden;
+        margin: 7px;
+      }
+    }
+    .manage-product-list-end {
+      float: left;
+      width: 100%;
+      height: 200px;
+      margin: auto;
+      text-align: center;
+      line-height: 10;
+    }
+  }
+
+  .manage-add-product {
+    margin-bottom: 100px;
+    .manage-add-product-img {
+      height: 680px;
+      width: 680px;
+      margin: auto;
+      .profile-right-upload-stone {
+        width: 680px;
+        min-height: 400px;
+        .profile-right-upload-stone-btn {
+
+          .fileUpload0, .fileUpload1, .fileUpload2 {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+
+            input.upload {
+              position: absolute;
+              top: 0;
+              right: 0;
+              margin: 0;
+              padding: 0;
+              font-size: 20px;
+              cursor: pointer;
+              opacity: 0;
+              left: 0px;
+              width: 50px;
+            }
+            span {
+              cursor: pointer;
+            }
+            .uploadBtn, .uploadedBtn {
+              display: inline-block;
+              vertical-align: top;
+              background: #47a447;
+              font-size: 16px;
+              padding: 3px 10px;
+              height: 30px;
+              line-height: 22px;
+              color: #fff;
+              border-radius: 4px;
+              border: 1px solid transparent;
+            }
+          }
+
+          .picture-present0, .picture-present1, .picture-present2 {
+            width: 100%;
+            //min-height: 300px;
+          }
+
+          #myProgress0, #myProgress1, #myProgress2 {
+            position: relative;
+            width: 100%;
+            height: 30px;
+            background-color: #ddd;
+            #myBar0, #myBar1, #myBar2 {
+              position: absolute;
+              width: 1%;
+              height: 100%;
+              background-color: #4CAF50;
+              text-align: center;
+              line-height: 2;
+            }
+          }
+
+        }
+      }
+    }
+    .manage-add-product-description {
+      width: 680px;
+      margin: 10px auto auto;
+      input {
+        width: 680px;
+      }
+    }
+    .manage-add-product-contents {
+      width: 680px;
+      margin: auto;
+      padding-top: 20px;
+    }
+    .manage-add-product-submit {
+      margin: auto;
+      width: 680px;
+      button {
+        width: 240px;
+        height: 48px;
+        background-color: #fdbd39;
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,31 @@
+.login {
+  margin: 5px 5%;
+}
+.login .login-panel {
+  width: 480px;
+  margin: auto;
+}
+.login .login-panel .login-panel-header {
+  text-align: center;
+}
+.login .login-panel .login-panel-name {
+  margin: 20px;
+}
+.login .login-panel .login-panel-name label {
+  width: 100%;
+}
+.login .login-panel .login-panel-name input {
+  width: 100%;
+}
+.login .login-panel .login-panel-password {
+  margin: 20px;
+}
+.login .login-panel .login-panel-password label {
+  width: 100%;
+}
+.login .login-panel .login-panel-password input {
+  width: 100%;
+}
+.login .login-panel .login-panel-submit {
+  margin: 20px;
+}

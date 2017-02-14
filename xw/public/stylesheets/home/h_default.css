@@ -1,0 +1,16 @@
+.intro-sapphire {
+  padding: 5%;
+  display: block;
+}
+.intro-sapphire .intro-sapphire-img {
+  text-align: center;
+  margin: 5%;
+}
+.intro-ruby {
+  display: block;
+  padding: 5%;
+}
+.intro-ruby .intro-ruby-img {
+  text-align: center;
+  margin: 5%;
+}

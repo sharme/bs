@@ -1,0 +1,64 @@
+
+<div class="manage" ng-controller="manageCtrl">
+
+    <div class="manage-nav">
+        <div class="manage-nav-product-btn" ng-click="selection('default')">我的产品</div>
+        <div class="manage-nav-add-btn" ng-click="selection('addProduct')">添加产品</div>
+    </div>
+
+    <div ng-switch on="selectValue">
+
+        <div class="manage-product-list" ng-switch-default>
+
+            <div class="manage-product-list-wrap" ng-repeat="product in products">
+                <!--<div style="font-size: 20px;padding: 10px;text-align: center;">Genesis tool</div>-->
+                <div class="manage-product-list-wrap-img">
+                    <a href="#/product/{{product.p_id}}"><img ng-src="{{product.p_smallImg}}"></a>
+                </div>
+                <div class="manage-product-list-wrap-desc">
+                    1.6克拉无烧, 斯里兰卡. 蓝宝石. 带GIA国际证书. 3600/克拉. {{product.p_description}}
+                </div>
+            </div>
+
+
+            <div class="manage-product-list-end">没有了!</div>
+        </div>
+
+        <div class="manage-add-product" ng-switch-when="addProduct">
+            <form  ng-controller="manageCtrl" method="POST" ng-submit="submit()" >
+                <div class="manage-add-product-img">
+                    <div class="profile-right-upload-stone">
+                        <div class="profile-right-upload-stone-btn">
+                            <div class="fileUpload0">
+                                <input type="file" class="upload" onchange="angular.element(this).scope().uploadFile(this,0)" name="imageName"/>
+                                <span class="uploadBtn">Project Logo</span>
+                            </div>
+
+                            <img class="picture-present0" style="height: 460px; width: 100%;">
+                            <input class="picture-input0" type="text" style="display: none;" ng-model="product.p_img">
+                            <hr>
+                            <div id="myProgress0">
+                                <div id="myBar0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 680px; margin: auto;">About</div>
+                <div class="manage-add-product-description">
+                    <input type="text" ng-model="product.p_description">
+                </div>
+                <div style="width: 680px; margin: auto;">Description</div>
+                <div class="manage-add-product-contents">
+                    <textarea name="editor1" id="editor1" rows="10" cols="94" ng-model="product.p_contents"></textarea>
+                </div>
+                <!--<input type="text" ng-model="product.p_img" style="display:none;">-->
+                <div class="manage-add-product-submit">
+                    <button class="topic_add_btn" type="submit">发布</button>
+                </div>
+            </form>
+            <div class="validation_msg"></div>
+        </div>
+
+    </div>
+
+</div>

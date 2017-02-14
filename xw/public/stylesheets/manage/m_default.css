@@ -1,0 +1,156 @@
+.manage {
+  padding: 5%;
+}
+.manage .manage-nav {
+  height: 100px;
+}
+.manage .manage-nav .manage-nav-product-btn,
+.manage .manage-nav .manage-nav-add-btn {
+  height: 30px;
+  width: 120px;
+  text-align: center;
+  border: solid 1px lightgray;
+  cursor: pointer;
+  float: left;
+}
+.manage .manage-nav .manage-nav-product-btn:hover,
+.manage .manage-nav .manage-nav-add-btn:hover {
+  background-color: grey;
+}
+.manage .manage-product-list .manage-product-list-wrap {
+  width: 258px;
+  height: 310px;
+  float: left;
+  margin: 5px;
+  border: solid 1px lightgrey;
+  overflow: hidden;
+}
+.manage .manage-product-list .manage-product-list-wrap .manage-product-list-wrap-img {
+  width: 258px;
+}
+.manage .manage-product-list .manage-product-list-wrap .manage-product-list-wrap-img img {
+  width: 100%;
+  height: 100%;
+}
+.manage .manage-product-list .manage-product-list-wrap .manage-product-list-wrap-desc {
+  height: 40px;
+  overflow: hidden;
+  margin: 7px;
+}
+.manage .manage-product-list .manage-product-list-end {
+  float: left;
+  width: 100%;
+  height: 200px;
+  margin: auto;
+  text-align: center;
+  line-height: 10;
+}
+.manage .manage-add-product {
+  margin-bottom: 100px;
+}
+.manage .manage-add-product .manage-add-product-img {
+  height: 680px;
+  width: 680px;
+  margin: auto;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone {
+  width: 680px;
+  min-height: 400px;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload0,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload1,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload2 {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload0 input.upload,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload1 input.upload,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload2 input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  left: 0px;
+  width: 50px;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload0 span,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload1 span,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload2 span {
+  cursor: pointer;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload0 .uploadBtn,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload1 .uploadBtn,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload2 .uploadBtn,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload0 .uploadedBtn,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload1 .uploadedBtn,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .fileUpload2 .uploadedBtn {
+  display: inline-block;
+  vertical-align: top;
+  background: #47a447;
+  font-size: 16px;
+  padding: 3px 10px;
+  height: 30px;
+  line-height: 22px;
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .picture-present0,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .picture-present1,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn .picture-present2 {
+  width: 100%;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress0,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress1,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress2 {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+}
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress0 #myBar0,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress1 #myBar0,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress2 #myBar0,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress0 #myBar1,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress1 #myBar1,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress2 #myBar1,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress0 #myBar2,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress1 #myBar2,
+.manage .manage-add-product .manage-add-product-img .profile-right-upload-stone .profile-right-upload-stone-btn #myProgress2 #myBar2 {
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 2;
+}
+.manage .manage-add-product .manage-add-product-description {
+  width: 680px;
+  margin: 10px auto auto;
+}
+.manage .manage-add-product .manage-add-product-description input {
+  width: 680px;
+}
+.manage .manage-add-product .manage-add-product-contents {
+  width: 680px;
+  margin: auto;
+  padding-top: 20px;
+}
+.manage .manage-add-product .manage-add-product-submit {
+  margin: auto;
+  width: 680px;
+}
+.manage .manage-add-product .manage-add-product-submit button {
+  width: 240px;
+  height: 48px;
+  background-color: #fdbd39;
+}

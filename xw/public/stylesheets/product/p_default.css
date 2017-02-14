@@ -1,0 +1,31 @@
+.product-list {
+  padding: 5%;
+}
+.product-list .product-list-wrap {
+  width: 258px;
+  height: 310px;
+  float: left;
+  margin: 5px;
+  border: solid 1px lightgrey;
+  overflow: hidden;
+}
+.product-list .product-list-wrap .product-list-wrap-img {
+  width: 258px;
+}
+.product-list .product-list-wrap .product-list-wrap-img img {
+  width: 100%;
+  height: 100%;
+}
+.product-list .product-list-wrap .product-list-wrap-desc {
+  height: 40px;
+  overflow: hidden;
+  margin: 7px;
+}
+.product-list .product-list-end {
+  float: left;
+  width: 100%;
+  height: 200px;
+  margin: auto;
+  text-align: center;
+  line-height: 10;
+}

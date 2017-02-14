@@ -1,0 +1,42 @@
+
+<div class="product-list">
+
+    <!--<div class="product-list-wrap">-->
+        <!--<div style="font-size: 20px;">Salorma tool</div>-->
+        <!--<div>This is the tool where employees can use to handle license issues or any kind of Salorma system based system tool</div>-->
+        <!--&lt;!&ndash;<div>Salorma</div>&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--<div class="product-list-wrap">-->
+        <!--<div style="font-size: 20px;">Genesis tool</div>-->
+        <!--<a href="#/product/detail"><div style="color: black;">This is the tool where employees can use to handle all subscription related issues and also a place where to manage users, subscriptions, orders etc.</div>-->
+        <!--</a>&lt;!&ndash;<div>Genesis</div>&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--<div class="product-list-wrap">-->
+        <!--<div style="font-size: 20px;">Unity connect</div>-->
+        <!--<div>start connecting with Unity developers who can help you overcome roadblocks and bring your creative vision to life. Discover and connect with talented individuals who have the complementary skills you need to take your creative vision &#45;&#45; whether it be a game or a VR experience &#45;&#45; to the next level.</div>-->
+        <!--&lt;!&ndash;<div>Connect</div>&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--<div class="product-list-end">没有了!</div>-->
+
+
+
+    <div class="product-list">
+
+        <div class="product-list-wrap" ng-repeat="product in products">
+            <!--<div style="font-size: 20px;padding: 10px;text-align: center;">Genesis tool</div>-->
+            <div class="product-list-wrap-img">
+                <a href="#/product/{{product.p_id}}"><img ng-src="{{product.p_smallImg}}"></a>
+            </div>
+            <div class="product-list-wrap-desc">
+                1.6克拉无烧, 斯里兰卡. 蓝宝石. 带GIA国际证书. 3600/克拉. {{product.p_description}}
+            </div>
+        </div>
+
+
+        <div class="product-list-end">没有了!</div>
+    </div>
+
+</div>
