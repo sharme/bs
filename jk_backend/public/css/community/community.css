@@ -135,6 +135,9 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.topic {
+  display: block;
+}
 .topic .closeTopic {
   float: right;
   font-size: 20px;
@@ -267,6 +270,7 @@
 .topic_add {
   margin: auto;
   margin-top: 50px;
+  display: block;
 }
 .topic_add .topic_add_title {
   font-size: 20px;
