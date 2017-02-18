@@ -175,6 +175,17 @@ router.post('/login', urlencodeParser, function(req,res, next) {
             console.log(result);
         });
 
+        // update u_last_login time
+        var updateLoginTime = mysql.format("update jk_users set u_update_time = ? where u_phone_num = ?", [date, req.body.phoneNumber]);
+        connection.query(updateLoginTime, function (err, result) {
+          console.log(updateLoginTime);
+          if (err)
+            console.log(err);
+          else
+            console.log(result);
+        });
+
+
         res.send([{
           u_id: result[0].u_id,
           u_avatar: result[0].u_avatar,
@@ -290,6 +301,16 @@ router.post('/email_login', urlencodeParser, function(req,res, next) {
         var insertLog = mysql.format("insert into jk_logs(lg_content,lg_ip,lg_create_time) values(?,?,?)", [log, ipAddress, date]);
         connection.query(insertLog, function (err, result) {
           console.log(insertLog);
+          if (err)
+            console.log(err);
+          else
+            console.log(result);
+        });
+
+        // update u_last_login time
+        var updateLoginTime = mysql.format("update jk_users set u_update_time = ? where u_email = ?", [date, req.body.u_email]);
+        connection.query(updateLoginTime, function (err, result) {
+          console.log(updateLoginTime);
           if (err)
             console.log(err);
           else
