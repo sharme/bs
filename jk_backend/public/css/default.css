@@ -173,6 +173,16 @@ button {
   font-size: 18px;
   line-height: 2;
 }
+.share {
+  position: absolute;
+  width: 26px;
+  padding: 5px;
+  margin: 30px 10px;
+  background-color: #43c17e;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
 .about {
   float: right;
 }

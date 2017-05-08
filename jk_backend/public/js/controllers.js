@@ -156,20 +156,20 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   // $('.explore').css('display','block');
 
-  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 20, u_id: $cookies.get('u_id')}})
-      .success(function(data){
-        $scope.footsteps = data;
-        displayPosition(500,20);
-      },function(error){
-        $scope.error = error;
-      });
+  // $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 20, u_id: $cookies.get('u_id')}})
+  //     .success(function(data){
+  //       $scope.footsteps = data;
+  //       displayPosition(500,20);
+  //     },function(error){
+  //       $scope.error = error;
+  //     });
 
-  $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
-      .success(function(data){
-        $scope.countries = data;
-      }, function(error){
-        $scope.error = error;
-      });
+  // $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
+  //     .success(function(data){
+  //       $scope.countries = data;
+  //     }, function(error){
+  //       $scope.error = error;
+  //     });
 
   // deprecated
   $scope.countryFilter = function(element, fs_from){

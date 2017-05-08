@@ -38,9 +38,11 @@ account.controller('EmailRegistrationCtrl', ['$scope', '$cookies', '$window','$h
             data: JSON.stringify(postData)
         };
         $http(req).success(function (result) {
-            if(result.errno){
-                $(".validation_msg").html("注册失败, 请联系管理员.");
-            } else if(result.stage){
+            if(result.code == 'ER_DUP_ENTRY'){
+                $(".validation_msg").html("该邮箱已经被人注册了.");
+            } else if(result.errno){
+                $(".validation_msg").html("注册失败, 请联系管理员. admin@fmyoutu.com");
+            }else if(result.stage){
                 $(".validation_msg").html("邮箱不正确, 请填写正确的邮箱.");
             } else {
                 $('.validation_msg').html("发送成功, 请您查看邮箱并完成注册操作.  如果已完成验证, 点击这里 <a href='#/email_login' style='color: black;'>登录</a>");

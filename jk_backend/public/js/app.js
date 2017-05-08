@@ -26,8 +26,19 @@ buybs.config(function($routeProvider, $cssProvider){
 
     $routeProvider.
     when('/', {
+        // templateUrl: 'views/welcome/welcome.html',
+        // controller: 'WelcomeCtrl',
+        // css: [
+        //     {
+        //         href: '../css/welcome/welcome-m.css',
+        //         breakpoint: 'mobile'
+        //     }, {
+        //         href: '../css/welcome/welcome.css',
+        //         breakpoint: 'desktop'
+        //     }
+        // ]
         templateUrl: 'views/welcome/welcome.html',
-        controller: 'WelcomeCtrl',
+        controller: 'EmailRegistrationCtrl',
         css: [
             {
                 href: '../css/welcome/welcome-m.css',

@@ -110,7 +110,6 @@
   text-align: center;
   cursor: pointer;
   font-size: 56px;
-  background-color: #43c17e;
 }
 #footstep-list .footstep-list-div_info {
   width: 33%;
@@ -158,6 +157,9 @@
 }
 #footstep-list .footstep-list-div_info .footstep-list-div-comment .footstep-list-div-comment-content img {
   max-width: 135px;
+}
+.share {
+  display: block;
 }
 button {
   outline: none;

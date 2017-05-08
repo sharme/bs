@@ -223,6 +223,13 @@ router.post('/updatePwd', urlencodeParser, function(req, res, next) {
 
 router.post('/email', function (req, res, next) {
 
+  connection.query("select u_id from jk_users where u_email='"+ req.body.u_email + "';", function(err, result){
+    if(result.length > 0)
+      res.send({errno: 1002, code:'ER_DUP_ENTRY'});
+      return;
+  });
+
+
   var u_email = req.body.u_email;
   if(req.body.u_email && req.body.u_pwd) {
     res.mailer.send('email', {
