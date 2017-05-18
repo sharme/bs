@@ -497,7 +497,7 @@ router.get('/checkCode', function (req, res, next) {
             check = false;
             
             if(secret){
-                var code = auth.encrypt(to,scCode,'q1w3e5r7t8y');
+                var code = auth.encrypt(to);
                 auth.addList(code);
                 res.send(code);
             } else {
