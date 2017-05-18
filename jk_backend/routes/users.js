@@ -201,7 +201,7 @@ router.post('/login', urlencodeParser, function(req,res, next) {
 
 router.post('/updatePwd', urlencodeParser, function(req, res, next) {
 
-  if(req.body.secret == auth.encrypt(req.body.u_id)) {
+  if(req.body.secret == auth.encrypt(req.body.phoneNumber)) {
     var updateSQL = mysql.format("update jk_users set u_pwd = ? where u_phone_num = ? ",[req.body.password, req.body.phoneNumber]);
     connection.query(updateSQL, function (err, result) {
       if (err) {
@@ -211,7 +211,7 @@ router.post('/updatePwd', urlencodeParser, function(req, res, next) {
       }
     });
   } else {
-    res.send("access denied, please contact administrator.");
+    res.send({errno: 1003, code:'access denied, please contact administrator.'});
   }
 
 });
@@ -282,7 +282,7 @@ router.get('/email_verify', function(req, res, next) {
       }
     })
   } else {
-    res.send("access denied, please contact administrator.");
+    res.send({errno: 1003, code:'access denied, please contact administrator.'});
   }
 
 });
