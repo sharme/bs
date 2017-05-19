@@ -24,8 +24,20 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state relative-caret-position="-90">
+              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/default.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1904">
+              <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -53,6 +65,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/views/welcome/welcome.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+              <folding>
+                <marker date="1495211576000" expanded="false" signature="110:123" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="171:298" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="1297:1377" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="1406:1423" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="1552:1565" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="1597:1652" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="2075:2088" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="2116:2171" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="2593:2606" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="2634:2689" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="3120:3133" placeholder="..." />
+                <marker date="1495211576000" expanded="false" signature="3161:3238" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="addTopic.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/community/addTopic.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,7 +100,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="community-controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="community-controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/community-controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="462">
@@ -85,6 +120,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1620">
+              <caret line="108" column="28" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="account-controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/account-controller.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -93,38 +138,6 @@
               <folding>
                 <marker date="1494064546000" expanded="true" signature="1528:1541" placeholder="..." />
                 <marker date="1494064546000" expanded="true" signature="6750:6763" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="community.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/community/community.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="community-m.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/community/community-m.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/users.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
-              <folding>
-                <marker date="1495103064000" expanded="true" signature="8714:8728" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -182,8 +195,6 @@
         <option value="$PROJECT_DIR$/public/views/homepage.html" />
         <option value="$PROJECT_DIR$/public/css/welcome/welcome.less" />
         <option value="$PROJECT_DIR$/public/css/welcome/welcome-m.less" />
-        <option value="$PROJECT_DIR$/public/css/default.less" />
-        <option value="$PROJECT_DIR$/public/views/welcome/welcome.html" />
         <option value="$PROJECT_DIR$/public/views/footDetail.html" />
         <option value="$PROJECT_DIR$/public/css/home/footdetail.less" />
         <option value="$PROJECT_DIR$/public/views/account/email_login.html" />
@@ -191,12 +202,14 @@
         <option value="$PROJECT_DIR$/routes/api.js" />
         <option value="$PROJECT_DIR$/routes/auth.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/css/community/community.less" />
         <option value="$PROJECT_DIR$/public/css/community/community-m.less" />
         <option value="$PROJECT_DIR$/public/views/community/index.html" />
         <option value="$PROJECT_DIR$/public/views/community/addTopic.html" />
         <option value="$PROJECT_DIR$/public/js/controllers/community-controller.js" />
+        <option value="$PROJECT_DIR$/public/css/default.less" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/views/welcome/welcome.html" />
       </list>
     </option>
   </component>
@@ -300,6 +313,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jk_backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="welcome" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -580,12 +615,12 @@
       <workItem from="1490256435718" duration="7000" />
       <workItem from="1494057026759" duration="11805000" />
       <workItem from="1495095573644" duration="776000" />
-      <workItem from="1495097710414" duration="5766000" />
+      <workItem from="1495097710414" duration="7596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="785112000" />
+    <option name="totallyTimeSpent" value="786942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1400" height="877" extended-state="6" />
@@ -865,36 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/default.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3105">
-          <caret line="207" column="19" selection-start-line="207" selection-start-column="19" selection-end-line="207" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/welcome/welcome.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="42" selection-start-line="107" selection-start-column="42" selection-end-line="107" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1494261319000" expanded="false" signature="110:123" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="171:298" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="1297:1377" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="1406:1423" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="1552:1565" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="1597:1652" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="2075:2088" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="2116:2171" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="2593:2606" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="2634:2689" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="3120:3133" placeholder="..." />
-            <marker date="1494261319000" expanded="false" signature="3161:3238" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/footDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -960,14 +965,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="108" column="28" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="445">
@@ -1010,36 +1007,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/community/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/community/topic.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/account/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1065,11 +1036,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/default.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1904">
+          <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="108" column="28" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/community-controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="356" column="0" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/account/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/community/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="44" column="22" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/welcome/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+          <folding>
+            <marker date="1495211576000" expanded="false" signature="110:123" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="171:298" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="1297:1377" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="1406:1423" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="1552:1565" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="1597:1652" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="2075:2088" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="2116:2171" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="2593:2606" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="2634:2689" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="3120:3133" placeholder="..." />
+            <marker date="1495211576000" expanded="false" signature="3161:3238" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
