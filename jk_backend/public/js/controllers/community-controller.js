@@ -341,7 +341,7 @@ community.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','
         };
 
         if($scope.topic.tp_about == ''){
-            alert('关于不能为空!');
+            $('.topic_add_msg').html('关于不能为空!');
             return;
         }
 
@@ -357,9 +357,9 @@ community.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','
         $http(req).success(function(result){
 
             if(result.errno){
-                alert("发布失败");
+                $('.topic_add_msg').html('发布失败');
             } else {
-                alert("发布成功");
+                $('.topic_add_msg').html('发布成功');
                 $window.location.href= '#/community/index';
             }
 
