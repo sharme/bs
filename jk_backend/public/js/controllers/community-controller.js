@@ -345,6 +345,18 @@ community.controller('AddTopicCtrl', ['$scope', '$cookies', '$window', '$http','
             return;
         }
 
+        if($scope.topic.tp_title == ''){
+            $('.topic_add_msg').html('标题不能为空!');
+            return;
+        }
+
+        if(replayData.tp_content == ''){
+            $('.topic_add_msg').html('内容不能为空!');
+            return;
+        }
+
+
+
         var req = {
             method: 'POST',
             url: ipAddress + '/topics/create',
