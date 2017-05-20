@@ -298,6 +298,11 @@ router.get('/getPrev', function (req, res, next) {
 });
 
 
+router.get('/getFootstepsByNewest', function (req, res, next) {
+
+});
+
+
 
 
 module.exports = router;

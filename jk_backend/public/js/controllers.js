@@ -156,13 +156,13 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   // $('.explore').css('display','block');
 
-  // $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 20, u_id: $cookies.get('u_id')}})
-  //     .success(function(data){
-  //       $scope.footsteps = data;
-  //       displayPosition(500,20);
-  //     },function(error){
-  //       $scope.error = error;
-  //     });
+  $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{index_start: 0, count: 3, u_id: $cookies.get('u_id')}})
+      .success(function(data){
+        $scope.newest = data;
+        // displayPosition(500,20);
+      },function(error){
+        $scope.error = error;
+      });
 
   // $http({method: 'GET', url: ipAddress + '/countries/getCountries'})
   //     .success(function(data){
@@ -171,6 +171,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
   //       $scope.error = error;
   //     });
 
+  
   // deprecated
   $scope.countryFilter = function(element, fs_from){
     $http({method: 'GET', url: ipAddress + '/footsteps/getFootsteps', params:{fs_from: fs_from,u_id: $cookies.get('u_id')}})
@@ -182,6 +183,10 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
           $scope.error = error;
         });
   };
+  
+
+  
+  
 
 
   $scope.tag = '';
@@ -191,6 +196,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         .success(function(data){
           // console.log(JSON.stringify(data));
           if(!data.errno){
+            $('.footstep_list_home').css('display','block');
+            $('.recommend').css('display', 'none');
             $scope.footsteps = data;
             $scope.footsteps.push({});
             displayPosition(500,20);
@@ -222,7 +229,7 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
 
   $scope.isbusy = false;
   $scope.loadMore = function() {
-    console.log("load more...");
+    // console.log("load more...");
     if($scope.footsteps && $scope.number > $scope.footsteps.length) {
       $scope.isbusy = true;
       $http({
@@ -241,7 +248,8 @@ buybsControllers.controller('FootstepsListCtrl', ['$scope', '$http', '$cookies',
         $scope.error = error;
       });
     } else {
-      $scope.footsteps.push({});
+      if($scope.footsteps)
+        $scope.footsteps.push({});
     }
   };
 

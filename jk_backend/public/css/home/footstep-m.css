@@ -42,7 +42,7 @@
   top: 60px;
   position: relative;
   margin: 10px 2%;
-  display: block;
+  display: none;
 }
 .footstep_list_profile {
   width: 100%;
@@ -141,4 +141,30 @@
 }
 #footstep-list .footstep-list-div-comment .footstep-list-div-comment-content img {
   max-width: 135px;
+}
+.recommend {
+  position: absolute;
+  height: 540px;
+  margin: 30px 2%;
+  background-color: whitesmoke;
+  top: 200px;
+}
+.recommend .recommend_title {
+  padding: 3%;
+  font-size: 16px;
+}
+.recommend .recommend_main {
+  height: 150px;
+  margin: 10px;
+  border: solid 1px darkgray;
+  padding: 10px;
+}
+.recommend .recommend_main .recommend_main_pic {
+  width: 40%;
+  height: 100%;
+  float: left;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }
